@@ -16,14 +16,18 @@
         </div>
         <div class="navbar-bottom">
             <div class="navbar-bottom-logo-box">
-                <Icon class="navbar-bottom-logo-box-icon" name="my-icon:mediari-logo-original" size="5em"/>
+                <Icon class="navbar-bottom-logo-box-icon" name="my-icon:mediari-logo" size="4.2em"/>
+                <Icon class="navbar-bottom-logo-box-icon" name="my-icon:mediari-logo-texto" size="2.5em"/>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
+            <nav class="navbar-bottom-nav">
+                <a href="/">Início</a>
+                <a href="/about">Áreas de Atuação</a>
+                <a href="/contact">Empresa</a>
+                <a href="/services">Equipe</a>
+                <a href="/blog">Fale conosco</a>
+                <button class="navbar-button common-button">
+                    <Icon class="navbar-button-icon" name="mdi:phone" size="1.5em"/>11 4227-3008
+                </button>
             </nav>
         </div>
     </header>
@@ -39,11 +43,12 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            padding: 11px;
+            padding: 12px;
             &-link-container {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
+                font-size: 15px;
             }
         }
         &-bottom {
@@ -51,17 +56,42 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
+            padding: 1.1rem;
+            font-size: 20px;
+            gap: 5rem;
             &-logo-box {
-                &-icon {
-                    color: $accent-color;
+                gap: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $accent-color;
+            }
+            &-nav {                    
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                a {
+                    position: relative;
+                    text-decoration: none;
+                    color: $primary-text;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -3px;
+                        left: 50%;
+                        width: 0;
+                        height: 2px;
+                        background-color: $accent-color;
+                        transform: translateX(-50%);
+                        transition: width 0.3s ease-in-out;
+                    }
+                    &:hover::after {
+                        width: 100%;
+                    }
                 }
             }
         }
-    }
-
-    p {
-        margin: 0;
     }
 
     nav ul {
@@ -71,11 +101,6 @@
 
     nav ul li {
         display: inline;
-        margin: 0 15px;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #007bff;
+        margin: 0;
     }
 </style>
