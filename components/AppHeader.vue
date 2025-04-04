@@ -10,6 +10,10 @@ export default defineComponent({
             screenWidth.value = window.innerWidth;
         };
 
+        const openPhoneDialer = () => {
+            window.location.href = 'tel:+551142273008';
+        };
+
         onMounted(() => {
             updateScreenWidth(); // Atualiza a largura ao montar
             window.addEventListener('resize', updateScreenWidth); // Listener para redimensionamento
@@ -27,6 +31,7 @@ export default defineComponent({
             hamburguerMenuOpen,
             toggleHamburguerMenu,
             screenWidth,
+            openPhoneDialer,
         };
     },
 });
