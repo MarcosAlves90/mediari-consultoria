@@ -13,8 +13,7 @@ body {
 .common-button {
   background-color: transparent;
   border: 2px solid $accent-color;
-  padding: 0.8rem;
-  font-size: 20px;
+  padding: 0.4rem 0.8rem;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
@@ -23,6 +22,8 @@ body {
   gap: 0.5rem;
   color: $accent-color;
   transition: background-color 0.3s ease;
+  min-height: 60px;
+  min-width: 60px;
   &:hover {
     background-color: $accent-color-30;
   }

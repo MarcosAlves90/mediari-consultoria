@@ -12,5 +12,3 @@
     </NuxtLayout>
   </div>
 </template>
-
-
