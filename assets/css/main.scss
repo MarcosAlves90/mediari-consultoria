@@ -21,10 +21,32 @@ body {
   align-items: center;
   gap: 0.5rem;
   color: $accent-color;
-  transition: background-color 0.3s ease;
-  min-height: 60px;
-  min-width: 60px;
+  transition: background-color 0.2s ease-in-out, min-height 0.2s ease-in-out, min-width 0.2s ease-in-out;
+  min-height: 55px;
+  min-width: 55px;
   &:hover {
     background-color: $accent-color-30;
+  }
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $accent-color;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $body-background;
+}
+
+/* Firefox scrollbar styles */
+@-moz-document url-prefix() {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: $accent-color $body-background;
   }
 }
