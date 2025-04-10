@@ -62,40 +62,42 @@ export default defineComponent({
                 <Icon class="navbar-top-link-icon" name="mdi:linkedin" />
                 <p v-if="screenWidth > 750">Mediari Consultoria Empresarial LTDA</p>
             </a>
-            <a v-if="screenWidth <= 1300" class="navbar-top-link" href="tel:+551142273008" >
+            <a v-if="screenWidth <= 1310" class="navbar-top-link" href="tel:+551142273008" >
                 <Icon class="navbar-top-link-icon" name="mdi:phone" />
                 <p v-if="screenWidth > 750">11 4227-3008</p>
             </a>
         </div>
         <div class="navbar-bottom">
-            <div class="navbar-bottom-logo-box">
-                <Icon class="navbar-bottom-logo-box-icon" name="my-icon:mediari-logo" />
-                <Icon class="navbar-bottom-logo-box-text" name="my-icon:mediari-logo-texto" />
-            </div>
-            <nav class="navbar-bottom-nav desktop" v-if="screenWidth > 1030">
-                <a href="/">Início</a>
-                <a href="/about">Áreas de Atuação</a>
-                <a href="/contact">Empresa</a>
-                <a href="/services">Equipe</a>
-                <a href="/blog">Fale conosco</a>
-                <button v-if="screenWidth > 1300" class="navbar-bottom-nav-button common-button"
-                    @click.prevent="openPhoneDialer">
-                    <Icon class="navbar-bottom-nav-button-icon" name="mdi:phone" />11 4227-3008
+            <div class="navbar-bottom-group">
+                <div class="navbar-bottom-group-logo-box">
+                    <Icon class="navbar-bottom-group-logo-box-icon" name="my-icon:mediari-logo" />
+                    <Icon class="navbar-bottom-group-logo-box-text" name="my-icon:mediari-logo-texto" />
+                </div>
+                <nav class="navbar-bottom-group-nav desktop" v-if="screenWidth > 1080">
+                    <a href="/">Início</a>
+                    <a href="/about">Áreas de Atuação</a>
+                    <a href="/contact">Empresa</a>
+                    <a href="/services">Equipe</a>
+                    <a href="/blog">Fale conosco</a>
+                    <button v-if="screenWidth > 1310" class="navbar-bottom-group-nav-button common-button"
+                        @click.prevent="openPhoneDialer">
+                        <Icon class="navbar-bottom-group-nav-button-icon" name="mdi:phone" />11 4227-3008
+                    </button>
+                </nav>
+                <button v-if="screenWidth <= 1080" class="navbar-bottom-group-hamburguer-menu common-button"
+                    :class="{ open: hamburguerMenuOpen }" @click="toggleHamburguerMenu">
+                    <Icon class="navbar-bottom-group-hamburguer-menu-icon" mode="svg"
+                        :name="hamburguerMenuOpen ? 'line-md:menu-to-close-transition' : 'line-md:close-to-menu-transition'"
+                        :key="hamburguerMenuOpen" />
                 </button>
-            </nav>
-            <button v-if="screenWidth <= 1030" class="navbar-bottom-hamburguer-menu common-button"
-                :class="{ open: hamburguerMenuOpen }" @click="toggleHamburguerMenu">
-                <Icon class="navbar-bottom-hamburguer-menu-icon" mode="svg"
-                    :name="hamburguerMenuOpen ? 'line-md:menu-to-close-transition' : 'line-md:close-to-menu-transition'"
-                    :key="hamburguerMenuOpen" />
-            </button>
-            <nav class="navbar-bottom-nav mobile" :class="{ closed: !hamburguerMenuOpen }" v-show="screenWidth <= 1030">
-                <a href="/">Início</a>
-                <a href="/about">Áreas de Atuação</a>
-                <a href="/contact">Empresa</a>
-                <a href="/services">Equipe</a>
-                <a href="/blog">Fale conosco</a>
-            </nav>
+                <nav class="navbar-bottom-group-nav mobile" :class="{ closed: !hamburguerMenuOpen }" v-show="screenWidth <= 1030">
+                    <a href="/">Início</a>
+                    <a href="/about">Áreas de Atuação</a>
+                    <a href="/contact">Empresa</a>
+                    <a href="/services">Equipe</a>
+                    <a href="/blog">Fale conosco</a>
+                </nav>
+            </div>
         </div>
     </header>
 </template>
@@ -108,6 +110,8 @@ export default defineComponent({
     left: 0;
     right: 0;
     z-index: 1000;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease-in-out;
 
     &-top {
         background-color: $accent-color;
@@ -149,129 +153,134 @@ export default defineComponent({
     &-bottom {
         background-color: $body-background-67;
         backdrop-filter: blur(5px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.1rem;
-        font-size: 20px;
-        gap: 5rem;
-
-        &-logo-box {
+        transition: backdrop-filter 0.2s ease-in-out;
+        &-group {
+            max-width: 80rem;
+            margin: 0 auto;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            color: $accent-color;
+            padding: 1.1rem;
+            font-size: 20px;
+            gap: 3.5rem;
 
-            &-icon {
-                font-size: 4.2em;
-                transition: font-size 0.2s ease-in-out;
-            }
-
-            &-text {
-                font-size: 2.5em;
-                transition: font-size 0.2s ease-in-out;
-            }
-        }
-
-        &-nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            transition: font-size 0.2s ease-in-out;
-
-            a {
-                position: relative;
-                text-decoration: none;
-                color: $primary-text;
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    bottom: -3px;
-                    left: 50%;
-                    width: 0;
-                    height: 2px;
-                    background-color: $accent-color;
-                    transform: translateX(-50%);
-                    transition: width 0.2s ease-in-out;
-                }
-
-                &:hover::after {
-                    width: 100%;
-                }
-            }
-
-            &-button {
-                font-size: inherit;
+            &-logo-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                color: $accent-color;
 
                 &-icon {
-                    font-size: 1.3em;
+                    font-size: 4.2em;
+                    transition: font-size 0.2s ease-in-out;
+                }
+
+                &-text {
+                    font-size: 2.5em;
+                    transition: font-size 0.2s ease-in-out;
                 }
             }
-        }
 
-        &-hamburguer-menu {
-            font-size: 1.5em;
-
-            &-icon {
+            &-nav {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2.8rem;
                 transition: font-size 0.2s ease-in-out;
-            }
 
-            &.open {
-                background-color: $accent-color-30;
+                a {
+                    position: relative;
+                    text-decoration: none;
+                    color: $primary-text;
 
-                &:hover {
-                    background-color: unset;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -3px;
+                        left: 50%;
+                        width: 0;
+                        height: 2px;
+                        background-color: $accent-color;
+                        transform: translateX(-50%);
+                        transition: width 0.2s ease-in-out;
+                    }
+
+                    &:hover::after {
+                        width: 100%;
+                    }
+                }
+
+                &-button {
+                    font-size: inherit;
+
+                    &-icon {
+                        font-size: 1.3em;
+                    }
                 }
             }
-        }
 
-        &-nav.mobile {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            flex-direction: column;
-            background-color: $body-background-67;
-            backdrop-filter: blur(5px);
-            border-top: 2px solid $accent-color;
-            border-bottom: 2px solid $accent-color;
-            gap: 1rem;
-            padding: 1rem;
-            transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            &-hamburguer-menu {
+                font-size: 1.5em;
 
-            &.closed {
+                &-icon {
+                    transition: font-size 0.2s ease-in-out;
+                }
+
+                &.open {
+                    background-color: $accent-color-20;
+
+                    &:hover {
+                        background-color: unset;
+                    }
+                }
+            }
+
+            &-nav.mobile {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                overflow: hidden;
                 max-height: 0;
                 opacity: 0;
-                visibility: hidden;
-            }
+                flex-direction: column;
+                background-color: $body-background-67;
+                backdrop-filter: blur(5px);
+                border-top: 2px solid $accent-color;
+                border-bottom: 2px solid $accent-color;
+                gap: 1rem;
+                padding: 1rem;
+                transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 
-            &:not(.closed) {
-                max-height: 500px;
-                opacity: 1;
-                visibility: visible;
-            }
+                &.closed {
+                    max-height: 0;
+                    opacity: 0;
+                    visibility: hidden;
+                }
 
-            a {
-                border: 2px solid $accent-color;
-                border-radius: 5px;
-                padding: 0.5rem 1rem;
-                width: 100%;
-                box-sizing: border-box;
-                text-align: center;
-                transition: opacity 0.2s ease-in-out, font-size 0.2s ease-in-out;
+                &:not(.closed) {
+                    max-height: 500px;
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                a {
+                    border: 2px solid $accent-color;
+                    border-radius: 5px;
+                    padding: 0.5rem 1rem;
+                    width: 100%;
+                    box-sizing: border-box;
+                    text-align: center;
+                    transition: opacity 0.2s ease-in-out, font-size 0.2s ease-in-out;
+                }
             }
         }
     }
 }
 
 /* Navbar Small Styles */
-.navbar.small .navbar-bottom {
+.navbar.small .navbar-bottom-group {
     &-logo-box {
         &-icon {
             font-size: 3.2em;
@@ -293,10 +302,18 @@ export default defineComponent({
     }
 }
 
+.navbar.small {
+    border-color: $accent-color;
+}
+
+.navbar.small .navbar-bottom {
+    backdrop-filter: blur(10px);
+}
+
 /* Responsive Styles */
 @media (max-width: 1300px) {
     .navbar {
-        &-bottom {
+        &-bottom-group {
             gap: 5vw;
         }
     }
@@ -318,7 +335,7 @@ export default defineComponent({
             }
         }
 
-        &-bottom {
+        &-bottom-group {
             justify-content: space-between;
             flex-wrap: wrap;
             &-nav {
@@ -354,6 +371,34 @@ export default defineComponent({
     .navbar {
         &-top {
             justify-content: space-evenly;
+        }
+    }
+}
+
+/**
+ * Responsive styles for the `.navbar-bottom-logo-box` component:
+ *
+ * - For screens with a maximum width of 450px:
+ *   - Adjusts the font size of the `-icon` element to 3.5em.
+ *   - Adjusts the font size of the `-text` element to 2.2em.
+ *
+ * - For screens with a maximum width of 365px:
+ *   - Hides the `-text` element by setting its display property to `none`.
+ */
+@media (max-width: 450px) {
+    .navbar-bottom-group-logo-box {
+        &-icon {
+            font-size: 3.5em;
+        }
+        &-text {
+            font-size: 2.2em;
+        }
+    }
+}
+@media (max-width: 365px) {
+    .navbar-bottom-group-logo-box {
+        &-text {
+            display: none;
         }
     }
 }
