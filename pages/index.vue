@@ -1,15 +1,17 @@
 <script lang="ts">
 import '@splidejs/splide/css/sea-green';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import ContactCard from '@/components/ContactCard.vue'; // Importando o componente ContactCard
 export default defineComponent({
     components: {
         Splide,
         SplideSlide,
+        ContactCard
     },
     setup() {
-        const openMapInBrowser = () => {
-            window.open('https://maps.app.goo.gl/8f6BACTToivurF4h9', '_blank', 'noopener');
-        };
+        const openLinkInBrowser = (link: string) => {
+            window.open(link, '_blank', 'noopener');
+        }
 
         const triggerShake = (event: Event) => {
             const target = event.currentTarget as HTMLElement;
@@ -22,8 +24,8 @@ export default defineComponent({
         };
 
         return {
-            openMapInBrowser,
             triggerShake,
+            openLinkInBrowser
         };
     }
 })
@@ -143,7 +145,7 @@ export default defineComponent({
                         auxiliares jurídicos preparados para entregar o melhor atendimento a empresas e pessoas físicas.
                     </p>
                     <div class="main-page-section-group enterprise-right-side-group">
-                        <Icon class="map-icon" name="my-icon:icon-map" @click="openMapInBrowser" />
+                        <Icon class="map-icon" name="my-icon:icon-map" @click="openLinkInBrowser('https://maps.app.goo.gl/8f6BACTToivurF4h9')" />
                         <p class="common-text common-p">Estamos localizados na <span>Rua Amazonas, 439 - Centro, São
                                 Caetano do Sul, 09520070.</span></p>
                     </div>
@@ -186,6 +188,32 @@ export default defineComponent({
                 <h1 class="common-text common-h1">ENTRE EM CONTATO</h1>
                 <p class="common-text common-p">Nos contate através de nossas redes e tenha os seus direitos protegidos.
                 </p>
+                <div class="main-page-section-group-article team">
+                    <ContactCard
+                        backgroundImage="/contact-prints/instagram.png"
+                        iconImage="instagram"
+                        buttonText="Fale pelo Instagram"
+                        :buttonAction="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')"
+                    />
+                    <ContactCard
+                        backgroundImage="/contact-prints/telefone.png"
+                        iconImage="telefone"
+                        buttonText="Ligue para Nós"
+                        :buttonAction="handleButtonClick"
+                    />
+                    <ContactCard
+                        backgroundImage="/contact-prints/gmail.png"
+                        iconImage="gmail"
+                        buttonText="Envie um E-mail"
+                        :buttonAction="handleButtonClick"
+                    />
+                    <ContactCard
+                        backgroundImage="/contact-prints/linkedin.png"
+                        iconImage="linkedin"
+                        buttonText="Conecte-se no LinkedIn"
+                        :buttonAction="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')"
+                    />
+                </div>
             </div>
         </section>
     </main>
@@ -532,72 +560,77 @@ $margin-p-mobile: -5.5vw;
 
                     &-card {
                         display: flex;
+                        flex-direction: column;
                         justify-content: center;
                         align-items: center;
-                        flex-direction: column;
                         margin: 0;
                         box-sizing: border-box;
                         height: 100%;
                         width: 100%;
                         border: 2px solid $accent-color;
                         border-radius: 5px;
-                        padding: 1rem 1rem 2rem 1rem;
+                        padding: 1rem;
                         transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
                         overflow: hidden;
-
+                        position: relative;
+                    
                         &-icon {
                             font-size: 6.2rem;
+                            cursor: pointer;
                         }
-
+                    
                         h1 {
                             font-size: 24px;
                             font-weight: 500;
                             color: $accent-color;
                             text-align: center;
-                            margin: 0.5rem 0 0 0;
+                            margin: 0.5rem 0 0;
                         }
-
+                    
                         p {
                             margin: 0;
                             text-align: justify;
                             font-size: 15px;
                             transition: color 0.2s ease-in-out;
                         }
-
+                    
                         &:hover {
                             transform: scale(1.05);
-
+                    
                             p {
                                 color: $accent-color;
                             }
                         }
-
+                    
                         &::before {
                             content: '';
                             position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background-image: url('/card-background.png');
-                            background-size: cover;
-                            background-position: center;
-                            filter: blur(5px) brightness(0.7); // Aplica desfoque e escurece a imagem
+                            inset: 0;
+                            background: url('/card-background.png') center / cover no-repeat;
+                            filter: blur(5px) brightness(0.7);
                             opacity: 0;
-                            transition: opacity 0.3s ease;
+                            transition: opacity 0.3s ease, transform 0.3s ease;
                             z-index: 0;
+                            pointer-events: none;
                         }
-
+                    
                         &:hover::before {
                             opacity: 0.2;
-                            transform: scale(1.1); // Dá um leve zoom na imagem
+                            transform: scale(1.1);
                         }
-
-                        >* {
+                    
+                        > * {
                             position: relative;
                             z-index: 1;
                         }
                     }
+                }
+                &.team {
+                    margin-top: 1.5rem;
+                    display: flex;
+                    gap: 2rem;
+                    justify-content: space-between;
+                    align-items: center;
                 }
             }
         }

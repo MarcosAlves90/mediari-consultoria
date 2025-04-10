@@ -1,8 +1,10 @@
 <script lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
     setup() {
+        const router = useRouter(); // Instância do roteador
         const hamburguerMenuOpen = ref(false);
         const screenWidth = ref(0);
         const isNavbarSmall = ref(false);
@@ -18,6 +20,14 @@ export default defineComponent({
         const openPhoneDialer = () => {
             window.location.href = 'tel:+551142273008';
         };
+        
+        const toggleHamburguerMenu = () => {
+            hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
+        };
+
+        const goToHome = () => {
+            router.push('/'); // Redireciona para a página inicial
+        };
 
         onMounted(() => {
             updateScreenWidth();
@@ -30,9 +40,6 @@ export default defineComponent({
             window.removeEventListener('scroll', handleScroll); // Remove o listener de scroll
         });
 
-        const toggleHamburguerMenu = () => {
-            hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
-        };
 
         return {
             hamburguerMenuOpen,
@@ -40,6 +47,7 @@ export default defineComponent({
             screenWidth,
             openPhoneDialer,
             isNavbarSmall,
+            goToHome,
         };
     },
 });
@@ -69,7 +77,7 @@ export default defineComponent({
         </div>
         <div class="navbar-bottom">
             <div class="navbar-bottom-group">
-                <div class="navbar-bottom-group-logo-box">
+                <div class="navbar-bottom-group-logo-box" @click="goToHome">
                     <Icon class="navbar-bottom-group-logo-box-icon" name="my-icon:mediari-logo" />
                     <Icon class="navbar-bottom-group-logo-box-text" name="my-icon:mediari-logo-texto" />
                 </div>
@@ -170,6 +178,7 @@ export default defineComponent({
                 justify-content: center;
                 gap: 1rem;
                 color: $accent-color;
+                cursor: pointer;
 
                 &-icon {
                     font-size: 4.2em;

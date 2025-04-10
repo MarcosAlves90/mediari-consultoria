@@ -1,12 +1,24 @@
 <template>
     <footer>
-        <p>&copy; 2023 My Application. All rights reserved.</p>
-        <nav>
-            <ul>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-            </ul>
-        </nav>
+        <div class="footer-group">
+            <p>&copy; 2023 My Application. All rights reserved.</p>
+        </div>
     </footer>
 </template>
+
+<style scoped lang="scss">
+    footer {
+        background-color: $accent-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-group {
+        max-width: 80rem;
+    }
+
+    p, ul {
+        margin: 0;
+    }
+</style>
