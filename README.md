@@ -1,75 +1,19 @@
-# Nuxt Minimal Starter
+# Digital Portfolio
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![GitHub repo size](https://img.shields.io/github/repo-size/MarcosAlves90/mediari-consultoria?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/MarcosAlves90/mediari-consultoria?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/MarcosAlves90/mediari-consultoria?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/MarcosAlves90/mediari-consultoria?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 
-## Setup
+> Professional Landing Page Design for Mediari Consultoria.
+>
+> Site: Unavailable
 
-Make sure to install dependencies:
+## Adjustments and improvements
 
-```bash
-# npm
-npm install
+The project is still under development and the next updates will focus on the following tasks:
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [ ] Add footer
+- [ ] Make responsive
+- [ ] Improve the team section
