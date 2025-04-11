@@ -1,4 +1,4 @@
-# Digital Portfolio
+# Mediari Consultoria
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/MarcosAlves90/mediari-consultoria?style=for-the-badge)
@@ -6,7 +6,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 
-> Professional Landing Page Design for Mediari Consultoria.
+> Professional landing page design for Mediari Consultoria.
 >
 > Site: Unavailable
 
