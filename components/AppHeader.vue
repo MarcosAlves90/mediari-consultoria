@@ -1,13 +1,13 @@
 <script lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router';
 
 export default defineComponent({
     setup() {
-        const router = useRouter(); // Instância do roteador
         const hamburguerMenuOpen = ref(false);
         const screenWidth = ref(0);
         const isNavbarSmall = ref(false);
+        const { openPhoneDialer } = useContacts();
+        const { goTo } = useGoTo();
 
         const updateScreenWidth = () => {
             screenWidth.value = window.innerWidth;
@@ -16,17 +16,9 @@ export default defineComponent({
         const handleScroll = () => {
             isNavbarSmall.value = window.scrollY > 200; // Adiciona a classe se o scroll for maior que 50px
         };
-
-        const openPhoneDialer = () => {
-            window.location.href = 'tel:+551142273008';
-        };
         
         const toggleHamburguerMenu = () => {
             hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
-        };
-
-        const goToHome = () => {
-            router.push('/'); // Redireciona para a página inicial
         };
 
         onMounted(() => {
@@ -45,9 +37,9 @@ export default defineComponent({
             hamburguerMenuOpen,
             toggleHamburguerMenu,
             screenWidth,
-            openPhoneDialer,
             isNavbarSmall,
-            goToHome,
+            goTo,
+            openPhoneDialer,
         };
     },
 });
@@ -77,7 +69,7 @@ export default defineComponent({
         </div>
         <div class="navbar-bottom">
             <div class="navbar-bottom-group">
-                <div class="navbar-bottom-group-logo-box" @click="goToHome">
+                <div class="navbar-bottom-group-logo-box" @click="goTo('/')">
                     <Icon class="navbar-bottom-group-logo-box-icon" name="my-icon:mediari-logo" />
                     <Icon class="navbar-bottom-group-logo-box-text" name="my-icon:mediari-logo-texto" />
                 </div>

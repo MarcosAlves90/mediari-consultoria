@@ -9,6 +9,7 @@ export default defineComponent({
         ContactCard
     },
     setup() {
+        const { openPhoneDialer, openMailTo } = useContacts();
         const openLinkInBrowser = (link: string) => {
             window.open(link, '_blank', 'noopener');
         }
@@ -25,7 +26,9 @@ export default defineComponent({
 
         return {
             triggerShake,
-            openLinkInBrowser
+            openLinkInBrowser,
+            openPhoneDialer,
+            openMailTo
         };
     }
 })
@@ -199,13 +202,13 @@ export default defineComponent({
                         backgroundImage="/contact-prints/telefone.png"
                         iconImage="telefone"
                         buttonText="Ligue para Nós"
-                        :buttonAction="handleButtonClick"
+                        :buttonAction="openPhoneDialer"
                     />
                     <ContactCard
                         backgroundImage="/contact-prints/gmail.png"
                         iconImage="gmail"
                         buttonText="Envie um E-mail"
-                        :buttonAction="handleButtonClick"
+                        :buttonAction="openMailTo"
                     />
                     <ContactCard
                         backgroundImage="/contact-prints/linkedin.png"
@@ -294,11 +297,16 @@ $margin-p-mobile: -5.5vw;
                     border-radius: 5px;
                     min-width: 9rem;
                     backdrop-filter: blur(5px);
+                    transition: transform 0.2s ease-in-out;
 
                     p {
                         color: $body-background;
                         margin: 0;
                         font-size: 20px;
+                    }
+
+                    &:hover {
+                        transform: scale(1.1);
                     }
                 }
 
@@ -645,27 +653,18 @@ p {
     0% {
         transform: translateX(0);
     }
-
     20% {
         transform: translateX(-10px);
     }
-
-    // Aumentado de -5px para -10px
     40% {
         transform: translateX(10px);
     }
-
-    // Aumentado de 5px para 10px
     60% {
         transform: translateX(-10px);
     }
-
-    // Aumentado de -5px para -10px
     80% {
         transform: translateX(10px);
     }
-
-    // Aumentado de 5px para 10px
     100% {
         transform: translateX(0);
     }

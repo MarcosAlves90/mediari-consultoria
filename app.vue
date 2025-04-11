@@ -1,14 +1,3 @@
-<template>
-  <div>
-    <div id="loader" class="loader">
-      <div class="spinner"></div>
-    </div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
-</template>
-
 <script setup lang="ts">
   // Adicionar outras tags ao head
   useSeoMeta({
@@ -37,6 +26,18 @@
     }
   });
 </script>
+
+<template>
+  <div>
+    <div id="loader" class="loader">
+      <div class="spinner"></div>
+    </div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
+</template>
+
 
 <style lang="scss" scoped>
 /* Loader Styles */
