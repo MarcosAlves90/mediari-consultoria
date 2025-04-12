@@ -1,5 +1,6 @@
 $body-background: #f5f5f5;
 $body-background-67: rgba($body-background, 0.67);
+$body-background-25: rgba($body-background, 0.25);
 $body-background-5: rgba($body-background, 0.05);
 
 $body-background-dark: #ebebeb;
@@ -10,6 +11,8 @@ $secondary-text: #888888;
 $accent-color: #590100;
 $accent-color-30: rgba($accent-color, 0.3);
 $accent-color-20: rgba($accent-color, 0.2);
+
+$accent-dark-color: #480000;
 
 $accent-text-color: $body-background;
 $accent-text-color-20: rgba($body-background, 0.2);

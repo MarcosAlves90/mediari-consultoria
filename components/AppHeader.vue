@@ -63,7 +63,7 @@ export default defineComponent({
                 <p v-if="screenWidth > 750">Mediari Consultoria Empresarial LTDA</p>
             </a>
             <a v-if="screenWidth <= 1310" class="navbar-top-link" href="tel:+551142273008" >
-                <Icon class="navbar-top-link-icon" name="mdi:phone" />
+                <Icon class="navbar-top-link-icon" name="mdi:phone-outline" />
                 <p v-if="screenWidth > 750">11 4227-3008</p>
             </a>
         </div>
@@ -81,7 +81,7 @@ export default defineComponent({
                     <a href="/blog">Fale conosco</a>
                     <button v-if="screenWidth > 1310" class="navbar-bottom-group-nav-button common-button"
                         @click.prevent="openPhoneDialer">
-                        <Icon class="navbar-bottom-group-nav-button-icon" name="mdi:phone" />11 4227-3008
+                        <Icon class="navbar-bottom-group-nav-button-icon" name="mdi:phone-outline" />11 4227-3008
                     </button>
                 </nav>
                 <button v-if="screenWidth <= 1080" class="navbar-bottom-group-hamburguer-menu common-button"

@@ -19,6 +19,12 @@
                         <Icon class="logo-box-icon" name="my-icon:mediari-logo" />
                         <Icon class="logo-box-text" name="my-icon:mediari-logo-texto" />
                     </div>
+                    <div class="button-box">
+                        <button class="common-button"><Icon class="icon" name="mdi:linkedin"/></button>
+                        <button class="common-button"><Icon class="icon" name="mdi:email-outline"/>contato@mediari.com.br</button>
+                        <button class="common-button"><Icon class="icon" name="mdi:instagram"/>@mediari.consultoria</button>
+                        <button class="common-button"><Icon class="icon" name="mdi:phone-outline"/>11 4227-3008</button>
+                    </div>
                 </div>
                 <div class="links-box">
 
@@ -37,6 +43,20 @@
 </template>
 
 <style scoped lang="scss">
+    $common-padding: 3rem;
+
+    .common-button {
+        color: $body-background;
+        border-color: $body-background;
+        font-size: 20px;
+        .icon {
+            font-size: 1.5em;
+        }
+        &:hover {
+            background-color: $body-background-25;
+        }
+    }
+
     footer {
         background-color: $accent-color;
         display: flex;
@@ -47,10 +67,21 @@
 
     .footer-group {
         max-width: 80rem;
+        width: 100%;
     }
-
-    .top-box {
-        .logo-box {
+    
+    .footer-top {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .top-box {
+            padding: $common-padding 0 $common-padding 0;
+            border-bottom: 2px solid $accent-dark-color;
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            .logo-box {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -59,16 +90,24 @@
                 cursor: pointer;
 
                 &-icon {
-                    font-size: 4.2em;
+                    font-size: 4.8em;
                     transition: font-size 0.2s ease-in-out;
                 }
 
                 &-text {
-                    font-size: 2.5em;
+                    font-size: 2.9em;
                     transition: font-size 0.2s ease-in-out;
                 }
             }
+            .button-box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
     }
+
 
     p, ul {
         margin: 0;
