@@ -35,29 +35,29 @@ export default defineComponent({
 </script>
 
 <template>
-    <main class="main-page">
-        <section class="main-page-banner" role="banner" aria-labelledby="banner-heading" aria-describedby="banner-description">
-            <div class="text-box" aria-label="Texto do banner principal">
-            <div class="tag-group" role="list" aria-label="Características principais">
-                <div class="tag-group-tag" role="listitem">
+    <main class="homepage">
+        <section class="hero-section" role="banner" aria-labelledby="banner-heading" aria-describedby="banner-description">
+            <div class="hero-text" aria-label="Texto do banner principal">
+            <div class="hero-tags" role="list" aria-label="Características principais">
+                <div class="hero-tag" role="listitem">
                 <p>Competência</p>
                 </div>
-                <div class="tag-group-tag" role="listitem">
+                <div class="hero-tag" role="listitem">
                 <p>Segurança</p>
                 </div>
-                <div class="tag-group-tag" role="listitem">
+                <div class="hero-tag" role="listitem">
                 <p>Experiência</p>
                 </div>
             </div>
             <h1 id="banner-heading">EXCELÊNCIA JURÍDICA</h1>
             <h2>PARA <span>VOCÊ E OS SEUS NEGÓCIOS</span></h2>
-            <p id="banner-description" class="description">Atendimento especializado para empresas e soluções
+            <p id="banner-description" class="hero-description">Atendimento especializado para empresas e soluções
                 completas em demandas bancárias e do consumidor.</p>
             </div>
-            <div class="notch" aria-hidden="true"></div>
-            <div class="gradient" aria-hidden="true"></div>
+            <div class="hero-notch" aria-hidden="true"></div>
+            <div class="hero-gradient" aria-hidden="true"></div>
             <NuxtImg 
-            class="image" 
+            class="hero-image" 
             src="/banner-background.jpg" 
             width="1920" 
             height="1080" 
@@ -67,73 +67,73 @@ export default defineComponent({
             alt="Banner de fundo da página principal com elementos gráficos abstratos" 
             />
         </section>
-        <section class="main-page-section" role="region" aria-labelledby="services-heading" aria-describedby="services-description">
-            <div class="group">
-            <h2 id="services-heading" class="common-text common-h2">ÁREAS DE ATUAÇÃO</h2>
-            <h1 class="common-text common-h1">NOSSOS SERVIÇOS</h1>
-            <p id="services-description" class="common-text common-p">Nosso corpo de profissionais atua em diferentes áreas para proteger
+        <section class="services-section" role="region" aria-labelledby="services-heading" aria-describedby="services-description">
+            <div class="services-container">
+            <h2 id="services-heading" class="section-subtitle">ÁREAS DE ATUAÇÃO</h2>
+            <h1 class="section-title">NOSSOS SERVIÇOS</h1>
+            <p id="services-description" class="section-description">Nosso corpo de profissionais atua em diferentes áreas para proteger
                 os seus direitos ou da sua empresa.</p>
-            <div class="group-article service four-column" role="list" aria-label="Serviços principais">
-                <div class="group-article service-card" role="listitem" aria-labelledby="civil-heading" aria-describedby="civil-description">
-                <Icon class="group-article service-card-icon"
+            <div class="services-list services-list--main" role="list" aria-label="Serviços principais">
+                <div class="service-card" role="listitem" aria-labelledby="civil-heading" aria-describedby="civil-description">
+                <Icon class="service-card-icon"
                     name="my-icon:icon-direito-civil" @click="triggerShake" aria-hidden="true" />
-                <h1 id="civil-heading" class="common-text common-h1">Direito Civil</h1>
-                <p id="civil-description" class="common-text common-p">Resolvemos conflitos, indenizações e questões do dia a dia para
+                <h1 id="civil-heading" class="service-title">Direito Civil</h1>
+                <p id="civil-description" class="service-description">Resolvemos conflitos, indenizações e questões do dia a dia para
                     sua segurança jurídica.</p>
                 </div>
-                <div class="group-article service-card" role="listitem" aria-labelledby="penal-heading" aria-describedby="penal-description">
-                <Icon class="group-article service-card-icon"
+                <div class="service-card" role="listitem" aria-labelledby="penal-heading" aria-describedby="penal-description">
+                <Icon class="service-card-icon"
                     name="my-icon:icon-direito-penal" @click="triggerShake" aria-hidden="true" />
-                <h1 id="penal-heading" class="common-h1">Direito Penal</h1>
-                <p id="penal-description" class="common-p">Defesa especializada em processos criminais, garantindo proteção em todas as
+                <h1 id="penal-heading" class="service-title">Direito Penal</h1>
+                <p id="penal-description" class="service-description">Defesa especializada em processos criminais, garantindo proteção em todas as
                     etapas.</p>
                 </div>
-                <div class="group-article service-card" role="listitem" aria-labelledby="contracts-heading" aria-describedby="contracts-description">
-                <Icon class="group-article service-card-icon" name="my-icon:icon-contratos"
+                <div class="service-card" role="listitem" aria-labelledby="contracts-heading" aria-describedby="contracts-description">
+                <Icon class="service-card-icon" name="my-icon:icon-contratos"
                     @click="triggerShake" aria-hidden="true" />
-                <h1 id="contracts-heading" class="common-text common-h1">Contratos</h1>
-                <p id="contracts-description" class="common-text common-p">Elaboração e revisão de contratos para assegurar segurança e
+                <h1 id="contracts-heading" class="service-title">Contratos</h1>
+                <p id="contracts-description" class="service-description">Elaboração e revisão de contratos para assegurar segurança e
                     proteção jurídica.</p>
                 </div>
-                <div class="group-article service-card" role="listitem" aria-labelledby="consulting-heading" aria-describedby="consulting-description">
-                <Icon class="group-article service-card-icon" name="my-icon:icon-consultivo"
+                <div class="service-card" role="listitem" aria-labelledby="consulting-heading" aria-describedby="consulting-description">
+                <Icon class="service-card-icon" name="my-icon:icon-consultivo"
                     @click="triggerShake" aria-hidden="true" />
-                <h1 id="consulting-heading" class="common-text common-h1">Consultivo</h1>
-                <p id="consulting-description" class="common-text common-p">Orientação jurídica estratégica para prevenir riscos e garantir
+                <h1 id="consulting-heading" class="service-title">Consultivo</h1>
+                <p id="consulting-description" class="service-description">Orientação jurídica estratégica para prevenir riscos e garantir
                     conformidade legal.</p>
                 </div>
             </div>
-            <div class="group-article service three-column" role="list" aria-label="Outros serviços">
-                <div class="group-article service-card" role="listitem" aria-labelledby="consumer-heading" aria-describedby="consumer-description">
-                <Icon class="group-article service-card-icon"
+            <div class="services-list services-list--secondary" role="list" aria-label="Outros serviços">
+                <div class="service-card" role="listitem" aria-labelledby="consumer-heading" aria-describedby="consumer-description">
+                <Icon class="service-card-icon"
                     name="my-icon:icon-direito-do-consumidor" @click="triggerShake" aria-hidden="true" />
-                <h1 id="consumer-heading" class="common-text common-h1">Direito do Consumidor</h1>
-                <p id="consumer-description" class="common-text common-p">Defendemos os direitos dos consumidores em diversas situações,
+                <h1 id="consumer-heading" class="service-title">Direito do Consumidor</h1>
+                <p id="consumer-description" class="service-description">Defendemos os direitos dos consumidores em diversas situações,
                     como compras online, cobranças
                     indevidas e defeitos em produtos ou serviços.</p>
                 </div>
-                <div class="group-article service-card" role="listitem" aria-labelledby="banking-heading" aria-describedby="banking-description">
-                <Icon class="group-article service-card-icon"
+                <div class="service-card" role="listitem" aria-labelledby="banking-heading" aria-describedby="banking-description">
+                <Icon class="service-card-icon"
                     name="my-icon:icon-direito-bancario" @click="triggerShake" aria-hidden="true" />
-                <h1 id="banking-heading" class="common-text common-h1">Direito Bancário</h1>
-                <p id="banking-description" class="common-text common-p">Prestamos assessoria jurídica para questões envolvendo bancos,
+                <h1 id="banking-heading" class="service-title">Direito Bancário</h1>
+                <p id="banking-description" class="service-description">Prestamos assessoria jurídica para questões envolvendo bancos,
                     contratos financeiros,
                     cobranças abusivas e renegociação de dívidas. Proteja seus direitos com nosso suporte.</p>
                 </div>
-                <div class="group-article service-card" role="listitem" aria-labelledby="labor-heading" aria-describedby="labor-description">
-                <Icon class="group-article service-card-icon"
+                <div class="service-card" role="listitem" aria-labelledby="labor-heading" aria-describedby="labor-description">
+                <Icon class="service-card-icon"
                     name="my-icon:icon-direito-trabalhista" @click="triggerShake" aria-hidden="true" />
-                <h1 id="labor-heading" class="common-text common-h1">Direito Trabalhista</h1>
-                <p id="labor-description" class="common-text common-p">Atuamos na defesa de trabalhadores e empresas em disputas
+                <h1 id="labor-heading" class="service-title">Direito Trabalhista</h1>
+                <p id="labor-description" class="service-description">Atuamos na defesa de trabalhadores e empresas em disputas
                     trabalhistas, rescisões
                     contratuais, direitos previdenciários e demais questões ligadas ao ambiente de trabalho.</p>
                 </div>
             </div>
             </div>
         </section>
-        <section class="main-page-section enterprise gray-bg" role="region" aria-labelledby="enterprise-heading" aria-describedby="enterprise-description">
-            <div class="group enterprise">
-            <div class="group enterprise-left-side" role="complementary" aria-label="Mapa da localização da empresa">
+        <section class="company-section gray-bg" role="region" aria-labelledby="enterprise-heading" aria-describedby="enterprise-description">
+            <div class="company-content">
+            <div class="company-map" role="complementary" aria-label="Mapa da localização da empresa">
                 <!-- Conteúdo para o lado esquerdo -->
                 <iframe
                 src="https://www.google.com/maps/embed?pb=!4v1744196621406!6m8!1m7!1sEP5Wtm-s9EVnSAi5PEfDvw!2m2!1d-23.61476374919065!2d-46.56947893457005!3f56.22!4f9.540000000000006!5f0.7820865974627469"
@@ -141,11 +141,11 @@ export default defineComponent({
                 referrerpolicy="no-referrer-when-downgrade"
                 title="Mapa interativo da localização da Mediari Consultoria"></iframe>
             </div>
-            <div class="group enterprise-right-side">
+            <div class="company-info">
                 <!-- Conteúdo para o lado direito -->
-                <h2 id="enterprise-heading" class="common-text common-h2">EMPRESA</h2>
-                <h1 class="common-text common-h1">MEDIARI CONSULTORIA</h1>
-                <p id="enterprise-description" class="common-text common-p">Somos uma empresa especializada em assessoria e
+                <h2 id="enterprise-heading" class="section-subtitle">EMPRESA</h2>
+                <h1 class="section-title">MEDIARI CONSULTORIA</h1>
+                <p id="enterprise-description" class="section-description">Somos uma empresa especializada em assessoria e
                 consultoria
                 jurídica personalizada para pequenos e médios negócios, oferecendo elaboração de minutas,
                 pareceres
@@ -155,9 +155,9 @@ export default defineComponent({
                 outras áreas do Direito do Consumidor. Contamos com uma equipe de mais de 60 colaboradores e
                 auxiliares jurídicos preparados para entregar o melhor atendimento a empresas e pessoas físicas.
                 </p>
-                <div class="group enterprise-right-side-group" role="group" aria-label="Informações de localização">
-                <Icon class="map-icon" name="my-icon:icon-map" @click="openLinkInBrowser('https://maps.app.goo.gl/8f6BACTToivurF4h9')" aria-label="Abrir localização no Google Maps" />
-                <p class="common-text common-p">Estamos localizados na <span>Rua Amazonas, 439 - Centro, São
+                <div class="company-location" role="group" aria-label="Informações de localização">
+                <Icon class="company-map-icon" name="my-icon:icon-map" @click="openLinkInBrowser('https://maps.app.goo.gl/8f6BACTToivurF4h9')" aria-label="Abrir localização no Google Maps" />
+                <p class="section-description">Estamos localizados na <span>Rua Amazonas, 439 - Centro, São
                     Caetano do Sul, 09520070.</span></p>
                 </div>
                 <iframe
@@ -168,14 +168,14 @@ export default defineComponent({
             </div>
             </div>
         </section>
-        <section class="main-page-section team" role="region" aria-labelledby="team-heading" aria-describedby="team-description">
-            <div class="group">
-            <h2 id="team-heading" class="common-text common-h2">EQUIPE</h2>
-            <h1 class="common-text common-h1">NOSSOS DESTAQUES</h1>
-            <p id="team-description" class="common-text common-p">Com mais de 60 colaboradores e auxiliares jurídicos, entregamos
+        <section class="team-section" role="region" aria-labelledby="team-heading" aria-describedby="team-description">
+            <div class="team-content">
+            <h2 id="team-heading" class="section-subtitle">EQUIPE</h2>
+            <h1 class="section-title">NOSSOS DESTAQUES</h1>
+            <p id="team-description" class="section-description">Com mais de 60 colaboradores e auxiliares jurídicos, entregamos
                 excelência em todos os serviços.</p>
             <Splide
-                class="splide"
+                class="team-carousel"
                 :options="{
                 type: 'loop',
                 perPage: 4,
@@ -205,13 +205,13 @@ export default defineComponent({
             </Splide>
             </div>
         </section>
-        <section class="main-page-section team gray-bg" role="region" aria-labelledby="contact-heading" aria-describedby="contact-description">
-            <div class="group">
-            <h2 id="contact-heading" class="common-text common-h2">FALE CONOSCO</h2>
-            <h1 class="common-text common-h1">ENTRE EM CONTATO</h1>
-            <p id="contact-description" class="common-text common-p">Nos contate através de nossas redes e tenha os seus direitos protegidos.
+        <section class="contact-section gray-bg" role="region" aria-labelledby="contact-heading" aria-describedby="contact-description">
+            <div class="contact-content">
+            <h2 id="contact-heading" class="section-subtitle">FALE CONOSCO</h2>
+            <h1 class="section-title">ENTRE EM CONTATO</h1>
+            <p id="contact-description" class="section-description">Nos contate através de nossas redes e tenha os seus direitos protegidos.
             </p>
-            <div class="group-article team" role="list" aria-label="Opções de contato">
+            <div class="contact-list" role="list" aria-label="Opções de contato">
                 <ContactCard
                 backgroundImage="/contact-prints/instagram.png"
                 iconImage="instagram"
@@ -251,7 +251,6 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-/* Mixin para fontes responsivas */
 @mixin responsive-font($tablet, $mobile) {
     @media (max-width: 1200px) {
         font-size: $tablet;
@@ -262,7 +261,6 @@ export default defineComponent({
     }
 }
 
-/* Mixin para margens responsivas */
 @mixin responsive-margin($tablet, $mobile) {
     @media (max-width: 1200px) {
         margin-top: $tablet;
@@ -273,7 +271,6 @@ export default defineComponent({
     }
 }
 
-/* Variáveis para reutilização */
 $font-large: 105.1px;
 $font-medium: 64.5px;
 $font-small: 20.3px;
@@ -290,14 +287,14 @@ $margin-p-desktop: -5rem;
 $margin-p-tablet: -3.5rem;
 $margin-p-mobile: -5.5vw;
 
-.main-page {
-    &-banner {
+.homepage {
+    .hero-section {
         width: 100%;
         height: 60rem;
         position: relative;
         border-bottom: 12px solid $accent-color;
 
-        .text-box {
+        .hero-text {
             margin-top: 3.1rem;
             position: absolute;
             top: 50%;
@@ -308,13 +305,13 @@ $margin-p-mobile: -5.5vw;
             width: 100%;
             text-align: center;
 
-            .tag-group {
+            .hero-tags {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 1.7rem;
 
-                &-tag {
+                .hero-tag {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -341,7 +338,7 @@ $margin-p-mobile: -5.5vw;
                 @media (max-width: 1200px) {
                     gap: 1.3rem;
 
-                    &-tag {
+                    .hero-tag {
                         padding: 0.2rem 0.45rem;
                         min-width: 7.5rem;
 
@@ -354,15 +351,13 @@ $margin-p-mobile: -5.5vw;
                 @media (max-width: 850px) {
                     gap: 2.5vw;
 
-                    &-tag {
+                    .hero-tag {
                         padding: 0.8vw 2.5vw;
                         min-width: 15vw;
 
                         p {
                             font-size: 2.52vw;
                         }
-
-                        ;
                     }
                 }
             }
@@ -370,7 +365,7 @@ $margin-p-mobile: -5.5vw;
             h1,
             h2,
             span,
-            .description {
+            .hero-description {
                 transition: font-size 0.2s ease-in-out, margin-top 0.2s ease-in-out;
             }
 
@@ -399,7 +394,7 @@ $margin-p-mobile: -5.5vw;
                 }
             }
 
-            .description {
+            .hero-description {
                 color: inherit;
                 font-size: $font-small;
                 margin-top: $margin-p-desktop;
@@ -412,7 +407,7 @@ $margin-p-mobile: -5.5vw;
             }
         }
 
-        .notch {
+        .hero-notch {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -432,7 +427,7 @@ $margin-p-mobile: -5.5vw;
             }
         }
 
-        .gradient {
+        .hero-gradient {
             position: absolute;
             top: 0;
             left: 0;
@@ -442,75 +437,16 @@ $margin-p-mobile: -5.5vw;
             background: linear-gradient(180deg, $accent-color 60%, $secondary-text 100%);
         }
 
-        .image {
+        .hero-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             opacity: 0.25;
         }
-
     }
 
-    .splide {
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    
-    ::v-deep(.splide__arrow) {
-        border: 2px solid $accent-color;
-        border-radius: 5px;
-        height: 3.5rem;
-        width: 2.5rem;
-        transition: background-color 0.2s ease-in-out;
-        svg {
-            fill: $accent-color;
-            width: 1rem;
-        }
-        &:hover {
-            background-color: $accent-color-20;
-        }
-    }
-
-    ::v-deep(.splide__arrow--prev) {
-        left: -1px; // Ajusta a posição da seta anterior
-    }
-
-    ::v-deep(.splide__arrow--next) {
-        right: -1px; // Ajusta a posição da seta próxima
-    }
-
-    .common-text {
-        margin: 0;
-        text-align: start;
-        padding: 0;
-    }
-
-    .common-h2 {
-        font-size: 24px;
-        color: $accent-color;
-        font-weight: 600;
-        font-family: "Scheherazade New", sans-serif;
-    }
-
-    .common-h1 {
-        margin-top: -1.6rem;
-        font-size: 60px;
-        font-weight: 400;
-    }
-
-    .common-p {
-        font-size: 20px;
-        text-align: justify;
-    }
-
-    .shake-animation {
-        animation: shake 0.7s ease-in-out;
-    }
-
-    &-section {
+    .services-section {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -520,157 +456,253 @@ $margin-p-mobile: -5.5vw;
             background-color: $body-background-dark;
         }
 
-        .group {
+        .services-container {
             width: 100%;
             max-width: 80rem;
             padding: 4.5rem 2rem;
+        }
 
-            &.enterprise {
-                display: flex;
-                gap: 2rem;
+        .services-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
 
-                &-left-side {
-                    max-width: 25.5rem;
-                }
+            &--main {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            &--secondary {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+            border: 2px solid $accent-color;
+            border-radius: 5px;
+            padding: 1rem;
+            transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+            overflow: hidden;
+            position: relative;
 
-                &-right-side {
-                    display: flex;
-                    flex-direction: column;
-
-                    &-group {
-                        margin-top: 1rem;
-                        gap: 0.5rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        color: $secondary-text;
-                        padding: 0;
-
-                        p span {
-                            font-weight: 600;
-                        }
-
-                        .map-icon {
-                            cursor: pointer;
-                            font-size: 3.5rem;
-                            transition: transform 0.2s ease-in-out;
-
-                            &:hover {
-                                transform: scale(1.1) rotate(-10deg);
-                            }
-                        }
-                    }
-
-                    iframe {
-                        margin-top: 1rem;
-                        height: 15rem;
-                    }
-                }
-
-                &-right-side,
-                &-left-side {
-                    padding: 0;
+            .service-card-icon {
+                font-size: 6.2rem;
+                cursor: pointer;
+                @media (max-width: 1200px) {
+                    font-size: 4rem;
                 }
             }
+            .service-title {
+                font-size: 24px;
+                font-weight: 500;
+                color: $accent-color;
+                text-align: center;
+                margin: 0.5rem 0 0;
+                @media (max-width: 1200px) {
+                    font-size: 18px;
+                }
+            }
+            .service-description {
+                margin: 0;
+                text-align: justify;
+                font-size: 15px;
+                transition: color 0.2s ease-in-out;
+                @media (max-width: 1200px) {
+                    font-size: 12px;
+                }
+            }
+            &:hover {
+                transform: scale(1.05);
+                .service-description {
+                    color: $accent-color;
+                }
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: url('/card-background.png') center / cover no-repeat;
+                filter: blur(5px) brightness(0.7);
+                opacity: 0;
+                transition: opacity 0.3s ease, transform 0.3s ease;
+                z-index: 0;
+                pointer-events: none;
+            }
+            &:hover::before {
+                opacity: 0.2;
+                transform: scale(1.1);
+            }
+            > * {
+                position: relative;
+                z-index: 1;
+            }
+        }
+    }
 
+    .company-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.gray-bg {
+            background-color: $body-background-dark;
+        }
+        .company-content {
+            width: 100%;
+            max-width: 80rem;
+            padding: 4.5rem 2rem;
+            display: flex;
+            gap: 2rem;
+        }
+        .company-map {
+            min-width: 25.5rem;
+            padding: 0;
+            width: 100%;
             iframe {
                 border-radius: 5px;
                 width: 100%;
                 height: 100%;
             }
-
-
-            &-article {
-                &.service {
-                    display: grid;
-                    gap: 1.5rem;
-                    margin-top: 1.5rem;
-
-                    &.three-column {
-                        grid-template-columns: repeat(3, 1fr);
+            @media (max-width: 1200px) {
+                min-width: 25vw;
+            }
+        }
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            .company-location {
+                margin-top: 1rem;
+                gap: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                color: $secondary-text;
+                padding: 0;
+                p span {
+                    font-weight: 600;
+                }
+                .company-map-icon {
+                    cursor: pointer;
+                    font-size: 3.5rem;
+                    transition: transform 0.2s ease-in-out;
+                    &:hover {
+                        transform: scale(1.1) rotate(-10deg);
                     }
-
-                    &.four-column {
-                        margin-top: 1.5rem;
-                        grid-template-columns: repeat(4, 1fr);
-                    }
-
-                    &-card {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        margin: 0;
-                        box-sizing: border-box;
-                        height: 100%;
-                        width: 100%;
-                        border: 2px solid $accent-color;
-                        border-radius: 5px;
-                        padding: 1rem;
-                        transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-                        overflow: hidden;
-                        position: relative;
-                    
-                        &-icon {
-                            font-size: 6.2rem;
-                            cursor: pointer;
-                        }
-                    
-                        h1 {
-                            font-size: 24px;
-                            font-weight: 500;
-                            color: $accent-color;
-                            text-align: center;
-                            margin: 0.5rem 0 0;
-                        }
-                    
-                        p {
-                            margin: 0;
-                            text-align: justify;
-                            font-size: 15px;
-                            transition: color 0.2s ease-in-out;
-                        }
-                    
-                        &:hover {
-                            transform: scale(1.05);
-                    
-                            p {
-                                color: $accent-color;
-                            }
-                        }
-                    
-                        &::before {
-                            content: '';
-                            position: absolute;
-                            inset: 0;
-                            background: url('/card-background.png') center / cover no-repeat;
-                            filter: blur(5px) brightness(0.7);
-                            opacity: 0;
-                            transition: opacity 0.3s ease, transform 0.3s ease;
-                            z-index: 0;
-                            pointer-events: none;
-                        }
-                    
-                        &:hover::before {
-                            opacity: 0.2;
-                            transform: scale(1.1);
-                        }
-                    
-                        > * {
-                            position: relative;
-                            z-index: 1;
-                        }
+                    @media (max-width: 1200px) {
+                        font-size: 2.5rem;
                     }
                 }
-                &.team {
-                    margin-top: 1.5rem;
-                    display: flex;
-                    gap: 2rem;
-                    justify-content: space-between;
-                    align-items: center;
+            }
+            iframe {
+                border-radius: 5px;
+                margin-top: 1rem;
+                height: 15rem;
+                @media (max-width: 1200px) {
+                    height: 12rem;
                 }
             }
         }
+    }
+
+    .team-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .team-content {
+            width: 100%;
+            max-width: 80rem;
+            padding: 4.5rem 2rem;
+        }
+        .team-carousel {
+            margin-top: 1.5rem;
+            padding-top: 0;
+            padding-bottom: 0;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        ::v-deep(.splide__arrow) {
+            border: 2px solid $accent-color;
+            border-radius: 5px;
+            height: 3.5rem;
+            width: 2.5rem;
+            transition: background-color 0.2s ease-in-out;
+            svg {
+                fill: $accent-color;
+                width: 1rem;
+            }
+            &:hover {
+                background-color: $accent-color-20;
+            }
+        }
+        ::v-deep(.splide__arrow--prev) {
+            left: -1px;
+        }
+        ::v-deep(.splide__arrow--next) {
+            right: -1px;
+        }
+    }
+
+    .contact-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.gray-bg {
+            background-color: $body-background-dark;
+        }
+        .contact-content {
+            width: 100%;
+            max-width: 80rem;
+            padding: 4.5rem 2rem;
+        }
+        .contact-list {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .section-title {
+        font-size: 60px;
+        font-weight: 400;
+        text-align: start;
+        margin: -1.5rem 0 0 0;
+        @media (max-width: 1200px) {
+            font-size: 38px;
+            margin: -1rem 0 0 0;
+        }
+    }
+    .section-subtitle {
+        font-size: 24px;
+        color: $accent-color;
+        font-weight: 600;
+        font-family: "Scheherazade New", sans-serif;
+        margin: 0;
+        @media (max-width: 1200px) {
+            font-size: 18px;
+        }
+    }
+    .section-description {
+        font-size: 20px;
+        text-align: justify;
+        margin: 0;
+        @media (max-width: 1200px) {
+            font-size: 15px;
+        }
+    }
+    .shake-animation {
+        animation: shake 0.7s ease-in-out;
     }
 }
 

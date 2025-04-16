@@ -27,6 +27,10 @@ body {
   &:hover {
     background-color: $accent-color-20;
   }
+  @media (max-width: 1200px) {
+    min-height: 40px;
+    min-width: 40px;
+  }
 }
 
 /* Scrollbar styles */

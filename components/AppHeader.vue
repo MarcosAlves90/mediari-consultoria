@@ -103,7 +103,6 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-/* Navbar Base Styles */
 .navbar {
     position: fixed;
     top: 0;
@@ -160,7 +159,7 @@ export default defineComponent({
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.1rem;
+            padding: 1.1rem 2rem;
             font-size: 20px;
             gap: 3.5rem;
 

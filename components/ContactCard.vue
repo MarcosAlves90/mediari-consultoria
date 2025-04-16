@@ -25,16 +25,16 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="contact-card">
-        <div class="contact-card-square">
-            <div class="contact-card-image-wrapper">
-                <NuxtImg :src="backgroundImage" alt="Background" class="contact-card-image" lazy format="webp" />
+    <div class="contact-card" data-testid="contact-card">
+        <div class="contact-card__square">
+            <div class="contact-card__image-wrapper">
+                <NuxtImg :src="backgroundImage" alt="Background" class="contact-card__image" lazy format="webp" />
             </div>
-            <div class="contact-card-icon-box">
-                <Icon class="contact-card-icon-box-svg" :name="'my-icon:' + iconImage" />
+            <div class="contact-card__icon-box">
+                <Icon class="contact-card__icon-box-svg" :name="'my-icon:' + iconImage" />
             </div>
         </div>
-        <button class="contact-card-button common-button" @click="buttonAction">{{ buttonText }}</button>
+        <button class="contact-card__button common-button" @click="buttonAction">{{ buttonText }}</button>
     </div>
 </template>
 
@@ -44,70 +44,94 @@ export default defineComponent({
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-}
-
-.contact-card-square {
-    position: relative;
+    max-width: 1200px;
     width: 100%;
-    height: 22rem;
-    overflow: hidden;
-    border-radius: 5px;
-}
+    margin: 0 auto;
+    box-sizing: border-box;
 
-.contact-card-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.contact-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(3px);
-    transition: transform 0.2s ease;
-}
-
-.contact-card-image-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $accent-color-30;
-    pointer-events: none;
-}
-
-.contact-card-square:hover {
-    .contact-card-image {
-        transform: scale(1.5);
+    &__square {
+        position: relative;
+        width: 100%;
+        height: 22rem;
+        overflow: hidden;
+        border-radius: 5px;
+        max-width: 100%;
     }
-    .contact-card-icon-box-svg {
-        transform: scale(1.2);
-    }
-}
 
-.contact-card-icon-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex; // Garante centralização do conteúdo interno
-    justify-content: center; // Centraliza horizontalmente
-    align-items: center; // Centraliza verticalmente
-    font-size: 2rem;
-    color: white;
-    transition: opacity 0.3s ease;
-    &-svg {
-        font-size: 5rem;
+    &__image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(3px);
         transition: transform 0.2s ease;
     }
+
+    &__image-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $accent-color-30;
+        pointer-events: none;
+    }
+
+    &__square:hover {
+        .contact-card__image {
+            transform: scale(1.5);
+        }
+        .contact-card__icon-box-svg {
+            transform: scale(1.2);
+        }
+    }
+
+    &__icon-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: white;
+        transition: opacity 0.3s ease;
+        &-svg {
+            font-size: 5rem;
+            transition: transform 0.2s ease;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        font-size: 20px;
+        max-width: 400px;
+        align-self: center;
+    }
+
 }
 
-.contact-card-button {
-    width: 100%;
-    font-size: 20px;
+@media (max-width: 1200px) {
+  .contact-card {
+    max-width: 100%;
+  }
+  .contact-card__square {
+    height: 16rem;
+  }
+  .contact-card__icon-box-svg {
+    font-size: 4rem;
+  }
+  .contact-card__button {
+    font-size: 15px;
+    max-width: 100%;
+  }
 }
 </style>
