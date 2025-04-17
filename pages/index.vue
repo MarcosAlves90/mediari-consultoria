@@ -442,7 +442,7 @@ $margin-p-mobile: -5.5vw;
         }
 
         @include respond-to(tablet) {
-            height: 50rem;
+            height: 40rem;
         }
     }
 
