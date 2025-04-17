@@ -21,6 +21,9 @@ export default defineNuxtConfig({
         dir: './assets/icons'
       },
     ],
+    serverBundle: {
+      collections: ['mdi', 'line-md']
+    }
   },
   fonts: {
     defaults: {
