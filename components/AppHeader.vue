@@ -4,17 +4,13 @@ import { ref, onMounted, onUnmounted } from 'vue';
 export default defineComponent({
     setup() {
         const hamburguerMenuOpen = ref(false);
-        const screenWidth = ref(0);
+        const screenWidth = useScreenWidth(); // Agora usando o composable
         const isNavbarSmall = ref(false);
         const { openPhoneDialer } = useContacts();
         const { goTo } = useGoTo();
 
-        const updateScreenWidth = () => {
-            screenWidth.value = window.innerWidth;
-        };
-
         const handleScroll = () => {
-            isNavbarSmall.value = window.scrollY > 200; // Adiciona a classe se o scroll for maior que 50px
+            isNavbarSmall.value = window.scrollY > 200;
         };
         
         const toggleHamburguerMenu = () => {
@@ -22,16 +18,12 @@ export default defineComponent({
         };
 
         onMounted(() => {
-            updateScreenWidth();
-            window.addEventListener('resize', updateScreenWidth);
-            window.addEventListener('scroll', handleScroll); // Adiciona o listener de scroll
+            window.addEventListener('scroll', handleScroll);
         });
 
         onUnmounted(() => {
-            window.removeEventListener('resize', updateScreenWidth);
-            window.removeEventListener('scroll', handleScroll); // Remove o listener de scroll
+            window.removeEventListener('scroll', handleScroll);
         });
-
 
         return {
             hamburguerMenuOpen,
@@ -46,51 +38,51 @@ export default defineComponent({
 </script>
 
 <template>
-    <header class="navbar" :class="{small: isNavbarSmall}">
-        <div class="navbar-top">
-            <a class="navbar-top-link" href="mailto:contato@mediari.com.br">
-                <Icon class="navbar-top-link-icon" name="mdi:email-outline" />
+    <header class="app-header" :class="{'app-header--small': isNavbarSmall}">
+        <div class="app-header__top">
+            <a class="app-header__top-link" href="mailto:contato@mediari.com.br">
+                <Icon class="app-header__top-link-icon" name="mdi:email-outline" />
                 <p v-if="screenWidth > 750">contato@mediari.com.br</p>
             </a>
-            <a class="navbar-top-link" href="https://www.instagram.com/mediari.consultoria" target="_blank"
+            <a class="app-header__top-link" href="https://www.instagram.com/mediari.consultoria" target="_blank"
                 rel="noopener noreferrer">
-                <Icon class="navbar-top-link-icon" name="mdi:instagram" />
+                <Icon class="app-header__top-link-icon" name="mdi:instagram" />
                 <p v-if="screenWidth > 750">@mediari.consultoria</p>
             </a>
-            <a class="navbar-top-link" href="https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda"
+            <a class="app-header__top-link" href="https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda"
                 target="_blank" rel="noopener noreferrer">
-                <Icon class="navbar-top-link-icon" name="mdi:linkedin" />
+                <Icon class="app-header__top-link-icon" name="mdi:linkedin" />
                 <p v-if="screenWidth > 750">Mediari Consultoria Empresarial LTDA</p>
             </a>
-            <a v-if="screenWidth <= 1310" class="navbar-top-link" href="tel:+551142273008" >
-                <Icon class="navbar-top-link-icon" name="mdi:phone-outline" />
+            <a v-if="screenWidth <= 1325" class="app-header__top-link" href="tel:+551142273008" >
+                <Icon class="app-header__top-link-icon" name="mdi:phone-outline" />
                 <p v-if="screenWidth > 750">11 4227-3008</p>
             </a>
         </div>
-        <div class="navbar-bottom">
-            <div class="navbar-bottom-group">
-                <div class="navbar-bottom-group-logo-box" @click="goTo('/')">
-                    <Icon class="navbar-bottom-group-logo-box-icon" name="my-icon:mediari-logo" />
-                    <Icon class="navbar-bottom-group-logo-box-text" name="my-icon:mediari-logo-texto" />
+        <div class="app-header__bottom">
+            <div class="app-header__group">
+                <div class="app-header__logo-box" @click="goTo('/')">
+                    <Icon class="app-header__logo-box-icon" name="my-icon:mediari-logo" />
+                    <Icon class="app-header__logo-box-text" name="my-icon:mediari-logo-texto" />
                 </div>
-                <nav class="navbar-bottom-group-nav desktop" v-if="screenWidth > 1080">
+                <nav class="app-header__nav app-header__nav--desktop" v-if="screenWidth > 1105">
                     <a href="/">Início</a>
                     <a href="/about">Áreas de Atuação</a>
                     <a href="/contact">Empresa</a>
                     <a href="/services">Equipe</a>
                     <a href="/blog">Fale conosco</a>
-                    <button v-if="screenWidth > 1310" class="navbar-bottom-group-nav-button common-button"
+                    <button v-if="screenWidth > 1325" class="app-header__nav-button common-button"
                         @click.prevent="openPhoneDialer">
-                        <Icon class="navbar-bottom-group-nav-button-icon" name="mdi:phone-outline" />11 4227-3008
+                        <Icon class="app-header__nav-button-icon" name="mdi:phone-outline" />11 4227-3008
                     </button>
                 </nav>
-                <button v-if="screenWidth <= 1080" class="navbar-bottom-group-hamburguer-menu common-button"
-                    :class="{ open: hamburguerMenuOpen }" @click="toggleHamburguerMenu">
-                    <Icon class="navbar-bottom-group-hamburguer-menu-icon" mode="svg"
+                <button v-if="screenWidth <= 1105" class="app-header__hamburguer-menu common-button"
+                    :class="{'app-header__hamburguer-menu--open': hamburguerMenuOpen }" @click="toggleHamburguerMenu">
+                    <Icon class="app-header__hamburguer-menu-icon" mode="svg"
                         :name="hamburguerMenuOpen ? 'line-md:menu-to-close-transition' : 'line-md:close-to-menu-transition'"
                         :key="hamburguerMenuOpen" />
                 </button>
-                <nav class="navbar-bottom-group-nav mobile" :class="{ closed: !hamburguerMenuOpen }" v-show="screenWidth <= 1030">
+                <nav class="app-header__nav app-header__nav--mobile" :class="{'app-header__nav--closed': !hamburguerMenuOpen }" v-show="screenWidth <= 1105">
                     <a href="/">Início</a>
                     <a href="/about">Áreas de Atuação</a>
                     <a href="/contact">Empresa</a>
@@ -103,7 +95,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.navbar {
+.app-header {
     position: fixed;
     top: 0;
     left: 0;
@@ -112,7 +104,7 @@ export default defineComponent({
     border-bottom: 2px solid transparent;
     transition: border-color 0.2s ease-in-out;
 
-    &-top {
+    &__top {
         background-color: $accent-color;
         color: $accent-text-color;
         display: flex;
@@ -149,256 +141,221 @@ export default defineComponent({
         }
     }
 
-    &-bottom {
+    &__bottom {
         background-color: $body-background-67;
         backdrop-filter: blur(5px);
         transition: backdrop-filter 0.2s ease-in-out;
-        &-group {
-            max-width: 80rem;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.1rem 2rem;
-            font-size: 20px;
-            gap: 3.5rem;
+    
+    }
 
-            &-logo-box {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 1rem;
-                color: $accent-color;
-                cursor: pointer;
+    &__group {
+        max-width: 80rem;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.1rem 2rem;
+        font-size: 20px;
+        gap: 3.5rem;
+    }
 
-                &-icon {
-                    font-size: 4.2em;
-                    transition: font-size 0.2s ease-in-out;
+    &__logo-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        color: $accent-color;
+        cursor: pointer;
+
+        &-icon {
+            font-size: 4.2em;
+            transition: font-size 0.2s ease-in-out;
+        }
+
+        &-text {
+            font-size: 2.5em;
+            transition: font-size 0.2s ease-in-out;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.8rem;
+        transition: font-size 0.2s ease-in-out;
+
+        a {
+            position: relative;
+            text-decoration: none;
+            color: $primary-text;
+        }
+
+        &--desktop {
+            a {
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -3px;
+                    left: 50%;
+                    width: 0;
+                    height: 2px;
+                    background-color: $accent-color;
+                    transform: translateX(-50%);
+                    transition: width 0.2s ease-in-out;
                 }
 
-                &-text {
-                    font-size: 2.5em;
-                    transition: font-size 0.2s ease-in-out;
-                }
-            }
-
-            &-nav {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 2.8rem;
-                transition: font-size 0.2s ease-in-out;
-
-                a {
-                    position: relative;
-                    text-decoration: none;
-                    color: $primary-text;
-
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        bottom: -3px;
-                        left: 50%;
-                        width: 0;
-                        height: 2px;
-                        background-color: $accent-color;
-                        transform: translateX(-50%);
-                        transition: width 0.2s ease-in-out;
-                    }
-
-                    &:hover::after {
-                        width: 100%;
-                    }
-                }
-
-                &-button {
-                    font-size: inherit;
-
-                    &-icon {
-                        font-size: 1.3em;
-                    }
-                }
-            }
-
-            &-hamburguer-menu {
-                font-size: 1.5em;
-
-                &-icon {
-                    transition: font-size 0.2s ease-in-out;
-                }
-
-                &.open {
-                    background-color: $accent-color-20;
-
-                    &:hover {
-                        background-color: unset;
-                    }
-                }
-            }
-
-            &-nav.mobile {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                overflow: hidden;
-                max-height: 0;
-                opacity: 0;
-                flex-direction: column;
-                background-color: $body-background-67;
-                backdrop-filter: blur(5px);
-                border-top: 2px solid $accent-color;
-                border-bottom: 2px solid $accent-color;
-                gap: 1rem;
-                padding: 1rem;
-                transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-
-                &.closed {
-                    max-height: 0;
-                    opacity: 0;
-                    visibility: hidden;
-                }
-
-                &:not(.closed) {
-                    max-height: 500px;
-                    opacity: 1;
-                    visibility: visible;
-                }
-
-                a {
-                    border: 2px solid $accent-color;
-                    border-radius: 5px;
-                    padding: 0.5rem 1rem;
+                &:hover::after {
                     width: 100%;
-                    box-sizing: border-box;
-                    text-align: center;
-                    transition: opacity 0.2s ease-in-out, font-size 0.2s ease-in-out;
                 }
+            }
+        }
+
+        &--mobile {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            flex-direction: column;
+            background-color: $body-background-67;
+            backdrop-filter: blur(5px);
+            border-top: 2px solid $accent-color;
+            border-bottom: 2px solid $accent-color;
+            gap: 1rem;
+            padding: 1rem;
+            transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            a {
+                border: 2px solid $accent-color;
+                border-radius: 5px;
+                padding: 0.5rem 1rem;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                transition: opacity 0.2s ease-in-out, font-size 0.2s ease-in-out, background-color 0.2s ease-in-out;
+                &:hover {
+                    background-color: $accent-color-20;
+                }
+            }
+        }
+        &--closed {
+            max-height: 0;
+            opacity: 0;
+            visibility: hidden;
+        }
+        &:not(.app-header__nav--closed) {
+            max-height: 500px;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &__nav-button {
+        font-size: inherit;
+        &-icon {
+            font-size: 1.3em;
+        }
+    }
+
+    &__hamburguer-menu {
+        font-size: 1.5em;
+        &-icon {
+            transition: font-size 0.2s ease-in-out;
+        }
+        &--open {
+            background-color: $accent-color-20;
+            &:hover {
+                background-color: unset;
             }
         }
     }
 }
 
-/* Navbar Small Styles */
-.navbar.small .navbar-bottom-group {
-    &-logo-box {
-        &-icon {
-            font-size: 3.2em;
-        }
-
-        &-text {
-            font-size: 2em;
-        }
+.app-header--small {
+    border-color: $accent-color;
+    .app-header__bottom {
+        backdrop-filter: blur(10px);
     }
-
-    &-nav {
+    .app-header__logo-box-icon {
+        font-size: 3.2em;
+    }
+    .app-header__logo-box-text {
+        font-size: 2em;
+    }
+    .app-header__nav {
         font-size: 15px;
     }
-
-    &-hamburguer-menu,
-    &-nav-button {
+    .app-header__hamburguer-menu,
+    .app-header__nav-button {
         min-height: 45px;
         min-width: 45px;
     }
 }
 
-.navbar.small {
-    border-color: $accent-color;
-}
-
-.navbar.small .navbar-bottom {
-    backdrop-filter: blur(10px);
-}
-
-/* Responsive Styles */
 @media (max-width: 1300px) {
-    .navbar {
-        &-bottom-group {
-            gap: 5vw;
-        }
+    .app-header__group {
+        gap: 5vw;
     }
 }
 
 @media (max-width: 1030px) {
-    .navbar {
-        &-top {
-            min-height: 40px;
-
-            &-link {
-                &-icon {
-                    font-size: 1.5em;
-                }
-
-                p {
-                    font-size: 10px;
-                }
-            }
+    .app-header__top {
+        min-height: 40px;
+        &-link-icon {
+            font-size: 1.5em;
         }
-
-        &-bottom-group {
-            justify-content: space-between;
-            flex-wrap: wrap;
-            &-nav {
-                a::after {
-                    all: unset;
-                }
-                a::after:hover {
-                    all: unset;
-                }
-            }
+        &-link p {
+            font-size: 10px;
         }
     }
-}
-
-@media (min-width: 750px) {
-    .navbar.small .navbar-top {
-        height: 0;
-        min-height: 12px;
-
-        &-link {
-            &-icon {
-                font-size: 0;
-            }
-
-            p {
-                font-size: 0;
-            }
-        }
+    .app-header__group {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+    .app-header__nav a::after {
+        all: unset;
+    }
+    .app-header__nav a::after:hover {
+        all: unset;
     }
 }
 
 @media (max-width: 750px) {
-    .navbar {
-        &-top {
-            justify-content: space-evenly;
-        }
+    .app-header__top {
+        justify-content: space-evenly;
+    }
+    .app-header__logo-box-icon {
+        font-size: 3.5em;
+    }
+    .app-header__logo-box-text {
+        font-size: 2.2em;
     }
 }
 
-/**
- * Responsive styles for the `.navbar-bottom-logo-box` component:
- *
- * - For screens with a maximum width of 450px:
- *   - Adjusts the font size of the `-icon` element to 3.5em.
- *   - Adjusts the font size of the `-text` element to 2.2em.
- *
- * - For screens with a maximum width of 365px:
- *   - Hides the `-text` element by setting its display property to `none`.
- */
 @media (max-width: 450px) {
-    .navbar-bottom-group-logo-box {
-        &-icon {
-            font-size: 3.5em;
-        }
-        &-text {
-            font-size: 2.2em;
-        }
+    .app-header__logo-box-text {
+        font-size: 2.2em;
     }
 }
+
 @media (max-width: 365px) {
-    .navbar-bottom-group-logo-box {
-        &-text {
-            display: none;
+    .app-header__logo-box-text {
+        display: none;
+    }
+}
+
+@media (min-width: 750px) {
+    .app-header--small .app-header__top {
+        height: 0;
+        min-height: 12px;
+        &-link-icon {
+            font-size: 0;
+        }
+        &-link p {
+            font-size: 0;
         }
     }
 }

@@ -1,9 +1,11 @@
+@import "@/assets/css/mixins.scss";
+
 body {
   font-family: Arial, sans-serif;
   background-color: $body-background;
   margin: 0;
   font-family: Poppins, sans-serif;
-  
+
   h1 {
     font-size: 2rem;
     text-align: center;
@@ -24,10 +26,12 @@ body {
   transition: background-color 0.2s ease-in-out, min-height 0.2s ease-in-out, min-width 0.2s ease-in-out;
   min-height: 50px;
   min-width: 50px;
+
   &:hover {
     background-color: $accent-color-20;
   }
-  @media (max-width: 1200px) {
+
+  @include respond-to(desktop) {
     min-height: 40px;
     min-width: 40px;
   }

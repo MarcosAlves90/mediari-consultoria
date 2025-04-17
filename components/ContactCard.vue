@@ -39,23 +39,57 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
-.contact-card {
+@import "@/assets/css/mixins.scss";
+
+// Mixins locais reutilizáveis
+@mixin flex-center($direction: row, $gap: 0) {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 2rem;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+@mixin card-square($height: 22rem) {
+    position: relative;
+    width: 100%;
+    height: $height;
+    overflow: hidden;
+    border-radius: 5px;
+    max-width: 100%;
+}
+
+@mixin icon-box($font-size: 2rem, $icon-size: 5rem) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include flex-center();
+    font-size: $font-size;
+    color: white;
+    transition: opacity 0.3s ease;
+
+    &-svg {
+        font-size: $icon-size;
+        transition: transform 0.2s ease;
+    }
+}
+
+.contact-card {
+    @include flex-center(column, 2rem);
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
 
     &__square {
-        position: relative;
-        width: 100%;
-        height: 22rem;
-        overflow: hidden;
-        border-radius: 5px;
-        max-width: 100%;
+        @include card-square();
+        @include respond-to(desktop) {
+            @include card-square(16rem);
+        }
+        @include respond-to(tablet) {
+            @include card-square(100%);
+        }
     }
 
     &__image-wrapper {
@@ -63,50 +97,50 @@ export default defineComponent({
         width: 100%;
         height: 100%;
         overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $accent-color-30;
+            pointer-events: none;
+        }
+    }
+
+    &__image-wrapper,
+    &__image {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
     }
 
     &__image {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
         filter: blur(3px);
         transition: transform 0.2s ease;
     }
 
-    &__image-wrapper::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: $accent-color-30;
-        pointer-events: none;
+    &__square:hover .contact-card__image {
+        transform: scale(1.5);
     }
 
-    &__square:hover {
-        .contact-card__image {
-            transform: scale(1.5);
-        }
-        .contact-card__icon-box-svg {
-            transform: scale(1.2);
-        }
+    &__square:hover .contact-card__icon-box-svg {
+        transform: scale(1.2);
     }
 
     &__icon-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        color: white;
-        transition: opacity 0.3s ease;
-        &-svg {
-            font-size: 5rem;
-            transition: transform 0.2s ease;
+        @include icon-box();
+    }
+
+    &__icon-box-svg {
+        @include respond-to(desktop) {
+            font-size: 4rem;
+        }
+        @include respond-to(mobile) {
+            font-size: 2.5rem;
         }
     }
 
@@ -115,23 +149,21 @@ export default defineComponent({
         font-size: 20px;
         max-width: 400px;
         align-self: center;
+        @include respond-to(desktop) {
+            font-size: 15px;
+            max-width: 100%;
+        }
+        @include respond-to(mobile) {
+            font-size: 13px;
+            padding: 0.3rem 0.5rem;
+        }
     }
 
-}
-
-@media (max-width: 1200px) {
-  .contact-card {
-    max-width: 100%;
-  }
-  .contact-card__square {
-    height: 16rem;
-  }
-  .contact-card__icon-box-svg {
-    font-size: 4rem;
-  }
-  .contact-card__button {
-    font-size: 15px;
-    max-width: 100%;
-  }
+    @include respond-to(desktop) {
+        max-width: 100%;
+    }
+    @include respond-to(mobile) {
+        gap: 1rem;
+    }
 }
 </style>

@@ -26,5 +26,12 @@ export default defineNuxtConfig({
     defaults: {
       weights: [400, 500, 600, 700]
     }
+  },
+  routeRules: {
+    '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/**/*.(png|jpg|jpeg|webp|svg|ico)': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+  },
+  nitro: {
+    compressPublicAssets: true
   }
 })

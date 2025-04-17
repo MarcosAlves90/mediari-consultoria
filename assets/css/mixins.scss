@@ -1,0 +1,24 @@
+// --- Breakpoints e mixins centralizados ---
+$breakpoint-desktop: 1200px;
+$breakpoint-tablet: 850px;
+$breakpoint-mobile: 610px;
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint ==desktop {
+        @media (max-width: #{$breakpoint-desktop}) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==tablet {
+        @media (max-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==mobile {
+        @media (max-width: #{$breakpoint-mobile}) {
+            @content;
+        }
+    }
+}
