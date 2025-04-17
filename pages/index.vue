@@ -440,6 +440,10 @@ $margin-p-mobile: -5.5vw;
             object-position: center;
             opacity: 0.25;
         }
+
+        @include respond-to(tablet) {
+            height: 50rem;
+        }
     }
 
     &__services {
