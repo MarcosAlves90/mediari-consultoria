@@ -42,21 +42,21 @@ export default defineComponent({
         <div class="app-header__top">
             <a class="app-header__top-link" href="mailto:contato@mediari.com.br">
                 <Icon class="app-header__top-link-icon" name="mdi:email-outline" />
-                <p v-if="screenWidth > 750">contato@mediari.com.br</p>
+                <p v-if="screenWidth > 610">contato@mediari.com.br</p>
             </a>
             <a class="app-header__top-link" href="https://www.instagram.com/mediari.consultoria" target="_blank"
                 rel="noopener noreferrer">
                 <Icon class="app-header__top-link-icon" name="mdi:instagram" />
-                <p v-if="screenWidth > 750">@mediari.consultoria</p>
+                <p v-if="screenWidth > 610">@mediari.consultoria</p>
             </a>
             <a class="app-header__top-link" href="https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda"
                 target="_blank" rel="noopener noreferrer">
                 <Icon class="app-header__top-link-icon" name="mdi:linkedin" />
-                <p v-if="screenWidth > 750">Mediari Consultoria Empresarial LTDA</p>
+                <p v-if="screenWidth > 610">Mediari Consultoria</p>
             </a>
             <a v-if="screenWidth <= 1325" class="app-header__top-link" href="tel:+551142273008" >
                 <Icon class="app-header__top-link-icon" name="mdi:phone-outline" />
-                <p v-if="screenWidth > 750">11 4227-3008</p>
+                <p v-if="screenWidth > 610">11 4227-3008</p>
             </a>
         </div>
         <div class="app-header__bottom">
@@ -95,6 +95,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/css/mixins.scss';
+
 .app-header {
     position: fixed;
     top: 0;
@@ -139,6 +141,20 @@ export default defineComponent({
                 background-color: $accent-text-color-20;
             }
         }
+
+        @include respond-to(tablet) {
+            min-height: 40px;
+            &-link-icon {
+                font-size: 1.5em;
+            }
+            &-link p {
+                font-size: 10px;
+            }
+        }
+
+        @include respond-to(mobile) {
+            justify-content: space-evenly;
+        }
     }
 
     &__bottom {
@@ -157,6 +173,16 @@ export default defineComponent({
         padding: 1.1rem 2rem;
         font-size: 20px;
         gap: 3.5rem;
+
+        @media (max-width: 1300px) {
+            gap: 5vw;
+        }
+
+        @include respond-to(tablet) {
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
     }
 
     &__logo-box {
@@ -170,11 +196,27 @@ export default defineComponent({
         &-icon {
             font-size: 4.2em;
             transition: font-size 0.2s ease-in-out;
+
+            @include respond-to(mobile) {
+                font-size: 3.5em;
+            }
         }
 
         &-text {
             font-size: 2.5em;
             transition: font-size 0.2s ease-in-out;
+
+            @include respond-to(mobile) {
+                font-size: 2.2em;
+            }
+
+            @media (max-width: 450px) {
+                font-size: 2.2em;
+            }
+
+            @media (max-width: 365px) {
+                display: none;
+            }
         }
     }
 
@@ -207,6 +249,12 @@ export default defineComponent({
 
                 &:hover::after {
                     width: 100%;
+                }
+            }
+
+            @include respond-to(tablet) {
+                a::after, a::after:hover {
+                    all: unset;
                 }
             }
         }
@@ -292,70 +340,17 @@ export default defineComponent({
         min-height: 45px;
         min-width: 45px;
     }
-}
 
-@media (max-width: 1300px) {
-    .app-header__group {
-        gap: 5vw;
-    }
-}
-
-@media (max-width: 1030px) {
-    .app-header__top {
-        min-height: 40px;
-        &-link-icon {
-            font-size: 1.5em;
-        }
-        &-link p {
-            font-size: 10px;
-        }
-    }
-    .app-header__group {
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 1rem;
-    }
-    .app-header__nav a::after {
-        all: unset;
-    }
-    .app-header__nav a::after:hover {
-        all: unset;
-    }
-}
-
-@media (max-width: 750px) {
-    .app-header__top {
-        justify-content: space-evenly;
-    }
-    .app-header__logo-box-icon {
-        font-size: 3.5em;
-    }
-    .app-header__logo-box-text {
-        font-size: 2.2em;
-    }
-}
-
-@media (max-width: 450px) {
-    .app-header__logo-box-text {
-        font-size: 2.2em;
-    }
-}
-
-@media (max-width: 365px) {
-    .app-header__logo-box-text {
-        display: none;
-    }
-}
-
-@media (min-width: 750px) {
-    .app-header--small .app-header__top {
-        height: 0;
-        min-height: 12px;
-        &-link-icon {
-            font-size: 0;
-        }
-        &-link p {
-            font-size: 0;
+    @media (min-width: 851px) {
+        .app-header__top {
+            height: 0;
+            min-height: 12px;
+            &-link-icon {
+                font-size: 0;
+            }
+            &-link p {
+                font-size: 0;
+            }
         }
     }
 }

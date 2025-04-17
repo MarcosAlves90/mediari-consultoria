@@ -13,6 +13,7 @@ export default defineComponent({
         const openLinkInBrowser = (link: string) => {
             window.open(link, '_blank', 'noopener');
         }
+        const screenWidth = useScreenWidth();
 
         const triggerShake = (event: Event) => {
             const target = event.currentTarget as HTMLElement;
@@ -28,7 +29,8 @@ export default defineComponent({
             triggerShake,
             openLinkInBrowser,
             openPhoneDialer,
-            openMailTo
+            openMailTo,
+            screenWidth
         };
     }
 })
@@ -196,7 +198,7 @@ export default defineComponent({
                     excelência em todos os serviços.</p>
                 <Splide class="homepage__team-carousel" :options="{
                     type: 'loop',
-                    perPage: 4,
+                    perPage: screenWidth > 850 ? 4 : screenWidth > 610 ? 3 : screenWidth > 500 ? 2 : 1,
                     perMove: 1,
                     updateOnMove: true,
                     pagination: true,
@@ -469,6 +471,18 @@ $margin-p-mobile: -5.5vw;
         &--secondary {
             grid-template-columns: repeat(3, 1fr);
         }
+        
+        @include respond-to(tablet) {
+            gap: 1rem;
+
+            &--main {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            &--secondary {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
     }
 
     &__service-card {
@@ -566,6 +580,10 @@ $margin-p-mobile: -5.5vw;
             padding: 4.5rem 2rem;
             display: flex;
             gap: 2rem;
+            @include respond-to(tablet) {
+                flex-direction: column-reverse;
+                gap: 1rem;
+            }
         }
 
         &-map {
@@ -577,11 +595,15 @@ $margin-p-mobile: -5.5vw;
                 border-radius: 5px;
                 width: 100%;
                 height: 100%;
+                @include respond-to(tablet) {
+                    height: 12rem;
+                }
             }
 
             @media (max-width: 1200px) {
                 min-width: 25vw;
             }
+
         }
 
         &-info {
@@ -614,6 +636,10 @@ $margin-p-mobile: -5.5vw;
                     @media (max-width: 1200px) {
                         font-size: 2.5rem;
                     }
+
+                    @include respond-to(tablet) {
+                        font-size: 4rem;
+                    }
                 }
             }
 
@@ -627,6 +653,7 @@ $margin-p-mobile: -5.5vw;
                 }
             }
         }
+
     }
 
     &__team {
@@ -675,6 +702,39 @@ $margin-p-mobile: -5.5vw;
 
         ::v-deep(.splide__arrow--next) {
             right: -1px;
+        }
+
+        ::v-deep(.splide__pagination) {
+            bottom: unset;
+        }
+        ::v-deep(.splide__pagination__page) {
+            background: $body-background-dark;
+            border: 2px solid $accent-color;
+            border-radius: 5px;
+            width: 18px;
+            height: 18px;
+        }
+        ::v-deep(.splide__pagination__page.is-active) {
+            background: $accent-color;
+            border-color: $accent-color;
+        }
+
+        @include respond-to(tablet) {
+            ::v-deep(.splide__arrow) {
+                height: 3rem;
+                width: 2rem;
+
+                svg {
+                    width: 0.8rem;
+                }
+            }
+            ::v-deep(.splide__arrow--prev) {
+                left: 1%;
+            }
+
+            ::v-deep(.splide__arrow--next) {
+                right: 1%;
+            }
         }
     }
 
