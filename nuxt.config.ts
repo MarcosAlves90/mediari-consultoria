@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       },
     ],
     serverBundle: {
-      collections: ['mdi', 'line-md']
+      collections: ['mdi']
     }
   },
   fonts: {

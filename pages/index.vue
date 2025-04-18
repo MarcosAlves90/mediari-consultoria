@@ -245,7 +245,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/css/mixins.scss";
+@use "@/assets/css/mixins.scss" as *;
 
 @mixin responsive-font($tablet, $mobile) {
     @media (max-width: 1200px) {

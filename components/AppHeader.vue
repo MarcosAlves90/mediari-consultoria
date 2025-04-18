@@ -12,7 +12,7 @@ export default defineComponent({
         const handleScroll = () => {
             isNavbarSmall.value = window.scrollY > 200;
         };
-        
+
         const toggleHamburguerMenu = () => {
             hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
         };
@@ -38,7 +38,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <header class="app-header" :class="{'app-header--small': isNavbarSmall}">
+    <header class="app-header" :class="{ 'app-header--small': isNavbarSmall }">
         <div class="app-header__top">
             <a class="app-header__top-link" href="mailto:contato@mediari.com.br">
                 <Icon class="app-header__top-link-icon" name="mdi:email-outline" />
@@ -54,7 +54,7 @@ export default defineComponent({
                 <Icon class="app-header__top-link-icon" name="mdi:linkedin" />
                 <p v-if="screenWidth > 610">Mediari Consultoria</p>
             </a>
-            <a v-if="screenWidth <= 1325" class="app-header__top-link" href="tel:+551142273008" >
+            <a v-if="screenWidth <= 1325" class="app-header__top-link" href="tel:+551142273008">
                 <Icon class="app-header__top-link-icon" name="mdi:phone-outline" />
                 <p v-if="screenWidth > 610">11 4227-3008</p>
             </a>
@@ -77,12 +77,15 @@ export default defineComponent({
                     </button>
                 </nav>
                 <button v-if="screenWidth <= 1105" class="app-header__hamburguer-menu common-button"
-                    :class="{'app-header__hamburguer-menu--open': hamburguerMenuOpen }" @click="toggleHamburguerMenu">
-                    <Icon class="app-header__hamburguer-menu-icon" mode="svg"
-                        :name="hamburguerMenuOpen ? 'line-md:menu-to-close-transition' : 'line-md:close-to-menu-transition'"
-                        :key="hamburguerMenuOpen" />
+                    :class="{ 'app-header__hamburguer-menu--open': hamburguerMenuOpen }" @click="toggleHamburguerMenu">
+                    <Transition name="icon-morph" mode="out-in">
+                        <Icon v-if="!hamburguerMenuOpen" class="app-header__hamburguer-menu-icon" name="mdi:menu"
+                            key="menu" />
+                        <Icon v-else class="app-header__hamburguer-menu-icon" name="mdi:close" key="close" />
+                    </Transition>
                 </button>
-                <nav class="app-header__nav app-header__nav--mobile" :class="{'app-header__nav--closed': !hamburguerMenuOpen }" v-show="screenWidth <= 1105">
+                <nav class="app-header__nav app-header__nav--mobile"
+                    :class="{ 'app-header__nav--closed': !hamburguerMenuOpen }" v-show="screenWidth <= 1105">
                     <a href="/">Início</a>
                     <a href="/about">Áreas de Atuação</a>
                     <a href="/contact">Empresa</a>
@@ -95,7 +98,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/css/mixins.scss';
+@use "@/assets/css/mixins.scss" as *;
 
 .app-header {
     position: fixed;
@@ -144,9 +147,11 @@ export default defineComponent({
 
         @include respond-to(tablet) {
             min-height: 40px;
+
             &-link-icon {
                 font-size: 1.5em;
             }
+
             &-link p {
                 font-size: 10px;
             }
@@ -161,7 +166,7 @@ export default defineComponent({
         background-color: $body-background-67;
         backdrop-filter: blur(5px);
         transition: backdrop-filter 0.2s ease-in-out;
-    
+
     }
 
     &__group {
@@ -253,7 +258,9 @@ export default defineComponent({
             }
 
             @include respond-to(tablet) {
-                a::after, a::after:hover {
+
+                a::after,
+                a::after:hover {
                     all: unset;
                 }
             }
@@ -275,6 +282,7 @@ export default defineComponent({
             gap: 1rem;
             padding: 1rem;
             transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+
             a {
                 border: 2px solid $accent-color;
                 border-radius: 5px;
@@ -283,16 +291,19 @@ export default defineComponent({
                 box-sizing: border-box;
                 text-align: center;
                 transition: opacity 0.2s ease-in-out, font-size 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
                 &:hover {
                     background-color: $accent-color-20;
                 }
             }
         }
+
         &--closed {
             max-height: 0;
             opacity: 0;
             visibility: hidden;
         }
+
         &:not(.app-header__nav--closed) {
             max-height: 500px;
             opacity: 1;
@@ -302,6 +313,7 @@ export default defineComponent({
 
     &__nav-button {
         font-size: inherit;
+
         &-icon {
             font-size: 1.3em;
         }
@@ -309,11 +321,16 @@ export default defineComponent({
 
     &__hamburguer-menu {
         font-size: 1.5em;
+
         &-icon {
+            width: 30px;
+            aspect-ratio: 1 / 1;
             transition: font-size 0.2s ease-in-out;
         }
+
         &--open {
             background-color: $accent-color-20;
+
             &:hover {
                 background-color: unset;
             }
@@ -323,18 +340,23 @@ export default defineComponent({
 
 .app-header--small {
     border-color: $accent-color;
+
     .app-header__bottom {
         backdrop-filter: blur(10px);
     }
+
     .app-header__logo-box-icon {
         font-size: 3.2em;
     }
+
     .app-header__logo-box-text {
         font-size: 2em;
     }
+
     .app-header__nav {
         font-size: 15px;
     }
+
     .app-header__hamburguer-menu,
     .app-header__nav-button {
         min-height: 45px;
@@ -345,13 +367,53 @@ export default defineComponent({
         .app-header__top {
             height: 0;
             min-height: 12px;
+
             &-link-icon {
                 font-size: 0;
             }
+
             &-link p {
                 font-size: 0;
             }
         }
     }
+}
+
+.icon-fade-scale-enter-active,
+.icon-fade-scale-leave-active {
+    transition: opacity 0.25s, transform 0.25s;
+}
+
+.icon-fade-scale-enter-from,
+.icon-fade-scale-leave-to {
+    opacity: 0;
+    transform: scale(0.7) rotate(-90deg);
+}
+
+.icon-fade-scale-enter-to,
+.icon-fade-scale-leave-from {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.icon-morph-enter-active,
+.icon-morph-leave-active {
+    transition: opacity 0.25s, filter 0.25s, border-radius 0.25s, transform 0.25s;
+}
+
+.icon-morph-enter-from,
+.icon-morph-leave-to {
+    opacity: 0;
+    filter: blur(6px);
+    border-radius: 50%;
+    transform: scale(0.7) rotate(-90deg);
+}
+
+.icon-morph-enter-to,
+.icon-morph-leave-from {
+    opacity: 1;
+    filter: blur(0);
+    border-radius: 0;
+    transform: scale(1) rotate(0deg);
 }
 </style>

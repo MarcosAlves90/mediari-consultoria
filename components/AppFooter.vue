@@ -106,7 +106,7 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/css/mixins.scss";
+@use "@/assets/css/mixins.scss" as *;
 
 // Mixins locais reutilizáveis
 @mixin flex-center($direction: row, $gap: 0) {
