@@ -4,6 +4,7 @@ export default defineComponent({
         const { goTo } = useGoTo();
         const screenWidth = useScreenWidth();
         const scrollToSection = useScrollToSection();
+        const { openPhoneDialer, openLinkInBrowser, openMailTo } = useContacts();
 
         const handleFooterNavClick = (id: string) => {
             scrollToSection(id);
@@ -12,7 +13,10 @@ export default defineComponent({
         return {
             goTo,
             screenWidth,
-            handleFooterNavClick
+            handleFooterNavClick,
+            openPhoneDialer,
+            openLinkInBrowser,
+            openMailTo
         }
     }
 })
@@ -28,19 +32,19 @@ export default defineComponent({
                         <Icon class="footer__logo-text" name="my-icon:mediari-logo-texto" />
                     </div>
                     <div class="footer__contacts">
-                        <button class="footer__contact-btn common-button">
+                        <button class="footer__contact-btn common-button" @click.prevent="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')">
                             <Icon class="icon" name="mdi:linkedin" />
                             <p v-if="screenWidth <= 1200 && screenWidth > 610">Mediari Consultoria</p>
                         </button>
-                        <button class="footer__contact-btn common-button">
+                        <button class="footer__contact-btn common-button" @click.prevent="openMailTo">
                             <Icon class="icon" name="mdi:email-outline" />
                             <p v-if="screenWidth > 610">contato@mediari.com.br</p>
                         </button>
-                        <button class="footer__contact-btn common-button">
+                        <button class="footer__contact-btn common-button" @click.prevent="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')">
                             <Icon class="icon" name="mdi:instagram" />
                             <p v-if="screenWidth > 610">@mediari.consultoria</p>
                         </button>
-                        <button class="footer__contact-btn common-button">
+                        <button class="footer__contact-btn common-button" @click.prevent="openPhoneDialer">
                             <Icon class="icon" name="mdi:phone-outline" />
                             <p v-if="screenWidth > 610">11 4227-3008</p>
                         </button>

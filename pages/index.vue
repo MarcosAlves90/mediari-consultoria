@@ -9,10 +9,7 @@ export default defineComponent({
         ContactCard
     },
     setup() {
-        const { openPhoneDialer, openMailTo } = useContacts();
-        const openLinkInBrowser = (link: string) => {
-            window.open(link, '_blank', 'noopener');
-        }
+        const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
         const screenWidth = useScreenWidth();
 
         const triggerShake = (event: Event) => {

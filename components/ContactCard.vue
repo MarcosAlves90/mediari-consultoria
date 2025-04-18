@@ -34,7 +34,7 @@ export default defineComponent({
                 <Icon class="contact-card__icon-box-svg" :name="'my-icon:' + iconImage" />
             </div>
         </div>
-        <button class="contact-card__button common-button" @click="buttonAction">{{ buttonText }}</button>
+        <button class="contact-card__button common-button" @click.prevent="buttonAction">{{ buttonText }}</button>
     </div>
 </template>
 

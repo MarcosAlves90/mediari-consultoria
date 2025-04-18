@@ -91,16 +91,16 @@ export default defineComponent({
                         <Icon v-else class="app-header__hamburguer-menu-icon" name="mdi:close" key="close" />
                     </Transition>
                 </button>
-                <nav class="app-header__nav app-header__nav--mobile"
-                    :class="{ 'app-header__nav--closed': !hamburguerMenuOpen }" v-show="screenWidth <= 1105">
-                    <a href="#" @click.prevent="handleNavClick('banner-section')">Início</a>
-                    <a href="#" @click.prevent="handleNavClick('services-section')">Áreas de Atuação</a>
-                    <a href="#" @click.prevent="handleNavClick('enterprise-section')">Empresa</a>
-                    <a href="#" @click.prevent="handleNavClick('team-section')">Equipe</a>
-                    <a href="#" @click.prevent="handleNavClick('contact-section')">Fale conosco</a>
-                </nav>
             </div>
         </div>
+        <nav class="app-header__nav app-header__nav--mobile"
+            :class="{ 'app-header__nav--closed': !hamburguerMenuOpen }" v-show="screenWidth <= 1105">
+            <a href="#" @click.prevent="handleNavClick('banner-section')">Início</a>
+            <a href="#" @click.prevent="handleNavClick('services-section')">Áreas de Atuação</a>
+            <a href="#" @click.prevent="handleNavClick('enterprise-section')">Empresa</a>
+            <a href="#" @click.prevent="handleNavClick('team-section')">Equipe</a>
+            <a href="#" @click.prevent="handleNavClick('contact-section')">Fale conosco</a>
+        </nav>
     </header>
 </template>
 
@@ -283,9 +283,9 @@ export default defineComponent({
             opacity: 0;
             flex-direction: column;
             background-color: $body-background-67;
-            backdrop-filter: blur(5px);
             border-top: 2px solid $accent-color;
             border-bottom: 2px solid $accent-color;
+            backdrop-filter: blur(5px);
             gap: 1rem;
             padding: 1rem;
             transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
