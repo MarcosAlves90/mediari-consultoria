@@ -37,5 +37,25 @@ O projeto foi desenvolvido como parte de um trabalho profissional, visando atend
 ## Como rodar o projeto
 
 1. Clone este repositório:
+
    ```sh
    git clone https://github.com/MarcosAlves90/mediari-consultoria.git
+   ```
+
+2. Entre na pasta do projeto:
+
+   ```sh
+   cd mediari-consultoria
+   ```
+
+3. Instale as dependências:
+
+   ```sh
+   npm install
+   ```
+
+4. Inicie o servidor de desenvolvimento:
+
+   ```sh
+   npm run dev
+   ```
