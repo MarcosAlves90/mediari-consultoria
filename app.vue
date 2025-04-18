@@ -2,7 +2,14 @@
   // Adicionar outras tags ao head
   useSeoMeta({
     description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
-    ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.'
+    ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+    twitterDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+    ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
+    twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
+    twitterCard: 'summary_large_image',
+    ogUrl: 'https://mediari-consultoria.netlify.app/',
+    ogImage: '/mediari-og-image.png',
+    twitterImage: '/mediari-og-image.png',
   })
   useHead({
     title: 'Mediari Consultoria',
