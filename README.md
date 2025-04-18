@@ -8,14 +8,34 @@
 
 <img src="public/readme-details/inicio-do-site.png" alt="Página inicial da plataforma">
 
-> Professional landing page design for Mediari Consultoria.
->
-> Site: Unavailable
+## Sobre o Projeto
 
-## Adjustments and improvements
+Este repositório contém o código-fonte da landing page profissional desenvolvida para a **Mediari Consultoria Empresarial LTDA**, com foco em apresentar os serviços jurídicos oferecidos pela empresa de forma clara, moderna e responsiva.
 
-The project is still under development and the next updates will focus on the following tasks:
+O projeto foi desenvolvido como parte de um trabalho profissional, visando atender às necessidades reais do cliente e proporcionar uma experiência de navegação intuitiva para empresas e pessoas físicas.
 
-- [X] Add footer
-- [X] Make responsive
-- [ ] Improve the team section
+## Funcionalidades
+
+- **Layout Responsivo:** Compatível com dispositivos móveis, tablets e desktops.
+- **Seções Institucionais:** Apresentação dos serviços, equipe, empresa e formas de contato.
+- **Componentização:** Utilização de componentes Vue para melhor organização e reuso de código.
+- **Acessibilidade:** Estrutura semântica e navegação facilitada.
+- **Integração com redes sociais:** Links diretos para Instagram, LinkedIn, telefone e e-mail.
+- **Carrossel de equipe:** Destaque para membros e colaboradores.
+
+## Tecnologias Utilizadas
+
+- [Nuxt 3](https://nuxt.com/) (Vue 3)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SCSS](https://sass-lang.com/)
+- [@nuxt/image](https://image.nuxt.com/)
+- [@nuxt/icon](https://nuxt.com/modules/icon)
+- [@nuxt/fonts](https://fonts.nuxt.com/)
+- [@splidejs/vue-splide](https://splidejs.com/)
+- [Iconify](https://iconify.design/)
+
+## Como rodar o projeto
+
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/MarcosAlves90/mediari-consultoria.git
