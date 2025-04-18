@@ -38,7 +38,7 @@ export default defineComponent({
 
 <template>
     <main class="homepage">
-        <section class="homepage__hero" role="banner" aria-labelledby="banner-heading"
+        <section id="banner-section" class="homepage__hero" role="banner" aria-labelledby="banner-heading"
             aria-describedby="banner-description">
             <div class="homepage__hero-text" aria-label="Texto do banner principal">
                 <div class="homepage__hero-text-tags" role="list" aria-label="Características principais">
@@ -64,7 +64,7 @@ export default defineComponent({
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" lazy format="webp"
                 alt="Banner de fundo da página principal com elementos gráficos abstratos" />
         </section>
-        <section class="homepage__services" role="region" aria-labelledby="services-heading"
+        <section id="services-section" class="homepage__services" role="region" aria-labelledby="services-heading"
             aria-describedby="services-description">
             <div class="homepage__services-container">
                 <h2 id="services-heading" class="homepage__section-subtitle">ÁREAS DE ATUAÇÃO</h2>
@@ -146,7 +146,7 @@ export default defineComponent({
                 </div>
             </div>
         </section>
-        <section class="homepage__company homepage__company--gray-bg" role="region" aria-labelledby="enterprise-heading"
+        <section id="enterprise-section" class="homepage__company homepage__company--gray-bg" role="region" aria-labelledby="enterprise-heading"
             aria-describedby="enterprise-description">
             <div class="homepage__company-content">
                 <div class="homepage__company-map" role="complementary" aria-label="Mapa da localização da empresa">
@@ -188,7 +188,7 @@ export default defineComponent({
                 </div>
             </div>
         </section>
-        <section class="homepage__team" role="region" aria-labelledby="team-heading"
+        <section id="team-section" class="homepage__team" role="region" aria-labelledby="team-heading"
             aria-describedby="team-description">
             <div class="homepage__team-content">
                 <h2 id="team-heading" class="homepage__section-subtitle">EQUIPE</h2>
@@ -215,7 +215,7 @@ export default defineComponent({
                 </Splide>
             </div>
         </section>
-        <section class="homepage__contact homepage__contact--gray-bg" role="region" aria-labelledby="contact-heading"
+        <section id="contact-section" class="homepage__contact homepage__contact--gray-bg" role="region" aria-labelledby="contact-heading"
             aria-describedby="contact-description">
             <div class="homepage__contact-content">
                 <h2 id="contact-heading" class="homepage__section-subtitle">FALE CONOSCO</h2>

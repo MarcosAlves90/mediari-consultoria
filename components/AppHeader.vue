@@ -4,10 +4,33 @@ import { ref, onMounted, onUnmounted } from 'vue';
 export default defineComponent({
     setup() {
         const hamburguerMenuOpen = ref(false);
-        const screenWidth = useScreenWidth(); // Agora usando o composable
+        const screenWidth = useScreenWidth();
         const isNavbarSmall = ref(false);
         const { openPhoneDialer } = useContacts();
         const { goTo } = useGoTo();
+
+        const scrollToSection = (id: string) => {
+            const el = document.getElementById(id);
+            if (el) {
+                const screenW = screenWidth.value;
+                let offset = 0;
+                if (screenW > 850) {
+                    offset = 99 + 14;
+                } else {
+                    offset = 96 + 39;
+                }
+                const elementTop = el.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                    top: elementTop - offset,
+                    behavior: 'smooth',
+                });
+            }
+        };
+
+        const handleNavClick = (id: string) => {
+            scrollToSection(id);
+            hamburguerMenuOpen.value = false;
+        };
 
         const handleScroll = () => {
             isNavbarSmall.value = window.scrollY > 200;
@@ -32,6 +55,7 @@ export default defineComponent({
             isNavbarSmall,
             goTo,
             openPhoneDialer,
+            handleNavClick,
         };
     },
 });
@@ -66,11 +90,11 @@ export default defineComponent({
                     <Icon class="app-header__logo-box-text" name="my-icon:mediari-logo-texto" />
                 </div>
                 <nav class="app-header__nav app-header__nav--desktop" v-if="screenWidth > 1105">
-                    <a href="/">Início</a>
-                    <a href="/about">Áreas de Atuação</a>
-                    <a href="/contact">Empresa</a>
-                    <a href="/services">Equipe</a>
-                    <a href="/blog">Fale conosco</a>
+                    <a href="#" @click.prevent="handleNavClick('banner-section')">Início</a>
+                    <a href="#" @click.prevent="handleNavClick('services-section')">Áreas de Atuação</a>
+                    <a href="#" @click.prevent="handleNavClick('enterprise-section')">Empresa</a>
+                    <a href="#" @click.prevent="handleNavClick('team-section')">Equipe</a>
+                    <a href="#" @click.prevent="handleNavClick('contact-section')">Fale conosco</a>
                     <button v-if="screenWidth > 1325" class="app-header__nav-button common-button"
                         @click.prevent="openPhoneDialer">
                         <Icon class="app-header__nav-button-icon" name="mdi:phone-outline" />11 4227-3008
@@ -86,11 +110,11 @@ export default defineComponent({
                 </button>
                 <nav class="app-header__nav app-header__nav--mobile"
                     :class="{ 'app-header__nav--closed': !hamburguerMenuOpen }" v-show="screenWidth <= 1105">
-                    <a href="/">Início</a>
-                    <a href="/about">Áreas de Atuação</a>
-                    <a href="/contact">Empresa</a>
-                    <a href="/services">Equipe</a>
-                    <a href="/blog">Fale conosco</a>
+                    <a href="#" @click.prevent="handleNavClick('banner-section')">Início</a>
+                    <a href="#" @click.prevent="handleNavClick('services-section')">Áreas de Atuação</a>
+                    <a href="#" @click.prevent="handleNavClick('enterprise-section')">Empresa</a>
+                    <a href="#" @click.prevent="handleNavClick('team-section')">Equipe</a>
+                    <a href="#" @click.prevent="handleNavClick('contact-section')">Fale conosco</a>
                 </nav>
             </div>
         </div>
