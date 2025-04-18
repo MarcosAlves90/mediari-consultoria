@@ -3,10 +3,16 @@ export default defineComponent({
     setup() {
         const { goTo } = useGoTo();
         const screenWidth = useScreenWidth();
+        const scrollToSection = useScrollToSection();
+
+        const handleFooterNavClick = (id: string) => {
+            scrollToSection(id);
+        };
 
         return {
             goTo,
-            screenWidth
+            screenWidth,
+            handleFooterNavClick
         }
     }
 })
@@ -68,11 +74,11 @@ export default defineComponent({
                         <div class="footer__nav-section">
                             <p class="footer__nav-title">MENU</p>
                             <ul>
-                                <li><a href="/">Início</a></li>
-                                <li><a href="/">Áreas de Atuação</a></li>
-                                <li><a href="/">Empresa</a></li>
-                                <li><a href="/">Equipe</a></li>
-                                <li><a href="/">Contato</a></li>
+                                <li><a href="/" @click.prevent="handleFooterNavClick('banner-section')">Início</a></li>
+                                <li><a href="/" @click.prevent="handleFooterNavClick('services-section')">Áreas de Atuação</a></li>
+                                <li><a href="/" @click.prevent="handleFooterNavClick('enterprise-section')">Empresa</a></li>
+                                <li><a href="/" @click.prevent="handleFooterNavClick('team-section')">Equipe</a></li>
+                                <li><a href="/" @click.prevent="handleFooterNavClick('contact-section')">Fale conosco</a></li>
                             </ul>
                         </div>
                         <div class="footer__nav-section full-width-section">

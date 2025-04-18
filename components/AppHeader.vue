@@ -5,27 +5,10 @@ export default defineComponent({
     setup() {
         const hamburguerMenuOpen = ref(false);
         const screenWidth = useScreenWidth();
+        const scrollToSection = useScrollToSection();
         const isNavbarSmall = ref(false);
         const { openPhoneDialer } = useContacts();
         const { goTo } = useGoTo();
-
-        const scrollToSection = (id: string) => {
-            const el = document.getElementById(id);
-            if (el) {
-                const screenW = screenWidth.value;
-                let offset = 0;
-                if (screenW > 850) {
-                    offset = 99 + 14;
-                } else {
-                    offset = 96 + 39;
-                }
-                const elementTop = el.getBoundingClientRect().top + window.scrollY;
-                window.scrollTo({
-                    top: elementTop - offset,
-                    behavior: 'smooth',
-                });
-            }
-        };
 
         const handleNavClick = (id: string) => {
             scrollToSection(id);
