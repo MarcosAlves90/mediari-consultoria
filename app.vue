@@ -8,8 +8,8 @@
     twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
     twitterCard: 'summary_large_image',
     ogUrl: 'https://mediari-consultoria.netlify.app/',
-    ogImage: '/mediari-og-image.png',
-    twitterImage: '/mediari-og-image.png',
+    ogImage: '/mediari-og-image.webp',
+    twitterImage: '/mediari-og-image.webp',
   })
   useHead({
     title: 'Mediari Consultoria',

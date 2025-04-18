@@ -6,7 +6,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 
-![Página inicial da plataforma](public/readme-details/inicio-do-site.png)
+![Página inicial da plataforma](public/readme-details/inicio-do-site.webp)
 
 ## Sobre o Projeto
 

@@ -57,7 +57,7 @@ export default defineComponent({
             </div>
             <div class="homepage__hero-notch" aria-hidden="true"></div>
             <div class="homepage__hero-gradient" aria-hidden="true"></div>
-            <NuxtImg class="homepage__hero-image" src="/banner-background.jpg" width="1920" height="1080"
+            <NuxtImg class="homepage__hero-image" src="/banner-background.webp" width="1920" height="1080"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" lazy format="webp"
                 alt="Banner de fundo da página principal com elementos gráficos abstratos" />
         </section>
@@ -202,11 +202,11 @@ export default defineComponent({
                     gap: '1rem',
                 }" aria-label="Destaques da equipe">
                     <SplideSlide>
-                        <NuxtImg src="/favicon.png" lazy format="webp"
+                        <NuxtImg src="/favicon.webp" lazy format="webp"
                             alt="Imagem representativa de um membro da equipe" />
                     </SplideSlide>
                     <SplideSlide>
-                        <NuxtImg src="/favicon.png" lazy format="webp"
+                        <NuxtImg src="/favicon.webp" lazy format="webp"
                             alt="Imagem representativa de um membro da equipe" />
                     </SplideSlide>
                 </Splide>
@@ -221,17 +221,17 @@ export default defineComponent({
                     tenha os seus direitos protegidos.
                 </p>
                 <div class="homepage__contact-list" role="list" aria-label="Opções de contato">
-                    <ContactCard backgroundImage="/contact-prints/instagram.png" iconImage="instagram"
+                    <ContactCard backgroundImage="/contact-prints/instagram.webp" iconImage="instagram"
                         buttonText="Fale pelo Instagram"
                         :buttonAction="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')"
                         role="listitem" aria-label="Contato pelo Instagram" />
-                    <ContactCard backgroundImage="/contact-prints/telefone.png" iconImage="telefone"
+                    <ContactCard backgroundImage="/contact-prints/telefone.webp" iconImage="telefone"
                         buttonText="Ligue para Nós" :buttonAction="openPhoneDialer" role="listitem"
                         aria-label="Contato por telefone" />
-                    <ContactCard backgroundImage="/contact-prints/gmail.png" iconImage="gmail"
+                    <ContactCard backgroundImage="/contact-prints/gmail.webp" iconImage="gmail"
                         buttonText="Envie um E-mail" :buttonAction="openMailTo" role="listitem"
                         aria-label="Contato por e-mail" />
-                    <ContactCard backgroundImage="/contact-prints/linkedin.png" iconImage="linkedin"
+                    <ContactCard backgroundImage="/contact-prints/linkedin.webp" iconImage="linkedin"
                         buttonText="Conecte-se no LinkedIn"
                         :buttonAction="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')"
                         role="listitem" aria-label="Contato pelo LinkedIn" />
@@ -546,7 +546,7 @@ $margin-p-mobile: -5.5vw;
             content: '';
             position: absolute;
             inset: 0;
-            background: url('/card-background.png') center / cover no-repeat;
+            background: url('/card-background.webp') center / cover no-repeat;
             filter: blur(5px) brightness(0.7);
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
