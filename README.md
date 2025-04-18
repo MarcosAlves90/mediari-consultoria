@@ -6,6 +6,8 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/MarcosAlves90/mediari-consultoria?style=for-the-badge)
 
+<img src="readme-details/inicio-do-site.png" alt="Página inicial da plataforma">
+
 > Professional landing page design for Mediari Consultoria.
 >
 > Site: Unavailable
@@ -14,6 +16,6 @@
 
 The project is still under development and the next updates will focus on the following tasks:
 
-- [ ] Add footer
-- [ ] Make responsive
+- [X] Add footer
+- [X] Make responsive
 - [ ] Improve the team section
