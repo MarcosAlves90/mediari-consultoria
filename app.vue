@@ -5,12 +5,12 @@ useSeoMeta({
   ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
   ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   ogUrl: 'https://mediari-consultoria.netlify.app/',
-  ogImage: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp', // URL absoluta
+  ogImage: '/mediari-og-image.webp',
   ogType: 'website',
   twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
   twitterDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   twitterCard: 'summary_large_image',
-  twitterImage: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp', // URL absoluta
+  twitterImage: '/mediari-og-image.webp',
 });
 
 useHead({
@@ -25,13 +25,9 @@ useHead({
     { rel: 'preload', as: 'image', href: '/card-background.webp', type: 'image/webp' }
   ],
   meta: [
-    { name: 'robots', content: 'index, follow' },
     { property: 'og:locale', content: 'pt_BR' },
     { property: 'og:site_name', content: 'Mediari Consultoria' },
-    { property: 'og:url', content: 'https://mediari-consultoria.netlify.app/' },
-    { property: 'og:image', content: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp' }, // og:image absoluta
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:image', content: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp' } // twitter:image absoluta
+    { property: 'og:url', content: 'https://mediari-consultoria.netlify.app/' }
   ]
 });
 
@@ -43,41 +39,9 @@ onMounted(() => {
 
 <template>
   <div>
-    <div id="loader" class="loader">
-      <div class="spinner"></div>
-    </div>
+    <Loader />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: $body-background-67;
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid $body-background;
-  border-top: 5px solid $accent-color;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
