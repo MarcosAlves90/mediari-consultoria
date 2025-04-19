@@ -1,5 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
+  robots: 'index, follow',
   description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
 
   ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
@@ -24,6 +25,9 @@ useHead({
       type: 'image/webp',
       href: '/favicon.webp'
     }
+  ],
+  meta: [
+    { name: 'robots', content: 'index, follow' }
   ]
 });
 
