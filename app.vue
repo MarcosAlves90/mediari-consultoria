@@ -1,37 +1,39 @@
 <script setup lang="ts">
-  // Adicionar outras tags ao head
-  useSeoMeta({
-    description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
-    ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
-    twitterDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
-    ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
-    twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
-    twitterCard: 'summary_large_image',
-    ogUrl: 'https://mediari-consultoria.netlify.app/',
-    ogImage: '/mediari-og-image.webp',
-    twitterImage: '/mediari-og-image.webp',
-  })
-  useHead({
-    title: 'Mediari Consultoria',
-    htmlAttrs: {
-      lang: 'pt-BR',
-    },
-    link: [
+useSeoMeta({
+  description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+
+  ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
+  ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+  ogUrl: 'https://mediari-consultoria.netlify.app/',
+  ogImage: '/mediari-og-image.webp',
+  ogType: 'website',
+
+  twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
+  twitterDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+  twitterCard: 'summary_large_image',
+  twitterImage: '/mediari-og-image.webp',
+})
+useHead({
+  title: 'Mediari Consultoria',
+  htmlAttrs: {
+    lang: 'pt-BR',
+  },
+  link: [
     {
       rel: 'icon',
       type: 'image/png',
       href: '/favicon.png'
     }
   ]
-  });
+});
 
-  // Esconde o loader após o carregamento
-  onMounted(() => {
-    const loader = document.getElementById('loader');
-    if (loader) {
-      loader.style.display = 'none';
-    }
-  });
+// Esconde o loader após o carregamento
+onMounted(() => {
+  const loader = document.getElementById('loader');
+  if (loader) {
+    loader.style.display = 'none';
+  }
+});
 </script>
 
 <template>
@@ -75,6 +77,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
