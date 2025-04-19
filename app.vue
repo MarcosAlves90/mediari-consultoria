@@ -3,10 +3,10 @@ useSeoMeta({
   robots: 'index, follow',
   description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
 
-  ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
+  ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas', // spell-check-ignore
   ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   ogUrl: 'https://mediari-consultoria.netlify.app/',
-  ogImage: '/mediari-og-image.webp',
+  ogImage: '/mediari-og-image.webp', // spell-check-ignore
   ogType: 'website',
 
   twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
@@ -15,7 +15,7 @@ useSeoMeta({
   twitterImage: '/mediari-og-image.webp',
 })
 useHead({
-  title: 'Mediari Consultoria',
+  title: 'Mediari Consultoria', // spell-check-ignore
   htmlAttrs: {
     lang: 'pt-BR',
   },
@@ -24,10 +24,37 @@ useHead({
       rel: 'icon',
       type: 'image/webp',
       href: '/favicon.webp'
+    },
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    },
+    // Preload critical images
+    {
+      rel: 'preload',
+      as: 'image',
+      href: '/mediari-og-image.webp', // spell-check-ignore
+      type: 'image/webp'
+    },
+    {
+      rel: 'preload',
+      as: 'image',
+      href: '/banner-background.webp',
+      type: 'image/webp'
+    },
+    {
+      rel: 'preload',
+      as: 'image',
+      href: '/card-background.webp',
+      type: 'image/webp'
     }
   ],
   meta: [
-    { name: 'robots', content: 'index, follow' }
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { property: 'og:site_name', content: 'Mediari Consultoria' }, // spell-check-ignore
+    { property: 'og:url', content: 'https://mediari-consultoria.netlify.app/' }
   ]
 });
 
@@ -45,9 +72,9 @@ onMounted(() => {
     <div id="loader" class="loader">
       <div class="spinner"></div>
     </div>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <NuxtLayout> <!-- spell-check-ignore -->
+      <NuxtPage /> <!-- spell-check-ignore -->
+    </NuxtLayout> <!-- spell-check-ignore -->
   </div>
 </template>
 
