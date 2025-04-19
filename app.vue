@@ -2,71 +2,42 @@
 useSeoMeta({
   robots: 'index, follow',
   description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
-
   ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
   ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   ogUrl: 'https://mediari-consultoria.netlify.app/',
-  ogImage: '/mediari-og-image.webp',
+  ogImage: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp', // URL absoluta
   ogType: 'website',
-
   twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
   twitterDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   twitterCard: 'summary_large_image',
-  twitterImage: '/mediari-og-image.webp',
-})
+  twitterImage: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp', // URL absoluta
+});
+
 useHead({
   title: 'Mediari Consultoria',
-  htmlAttrs: {
-    lang: 'pt-BR',
-  },
+  htmlAttrs: { lang: 'pt-BR' },
   link: [
-    {
-      rel: 'icon',
-      type: 'image/webp',
-      href: '/favicon.webp'
-    },
-    {
-      rel: 'icon',
-      type: 'image/png',
-      href: '/favicon.png'
-    },
-    {
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    },
-    {
-      rel: 'preload',
-      as: 'image',
-      href: '/mediari-og-image.webp',
-      type: 'image/webp'
-    },
-    {
-      rel: 'preload',
-      as: 'image',
-      href: '/banner-background.webp',
-      type: 'image/webp'
-    },
-    {
-      rel: 'preload',
-      as: 'image',
-      href: '/card-background.webp',
-      type: 'image/webp'
-    }
+    { type: 'image/webp', href: '/favicon.webp' },
+    { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'preload', as: 'image', href: '/mediari-og-image.webp', type: 'image/webp' },
+    { rel: 'preload', as: 'image', href: '/banner-background.webp', type: 'image/webp' },
+    { rel: 'preload', as: 'image', href: '/card-background.webp', type: 'image/webp' }
   ],
   meta: [
     { name: 'robots', content: 'index, follow' },
     { property: 'og:locale', content: 'pt_BR' },
     { property: 'og:site_name', content: 'Mediari Consultoria' },
-    { property: 'og:url', content: 'https://mediari-consultoria.netlify.app/' }
+    { property: 'og:url', content: 'https://mediari-consultoria.netlify.app/' },
+    { property: 'og:image', content: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp' }, // og:image absoluta
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:image', content: 'https://mediari-consultoria.netlify.app/mediari-og-image.webp' } // twitter:image absoluta
   ]
 });
 
 onMounted(() => {
   const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
+  if (loader) loader.style.display = 'none';
 });
 </script>
 
@@ -80,7 +51,6 @@ onMounted(() => {
     </NuxtLayout>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .loader {
@@ -107,12 +77,7 @@ onMounted(() => {
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
