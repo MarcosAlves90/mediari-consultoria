@@ -3,10 +3,10 @@ useSeoMeta({
   robots: 'index, follow',
   description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
 
-  ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas', // spell-check-ignore
+  ogTitle: 'Mediari Consultoria - Especialistas em Direito para Empresas e Pessoas Físicas',
   ogDescription: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   ogUrl: 'https://mediari-consultoria.netlify.app/',
-  ogImage: '/mediari-og-image.webp', // spell-check-ignore
+  ogImage: '/mediari-og-image.webp',
   ogType: 'website',
 
   twitterTitle: 'Mediari Consultoria - Direito Trabalhista, Bancário e do Consumidor',
@@ -15,7 +15,7 @@ useSeoMeta({
   twitterImage: '/mediari-og-image.webp',
 })
 useHead({
-  title: 'Mediari Consultoria', // spell-check-ignore
+  title: 'Mediari Consultoria',
   htmlAttrs: {
     lang: 'pt-BR',
   },
@@ -27,13 +27,18 @@ useHead({
     },
     {
       rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png'
+    },
+    {
+      rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.ico'
     },
     {
       rel: 'preload',
       as: 'image',
-      href: '/mediari-og-image.webp', // spell-check-ignore
+      href: '/mediari-og-image.webp',
       type: 'image/webp'
     },
     {
@@ -52,12 +57,11 @@ useHead({
   meta: [
     { name: 'robots', content: 'index, follow' },
     { property: 'og:locale', content: 'pt_BR' },
-    { property: 'og:site_name', content: 'Mediari Consultoria' }, // spell-check-ignore
+    { property: 'og:site_name', content: 'Mediari Consultoria' },
     { property: 'og:url', content: 'https://mediari-consultoria.netlify.app/' }
   ]
 });
 
-// Esconde o loader após o carregamento
 onMounted(() => {
   const loader = document.getElementById('loader');
   if (loader) {
@@ -71,15 +75,14 @@ onMounted(() => {
     <div id="loader" class="loader">
       <div class="spinner"></div>
     </div>
-    <NuxtLayout> <!-- spell-check-ignore -->
-      <NuxtPage /> <!-- spell-check-ignore -->
-    </NuxtLayout> <!-- spell-check-ignore -->
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
 
 <style lang="scss" scoped>
-/* Loader Styles */
 .loader {
   position: fixed;
   top: 0;
