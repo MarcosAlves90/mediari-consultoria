@@ -27,7 +27,8 @@ useHead({
   meta: [
     { property: 'og:locale', content: 'pt_BR' },
     { property: 'og:site_name', content: 'Mediari Consultoria' },
-    { property: 'og:url', content: 'https://mediari-consultoria.netlify.app/' }
+    { property: 'twitter:domain', content: 'mediari-consultoria.netlify.app' },
+    { property: 'twitter:url', content: 'https://mediari-consultoria.netlify.app/' }
   ]
 });
 
