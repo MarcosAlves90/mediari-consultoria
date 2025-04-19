@@ -30,7 +30,6 @@ useHead({
       type: 'image/x-icon',
       href: '/favicon.ico'
     },
-    // Preload critical images
     {
       rel: 'preload',
       as: 'image',
