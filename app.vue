@@ -30,7 +30,9 @@ useHead({
     { property: 'og:locale', content: 'pt_BR' },
     { property: 'og:site_name', content: 'Mediari Consultoria' },
     { property: 'twitter:domain', content: 'mediari-consultoria.netlify.app' },
-    { property: 'twitter:url', content: `${baseUrl}/` }
+    { property: 'twitter:url', content: `${baseUrl}/` },
+    { property: 'twitterUrl', content: 'https://mediari-consultoria.netlify.app/' },
+    { property: 'twitterDomain', content: 'mediari-consultoria.netlify.app' }
   ]
 });
 
