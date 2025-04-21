@@ -36,5 +36,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     compressPublicAssets: true
-  }
+  },
+  ssr: true,
 })
