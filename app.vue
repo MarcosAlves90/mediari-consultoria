@@ -34,8 +34,6 @@ useHead({
     { property: 'twitter:domain', content: 'mediari-consultoria.netlify.app' },
     { property: 'twitter:url', content: `${baseUrl}/` },
     { property: 'og:image:type', content: 'image/webp' },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
     ]
 });
 
