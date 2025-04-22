@@ -39,6 +39,7 @@ useHead({
     { name: 'ia:markup_url_dev', content: `${baseUrl}/` },
     { name: 'ia:rules_url', content: `${baseUrl}/` },
     { name: 'ia:rules_url_dev', content: `${baseUrl}/` },
+    { name: 'keywords', content: 'consultoria jurídica, direito trabalhista, direito bancário, direito do consumidor, empresas, pessoas físicas' }
     ]
 });
 
