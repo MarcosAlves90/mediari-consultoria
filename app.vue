@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const baseUrl = 'https://mediari-consultoria.netlify.app';
 
+// Definições de SEO e meta tags para o site
+
 useSeoMeta({
   robots: 'index, follow',
   description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
