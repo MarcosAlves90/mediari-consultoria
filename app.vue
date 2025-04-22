@@ -34,6 +34,11 @@ useHead({
     { property: 'twitter:domain', content: 'mediari-consultoria.netlify.app' },
     { property: 'twitter:url', content: `${baseUrl}/` },
     { property: 'og:image:type', content: 'image/webp' },
+    { property: 'og:image:alt', content: 'Logo da Mediari Consultoria' },
+    { name: 'ia:markup_url', content: `${baseUrl}/` },
+    { name: 'ia:markup_url_dev', content: `${baseUrl}/` },
+    { name: 'ia:rules_url', content: `${baseUrl}/` },
+    { name: 'ia:rules_url_dev', content: `${baseUrl}/` },
     ]
 });
 
