@@ -183,16 +183,21 @@ export default defineComponent({
         justify-content: space-between;
         align-items: center;
         padding: 1.1rem 2rem;
-        font-size: 20px;
+        font-size: 18px;
         gap: 3.5rem;
-
         @media (max-width: 1300px) {
             gap: 5vw;
         }
-
+        // Definição do padding do header
+        padding: 1.1rem 4rem;
+        @include respond-to(desktop) {
+            padding: 1.1rem 2rem;
+        }
         @include respond-to(tablet) {
             justify-content: space-between;
             flex-wrap: wrap;
+        }
+        @include respond-to(mobile) {
             padding: 1rem;
         }
     }

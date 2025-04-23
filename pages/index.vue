@@ -12,6 +12,22 @@ export default defineComponent({
         const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
         const screenWidth = useScreenWidth();
 
+        // O site utiliza imagens com o nome do funcionário no formato "nome-sobrenome.webp".
+        const teamImages = [
+            '/funcionarios-em-destaque/fernanda-assis.webp',
+            '/funcionarios-em-destaque/letícia-ferreira.webp',
+            '/funcionarios-em-destaque/lucas-jesus.webp',
+            '/funcionarios-em-destaque/millena-vieira.webp',
+            '/funcionarios-em-destaque/mylena-barboza.webp',
+            '/funcionarios-em-destaque/roberta-curcios.webp',
+        ];
+
+        // O método getNome transforma o nome da imagem em um nome mais legível, com a primeira letra maiúscula.
+        const getNome = (img: string) => {
+            const nome = img.split('/').pop()?.replace('.webp', '') || '';
+            return nome.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        };
+
         const triggerShake = (event: Event) => {
             const target = event.currentTarget as HTMLElement;
             if (target) {
@@ -22,12 +38,15 @@ export default defineComponent({
             }
         };
 
+
         return {
             triggerShake,
             openLinkInBrowser,
             openPhoneDialer,
             openMailTo,
-            screenWidth
+            screenWidth,
+            teamImages,
+            getNome
         };
     }
 })
@@ -63,7 +82,7 @@ export default defineComponent({
         </section>
         <section id="services-section" class="homepage__services" role="region" aria-labelledby="services-heading"
             aria-describedby="services-description">
-            <div class="homepage__services-container">
+            <div class="homepage__services-container container-padding">
                 <h2 id="services-heading" class="homepage__section-subtitle">ÁREAS DE ATUAÇÃO</h2>
                 <h1 class="homepage__section-title">NOSSOS SERVIÇOS</h1>
                 <p id="services-description" class="homepage__section-description">Nosso corpo de profissionais atua em
@@ -143,9 +162,9 @@ export default defineComponent({
                 </div>
             </div>
         </section>
-        <section id="enterprise-section" class="homepage__company homepage__company--gray-bg" role="region" aria-labelledby="enterprise-heading"
-            aria-describedby="enterprise-description">
-            <div class="homepage__company-content">
+        <section id="enterprise-section" class="homepage__company homepage__company--gray-bg" role="region"
+            aria-labelledby="enterprise-heading" aria-describedby="enterprise-description">
+            <div class="homepage__company-content container-padding">
                 <div class="homepage__company-map" role="complementary" aria-label="Mapa da localização da empresa">
                     <!-- Conteúdo para o lado esquerdo -->
                     <iframe
@@ -187,7 +206,7 @@ export default defineComponent({
         </section>
         <section id="team-section" class="homepage__team" role="region" aria-labelledby="team-heading"
             aria-describedby="team-description">
-            <div class="homepage__team-content">
+            <div class="homepage__team-content container-padding">
                 <h2 id="team-heading" class="homepage__section-subtitle">EQUIPE</h2>
                 <h1 class="homepage__section-title">NOSSOS DESTAQUES</h1>
                 <p id="team-description" class="homepage__section-description">Com mais de 60 colaboradores e auxiliares
@@ -199,22 +218,22 @@ export default defineComponent({
                     perMove: 1,
                     updateOnMove: true,
                     pagination: true,
-                    gap: '1rem',
+                    gap: '0.5rem',
+                    autoplay: true,
                 }" aria-label="Destaques da equipe">
-                    <SplideSlide>
-                        <NuxtImg src="/favicon.webp" lazy format="webp"
-                            alt="Imagem representativa de um membro da equipe" />
-                    </SplideSlide>
-                    <SplideSlide>
-                        <NuxtImg src="/favicon.webp" lazy format="webp"
-                            alt="Imagem representativa de um membro da equipe" />
+                    <SplideSlide v-for="(img, idx) in teamImages" :key="idx">
+                        <NuxtImg :src="img" lazy format="webp" :alt="`Foto do membro da equipe ${getNome(img)}`" />
+                        <d class="homepage__team-carousel-gradient" aria-hidden="true" />
+                        <div class="homepage__team-carousel-text">
+                            <p>{{ getNome(img) }}</p>
+                        </div>
                     </SplideSlide>
                 </Splide>
             </div>
         </section>
-        <section id="contact-section" class="homepage__contact homepage__contact--gray-bg" role="region" aria-labelledby="contact-heading"
-            aria-describedby="contact-description">
-            <div class="homepage__contact-content">
+        <section id="contact-section" class="homepage__contact homepage__contact--gray-bg" role="region"
+            aria-labelledby="contact-heading" aria-describedby="contact-description">
+            <div class="homepage__contact-content container-padding">
                 <h2 id="contact-heading" class="homepage__section-subtitle">FALE CONOSCO</h2>
                 <h1 class="homepage__section-title">ENTRE EM CONTATO</h1>
                 <p id="contact-description" class="homepage__section-description">Nos contate através de nossas redes e
@@ -283,7 +302,7 @@ $margin-p-mobile: -5.5vw;
 .homepage {
     &__hero {
         width: 100%;
-        height: 60rem;
+        height: 95vh;
         position: relative;
         border-bottom: 12px solid $accent-color;
 
@@ -439,7 +458,7 @@ $margin-p-mobile: -5.5vw;
         }
 
         @include respond-to(tablet) {
-            height: 43rem;
+            height: 80vh;
         }
     }
 
@@ -456,7 +475,6 @@ $margin-p-mobile: -5.5vw;
         &-container {
             width: 100%;
             max-width: 80rem;
-            padding: 4.5rem 2rem;
         }
     }
 
@@ -472,7 +490,7 @@ $margin-p-mobile: -5.5vw;
         &--secondary {
             grid-template-columns: repeat(3, 1fr);
         }
-        
+
         @include respond-to(tablet) {
             gap: 1rem;
 
@@ -503,10 +521,10 @@ $margin-p-mobile: -5.5vw;
         position: relative;
 
         &-icon {
-            font-size: 6.2rem;
+            font-size: 5rem;
             cursor: pointer;
 
-            @media (max-width: 1200px) {
+            @include respond-to(desktop) {
                 font-size: 4rem;
             }
         }
@@ -518,9 +536,10 @@ $margin-p-mobile: -5.5vw;
             text-align: center;
             margin: 0.5rem 0 0;
 
-            @media (max-width: 1200px) {
+            @include respond-to(desktop) {
                 font-size: 18px;
             }
+
         }
 
         &-description {
@@ -529,7 +548,7 @@ $margin-p-mobile: -5.5vw;
             font-size: 15px;
             transition: color 0.2s ease-in-out;
 
-            @media (max-width: 1200px) {
+            @include respond-to(desktop) {
                 font-size: 12px;
             }
         }
@@ -578,9 +597,9 @@ $margin-p-mobile: -5.5vw;
         &-content {
             width: 100%;
             max-width: 80rem;
-            padding: 4.5rem 2rem;
             display: flex;
             gap: 2rem;
+
             @include respond-to(tablet) {
                 flex-direction: column-reverse;
                 gap: 1rem;
@@ -596,6 +615,7 @@ $margin-p-mobile: -5.5vw;
                 border-radius: 5px;
                 width: 100%;
                 height: 100%;
+
                 @include respond-to(tablet) {
                     height: 12rem;
                 }
@@ -627,7 +647,7 @@ $margin-p-mobile: -5.5vw;
 
                 &-map-icon {
                     cursor: pointer;
-                    font-size: 3.5rem;
+                    font-size: 3rem;
                     transition: transform 0.2s ease-in-out;
 
                     &:hover {
@@ -666,17 +686,57 @@ $margin-p-mobile: -5.5vw;
         &-content {
             width: 100%;
             max-width: 80rem;
-            padding: 4.5rem 2rem;
         }
 
         &-carousel {
             margin-top: 1.5rem;
             padding-top: 0;
-            padding-bottom: 0;
+            padding-bottom: 2rem;
+            box-sizing: border-box;
 
             img {
                 width: 100%;
                 height: 100%;
+                object-fit: cover;
+                border-radius: 5px 5px 0 0;
+                @include respond-to(mobile) {
+                    max-height: 25rem;
+                }
+            }
+
+            &-gradient {
+                border-radius: 5px 5px 0 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: $accent-color-20;
+                mix-blend-mode: multiply;
+            }
+
+            &-text {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                border-radius: 5px 5px 0 0;
+                text-align: center;
+                background-color: $accent-color-70;
+                backdrop-filter: blur(5px);
+                font-size: 1.2rem;
+                z-index: 2;
+
+                p {
+                    color: $body-background;
+                    margin: 1rem 0;
+                    font-size: 17px;
+
+                    @include respond-to(desktop) {
+                        font-size: 13px;
+                    }
+                }
             }
         }
 
@@ -706,8 +766,9 @@ $margin-p-mobile: -5.5vw;
         }
 
         ::v-deep(.splide__pagination) {
-            bottom: unset;
+            bottom: 0.25rem;
         }
+
         ::v-deep(.splide__pagination__page) {
             background: $body-background-dark;
             border: 2px solid $accent-color;
@@ -715,6 +776,7 @@ $margin-p-mobile: -5.5vw;
             width: 18px;
             height: 18px;
         }
+
         ::v-deep(.splide__pagination__page.is-active) {
             background: $accent-color;
             border-color: $accent-color;
@@ -729,6 +791,7 @@ $margin-p-mobile: -5.5vw;
                     width: 0.8rem;
                 }
             }
+
             ::v-deep(.splide__arrow--prev) {
                 left: 1%;
             }
@@ -752,15 +815,15 @@ $margin-p-mobile: -5.5vw;
         &-content {
             width: 100%;
             max-width: 80rem;
-            padding: 4.5rem 2rem;
         }
 
         &-list {
             margin-top: 1.5rem;
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             justify-content: space-between;
             align-items: center;
+
             @include respond-to(tablet) {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
@@ -769,7 +832,7 @@ $margin-p-mobile: -5.5vw;
     }
 
     &__section-title {
-        font-size: 60px;
+        font-size: 45px;
         font-weight: 400;
         text-align: start;
         margin: -1.5rem 0 0 0;
@@ -797,7 +860,7 @@ $margin-p-mobile: -5.5vw;
     }
 
     &__section-description {
-        font-size: 20px;
+        font-size: 18px;
         text-align: justify;
         margin: 0;
 
@@ -811,13 +874,13 @@ $margin-p-mobile: -5.5vw;
     }
 }
 
-@include respond-to(desktop) {
-
-    .homepage__services-container,
-    .homepage__company-content,
-    .homepage__team-content,
-    .homepage__contact-content {
-        padding: 3.5rem 1rem;
+.container-padding {
+    padding: 4.5rem 4rem;
+    @include respond-to(desktop) {
+        padding: 3.5rem 2rem;
+    }
+    @include respond-to(mobile) {
+        padding: 2rem 1rem;
     }
 }
 

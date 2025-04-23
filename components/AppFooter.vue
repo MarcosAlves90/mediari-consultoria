@@ -133,7 +133,7 @@ export default defineComponent({
 }
 
 @mixin nav-link {
-    font-size: 19px;
+    font-size: 18px;
     text-decoration: none;
     padding: 0.1rem;
     border-radius: 5px;
@@ -164,7 +164,7 @@ $common-padding: 3rem;
 .footer__contact-btn {
     color: $body-background;
     border-color: $body-background;
-    font-size: 20px;
+    font-size: 18px;
 
     .icon {
         font-size: 1.5em;
@@ -255,7 +255,7 @@ footer {
                 }
 
                 .footer__highlight-title {
-                    @include text-title(24px);
+                    @include text-title(22px);
                 }
 
                 .footer__highlight-desc {
@@ -295,7 +295,7 @@ footer {
                 min-width: 12rem;
 
                 .footer__nav-title {
-                    @include text-title(35px);
+                    @include text-title(33px);
                     border-bottom: 2px solid $body-background;
                     font-weight: 400;
                 }
@@ -371,7 +371,7 @@ ul {
                     }
 
                     .footer__highlight-title {
-                        font-size: 20px;
+                        font-size: 18px;
                     }
 
                     .footer__highlight-desc {
