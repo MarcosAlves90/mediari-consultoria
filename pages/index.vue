@@ -223,7 +223,7 @@ export default defineComponent({
                 }" aria-label="Destaques da equipe">
                     <SplideSlide v-for="(img, idx) in teamImages" :key="idx">
                         <NuxtImg :src="img" lazy format="webp" :alt="`Foto do membro da equipe ${getNome(img)}`" />
-                        <d class="homepage__team-carousel-gradient" aria-hidden="true" />
+                        <div class="homepage__team-carousel-gradient" aria-hidden="true" />
                         <div class="homepage__team-carousel-text">
                             <p>{{ getNome(img) }}</p>
                         </div>
@@ -291,14 +291,6 @@ $mobile-font-large: 8.27vw;
 $mobile-font-medium: 5.5vw;
 $mobile-font-small: 3vw;
 
-$margin-h2-desktop: -9.5rem;
-$margin-h2-tablet: -6.2rem;
-$margin-h2-mobile: -11vw;
-
-$margin-p-desktop: -5rem;
-$margin-p-tablet: -3.5rem;
-$margin-p-mobile: -5.5vw;
-
 .homepage {
     &__hero {
         width: 100%;
@@ -307,7 +299,7 @@ $margin-p-mobile: -5.5vw;
         border-bottom: 12px solid $accent-color;
 
         &-text {
-            margin-top: 3.1rem;
+            margin-top: 54px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -318,10 +310,11 @@ $margin-p-mobile: -5.5vw;
             text-align: center;
 
             &-tags {
+                margin-bottom: 2rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 1.7rem;
+                gap: 4rem;
 
                 &-tag {
                     display: flex;
@@ -332,7 +325,7 @@ $margin-p-mobile: -5.5vw;
                     height: 2rem;
                     padding: 0.4rem 0.9rem;
                     border-radius: 5px;
-                    min-width: 9rem;
+                    min-width: 10rem;
                     backdrop-filter: blur(5px);
                     transition: transform 0.2s ease-in-out;
 
@@ -347,8 +340,8 @@ $margin-p-mobile: -5.5vw;
                     }
                 }
 
-                @media (max-width: 1200px) {
-                    gap: 1.3rem;
+                @include respond-to(desktop) {
+                    gap: 3.3rem;
 
                     &-tag {
                         padding: 0.2rem 0.45rem;
@@ -360,8 +353,8 @@ $margin-p-mobile: -5.5vw;
                     }
                 }
 
-                @media (max-width: 850px) {
-                    gap: 2.5vw;
+                @include respond-to(tablet) {
+                    gap: 4.5vw;
 
                     &-tag {
                         padding: 0.8vw 2.5vw;
@@ -375,13 +368,16 @@ $margin-p-mobile: -5.5vw;
             }
 
             &-description {
+                margin: -1.5rem 0 0 0;
                 color: inherit;
                 font-size: $font-small;
-                margin-top: $margin-p-desktop;
-                @include responsive-margin($margin-p-tablet, $margin-p-mobile);
                 @include responsive-font(0.855rem, 2.52vw);
 
-                @media (max-width: 850px) {
+                @include respond-to(desktop) {
+                    margin: -1rem 0 0 0;
+                }
+                @include respond-to(tablet) {
+                    margin: -1.5vw 0 0 0;
                     padding: 0 4vw;
                 }
             }
@@ -393,18 +389,20 @@ $margin-p-mobile: -5.5vw;
                 transition: font-size 0.2s ease-in-out, margin-top 0.2s ease-in-out;
             }
 
+            h1,h2,span {
+                margin: 0;
+            }
+
             h1 {
                 font-weight: 500;
-                margin-top: 0.5rem;
                 font-size: $font-large;
                 @include responsive-font(71px, $mobile-font-large);
             }
 
             h2 {
+                margin-top: -4rem;
                 font-weight: 500;
                 font-size: $font-medium;
-                margin-top: $margin-h2-desktop;
-                @include responsive-margin($margin-h2-tablet, $margin-h2-mobile);
                 @include responsive-font(46px, $mobile-font-medium);
 
                 span {
@@ -416,6 +414,17 @@ $margin-p-mobile: -5.5vw;
                     top: -2px;
                     @include responsive-font(50px, 5.8vw);
                 }
+
+                @include respond-to(desktop) {
+                    margin-top: -2.5rem;
+                }
+                @include respond-to(tablet) {
+                    margin-top: -4vw;
+                }
+            }
+
+            @include respond-to(tablet) {
+                margin-top: 40px;
             }
         }
 

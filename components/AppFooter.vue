@@ -159,7 +159,7 @@ export default defineComponent({
     }
 }
 
-$common-padding: 3rem;
+$common-padding: 2rem;
 
 .footer__contact-btn {
     color: $body-background;

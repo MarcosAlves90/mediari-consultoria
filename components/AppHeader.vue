@@ -182,14 +182,13 @@ export default defineComponent({
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1.1rem 2rem;
         font-size: 18px;
         gap: 3.5rem;
+        padding: 1.1rem 4rem;
         @media (max-width: 1300px) {
             gap: 5vw;
         }
         // Definição do padding do header
-        padding: 1.1rem 4rem;
         @include respond-to(desktop) {
             padding: 1.1rem 2rem;
         }
