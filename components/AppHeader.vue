@@ -1,46 +1,32 @@
-<script lang="ts">
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 
-export default defineComponent({
-    setup() {
-        const hamburguerMenuOpen = ref(false);
-        const screenWidth = useScreenWidth();
-        const scrollToSection = useScrollToSection();
-        const isNavbarSmall = ref(false);
-        const { openPhoneDialer } = useContacts();
-        const { goTo } = useGoTo();
+const hamburguerMenuOpen = ref(false);
+const screenWidth = useScreenWidth();
+const scrollToSection = useScrollToSection();
+const isNavbarSmall = ref(false);
+const { openPhoneDialer } = useContacts();
+const { goTo } = useGoTo();
 
-        const handleNavClick = (id: string) => {
-            scrollToSection(id);
-            hamburguerMenuOpen.value = false;
-        };
+const handleNavClick = (id: string) => {
+    scrollToSection(id);
+    hamburguerMenuOpen.value = false;
+};
 
-        const handleScroll = () => {
-            isNavbarSmall.value = window.scrollY > 200;
-        };
+const handleScroll = () => {
+    isNavbarSmall.value = window.scrollY > 200;
+};
 
-        const toggleHamburguerMenu = () => {
-            hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
-        };
+const toggleHamburguerMenu = () => {
+    hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
+};
 
-        onMounted(() => {
-            window.addEventListener('scroll', handleScroll);
-        });
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+});
 
-        onUnmounted(() => {
-            window.removeEventListener('scroll', handleScroll);
-        });
-
-        return {
-            hamburguerMenuOpen,
-            toggleHamburguerMenu,
-            screenWidth,
-            isNavbarSmall,
-            goTo,
-            openPhoneDialer,
-            handleNavClick,
-        };
-    },
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
 });
 </script>
 

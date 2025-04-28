@@ -1,55 +1,36 @@
-<script lang="ts">
+<script setup lang="ts">
 import '@splidejs/splide/css/sea-green';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import ContactCard from '@/components/ContactCard.vue';
-export default defineComponent({
-    components: {
-        Splide,
-        SplideSlide,
-        ContactCard
-    },
-    setup() {
-        const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
-        const screenWidth = useScreenWidth();
 
-        // O site utiliza imagens com o nome do funcionário no formato "nome-sobrenome.webp".
-        const teamImages = [
-            '/funcionarios-em-destaque/fernanda-assis.webp',
-            '/funcionarios-em-destaque/letícia-ferreira.webp',
-            '/funcionarios-em-destaque/lucas-jesus.webp',
-            '/funcionarios-em-destaque/millena-vieira.webp',
-            '/funcionarios-em-destaque/mylena-barboza.webp',
-            '/funcionarios-em-destaque/roberta-curcios.webp',
-        ];
+const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
+const screenWidth = useScreenWidth();
 
-        // O método getNome transforma o nome da imagem em um nome mais legível, com a primeira letra maiúscula.
-        const getNome = (img: string) => {
-            const nome = img.split('/').pop()?.replace('.webp', '') || '';
-            return nome.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        };
+// O site utiliza imagens com o nome do funcionário no formato "nome-sobrenome.webp".
+const teamImages = [
+    '/funcionarios-em-destaque/fernanda-assis.webp',
+    '/funcionarios-em-destaque/letícia-ferreira.webp',
+    '/funcionarios-em-destaque/lucas-jesus.webp',
+    '/funcionarios-em-destaque/millena-vieira.webp',
+    '/funcionarios-em-destaque/mylena-barboza.webp',
+    '/funcionarios-em-destaque/roberta-curcios.webp',
+];
 
-        const triggerShake = (event: Event) => {
-            const target = event.currentTarget as HTMLElement;
-            if (target) {
-                target.classList.add('shake-animation');
-                setTimeout(() => {
-                    target.classList.remove('shake-animation');
-                }, 700);
-            }
-        };
+// O método getNome transforma o nome da imagem em um nome mais legível, com a primeira letra maiúscula.
+const getNome = (img: string) => {
+    const nome = img.split('/').pop()?.replace('.webp', '') || '';
+    return nome.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+};
 
-
-        return {
-            triggerShake,
-            openLinkInBrowser,
-            openPhoneDialer,
-            openMailTo,
-            screenWidth,
-            teamImages,
-            getNome
-        };
+const triggerShake = (event: Event) => {
+    const target = event.currentTarget as HTMLElement;
+    if (target) {
+        target.classList.add('shake-animation');
+        setTimeout(() => {
+            target.classList.remove('shake-animation');
+        }, 700);
     }
-})
+};
 </script>
 
 <template>
@@ -90,71 +71,71 @@ export default defineComponent({
                     os seus direitos ou da sua empresa.</p>
                 <div class="homepage__services-list homepage__services-list--main" role="list"
                     aria-label="Serviços principais">
-                    <div class="homepage__service-card" role="listitem" aria-labelledby="civil-heading"
+                    <div class="homepage__services-card" role="listitem" aria-labelledby="civil-heading"
                         aria-describedby="civil-description">
-                        <Icon class="homepage__service-card-icon" name="my-icon:icon-direito-civil"
+                        <Icon class="homepage__services-card-icon" name="my-icon:icon-direito-civil"
                             @click="triggerShake" aria-hidden="true" />
-                        <h1 id="civil-heading" class="homepage__service-card-title">Direito Civil</h1>
-                        <p id="civil-description" class="homepage__service-card-description">Resolvemos conflitos,
+                        <h1 id="civil-heading" class="homepage__services-card-title">Direito Civil</h1>
+                        <p id="civil-description" class="homepage__services-card-description">Resolvemos conflitos,
                             indenizações e questões do dia a dia para
                             sua segurança jurídica.</p>
                     </div>
-                    <div class="homepage__service-card" role="listitem" aria-labelledby="penal-heading"
+                    <div class="homepage__services-card" role="listitem" aria-labelledby="penal-heading"
                         aria-describedby="penal-description">
-                        <Icon class="homepage__service-card-icon" name="my-icon:icon-direito-penal"
+                        <Icon class="homepage__services-card-icon" name="my-icon:icon-direito-penal"
                             @click="triggerShake" aria-hidden="true" />
-                        <h1 id="penal-heading" class="homepage__service-card-title">Direito Penal</h1>
-                        <p id="penal-description" class="homepage__service-card-description">Defesa especializada em
+                        <h1 id="penal-heading" class="homepage__services-card-title">Direito Penal</h1>
+                        <p id="penal-description" class="homepage__services-card-description">Defesa especializada em
                             processos criminais, garantindo proteção em todas as
                             etapas.</p>
                     </div>
-                    <div class="homepage__service-card" role="listitem" aria-labelledby="contracts-heading"
+                    <div class="homepage__services-card" role="listitem" aria-labelledby="contracts-heading"
                         aria-describedby="contracts-description">
-                        <Icon class="homepage__service-card-icon" name="my-icon:icon-contratos" @click="triggerShake"
+                        <Icon class="homepage__services-card-icon" name="my-icon:icon-contratos" @click="triggerShake"
                             aria-hidden="true" />
-                        <h1 id="contracts-heading" class="homepage__service-card-title">Contratos</h1>
-                        <p id="contracts-description" class="homepage__service-card-description">Elaboração e revisão de
+                        <h1 id="contracts-heading" class="homepage__services-card-title">Contratos</h1>
+                        <p id="contracts-description" class="homepage__services-card-description">Elaboração e revisão de
                             contratos para assegurar segurança e
                             proteção jurídica.</p>
                     </div>
-                    <div class="homepage__service-card" role="listitem" aria-labelledby="consulting-heading"
+                    <div class="homepage__services-card" role="listitem" aria-labelledby="consulting-heading"
                         aria-describedby="consulting-description">
-                        <Icon class="homepage__service-card-icon" name="my-icon:icon-consultivo" @click="triggerShake"
+                        <Icon class="homepage__services-card-icon" name="my-icon:icon-consultivo" @click="triggerShake"
                             aria-hidden="true" />
-                        <h1 id="consulting-heading" class="homepage__service-card-title">Consultivo</h1>
-                        <p id="consulting-description" class="homepage__service-card-description">Orientação jurídica
+                        <h1 id="consulting-heading" class="homepage__services-card-title">Consultivo</h1>
+                        <p id="consulting-description" class="homepage__services-card-description">Orientação jurídica
                             estratégica para prevenir riscos e garantir
                             conformidade legal.</p>
                     </div>
                 </div>
                 <div class="homepage__services-list homepage__services-list--secondary" role="list"
                     aria-label="Outros serviços">
-                    <div class="homepage__service-card" role="listitem" aria-labelledby="consumer-heading"
+                    <div class="homepage__services-card" role="listitem" aria-labelledby="consumer-heading"
                         aria-describedby="consumer-description">
-                        <Icon class="homepage__service-card-icon" name="my-icon:icon-direito-do-consumidor"
+                        <Icon class="homepage__services-card-icon" name="my-icon:icon-direito-do-consumidor"
                             @click="triggerShake" aria-hidden="true" />
-                        <h1 id="consumer-heading" class="homepage__service-card-title">Direito do Consumidor</h1>
-                        <p id="consumer-description" class="homepage__service-card-description">Defendemos os direitos
+                        <h1 id="consumer-heading" class="homepage__services-card-title">Direito do Consumidor</h1>
+                        <p id="consumer-description" class="homepage__services-card-description">Defendemos os direitos
                             dos consumidores em diversas situações,
                             como compras online, cobranças
                             indevidas e defeitos em produtos ou serviços.</p>
                     </div>
-                    <div class="homepage__service-card" role="listitem" aria-labelledby="banking-heading"
+                    <div class="homepage__services-card" role="listitem" aria-labelledby="banking-heading"
                         aria-describedby="banking-description">
-                        <Icon class="homepage__service-card-icon" name="my-icon:icon-direito-bancario"
+                        <Icon class="homepage__services-card-icon" name="my-icon:icon-direito-bancario"
                             @click="triggerShake" aria-hidden="true" />
-                        <h1 id="banking-heading" class="homepage__service-card-title">Direito Bancário</h1>
-                        <p id="banking-description" class="homepage__service-card-description">Prestamos assessoria
+                        <h1 id="banking-heading" class="homepage__services-card-title">Direito Bancário</h1>
+                        <p id="banking-description" class="homepage__services-card-description">Prestamos assessoria
                             jurídica para questões envolvendo bancos,
                             contratos financeiros,
                             cobranças abusivas e renegociação de dívidas. Proteja seus direitos com nosso suporte.</p>
                     </div>
-                    <div class="homepage__service-card" role="listitem" aria-labelledby="labor-heading"
+                    <div class="homepage__services-card" role="listitem" aria-labelledby="labor-heading"
                         aria-describedby="labor-description">
-                        <Icon class="homepage__service-card-icon" name="my-icon:icon-direito-trabalhista"
+                        <Icon class="homepage__services-card-icon" name="my-icon:icon-direito-trabalhista"
                             @click="triggerShake" aria-hidden="true" />
-                        <h1 id="labor-heading" class="homepage__service-card-title">Direito Trabalhista</h1>
-                        <p id="labor-description" class="homepage__service-card-description">Atuamos na defesa de
+                        <h1 id="labor-heading" class="homepage__services-card-title">Direito Trabalhista</h1>
+                        <p id="labor-description" class="homepage__services-card-description">Atuamos na defesa de
                             trabalhadores e empresas em disputas
                             trabalhistas, rescisões
                             contratuais, direitos previdenciários e demais questões ligadas ao ambiente de trabalho.</p>
@@ -192,8 +173,7 @@ export default defineComponent({
                         <Icon class="homepage__company-info-location-map-icon" name="my-icon:icon-map"
                             @click="openLinkInBrowser('https://maps.app.goo.gl/8f6BACTToivurF4h9')"
                             aria-label="Abrir localização no Google Maps" />
-                        <p class="homepage__section-description">Estamos localizados na <span>Rua Amazonas, 439 -
-                                Centro, São
+                        <p class="homepage__section-description">Estamos localizados na <span>Rua Amazonas, 439 - Centro, São
                                 Caetano do Sul, 09520070.</span></p>
                     </div>
                     <iframe
@@ -485,111 +465,111 @@ $mobile-font-small: 3vw;
             width: 100%;
             max-width: 80rem;
         }
-    }
 
-    &__services-list {
-        display: grid;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-
-        &--main {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        &--secondary {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        @include respond-to(tablet) {
-            gap: 1rem;
+        &-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
 
             &--main {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(4, 1fr);
             }
 
             &--secondary {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-    }
-
-    &__service-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        box-sizing: border-box;
-        height: 100%;
-        width: 100%;
-        border: 2px solid $accent-color;
-        border-radius: 5px;
-        padding: 1rem;
-        transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-        overflow: hidden;
-        position: relative;
-
-        &-icon {
-            font-size: 5rem;
-            cursor: pointer;
-
-            @include respond-to(desktop) {
-                font-size: 4rem;
-            }
-        }
-
-        &-title {
-            font-size: 24px;
-            font-weight: 500;
-            color: $accent-color;
-            text-align: center;
-            margin: 0.5rem 0 0;
-
-            @include respond-to(desktop) {
-                font-size: 18px;
+                grid-template-columns: repeat(3, 1fr);
             }
 
-        }
+            @include respond-to(tablet) {
+                gap: 1rem;
 
-        &-description {
+                &--main {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                &--secondary {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+        }
+    
+        &-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             margin: 0;
-            text-align: justify;
-            font-size: 15px;
-            transition: color 0.2s ease-in-out;
-
-            @include respond-to(desktop) {
-                font-size: 12px;
-            }
-        }
-
-        &:hover {
-            transform: scale(1.05);
-
-            .homepage__service-card-description {
-                color: $accent-color;
-            }
-        }
-
-        &::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('/card-background.webp') center / cover no-repeat;
-            filter: blur(5px) brightness(0.7);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        &:hover::before {
-            opacity: 0.2;
-            transform: scale(1.1);
-        }
-
-        >* {
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+            border: 2px solid $accent-color;
+            border-radius: 5px;
+            padding: 1rem;
+            transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+            overflow: hidden;
             position: relative;
-            z-index: 1;
+    
+            &-icon {
+                font-size: 5rem;
+                cursor: pointer;
+    
+                @include respond-to(desktop) {
+                    font-size: 4rem;
+                }
+            }
+    
+            &-title {
+                font-size: 24px;
+                font-weight: 500;
+                color: $accent-color;
+                text-align: center;
+                margin: 0.5rem 0 0;
+    
+                @include respond-to(desktop) {
+                    font-size: 18px;
+                }
+    
+            }
+    
+            &-description {
+                margin: 0;
+                text-align: justify;
+                font-size: 15px;
+                transition: color 0.2s ease-in-out;
+    
+                @include respond-to(desktop) {
+                    font-size: 12px;
+                }
+            }
+    
+            &:hover {
+                transform: scale(1.05);
+    
+                .homepage__services-card-description {
+                    color: $accent-color;
+                }
+            }
+    
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: url('/card-background.webp') center / cover no-repeat;
+                filter: blur(5px) brightness(0.7);
+                opacity: 0;
+                transition: opacity 0.3s ease, transform 0.3s ease;
+                z-index: 0;
+                pointer-events: none;
+            }
+    
+            &:hover::before {
+                opacity: 0.2;
+                transform: scale(1.1);
+            }
+    
+            >* {
+                position: relative;
+                z-index: 1;
+            }
         }
     }
 
@@ -877,10 +857,10 @@ $mobile-font-small: 3vw;
             font-size: 15px;
         }
     }
+}
 
-    .shake-animation {
-        animation: shake 0.7s ease-in-out;
-    }
+.shake-animation {
+    animation: shake 0.7s ease-in-out;
 }
 
 .container-padding {

@@ -1,25 +1,12 @@
-<script lang="ts">
-export default defineComponent({
-    setup() {
-        const { goTo } = useGoTo();
-        const screenWidth = useScreenWidth();
-        const scrollToSection = useScrollToSection();
-        const { openPhoneDialer, openLinkInBrowser, openMailTo } = useContacts();
+<script setup lang="ts">
+const { goTo } = useGoTo();
+const screenWidth = useScreenWidth();
+const scrollToSection = useScrollToSection();
+const { openPhoneDialer, openLinkInBrowser, openMailTo } = useContacts();
 
-        const handleFooterNavClick = (id: string) => {
-            scrollToSection(id);
-        };
-
-        return {
-            goTo,
-            screenWidth,
-            handleFooterNavClick,
-            openPhoneDialer,
-            openLinkInBrowser,
-            openMailTo
-        }
-    }
-})
+const handleFooterNavClick = (id: string) => {
+    scrollToSection(id);
+};
 </script>
 
 <template>

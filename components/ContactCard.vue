@@ -1,25 +1,22 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import type { PropType } from 'vue';
 
-export default defineComponent({
-    props: {
-        backgroundImage: {
-            type: String,
-            required: true
-        },
-        iconImage: {
-            type: String,
-            required: true
-        },
-        buttonText: {
-            type: String,
-            required: true
-        },
-        buttonAction: {
-            type: Function as PropType<() => void>,
-            required: true
-        }
+const props = defineProps({
+    backgroundImage: {
+        type: String,
+        required: true
+    },
+    iconImage: {
+        type: String,
+        required: true
+    },
+    buttonText: {
+        type: String,
+        required: true
+    },
+    buttonAction: {
+        type: Function as PropType<() => void>,
+        required: true
     }
 });
 </script>
