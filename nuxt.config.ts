@@ -1,9 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: ['@nuxt/fonts', '@nuxt/image', '@nuxt/icon'],
-  css: ['~/assets/css/main.scss'],
+  css: ['~/assets/css/main.scss', '~/assets/css/theme.css'],
   vite: {
     css: {
       preprocessorOptions: {
@@ -11,7 +13,8 @@ export default defineNuxtConfig({
           additionalData: '@use "~/assets/css/_colors.scss" as *;'
         }
       }
-    }
+    },
+    plugins: [tailwindcss()],
   },
   icon: {
     provider: 'server',

@@ -1,11 +1,11 @@
 /**
- * A composable function that provides utility methods for interacting with contact options.
- * Includes methods to open the phone dialer, email client, and redirect to a specific link.
+ * Uma função composable que fornece métodos utilitários para interagir com opções de contato.
+ * Inclui métodos para abrir o discador de telefone, o cliente de email e redirecionar para um link específico.
  *
- * @returns An object containing the following methods:
- * - `openPhoneDialer`: Opens the phone dialer with a predefined phone number.
- * - `openMailTo`: Opens the default email client with a predefined email address.
- * - `openLink`: Redirects to a specific link.
+ * @returns Um objeto contendo os seguintes métodos:
+ * - `openPhoneDialer`: Abre o discador de telefone com um número de telefone predefinido.
+ * - `openMailTo`: Abre o cliente de email padrão com um endereço de email predefinido.
+ * - `openLink`: Redireciona para um link específico.
  */
 export function useContacts() {
     function openPhoneDialer() {

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+    --spacing: 1rem;
+
+    /* --breakpoint-tablet: 850px; */
+
+    /* Cores principais */
+    --color-accent-color-rgb: 89, 1, 0;
+    --color-accent-color: rgb(var(--color-accent-color-rgb));
+    --color-accent-color-2: rgba(var(--color-accent-color-rgb), 0.2);
+
+    /* Fundo */
+    --color-body-bg-rgb: 245, 245, 245;
+    --color-body-bg: rgb(var(--color-body-bg-rgb));
+    --color-body-bg-67: rgba(var(--color-body-bg-rgb), 0.67);
+    --color-body-bg-2: rgba(var(--color-body-bg-rgb), 0.2);
+
+    /* Accent text */
+    --color-accent-text-color: rgb(var(--color-body-bg-rgb));
+}

@@ -1,8 +1,8 @@
 /**
- * A composable function that provides a utility for navigating to a specified route
- * using Vue Router's `push` method.
+ * Uma função composable que fornece uma utilidade para navegar para uma rota especificada
+ * usando o método `push` do Vue Router.
  *
- * @returns An object containing the `goTo` function.
+ * @returns Um objeto contendo a função `goTo`.
  *
  * @function
  * @name useGoTo
@@ -13,7 +13,7 @@
  * await goTo('/home');
  * ```
  *
- * @throws Will log an error to the console if the route change fails.
+ * @throws Irá registrar um erro no console se a mudança de rota falhar.
  */
 export function useGoTo() {
     const router = useRouter();

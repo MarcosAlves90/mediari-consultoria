@@ -1,5 +1,24 @@
 import { useScreenWidth } from './useScreenWidth';
 
+/**
+ * Uma função composable que fornece uma utilidade para rolar suavemente para uma seção
+ * específica da página pelo ID do elemento, com um ajuste de deslocamento baseado na largura da tela.
+ *
+ * @returns Uma função que recebe o ID de um elemento como parâmetro e rola para a seção
+ *          correspondente da página com um efeito de rolagem suave.
+ *
+ * @example
+ * const scrollToSection = useScrollToSection();
+ * scrollToSection('section-id');
+ *
+ * A função calcula um deslocamento com base na largura da tela:
+ * - Para telas com largura maior que 850px, o deslocamento é de 113px.
+ * - Para telas com largura de 850px ou menor, o deslocamento é de 135px.
+ *
+ * O comportamento da rolagem é suave, proporcionando uma melhor experiência ao usuário.
+ *
+ * @param id - O ID do elemento HTML para o qual rolar.
+ */
 export function useScrollToSection() {
     const screenWidth = useScreenWidth();
 

@@ -1,10 +1,10 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 /**
- * A composable function that provides a reactive reference to the current screen width.
- * It listens for window resize events and updates the screen width accordingly.
+ * Uma função composable que fornece uma referência reativa para a largura atual da tela.
+ * Ela escuta eventos de redimensionamento da janela e atualiza a largura da tela conforme necessário.
  *
- * @returns {Ref<number>} A reactive reference containing the current screen width.
+ * @returns {Ref<number>} Uma referência reativa contendo a largura atual da tela.
  *
  * @example
  * ```typescript
