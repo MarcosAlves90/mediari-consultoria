@@ -5,17 +5,12 @@ body {
   background-color: $body-background;
   margin: 0;
   font-family: Poppins, sans-serif;
-
-  h1 {
-    font-size: 2rem;
-    text-align: center;
-  }
 }
 
 .common-button {
   border: 2px solid $accent-color;
   padding: 0.4rem 0.5rem;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   display: flex;
   justify-content: center;

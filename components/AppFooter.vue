@@ -7,84 +7,126 @@ const { openPhoneDialer, openLinkInBrowser, openMailTo } = useContacts();
 const handleFooterNavClick = (id: string) => {
     scrollToSection(id);
 };
+
+const footerHighlights = [
+    {
+        icon: "mdi:shield-outline",
+        title: "Site 100% Seguro",
+        desc: "Criptografia SSL para sua proteção"
+    },
+    {
+        icon: "mdi:star-outline",
+        title: "Referência no Ramo",
+        desc: "Serviço bem avaliado"
+    },
+    {
+        icon: "mdi:shield-home-outline",
+        title: "Acesso Protegido",
+        desc: "Navegação estável e confiável"
+    }
+];
+
+const footerNavLinks = [
+    { label: 'Início', section: 'banner-section' },
+    { label: 'Áreas de Atuação', section: 'services-section' },
+    { label: 'Empresa', section: 'enterprise-section' },
+    { label: 'Equipe', section: 'team-section' },
+    { label: 'Fale conosco', section: 'contact-section' },
+];
+
+const footerAreasGroups = [
+    [
+        { label: 'Direito do Consumidor' },
+        { label: 'Direito Bancário' },
+        { label: 'Direito Trabalhista' },
+        { label: 'Direito Civil' },
+        { label: 'Direito Penal' },
+    ],
+    [
+        { label: 'Consultivo' },
+        { label: 'Contratos' },
+    ]
+];
+
+const footer__location_display = "footer__location-display flex justify-center items-center flex-row gap-0 box-border w-full";
+const footer__container_util = "max-w-85 w-full max-xl:max-w-full max-xl:px-2 max-md:px-1";
+
+const footer__bottom_paragraph = "text-body-bg text-sm max-lg:text-xs";
+
+const footer__contact_btn_util = "footer__contact-btn common-button text-base !text-body-bg !border-body-bg hover:!bg-body-bg-25 max-lg:text-sm";
+const footer__contact_btn_icon = "text-[1.3rem] max-xl:text-[1.2rem]"
+
+const footer__nav_section_util = "flex flex-col gap-2 min-w-12 text-body-bg max-xl:w-1/2 max-lg:w-full";
+
+const footer__nav_ul_util = "list-none p-0 m-0 flex flex-col gap-1"
+const footer__nav_a_util = "rounded-sm p-[0.1rem] text-base no-underline transition-colors duration-200 hover:bg-accent-text-color-20 max-lg:text-sm"
+const footer__nav_title = "text-xl border-b-2 border-body-bg max-lg:text-lg";
+
 </script>
 
 <template>
-    <footer>
-        <div class="footer__main footer-location-display">
-            <div class="footer__container">
-                <div class="footer__header">
-                    <div class="footer__logo" @click="goTo('/')">
-                        <Icon class="footer__logo-icon" name="my-icon:mediari-logo" />
-                        <Icon class="footer__logo-text" name="my-icon:mediari-logo-texto" />
+    <footer class="bg-accent-color flex justify-center items-center flex-col gap-0">
+        <div :class="[footer__location_display, 'footer__main']">
+            <div :class="[footer__container_util, 'footer__container py-2 px-4']">
+                <div
+                    class="footer__header pb-2 border-b-2 border-accent-dark-color flex flex-row justify-between items-center max-xl:flex-col max-xl:gap-1.5 max-xl:pb-2">
+                    <div class="footer__logo flex flex-row items-center justify-center gap-1 text-body-bg cursor-pointer"
+                        @click="goTo('/')">
+                        <Icon class="text-[3.5em] transition-[font-size] duration-200" name="my-icon:mediari-logo" />
+                        <Icon class="text-[2.2em] transition-[font-size] duration-200"
+                            name="my-icon:mediari-logo-texto" />
                     </div>
-                    <div class="footer__contacts">
-                        <button class="footer__contact-btn common-button" @click.prevent="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')">
-                            <Icon class="icon" name="mdi:linkedin" />
-                            <p v-if="screenWidth <= 1200 && screenWidth > 610">Mediari Consultoria</p>
+                    <div class="footer__contacts flex flex-row items-center justify-center gap-1 max-lg:w-full max-lg:grid max-lg:grid-cols-2">
+                        <button :class="footer__contact_btn_util"
+                            @click.prevent="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')">
+                            <Icon :class="footer__contact_btn_icon" name="mdi:linkedin" />
+                            <p v-if="screenWidth < 1280 && !(screenWidth < 640)">Mediari Consultoria</p>
                         </button>
-                        <button class="footer__contact-btn common-button" @click.prevent="openMailTo">
-                            <Icon class="icon" name="mdi:email-outline" />
-                            <p v-if="screenWidth > 610">contato@mediari.com.br</p>
+                        <button :class="footer__contact_btn_util" @click.prevent="openMailTo">
+                            <Icon :class="footer__contact_btn_icon" name="mdi:email-outline" />
+                            <p v-if="!(screenWidth < 640)">contato@mediari.com.br</p>
                         </button>
-                        <button class="footer__contact-btn common-button" @click.prevent="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')">
-                            <Icon class="icon" name="mdi:instagram" />
-                            <p v-if="screenWidth > 610">@mediari.consultoria</p>
+                        <button :class="footer__contact_btn_util"
+                            @click.prevent="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')">
+                            <Icon :class="footer__contact_btn_icon" name="mdi:instagram" />
+                            <p v-if="!(screenWidth < 640)">@mediari.consultoria</p>
                         </button>
-                        <button class="footer__contact-btn common-button" @click.prevent="openPhoneDialer">
-                            <Icon class="icon" name="mdi:phone-outline" />
-                            <p v-if="screenWidth > 610">11 4227-3008</p>
+                        <button :class="footer__contact_btn_util" @click.prevent="openPhoneDialer">
+                            <Icon :class="footer__contact_btn_icon" name="mdi:phone-outline" />
+                            <p v-if="!(screenWidth < 640)">11 4227-3008</p>
                         </button>
                     </div>
                 </div>
-                <div class="footer__content">
-                    <div class="footer__highlights">
-                        <div class="footer__highlight">
-                            <Icon class="footer__highlight-icon" name="mdi:shield-outline" />
-                            <div class="footer__highlight-text">
-                                <p class="footer__highlight-title">Site 100% Seguro</p>
-                                <p class="footer__highlight-desc">Criptografia SSL para sua proteção</p>
-                            </div>
-                        </div>
-                        <div class="footer__highlight">
-                            <Icon class="footer__highlight-icon" name="mdi:star-outline" />
-                            <div class="footer__highlight-text">
-                                <p class="footer__highlight-title">Referência no Ramo</p>
-                                <p class="footer__highlight-desc">Serviço bem avaliado</p>
-                            </div>
-                        </div>
-                        <div class="footer__highlight">
-                            <Icon class="footer__highlight-icon" name="mdi:shield-home-outline" />
-                            <div class="footer__highlight-text">
-                                <p class="footer__highlight-title">Acesso Protegido</p>
-                                <p class="footer__highlight-desc">Navegação estável e confiável</p>
+                <div
+                    class="footer__content pt-2 flex justify-center flex-row gap-4 items-stretch max-xl:flex-col max-xl:gap-2 max-xl:pt-1.5">
+                    <div
+                        class="footer__highlights flex flex-col items-center justify-center gap-1.5 max-w-25 w-full max-xl:grid max-xl:grid-cols-3 max-xl:gap-1 max-xl:max-w-full max-lg:grid-cols-1">
+                        <div v-for="(highlight, idx) in footerHighlights" :key="idx"
+                            class="footer__highlight box-border flex w-full flex-row items-center justify-center gap-1 rounded-sm bg-accent-dark-color p-1 text-body-bg transition-transform duration-200 hover:scale-105 max-xl:h-full max-xl:min-w-0 max-xl:flex-1 max-xl:basis-0 max-xl:hover:scale-102 max-lg:flex-col max-lg:text-center max-sm:flex-row">
+                            <Icon class="footer__highlight-icon text-[3.5rem] max-xl:text-[3rem] max-lg:text-[2rem] max-sm:!hidden" :name="highlight.icon" />
+                            <div class="footer__highlight-text min-w-17 max-xl:min-w-0 max-lg:min-w-15">
+                                <p class="footer__highlight-title text-lg font-bold max-lg:text-base">{{ highlight.title }}</p>
+                                <p class="footer__highlight-desc text-secondary-text text-sm max-lg:text-xs">{{ highlight.desc }}</p>
                             </div>
                         </div>
                     </div>
-                    <nav class="footer__nav">
-                        <div class="footer__nav-section">
-                            <p class="footer__nav-title">MENU</p>
-                            <ul>
-                                <li><a href="/" @click.prevent="handleFooterNavClick('banner-section')">Início</a></li>
-                                <li><a href="/" @click.prevent="handleFooterNavClick('services-section')">Áreas de Atuação</a></li>
-                                <li><a href="/" @click.prevent="handleFooterNavClick('enterprise-section')">Empresa</a></li>
-                                <li><a href="/" @click.prevent="handleFooterNavClick('team-section')">Equipe</a></li>
-                                <li><a href="/" @click.prevent="handleFooterNavClick('contact-section')">Fale conosco</a></li>
+                    <nav class="footer__nav w-full flex flex-row justify-center items-start gap-4 max-xl:gap-2 max-xl:items-start max-lg:flex-col">
+                        <div :class="[footer__nav_section_util, 'footer__nav-section']">
+                            <p :class="[footer__nav_title]">MENU</p>
+                            <ul :class="[footer__nav_ul_util]">
+                                <li v-for="item in footerNavLinks" :key="item.section">
+                                    <a :class="[footer__nav_a_util]" href="/"
+                                        @click.prevent="handleFooterNavClick(item.section)">{{ item.label }}</a>
+                                </li>
                             </ul>
                         </div>
-                        <div class="footer__nav-section full-width-section">
-                            <p class="footer__nav-title">ÁREAS DE ATUAÇÃO</p>
-                            <div class="footer__areas-grid">
-                                <ul>
-                                    <li><a href="/">Direito do Consumidor</a></li>
-                                    <li><a href="/">Direito Bancário</a></li>
-                                    <li><a href="/">Direito Trabalhista</a></li>
-                                    <li><a href="/">Direito Civil</a></li>
-                                    <li><a href="/">Direito Penal</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="/">Consultivo</a></li>
-                                    <li><a href="/">Contratos</a></li>
+                        <div :class="[footer__nav_section_util, 'footer__nav-section full-width-section w-full']">
+                            <p :class="[footer__nav_title]">ÁREAS DE ATUAÇÃO</p>
+                            <div class="footer__areas-grid flex gap-5 max-lg:flex-col max-lg:gap-1">
+                                <ul v-for="(group, idx) in footerAreasGroups" :key="idx" :class="[footer__nav_ul_util]">
+                                    <li v-for="area in group" :key="area.label">
+                                        <a :class="[footer__nav_a_util]" href="/">{{ area.label }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -92,379 +134,25 @@ const handleFooterNavClick = (id: string) => {
                 </div>
             </div>
         </div>
-        <div class="footer__bottom footer-location-display">
-            <div class="footer__container text-box footer-location-display column">
-                <p>©2025 Mediari Consultoria Empresarial LTDA - Todos os Direitos Reservados</p>
-                <p>CNPJ 49.315.134/0001-90</p>
-                <p>Rua Amazonas, 439 - Centro, São Caetano do Sul, 09520070</p>
+        <div :class="[footer__location_display, 'footer__bottom bg-accent-dark-color text-center']">
+            <div
+                :class="[footer__container_util, 'footer__container text-box footer-location-display !flex-col py-2 px-4']">
+                <p :class="footer__bottom_paragraph">©2025 Mediari Consultoria Empresarial LTDA - Todos os Direitos
+                    Reservados</p>
+                <p :class="footer__bottom_paragraph">CNPJ 49.315.134/0001-90</p>
+                <p :class="footer__bottom_paragraph">Rua Amazonas, 439 - Centro, São Caetano do Sul, 09520070</p>
             </div>
         </div>
     </footer>
 </template>
 
+
 <style scoped lang="scss">
-@use "@/assets/css/mixins.scss" as *;
-
-// Mixins locais reutilizáveis
-@mixin flex-center($direction: row, $gap: 0) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: $direction;
-    gap: $gap;
-}
-
-@mixin text-title($size, $weight: 700) {
-    font-size: $size;
-    font-weight: $weight;
-}
-
-@mixin nav-link {
-    font-size: 18px;
-    text-decoration: none;
-    padding: 0.1rem;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-
-    &:hover {
-        background-color: $accent-text-color-20;
-    }
-}
-
-@mixin highlight-box {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 5px;
-    background-color: $accent-dark-color;
-    color: $body-background;
-    @include flex-center(row, 1rem);
-    box-sizing: border-box;
-    transition: transform 0.2s;
-
-    &:hover {
-        transform: scale(1.05);
-    }
-}
-
-$common-padding: 2rem;
-
-.footer__contact-btn {
-    color: $body-background;
-    border-color: $body-background;
-    font-size: 18px;
-
-    .icon {
-        font-size: 1.5em;
-    }
-
-    &:hover {
-        background-color: $body-background-25;
-    }
-}
-
-.footer-location-display {
-    @include flex-center();
-
-    &.column {
-        flex-direction: column;
-    }
-}
-
-footer {
-    background-color: $accent-color;
-    @include flex-center(column);
-}
-
-.footer__container {
-    max-width: 80rem;
-    width: 100%;
-
-    &.text-box {
-        color: $body-background;
-    }
-}
-
-.footer__main,
-.footer__bottom {
-    padding: $common-padding 2rem;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.footer__main {
-    .footer__header {
-        padding-bottom: $common-padding;
-        border-bottom: 2px solid $accent-dark-color;
-        @include flex-center(row, 0);
-        justify-content: space-between;
-
-        .footer__logo {
-            @include flex-center(row, 1rem);
-            color: $body-background;
-            cursor: pointer;
-            font-size: 20px;
-
-            &-icon {
-                font-size: 4.2em;
-                transition: font-size 0.2s;
-            }
-
-            &-text {
-                font-size: 2.5em;
-                transition: font-size 0.2s;
-            }
-        }
-
-        .footer__contacts {
-            @include flex-center(row, 1rem);
-        }
-    }
-
-    .footer__content {
-        padding-top: 2rem;
-        @include flex-center(row, 4rem);
-        align-items: stretch;
-
-        .footer__highlights {
-            @include flex-center(column, 1.5rem);
-            max-width: 25rem;
-            width: 100%;
-
-            .footer__highlight {
-                @include highlight-box;
-
-                .footer__highlight-icon {
-                    font-size: 5em;
-                }
-
-                .footer__highlight-text {
-                    min-width: 17rem;
-                }
-
-                .footer__highlight-title {
-                    @include text-title(22px);
-                }
-
-                .footer__highlight-desc {
-                    color: $secondary-text;
-                    font-size: 15px;
-                }
-            }
-        }
-
-        .footer__nav {
-            width: 100%;
-            @include flex-center(row, 4rem);
-            align-items: start;
-
-            &-section,
-            &-section a {
-                color: $body-background;
-            }
-
-            ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            a {
-                @include nav-link;
-            }
-
-            &-section {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                min-width: 12rem;
-
-                .footer__nav-title {
-                    @include text-title(33px);
-                    border-bottom: 2px solid $body-background;
-                    font-weight: 400;
-                }
-
-                .footer__areas-grid {
-                    display: flex;
-                    gap: 5rem;
-                }
-            }
-        }
-    }
-}
-
-.footer__nav-section.full-width-section {
-    width: 100%;
-}
-
-.footer__bottom {
-    background-color: $accent-dark-color;
-    text-align: center;
-}
+// [x] : Deixar footer responsivo
 
 p,
 ul {
     margin: 0;
 }
 
-// Responsividade
-@include respond-to(desktop) {
-    .footer__contact-btn {
-        font-size: 15px;
-
-        .icon {
-            font-size: 1.2em;
-        }
-    }
-
-    .footer__container {
-        max-width: 100%;
-        padding: 0 1rem;
-    }
-
-    .footer__main,
-    .footer__bottom {
-        padding: 2rem 0;
-    }
-
-    .footer__main {
-        .footer__header {
-            flex-direction: column;
-            gap: 1.5rem;
-            padding-bottom: 2rem;
-        }
-
-        .footer__content {
-            flex-direction: column;
-            gap: 2rem;
-            padding-top: 1.5rem;
-
-            .footer__highlights {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1rem;
-                max-width: 100%;
-
-                .footer__highlight {
-                    min-width: 0;
-                    flex: 1 1 0;
-                    height: 100%;
-
-                    .footer__highlight-text {
-                        min-width: unset;
-                    }
-
-                    .footer__highlight-title {
-                        font-size: 18px;
-                    }
-
-                    .footer__highlight-desc {
-                        font-size: 13px;
-                    }
-
-                    .footer__highlight-icon {
-                        font-size: 3em;
-                    }
-                }
-            }
-
-            .footer__nav {
-                gap: 2rem;
-                align-items: flex-start;
-
-                a {
-                    font-size: 15px;
-                }
-
-                .footer__nav-title {
-                    font-size: 26px;
-                }
-            }
-        }
-    }
-
-    .footer__nav-section,
-    .footer__nav-section.full-width-section {
-        width: 50%;
-    }
-
-    .footer__bottom .footer__container {
-        font-size: 15px;
-    }
-}
-
-@include respond-to(tablet) {
-    .footer__main .footer__header .footer__contacts {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .footer__main .footer__highlights .footer__highlight-title {
-        font-size: 16px;
-    }
-
-    .footer__main .footer__highlights .footer__highlight-desc {
-        font-size: 11px;
-    }
-
-    .footer__main .footer__highlights .footer__highlight-icon {
-        font-size: 2em;
-    }
-
-    .footer__main .footer__nav {
-        flex-direction: column;
-
-        &-section {
-            width: 100%;
-        }
-
-        a {
-            font-size: 13px;
-        }
-
-        .footer__nav-title {
-            font-size: 18px;
-        }
-
-        .footer__nav-section .footer__areas-grid {
-            flex-direction: column;
-            gap: 1rem;
-        }
-    }
-
-    .footer__bottom {
-        padding: 1rem;
-
-        .footer__container {
-            font-size: 12px;
-            padding: 0;
-        }
-    }
-
-    .footer__main .footer__content .footer__highlights .footer__highlight {
-        flex-direction: row;
-        text-align: center;
-
-        .footer__highlight-text {
-            min-width: 15rem;
-        }
-    }
-
-    .footer__main .footer__content .footer__highlights {
-        grid-template-columns: 1fr;
-    }
-}
-
-@include respond-to(mobile) {
-    .footer__main .footer__content .footer__nav {
-        flex-direction: column;
-    }
-    .footer__main .footer__content .footer__highlights .footer__highlight .footer__highlight-icon {
-        display: none;
-    }
-}
 </style>

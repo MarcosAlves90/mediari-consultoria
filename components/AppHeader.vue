@@ -48,7 +48,7 @@ const contactLinks: ContactLink[] = [
         text: '11 4227-3008',
         target: undefined,
         rel: undefined,
-        show: () => screenWidth.value <= 1325,
+        show: () => screenWidth.value < 1280,
     },
 ];
 
@@ -80,6 +80,7 @@ const toggleHamburguerMenu = () => {
 
 onMounted(() => {
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
 });
 
 onUnmounted(() => {
@@ -88,57 +89,66 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <header class="app-header fixed top-0 left-0 right-0 z-99 border-b-2 border-transparent" :class="{ 'app-header--small !border-accent-color': isNavbarSmall }">
-        <div class="app-header__top flex items-center justify-center gap-1 py-0.5 text-sm bg-accent-color text-accent-text-color max-md:justify-evenly">
+    <header
+        class="app-header fixed top-0 right-0 left-0 z-99 border-b-2 border-transparent transition-colors duration-200 ease-in-out"
+        :class="{ 'app-header--small !border-accent-color': isNavbarSmall }">
+        <div class="app-header__top flex items-center justify-center gap-1 bg-accent-color py-0.5 text-sm text-accent-text-color transition-[height] duration-200 ease-in-out max-md:justify-evenly"
+            :class="{ 'app-header--small': isNavbarSmall }">
             <template v-for="(link, idx) in contactLinks" :key="idx">
-                <a v-if="link.show()" class="app-header__top-link flex cursor-pointer items-center gap-0.5 rounded-sm no-underline hover:bg-body-bg-2" :href="link.href" :target="link.target" :rel="link.rel">
-                    <Icon class="app-header__top-link-icon text-[1.8rem] max-lg:text-2xl" :name="link.icon" />
-                    <p class="m-0 max-lg:text-xs" v-if="!(screenWidth < 768)">{{ link.text }}</p>
+                <a v-if="link.show()"
+                    class="app-header__top-link flex cursor-pointer items-center gap-0.5 rounded-sm no-underline transition-colors duration-200 ease-in-out hover:bg-body-bg-2"
+                    :href="link.href" :target="link.target" :rel="link.rel">
+                    <Icon
+                        class="app-header__top-link-icon text-[1.8rem] transition-[font-size] duration-200 ease-in-out max-lg:text-2xl"
+                        :name="link.icon" />
+                    <p class="m-0 max-lg:text-xs transition-[font-size] duration-200 ease-in-out"
+                        v-if="!(screenWidth < 768)">{{ link.text }}</p>
                 </a>
             </template>
         </div>
-        <div class="app-header__bottom flex items-center justify-center backdrop-blur-xs bg-body-bg-67" :class="{ '!backdrop-blur-md': isNavbarSmall }">
-            <div class="app-header__group px-4 flex w-full max-w-85 items-center justify-between py-1 text-base max-lg:flex-wrap max-md:p-1">
-                <div class="app-header__logo-box flex items-center justify-center gap-1 cursor-pointer text-accent-color" @click="goTo('/')">
-                    <Icon class="app-header__logo-box-icon text-[4.2rem] md:text-[3.5rem]" :class="{ '!text-[3.2rem]': isNavbarSmall }" name="my-icon:mediari-logo" />
-                    <Icon class="app-header__logo-box-text text-[2.5rem] md:text-[2.2rem]" :class="{ '!text-[2rem]': isNavbarSmall }" name="my-icon:mediari-logo-texto" />
+        <div class="app-header__bottom flex items-center justify-center backdrop-blur-xs bg-body-bg-67 transition duration-200 ease-in-out"
+            :class="{ '!backdrop-blur-md': isNavbarSmall }">
+            <div
+                class="app-header__group flex w-full max-w-85 items-center justify-between px-4 py-1 text-base max-xl:px-2 max-lg:flex-wrap max-md:px-1">
+                <div class="app-header__logo-box flex items-center justify-center gap-1 cursor-pointer text-accent-color"
+                    @click="goTo('/')">
+                    <Icon
+                        class="app-header__logo-box-icon text-[3.5rem] transition-[font-size] duration-200 ease-in-out"
+                        :class="{ '!text-[3.2rem]': isNavbarSmall }" name="my-icon:mediari-logo" />
+                    <Icon
+                        class="app-header__logo-box-text text-[2.2rem] transition-[font-size] duration-200 ease-in-out max-300:hidden"
+                        :class="{ '!text-[2rem]': isNavbarSmall }" name="my-icon:mediari-logo-texto" />
                 </div>
-                <nav class="app-header__nav app-header__nav--desktop flex items-center justify-center gap-[2.8rem]" v-if="screenWidth >= 1024">
-                    <a
-                        v-for="link in navLinks"
-                        :key="link.section"
-                        :href="'#' + link.section"
+                <nav class="app-header__nav app-header__nav--desktop flex items-center justify-center gap-[2.8rem]"
+                    v-if="screenWidth >= 1024">
+                    <a v-for="link in navLinks" :key="link.section" :href="'#' + link.section"
                         @click.prevent="handleNavClick(link.section)"
-                        class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline"
-                    >
+                        class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline">
                         {{ link.label }}
                     </a>
-                    <button v-if="screenWidth >= 1200" class="app-header__nav-button common-button"
+                    <button v-if="screenWidth >= 1280" class="app-header__nav-button common-button"
                         @click.prevent="openPhoneDialer">
                         <Icon class="app-header__nav-button-icon text-[1.3rem]" name="mdi:phone-outline" />11 4227-3008
                     </button>
                 </nav>
                 <button v-if="screenWidth < 1024" class="app-header__hamburguer-menu common-button text-[1.5rem]"
-                    :class="{ 'app-header__hamburguer-menu--open bg-accent-color-2': hamburguerMenuOpen }" @click="toggleHamburguerMenu">
+                    :class="{ 'app-header__hamburguer-menu--open bg-accent-color-2': hamburguerMenuOpen }"
+                    @click="toggleHamburguerMenu">
                     <Transition name="icon-morph" mode="out-in">
-                        <Icon v-if="!hamburguerMenuOpen" class="app-header__hamburguer-menu-icon w-[30px] aspect-square" name="mdi:menu"
-                            key="menu" />
-                        <Icon v-else class="app-header__hamburguer-menu-icon w-[30px] aspect-square" name="mdi:close" key="close" />
+                        <Icon v-if="!hamburguerMenuOpen" class="app-header__hamburguer-menu-icon w-[30px] aspect-square"
+                            name="mdi:menu" key="menu" />
+                        <Icon v-else class="app-header__hamburguer-menu-icon w-[30px] aspect-square" name="mdi:close"
+                            key="close" />
                     </Transition>
                 </button>
             </div>
         </div>
         <Transition name="slide-fade-nav">
             <nav v-show="screenWidth < 1024 && hamburguerMenuOpen"
-                class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden bg-body-bg-67 border-t-2 border-b-2 border-accent-color backdrop-blur-sm max-h-[500px] opacity-100 visible"
-            >
-                <a
-                    v-for="link in navLinks"
-                    :key="link.section"
-                    :href="'#' + link.section"
+                class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden bg-body-bg-67 border-t-2 border-b-2 border-accent-color backdrop-blur-sm max-h-[500px] opacity-100 visible">
+                <a v-for="link in navLinks" :key="link.section" :href="'#' + link.section"
                     @click.prevent="handleNavClick(link.section)"
-                    class="w-full px-1 py-0.5 text-center rounded-sm no-underline hover:bg-accent-color-2 box-border border-2 border-accent-color"
-                >
+                    class="w-full px-1 py-0.5 text-center rounded-sm no-underline hover:bg-accent-color-2 box-border border-2 border-accent-color">
                     {{ link.label }}
                 </a>
             </nav>
@@ -147,45 +157,8 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/css/mixins.scss" as *;
 
 .app-header {
-    transition: border-color 0.2s ease-in-out;
-
-    &__top {
-        transition: height 0.2s ease-in-out;
-
-        &-link {
-            transition: background-color 0.2s ease-in-out;
-
-            &-icon {
-                transition: font-size 0.2s ease-in-out;
-            }
-
-            p {
-                transition: font-size 0.2s ease-in-out;
-            }
-        }
-    }
-
-    &__bottom {
-        transition: backdrop-filter 0.2s ease-in-out;
-    }
-
-    &__logo-box {
-
-        &-icon {
-            transition: font-size 0.2s ease-in-out;
-        }
-
-        &-text {
-            transition: font-size 0.2s ease-in-out;
-
-            @media (max-width: 300px) {
-                display: none;
-            }
-        }
-    }
 
     &__nav {
         transition: font-size 0.2s ease-in-out;
@@ -217,9 +190,10 @@ onUnmounted(() => {
 // Compactação da Navbar Top
 
 .app-header--small {
-    @media (min-width: 851px) {
+    @media (min-width: 768px) {
         .app-header__top {
             padding: 6px 0;
+
             &-link-icon {
                 font-size: 0;
             }
@@ -238,11 +212,13 @@ onUnmounted(() => {
     transition: opacity 0.2s, max-height 0.2s;
     will-change: opacity, max-height;
 }
+
 .slide-fade-nav-enter-from,
 .slide-fade-nav-leave-to {
     opacity: 0;
     max-height: 0;
 }
+
 .slide-fade-nav-enter-to,
 .slide-fade-nav-leave-from {
     opacity: 1;
