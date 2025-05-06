@@ -148,7 +148,6 @@ const footer__nav_title = "text-xl border-b-2 border-body-bg max-lg:text-lg";
 
 
 <style scoped lang="scss">
-// [x] : Deixar footer responsivo
 
 p,
 ul {

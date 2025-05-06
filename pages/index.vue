@@ -114,7 +114,6 @@ const containerConfig = "py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 max-m
             role="banner" aria-labelledby="banner-heading" aria-describedby="banner-description">
             <div class="homepage__hero-text absolute top-1/2 left-1/2 z-3 mt-[54px] w-full -translate-x-1/2 -translate-y-1/2 text-center text-body-bg"
                 aria-label="Texto do banner principal">
-                <!-- [x] : Deixar tags responsivas -->
                 <div class="homepage__hero-text-tags mb-2 flex items-center justify-center gap-4 max-lg:gap-[4.5vw]"
                     role="list" aria-label="Características principais">
                     <div v-for="(tag, idx) in heroTags" :key="idx"
@@ -293,8 +292,6 @@ const containerConfig = "py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 max-m
 </template>
 
 <style lang="scss" scoped>
-
-// [x] : Transformar o restante em Tailwind
 
 .homepage {
     &__hero {

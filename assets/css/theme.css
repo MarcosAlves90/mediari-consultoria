@@ -9,12 +9,15 @@
     --breakpoint-500: 500px;
     --breakpoint-300: 300px;
 
-    /* Cores principais */
+    /* Cor de destaque */
     --color-accent-color-rgb: 89, 1, 0;
     --color-accent-color: rgb(var(--color-accent-color-rgb));
     --color-accent-color-7: rgba(var(--color-accent-color-rgb), 0.7);
     --color-accent-color-3: rgba(var(--color-accent-color-rgb), 0.3);
     --color-accent-color-2: rgba(var(--color-accent-color-rgb), 0.2);
+    
+    /* Cor de destaque escura */
+    --color-accent-dark-color: #480000;
 
     /* Texto */
     --color-primary-text: #000000;
@@ -27,12 +30,12 @@
     --color-body-bg-25: rgba(var(--color-body-bg-rgb), 0.25);
     --color-body-bg-2: rgba(var(--color-body-bg-rgb), 0.2);
     --color-body-bg-05: rgba(var(--color-body-bg-rgb), 0.05);
-
+    
+    /* Fundo escuro */
     --color-body-bg-dark: #ebebeb;
 
-    /* Accent text */
+    /* Texto de destaque */
     --color-accent-text-color: rgb(var(--color-body-bg-rgb));
     --color-accent-text-color-20: rgba(var(--color-body-bg-rgb), 0.2);
 
-    --color-accent-dark-color: #480000;
 }
