@@ -21,6 +21,69 @@ export default defineNuxtConfig({
     name: 'Mediari Consultoria',
     trailingSlash: false,
   },
+  sitemap: {
+    urls: [
+      {
+        loc: '/',
+        images: [
+          {
+            loc: 'https://mediari-consultoria.netlify.app/banner-background.webp',
+            caption: 'Banner de fundo da página principal com elementos gráficos abstratos',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/fundador/bruno-lima.webp',
+            caption: 'Foto do sócio fundador Bruno Lima',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/card-background.webp',
+            caption: 'Fundo dos cards de serviço',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/funcionarios-em-destaque/fernanda-assis.webp',
+            caption: 'Foto do membro da equipe Fernanda Assis',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/funcionarios-em-destaque/letícia-ferreira.webp',
+            caption: 'Foto do membro da equipe Letícia Ferreira',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/funcionarios-em-destaque/lucas-jesus.webp',
+            caption: 'Foto do membro da equipe Lucas Jesus',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/funcionarios-em-destaque/millena-vieira.webp',
+            caption: 'Foto do membro da equipe Millena Vieira',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/funcionarios-em-destaque/mylena-barboza.webp',
+            caption: 'Foto do membro da equipe Mylena Barboza',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/funcionarios-em-destaque/roberta-curcios.webp',
+            caption: 'Foto do membro da equipe Roberta Curcios',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/contact-prints/instagram.webp',
+            caption: 'Contato pelo Instagram',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/contact-prints/telefone.webp',
+            caption: 'Contato por telefone',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/contact-prints/gmail.webp',
+            caption: 'Contato por e-mail',
+          },
+          {
+            loc: 'https://mediari-consultoria.netlify.app/contact-prints/linkedin.webp',
+            caption: 'Contato pelo LinkedIn',
+          }
+        ],
+      }
+    ],
+    discoverImages: true,
+    discoverVideos: true,
+  },
   icon: {
     provider: 'server',
     customCollections: [
