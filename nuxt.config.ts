@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/fonts', '@nuxt/image', '@nuxt/icon'],
+  modules: ['@nuxt/fonts', '@nuxt/image', '@nuxt/icon', '@nuxtjs/sitemap', '@nuxtjs/robots'],
   css: ['~/assets/css/main.scss', '~/assets/css/theme.css'],
   vite: {
     css: {
@@ -15,6 +15,11 @@ export default defineNuxtConfig({
       }
     },
     plugins: [tailwindcss()],
+  },
+  site: {
+    url: 'https://mediari-consultoria.netlify.app',
+    name: 'Mediari Consultoria',
+    trailingSlash: false,
   },
   icon: {
     provider: 'server',

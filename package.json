@@ -21,6 +21,8 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@nuxtjs/robots": "^5.2.10",
+    "@nuxtjs/sitemap": "^7.2.10",
     "@types/node": "^22.14.0",
     "sass": "^1.86.1"
   }
