@@ -30,6 +30,7 @@ const footerNavLinks = [
     { label: 'Início', section: 'banner-section' },
     { label: 'Áreas de Atuação', section: 'services-section' },
     { label: 'Empresa', section: 'enterprise-section' },
+    { label: 'Fundador', section: 'seo-section' },
     { label: 'Equipe', section: 'team-section' },
     { label: 'Fale conosco', section: 'contact-section' },
 ];

@@ -237,7 +237,7 @@ const containerConfig = "py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 max-m
         <section id="seo-section" class="homepage__seo w-full flex justify-center items-center"
             role="region" aria-labelledby="seo-heading" aria-describedby="seo-description">
             <div :class="[containerConfig, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
-            <div class="homepage__seo-image relative max-w-[18rem] self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-30 max-sm:w-full max-sm:max-w-none">
+            <div class="homepage__seo-image relative max-w-[18rem] self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
                 <NuxtImg src="/fundador/bruno-lima.webp" lazy format="webp" alt="Foto do sócio fundador Bruno Lima" class="w-full h-full"/>
                 <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
                 aria-hidden="true" />

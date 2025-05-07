@@ -61,6 +61,7 @@ const navLinks: NavLink[] = [
     { label: 'Início', section: 'banner-section' },
     { label: 'Áreas de Atuação', section: 'services-section' },
     { label: 'Empresa', section: 'enterprise-section' },
+    { label: 'Fundador', section: 'seo-section' },
     { label: 'Equipe', section: 'team-section' },
     { label: 'Fale conosco', section: 'contact-section' },
 ];
@@ -148,7 +149,7 @@ onUnmounted(() => {
                 class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden bg-body-bg-67 border-t-2 border-b-2 border-accent-color backdrop-blur-sm max-h-[500px] opacity-100 visible">
                 <a v-for="link in navLinks" :key="link.section" :href="'#' + link.section"
                     @click.prevent="handleNavClick(link.section)"
-                    class="w-full px-1 py-0.5 text-center rounded-sm no-underline hover:bg-accent-color-2 box-border border-2 border-accent-color">
+                    class="box-border w-full rounded-sm border-2 border-accent-color px-1 py-0.5 text-center text-base no-underline hover:bg-accent-color-2 max-md:text-sm">
                     {{ link.label }}
                 </a>
             </nav>
