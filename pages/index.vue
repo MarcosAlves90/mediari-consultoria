@@ -234,7 +234,28 @@ const containerConfig = "py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 max-m
                 </div>
             </div>
         </section>
-        <section id="team-section" class="homepage__team w-full flex justify-center items-center" role="region"
+        <section id="seo-section" class="homepage__seo w-full flex justify-center items-center"
+            role="region" aria-labelledby="seo-heading" aria-describedby="seo-description">
+            <div :class="[containerConfig, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
+            <div class="homepage__seo-image relative max-w-[18rem] self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-30 max-sm:w-full max-sm:max-w-none">
+                <NuxtImg src="/fundador/bruno-lima.webp" lazy format="webp" alt="Foto do sócio fundador Bruno Lima" class="w-full h-full"/>
+                <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
+                aria-hidden="true" />
+                <div
+                class="homepage__team-carousel-text absolute bottom-0 left-1/2 z-2 w-4/5 -translate-x-1/2 rounded-t-sm bg-accent-color-7 text-center backdrop-blur-xs max-md:w-[90%]">
+                <p class="text-sm text-body-bg my-1">Bruno Lima</p>
+                </div>
+            </div>
+            <div class="homepage__seo-info flex flex-col items-start justify-start max-md:items-center max-md:justify-center">
+                <h2 id="seo-heading" class="homepage__section-subtitle" :class="subtitleClasses">FUNDADOR</h2>
+                <h1 class="homepage__section-title" :class="titleClasses">À FRENTE DA NOSSA VISÃO</h1>
+                <p id="seo-description" class="homepage__section-description text-justify" :class="descriptionClasses">
+                Com liderança estratégica e expertise em SEO, conduz nossa equipe rumo à inovação e excelência nos resultados.
+                </p>
+            </div>
+            </div>
+        </section>
+        <section id="team-section" class="homepage__team w-full flex justify-center items-center bg-body-bg-dark" role="region"
             aria-labelledby="team-heading" aria-describedby="team-description">
             <div :class="[containerConfig, 'homepage__team-content max-w-85 w-full']">
                 <h2 id="team-heading" class="homepage__section-subtitle" :class="subtitleClasses">EQUIPE</h2>
@@ -260,7 +281,7 @@ const containerConfig = "py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 max-m
             </div>
         </section>
         <section id="contact-section"
-            class="homepage__contact homepage__contact--gray-bg bg-body-bg-dark w-full flex justify-center items-center"
+            class="homepage__contact homepage__contact--gray-bg w-full flex justify-center items-center"
             role="region" aria-labelledby="contact-heading" aria-describedby="contact-description">
             <div :class="[containerConfig, 'homepage__contact-content max-w-85 w-full']">
                 <h2 id="contact-heading" class="homepage__section-subtitle" :class="subtitleClasses">FALE CONOSCO</h2>
