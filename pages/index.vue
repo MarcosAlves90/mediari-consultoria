@@ -155,7 +155,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <div :class="[homepage__container, 'homepage__services-container w-full max-w-85']">
                 <p id="services-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">ÁREAS DE ATUAÇÃO
                 </p>
-                <p class="homepage__section-title" :class="homepage__section_title">NOSSOS SERVIÇOS</p>
+                <h2 class="homepage__section-title" :class="homepage__section_title">NOSSOS SERVIÇOS</h2>
                 <p id="services-description" class="homepage__section-description" :class="homepage__section_description">Nosso
                     corpo de profissionais atua em
                     diferentes áreas para proteger
@@ -201,7 +201,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div class="homepage__company-info flex flex-col p-0">
                     <!-- Conteúdo para o lado direito -->
                     <p id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EMPRESA</p>
-                    <p class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</p>
+                    <h2 class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</h2>
                     <p id="enterprise-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
                         Somos uma empresa especializada
@@ -253,7 +253,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div
                     class="homepage__seo-info flex flex-col items-start justify-start max-md:items-center max-md:justify-center">
                     <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FUNDADOR</p>
-                    <p class="homepage__section-title" :class="homepage__section_title">À FRENTE DA NOSSA VISÃO</p>
+                    <h2 class="homepage__section-title" :class="homepage__section_title">À FRENTE DA NOSSA VISÃO</h2>
                     <p id="seo-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
                         Com liderança estratégica e expertise em SEO, conduz nossa equipe rumo à inovação e excelência
@@ -266,7 +266,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             role="region" aria-labelledby="team-heading" aria-describedby="team-description">
             <div :class="[homepage__container, 'homepage__team-content max-w-85 w-full']">
                 <p id="team-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EQUIPE</p>
-                <p class="homepage__section-title" :class="homepage__section_title">NOSSOS DESTAQUES</p>
+                <h2 class="homepage__section-title" :class="homepage__section_title">NOSSOS DESTAQUES</h2>
                 <p id="team-description" class="homepage__section_description" :class="homepage__section_description">Com mais de
                     60 colaboradores e auxiliares
                     jurídicos, entregamos
@@ -292,7 +292,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             aria-labelledby="contact-heading" aria-describedby="contact-description">
             <div :class="[homepage__container, 'homepage__contact-content max-w-85 w-full']">
                 <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FALE CONOSCO</p>
-                <p class="homepage__section-title" :class="homepage__section_title">ENTRE EM CONTATO</p>
+                <h2 class="homepage__section-title" :class="homepage__section_title">ENTRE EM CONTATO</h2>
                 <p id="contact-description" class="homepage__section_description" :class="homepage__section_description">Nos
                     contate através de nossas redes e
                     tenha os seus direitos protegidos.
