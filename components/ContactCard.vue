@@ -22,7 +22,7 @@ defineProps<ContactCardProps>();
                 class="contact-card__image-wrapper relative w-full h-full overflow-hidden after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-accent-color-3 after:pointer-events-none">
                 <NuxtImg :src="backgroundImage" alt="Background"
                     class="contact-card__image w-full h-full block object-cover blur-xs transition-transform duration-200 ease-in-out"
-                    lazy format="webp" />
+                    loading="lazy" format="webp" />
             </div>
             <div
                 class="contact-card__icon-box absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center text-[2rem] text-white transition-opacity duration-200 ease-in-out">
