@@ -147,7 +147,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <NuxtImg class="homepage__hero-image w-full h-full object-cover object-center opacity-25"
                 src="/banner-background.webp" width="1920" height="1080"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" lazy format="webp"
-                alt="Banner de fundo da página principal com elementos gráficos abstratos" />
+                alt="Banner de fundo da página principal com elementos gráficos abstratos"
+                />
         </section>
         <section id="services-section" class="homepage__services w-full flex items-center justify-center" role="region"
             aria-labelledby="services-heading" aria-describedby="services-description">
@@ -240,7 +241,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 :class="[homepage__container, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
                 <div
                     class="homepage__seo-image relative max-w-[18rem] self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
-                    <NuxtImg src="/fundador/bruno-lima.webp" lazy format="webp" alt="Foto do sócio fundador Bruno Lima"
+                    <NuxtImg src="/fundador/bruno-lima.webp" lazy format="webp" alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
                         class="w-full h-full" />
                     <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
                         aria-hidden="true" />
@@ -274,7 +275,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     role="list">
                     <div v-for="(img, idx) in teamImages" :key="idx"
                         class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 hover:scale-105">
-                        <NuxtImg :src="img" lazy format="webp" :alt="`Foto do membro da equipe ${getNome(img)}`"
+                        <NuxtImg :src="img" lazy format="webp" :alt="`Foto do membro da equipe ${getNome(img)}`" :title="`${getNome(img)} - Mediari Consultoria`"
                             class="w-full h-full object-cover object-top" />
                         <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
                             aria-hidden="true" />
