@@ -154,7 +154,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <div :class="[homepage__container, 'homepage__services-container w-full max-w-85']">
                 <h2 id="services-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">ÁREAS DE ATUAÇÃO
                 </h2>
-                <h1 class="homepage__section-title" :class="homepage__section_title">NOSSOS SERVIÇOS</h1>
+                <p class="homepage__section-title" :class="homepage__section_title">NOSSOS SERVIÇOS</p>
                 <p id="services-description" class="homepage__section-description" :class="homepage__section_description">Nosso
                     corpo de profissionais atua em
                     diferentes áreas para proteger
@@ -164,8 +164,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     <div v-for="service in mainServices" :key="service.headingId" :class="homepage__services_card" role="listitem"
                         :aria-labelledby="service.headingId" :aria-describedby="service.descId">
                         <Icon :class="homepage__services_card_icon" :name="service.icon" @click="triggerShake" aria-hidden="true" />
-                        <h1 :id="service.headingId" :class="homepage__services_card_title">
-                            {{ service.title }}</h1>
+                        <p :id="service.headingId" :class="homepage__services_card_title">
+                            {{ service.title }}</p>
                         <p :id="service.descId" :class="homepage__services_card_description">
                             {{ service.description }}</p>
                     </div>
@@ -175,8 +175,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     <div v-for="service in secondaryServices" :key="service.headingId" :class="homepage__services_card"
                         role="listitem" :aria-labelledby="service.headingId" :aria-describedby="service.descId">
                         <Icon :class="homepage__services_card_icon" :name="service.icon" @click="triggerShake" aria-hidden="true" />
-                        <h1 :id="service.headingId" :class="homepage__services_card_title">
-                            {{ service.title }}</h1>
+                        <p :id="service.headingId" :class="homepage__services_card_title">
+                            {{ service.title }}</p>
                         <p :id="service.descId" :class="homepage__services_card_description">
                             {{ service.description }}</p>
                     </div>
@@ -200,7 +200,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div class="homepage__company-info flex flex-col p-0">
                     <!-- Conteúdo para o lado direito -->
                     <h2 id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EMPRESA</h2>
-                    <h1 class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</h1>
+                    <p class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</p>
                     <p id="enterprise-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
                         Somos uma empresa especializada
@@ -252,7 +252,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div
                     class="homepage__seo-info flex flex-col items-start justify-start max-md:items-center max-md:justify-center">
                     <h2 id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FUNDADOR</h2>
-                    <h1 class="homepage__section-title" :class="homepage__section_title">À FRENTE DA NOSSA VISÃO</h1>
+                    <p class="homepage__section-title" :class="homepage__section_title">À FRENTE DA NOSSA VISÃO</p>
                     <p id="seo-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
                         Com liderança estratégica e expertise em SEO, conduz nossa equipe rumo à inovação e excelência
@@ -265,7 +265,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             role="region" aria-labelledby="team-heading" aria-describedby="team-description">
             <div :class="[homepage__container, 'homepage__team-content max-w-85 w-full']">
                 <h2 id="team-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EQUIPE</h2>
-                <h1 class="homepage__section-title" :class="homepage__section_title">NOSSOS DESTAQUES</h1>
+                <p class="homepage__section-title" :class="homepage__section_title">NOSSOS DESTAQUES</p>
                 <p id="team-description" class="homepage__section_description" :class="homepage__section_description">Com mais de
                     60 colaboradores e auxiliares
                     jurídicos, entregamos
@@ -291,7 +291,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             aria-labelledby="contact-heading" aria-describedby="contact-description">
             <div :class="[homepage__container, 'homepage__contact-content max-w-85 w-full']">
                 <h2 id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FALE CONOSCO</h2>
-                <h1 class="homepage__section-title" :class="homepage__section_title">ENTRE EM CONTATO</h1>
+                <p class="homepage__section-title" :class="homepage__section_title">ENTRE EM CONTATO</p>
                 <p id="contact-description" class="homepage__section_description" :class="homepage__section_description">Nos
                     contate através de nossas redes e
                     tenha os seus direitos protegidos.
