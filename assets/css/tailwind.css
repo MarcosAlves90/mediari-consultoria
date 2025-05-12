@@ -43,7 +43,7 @@
 }
 
 .common-button {
-    @apply border-2 border-accent-color px-0.5 py-0.5 rounded-sm cursor-pointer flex justify-center items-center gap-0.5 text-accent-color transition-colors transition-[min-height,min-width] duration-200 min-h-[45px] min-w-[45px];
+    @apply border-2 border-accent-color px-0.5 py-0.5 rounded-sm cursor-pointer flex justify-center items-center gap-0.5 text-accent-color transition duration-200 min-h-[45px] min-w-[45px];
 
     &:hover {
         @apply bg-accent-color-2;
