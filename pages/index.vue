@@ -129,11 +129,11 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <h1 id="banner-heading"
                     class="m-0 text-[5.8rem] font-medium transition-all duration-200 ease-in-out max-xl:text-[7.75vw] max-sm:text-[8.4vw]">
                     EXCELÊNCIA JURÍDICA</h1>
-                <h2
+                <p
                     class="mt-[-2.5rem] text-[3.65rem] font-medium text-body-bg transition-all duration-200 ease-in-out max-xl:mt-[-2.9vw] max-xl:text-[4.9vw] max-sm:text-[5.34vw]">
                     PARA <span
                         class="relative top-[-0.15vw] font-scheherazade text-[4.11rem] font-bold text-accent-color transition-all duration-200 ease-in-out max-xl:text-[5.5vw] max-sm:text-[5.94vw] max-sm:top-[-0.20vw]">VOCÊ
-                        E OS SEUS NEGÓCIOS</span></h2>
+                        E OS SEUS NEGÓCIOS</span></p>
                 <p id="banner-description"
                     class="homepage__hero-text-description mt-[-0.5rem] text-lg text-body-bg transition-all duration-200 ease-in-out max-xl:mt-[-0.5vw] max-xl:px-2 max-xl:text-[1.5vw] max-md:px-1 max-sm:text-[2.7vw]">
                     Atendimento especializado para
@@ -146,15 +146,15 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             </div>
             <NuxtImg class="homepage__hero-image w-full h-full object-cover object-center opacity-25"
                 src="/banner-background.webp" width="1920" height="1080"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" lazy format="webp"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="lazy" format="webp"
                 alt="Banner de fundo da página principal com elementos gráficos abstratos"
                 />
         </section>
         <section id="services-section" class="homepage__services w-full flex items-center justify-center" role="region"
             aria-labelledby="services-heading" aria-describedby="services-description">
             <div :class="[homepage__container, 'homepage__services-container w-full max-w-85']">
-                <h2 id="services-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">ÁREAS DE ATUAÇÃO
-                </h2>
+                <p id="services-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">ÁREAS DE ATUAÇÃO
+                </p>
                 <p class="homepage__section-title" :class="homepage__section_title">NOSSOS SERVIÇOS</p>
                 <p id="services-description" class="homepage__section-description" :class="homepage__section_description">Nosso
                     corpo de profissionais atua em
@@ -200,7 +200,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 </div>
                 <div class="homepage__company-info flex flex-col p-0">
                     <!-- Conteúdo para o lado direito -->
-                    <h2 id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EMPRESA</h2>
+                    <p id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EMPRESA</p>
                     <p class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</p>
                     <p id="enterprise-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
@@ -241,7 +241,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 :class="[homepage__container, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
                 <div
                     class="homepage__seo-image relative max-w-[18rem] self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
-                    <NuxtImg src="/fundador/bruno-lima.webp" lazy format="webp" alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
+                    <NuxtImg src="/fundador/bruno-lima.webp" loading="lazy" format="webp" alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
                         class="w-full h-full" />
                     <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
                         aria-hidden="true" />
@@ -252,7 +252,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 </div>
                 <div
                     class="homepage__seo-info flex flex-col items-start justify-start max-md:items-center max-md:justify-center">
-                    <h2 id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FUNDADOR</h2>
+                    <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FUNDADOR</p>
                     <p class="homepage__section-title" :class="homepage__section_title">À FRENTE DA NOSSA VISÃO</p>
                     <p id="seo-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
@@ -265,7 +265,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
         <section id="team-section" class="homepage__team w-full flex justify-center items-center bg-body-bg-dark"
             role="region" aria-labelledby="team-heading" aria-describedby="team-description">
             <div :class="[homepage__container, 'homepage__team-content max-w-85 w-full']">
-                <h2 id="team-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EQUIPE</h2>
+                <p id="team-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EQUIPE</p>
                 <p class="homepage__section-title" :class="homepage__section_title">NOSSOS DESTAQUES</p>
                 <p id="team-description" class="homepage__section_description" :class="homepage__section_description">Com mais de
                     60 colaboradores e auxiliares
@@ -275,7 +275,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     role="list">
                     <div v-for="(img, idx) in teamImages" :key="idx"
                         class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 hover:scale-105">
-                        <NuxtImg :src="img" lazy format="webp" :alt="`Foto do membro da equipe ${getNome(img)}`" :title="`${getNome(img)} - Mediari Consultoria`"
+                        <NuxtImg :src="img" loading="lazy" format="webp" :alt="`Foto do membro da equipe ${getNome(img)}`" :title="`${getNome(img)} - Mediari Consultoria`"
                             class="w-full h-full object-cover object-top" />
                         <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
                             aria-hidden="true" />
@@ -291,7 +291,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             class="homepage__contact homepage__contact--gray-bg w-full flex justify-center items-center" role="region"
             aria-labelledby="contact-heading" aria-describedby="contact-description">
             <div :class="[homepage__container, 'homepage__contact-content max-w-85 w-full']">
-                <h2 id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FALE CONOSCO</h2>
+                <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FALE CONOSCO</p>
                 <p class="homepage__section-title" :class="homepage__section_title">ENTRE EM CONTATO</p>
                 <p id="contact-description" class="homepage__section_description" :class="homepage__section_description">Nos
                     contate através de nossas redes e

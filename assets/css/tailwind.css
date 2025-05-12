@@ -82,3 +82,7 @@ body {
 .loader__spinner {
     @apply w-[50px] h-[50px] rounded-full border-[5px] border-solid border-body-bg border-t-accent-color animate-spin;
 }
+
+.loader-ds-hidden {
+    @apply hidden;
+}
