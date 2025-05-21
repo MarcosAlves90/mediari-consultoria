@@ -1,10 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
+import { defineOrganization } from 'nuxt-schema-org/schema'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image'],
+  modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxtjs/seo', '@nuxtjs/i18n'],
   css: ['@/assets/css/tailwind.css'],
   vite: {
     plugins: [
@@ -27,5 +28,63 @@ export default defineNuxtConfig({
     defaults: {
       weights: [400, 500, 600, 700]
     }
+  },
+
+  site: {
+    url: 'https://mediari-consultoria.netlify.app',
+    name: 'Mediari Consultoria',
+  },
+  schemaOrg: {
+    identity: defineOrganization({
+      name: 'Mediari Consultoria',
+      alternateName: 'Mediari',
+      description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+      url: 'https://mediari-consultoria.netlify.app',
+      logo: '/favicon.png',
+    })
+  },
+  seo: {
+    meta: {
+      description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+      author: 'Mediari Consultoria',
+      applicationName: 'Mediari Consultoria',
+    }
+  },
+  app: {
+    head: {
+      templateParams: {
+        separator: '-',
+      },
+    },
+  },
+  i18n: {
+    locales: [
+      {
+        code: 'pt-BR',
+        iso: 'pt-BR',
+        file: 'pt-BR.json',
+        name: 'Português (Brasil)'
+      },
+      {
+        code: 'en-US',
+        iso: 'en-US',
+        file: 'en-US.json',
+        name: 'English (US)'
+      }
+    ],
+    defaultLocale: 'pt-BR',
+    langDir: 'locales/',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      alwaysRedirect: false,
+      fallbackLocale: 'pt-BR'
+    },
+    // vueI18n: {
+    //   legacy: false,
+    //   locale: 'pt-BR',
+    //   fallbackLocale: 'pt-BR',
+    // }
   },
 })

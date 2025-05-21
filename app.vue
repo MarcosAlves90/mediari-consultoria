@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Mediari Consultoria - Direito para Empresas e Pessoas Físicas',
+  title: 'Direito para Empresas e Pessoas Físicas',
   description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   ogSiteName: 'Mediari Consultoria',
   ogTitle: 'Mediari Consultoria - Direito para Empresas e Pessoas Físicas',
