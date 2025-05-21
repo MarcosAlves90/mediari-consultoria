@@ -29,30 +29,33 @@ interface FooterArea {
 }
 
 // 5. Dados Estáticos
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
+
 const footerHighlights: FooterHighlight[] = [
-    { icon: 'mdi:shield-outline', title: 'Site 100% Seguro', desc: 'Criptografia SSL para sua proteção' },
-    { icon: 'mdi:star-outline', title: 'Referência no Ramo', desc: 'Serviço bem avaliado' },
-    { icon: 'mdi:shield-home-outline', title: 'Acesso Protegido', desc: 'Navegação estável e confiável' }
+    { icon: 'mdi:shield-outline', title: t('footer.highlights[0].title'), desc: t('footer.highlights[0].desc') },
+    { icon: 'mdi:star-outline', title: t('footer.highlights[1].title'), desc: t('footer.highlights[1].desc') },
+    { icon: 'mdi:shield-home-outline', title: t('footer.highlights[2].title'), desc: t('footer.highlights[2].desc') }
 ];
 const footerNavLinks: FooterNavLink[] = [
-    { label: 'Início', section: 'banner-section' },
-    { label: 'Áreas de Atuação', section: 'services-section' },
-    { label: 'Empresa', section: 'enterprise-section' },
-    { label: 'Fundador', section: 'seo-section' },
-    { label: 'Equipe', section: 'team-section' },
-    { label: 'Fale conosco', section: 'contact-section' },
+    { label: t('navbar.home'), section: 'banner-section' },
+    { label: t('navbar.services'), section: 'services-section' },
+    { label: t('navbar.enterprise'), section: 'enterprise-section' },
+    { label: t('navbar.founder'), section: 'seo-section' },
+    { label: t('navbar.team'), section: 'team-section' },
+    { label: t('navbar.contact'), section: 'contact-section' },
 ];
 const footerAreasGroups: FooterArea[][] = [
     [
-        { label: 'Direito do Consumidor' },
-        { label: 'Direito Bancário' },
-        { label: 'Direito Trabalhista' },
-        { label: 'Direito Civil' },
-        { label: 'Direito Penal' },
+        { label: t('services.secondary[0].title') },
+        { label: t('services.secondary[1].title') },
+        { label: t('services.secondary[2].title') },
+        { label: t('services.main[0].title') },
+        { label: t('services.main[1].title') },
     ],
     [
-        { label: 'Consultivo' },
-        { label: 'Contratos' },
+        { label: t('services.main[3].title') },
+        { label: t('services.main[2].title') },
     ]
 ];
 
@@ -117,17 +120,15 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
                                 class="footer__highlight-icon text-[3.5rem] max-xl:text-[3rem] max-lg:text-[2rem] max-sm:!hidden"
                                 :name="highlight.icon" />
                             <div class="footer__highlight-text min-w-17 max-xl:min-w-0 max-lg:min-w-15">
-                                <p class="footer__highlight-title text-lg font-bold max-lg:text-base">{{ highlight.title
-                                    }}</p>
-                                <p class="footer__highlight-desc text-secondary-text text-sm max-lg:text-xs">{{
-                                    highlight.desc }}</p>
+                                <p class="footer__highlight-title text-lg font-bold max-lg:text-base">{{ highlight.title }}</p>
+                                <p class="footer__highlight-desc text-secondary-text text-sm max-lg:text-xs">{{ highlight.desc }}</p>
                             </div>
                         </div>
                     </div>
                     <nav
                         class="footer__nav w-full flex flex-row justify-center items-start gap-4 max-xl:gap-2 max-xl:items-start max-lg:flex-col">
                         <div :class="[footer__nav_section_util, 'footer__nav-section']">
-                            <p :class="[footer__nav_title]">MENU</p>
+                            <p :class="[footer__nav_title]">{{ t('footer.menu_title') }}</p>
                             <ul :class="[footer__nav_ul_util]">
                                 <li v-for="item in footerNavLinks" :key="item.section">
                                     <a :class="[footer__nav_a_util]" href="/"
@@ -136,7 +137,7 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
                             </ul>
                         </div>
                         <div :class="[footer__nav_section_util, 'footer__nav-section full-width-section w-full']">
-                            <p :class="[footer__nav_title]">ÁREAS DE ATUAÇÃO</p>
+                            <p :class="[footer__nav_title]">{{ t('footer.areas_title') }}</p>
                             <div class="footer__areas-grid flex gap-5 max-lg:flex-col max-lg:gap-1">
                                 <ul v-for="(group, idx) in footerAreasGroups" :key="idx" :class="[footer__nav_ul_util]">
                                     <li v-for="area in group" :key="area.label">

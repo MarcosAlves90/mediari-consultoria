@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 
 useSeoMeta({
-  title: 'Direito para Empresas e Pessoas Físicas',
+  title: t('seo.title'),
 });
 
-defineOgImageComponent('NuxtSeo')
+defineOgImageComponent('Mediari')
 
 onMounted(() => {
   const loader = document.getElementById('loader');

@@ -3,7 +3,7 @@
         "main_title": "LEGAL EXCELLENCE",
         "subtitle-1": "FOR ",
         "subtitle-2": "YOU & YOUR BUSINESS!",
-        "description": "Specialized service for companies and complete solutions for banking and consumer demands.",
+        "description": "Specialized service for companies and complete solutions for banking and consumer needs.",
         "tags": ["Competence", "Security", "Experience"]
     },
     "services": {
@@ -49,10 +49,11 @@
         "location": "We are located at {address}"
     },
     "seo": {
+        "title": "Law for Companies and Individuals",
         "section_subtitle": "FOUNDER",
         "section_title": "LEADING OUR VISION",
-        "description": "With strategic leadership and SEO expertise, he leads our team towards innovation and excellence in results.",
-        "founder_name": "Bruno Lima"
+        "description": "A lawyer specializing in banking and consumer law, he graduated in law from Anhanguera University in 2018. With extensive experience in managing processes, people and business recovery, he has led a team of more than 60 employees, including lawyers and legal assistants, since 2023, when he took over the management of Mediari and led the company to exponential and upward growth. After working for years in commercial management and corporate crises, he currently dedicates his career to assisting companies and consumers seeking legal protection for situations of injustice that damage their most basic rights in our society.",
+        "quote": "\"Justice is not a privilege, it is a right - and our mission is to ensure that it is accessible to all.\""
     },
     "team": {
         "section_subtitle": "TEAM",
@@ -67,5 +68,40 @@
         "phone": "Call Us",
         "email": "Send an Email",
         "linkedin": "Connect on LinkedIn"
+    },
+    "navbar": {
+        "home": "Home",
+        "services": "Areas of Expertise",
+        "enterprise": "Company",
+        "founder": "Founder",
+        "team": "Team",
+        "contact": "Contact Us"
+    },
+    "footer": {
+        "highlights": [
+            {
+                "title": "100% Secure Site",
+                "desc": "SSL encryption for your protection"
+            },
+            {
+                "title": "Industry Reference",
+                "desc": "Well-rated service"
+            },
+            {
+                "title": "Protected Access",
+                "desc": "Stable and reliable navigation"
+            }
+        ],
+        "menu_title": "MENU",
+        "areas_title": "AREAS OF EXPERTISE"
+        ,
+        "all_rights_reserved": "All Rights Reserved"
+    },
+    "error": {
+        "title": "Page Not Found",
+        "not_found": "Oops! The page you are looking for was not found.",
+        "unexpected": "An unexpected error occurred. Please try again later.",
+        "back_home": "Back to home page",
+        "back_home_aria": "Back to home page"
     }
 }

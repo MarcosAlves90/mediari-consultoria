@@ -106,6 +106,10 @@ const triggerShake = (event: Event) => {
         }, 700);
     }
 };
+function breakLinesByDot(text: string): string {
+    if (!text) return '';
+    return text.replace(/\.(\s|$)/g, '.<br><br>');
+}
 
 // 7. Constantes de Classe/Estilo
 const homepage__section_title = 'text-4xl text-primary-text max-md:text-center max-md:text-2xl';
@@ -138,7 +142,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     {{ t('banner.main_title') }}</h1>
                 <p
                     class="mt-[-2.5rem] text-[3.65rem] font-medium text-body-bg transition-all duration-200 ease-in-out max-xl:mt-[-2.9vw] max-xl:text-[4.9vw] max-sm:text-[5.34vw]">
-                    {{ t('banner.subtitle-1')}}<span
+                    {{ t('banner.subtitle-1') }}<span
                         class="relative top-[-0.15vw] font-scheherazade text-[4.11rem] font-bold text-accent-color transition-all duration-200 ease-in-out max-xl:text-[5.5vw] max-sm:text-[5.94vw] max-sm:top-[-0.20vw]">{{
                             t('banner.subtitle-2') }}</span></p>
                 <p id="banner-description"
@@ -208,7 +212,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div class="homepage__company-info flex flex-col p-0">
                     <!-- Conteúdo para o lado direito -->
                     <p id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
-                        {{t('enterprise.section_subtitle')}}</p>
+                        {{ t('enterprise.section_subtitle') }}</p>
                     <h2 class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</h2>
                     <p id="enterprise-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
@@ -239,7 +243,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <div
                 :class="[homepage__container, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
                 <div
-                    class="homepage__seo-image relative max-w-[18rem] self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
+                    class="homepage__seo-image relative max-w-[18rem] min-w-[14rem] min-h-[18rem] flex-shrink-0 self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
                     <NuxtImg src="/fundador/bruno-lima.webp" loading="lazy" format="webp"
                         alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
                         class="w-full h-full" />
@@ -252,13 +256,16 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 </div>
                 <div
                     class="homepage__seo-info flex flex-col items-start justify-start max-md:items-center max-md:justify-center">
-                    <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">{{t('seo.section_subtitle')}}
+                    <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
+                        {{ t('seo.section_subtitle') }}
                     </p>
-                    <h2 class="homepage__section-title" :class="homepage__section_title">{{t('seo.section_title')}}</h2>
+                    <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('seo.section_title') }}</h2>
+                <!-- Citação abaixo do título -->
+                <blockquote class="homepage__seo-quote italic w-full text-secondary-text text-lg my-0.5 bg-[#e8e8e8] p-1 max-md:text-center max-md:text-base">
+                    {{t('seo.quote')}}
+                </blockquote>
                     <p id="seo-description" class="homepage__section_description text-justify"
-                        :class="homepage__section_description">
-                        Com liderança estratégica e expertise em SEO, conduz nossa equipe rumo à inovação e excelência
-                        nos resultados.
+                        :class="homepage__section_description" v-html="breakLinesByDot(t('seo.description'))">
                     </p>
                 </div>
             </div>
@@ -266,13 +273,12 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
         <section id="team-section" class="homepage__team w-full flex justify-center items-center bg-body-bg-dark"
             role="region" aria-labelledby="team-heading" aria-describedby="team-description">
             <div :class="[homepage__container, 'homepage__team-content max-w-85 w-full']">
-                <p id="team-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EQUIPE</p>
-                <h2 class="homepage__section-title" :class="homepage__section_title">NOSSOS DESTAQUES</h2>
+                <p id="team-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
+                    {{ t('team.section_subtitle') }}</p>
+                <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('team.section_title') }}</h2>
                 <p id="team-description" class="homepage__section_description" :class="homepage__section_description">
-                    Com mais de
-                    60 colaboradores e auxiliares
-                    jurídicos, entregamos
-                    excelência em todos os serviços.</p>
+                    {{ t('team.description') }}
+                </p>
                 <div class="homepage__team-list grid gap-1 mt-1 grid-cols-6 max-lg:grid-cols-4 max-sm:grid-cols-2"
                     role="list">
                     <div v-for="(img, idx) in teamImages" :key="idx"
@@ -295,28 +301,28 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             class="homepage__contact homepage__contact--gray-bg w-full flex justify-center items-center" role="region"
             aria-labelledby="contact-heading" aria-describedby="contact-description">
             <div :class="[homepage__container, 'homepage__contact-content max-w-85 w-full']">
-                <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FALE
-                    CONOSCO</p>
-                <h2 class="homepage__section-title" :class="homepage__section_title">ENTRE EM CONTATO</h2>
+                <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
+                    {{ t('contact.section_subtitle') }}
+                </p>
+                <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('contact.section_title') }}</h2>
                 <p id="contact-description" class="homepage__section_description"
-                    :class="homepage__section_description">Nos
-                    contate através de nossas redes e
-                    tenha os seus direitos protegidos.
+                    :class="homepage__section_description">
+                    {{ t('contact.description') }}
                 </p>
                 <div class="homepage__contact-list mt-1 flex items-center justify-between gap-1 max-md:grid max-md:grid-cols-2"
                     role="list" aria-label="Opções de contato">
                     <ContactCard backgroundImage="/contact-prints/instagram.webp" iconImage="instagram"
-                        buttonText="Fale pelo Instagram"
+                        :buttonText="t('contact.instagram')"
                         :buttonAction="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')"
                         role="listitem" aria-label="Contato pelo Instagram" />
                     <ContactCard backgroundImage="/contact-prints/telefone.webp" iconImage="telefone"
-                        buttonText="Ligue para Nós" :buttonAction="openPhoneDialer" role="listitem"
+                        :buttonText="t('contact.phone')" :buttonAction="openPhoneDialer" role="listitem"
                         aria-label="Contato por telefone" />
                     <ContactCard backgroundImage="/contact-prints/gmail.webp" iconImage="gmail"
-                        buttonText="Envie um E-mail" :buttonAction="openMailTo" role="listitem"
+                        :buttonText="t('contact.email')" :buttonAction="openMailTo" role="listitem"
                         aria-label="Contato por e-mail" />
                     <ContactCard backgroundImage="/contact-prints/linkedin.webp" iconImage="linkedin"
-                        buttonText="Conecte-se no LinkedIn"
+                        :buttonText="t('contact.linkedin')"
                         :buttonAction="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')"
                         role="listitem" aria-label="Contato pelo LinkedIn" />
                 </div>

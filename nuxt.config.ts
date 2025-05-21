@@ -32,8 +32,6 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://mediari-consultoria.netlify.app',
-          description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
-
     name: 'Mediari Consultoria',
   },
   schemaOrg: {
@@ -54,7 +52,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      titleTemplate: 'Mediari - %s',
+      titleTemplate: 'Mediari Consultoria - %s',
       templateParams: {
         separator: '-',
       },

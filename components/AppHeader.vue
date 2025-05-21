@@ -63,13 +63,17 @@ const contactLinks: ContactLink[] = [
     },
 ];
 
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 const navLinks: NavLink[] = [
-    { label: 'Início', section: 'banner-section' },
-    { label: 'Áreas de Atuação', section: 'services-section' },
-    { label: 'Empresa', section: 'enterprise-section' },
-    { label: 'Fundador', section: 'seo-section' },
-    { label: 'Equipe', section: 'team-section' },
-    { label: 'Fale conosco', section: 'contact-section' },
+    { label: t('navbar.home'), section: 'banner-section' },
+    { label: t('navbar.services'), section: 'services-section' },
+    { label: t('navbar.enterprise'), section: 'enterprise-section' },
+    { label: t('navbar.founder'), section: 'seo-section' },
+    { label: t('navbar.team'), section: 'team-section' },
+    { label: t('navbar.contact'), section: 'contact-section' },
 ];
 
 // 6. Funções Utilitárias
@@ -137,7 +141,8 @@ onUnmounted(() => {
                     </a>
                     <button v-if="screenWidth >= 1280" class="app-header__nav-button common-button"
                         @click.prevent="openPhoneDialer">
-                        <Icon class="app-header__nav-button-icon text-[1.3rem]" name="mdi:phone-outline" />11 4227-3008
+                        <Icon class="app-header__nav-button-icon text-[1.3rem]" name="mdi:phone-outline" />
+                        11 4227-3008
                     </button>
                 </nav>
                 <button v-if="screenWidth < 1024" class="app-header__hamburguer-menu common-button text-[1.5rem]"

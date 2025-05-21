@@ -4,7 +4,11 @@
         "subtitle-1": "PARA ",
         "subtitle-2": "VOCÊ E OS SEUS NEGÓCIOS",
         "description": "Atendimento especializado para empresas e soluções completas em demandas bancárias e do consumidor.",
-        "tags": ["Competência", "Segurança", "Experiência"]
+        "tags": [
+            "Competência",
+            "Segurança",
+            "Experiência"
+        ]
     },
     "services": {
         "section_subtitle": "ÁREAS DE ATUAÇÃO",
@@ -49,10 +53,11 @@
         "location": "Estamos localizados na {address}"
     },
     "seo": {
+        "title": "Direito para Empresas e Pessoas Físicas",
         "section_subtitle": "FUNDADOR",
         "section_title": "À FRENTE DA NOSSA VISÃO",
-        "description": "Com liderança estratégica e expertise em SEO, conduz nossa equipe rumo à inovação e excelência nos resultados.",
-        "founder_name": "Bruno Lima"
+        "description": "Advogado especializado em Direito Bancário e Direito do Consumidor, é graduado em Direito pela Universidade Anhanguera desde 2018. Com vasta experiência na gestão de processos, pessoas e recuperação de empresas, lidera uma equipe com mais de 60 colaboradores, entre advogados e auxiliares jurídicos, desde 2023, ocasião em que assumiu a gestão da Mediari e conduziu a empresa a um crescimento exponencial e ascendente. Após trabalhar durante anos com gestão comercial e crises empresariais, dedica atualmente sua carreira a atender empresas e consumidores que buscam amparo legal para situações de injustiça que lesam seus direitos mais basilares em nossa sociedade.",
+        "quote": "\"A justiça não é um privilégio, é um direito — e nossa missão é garantir que ela seja acessível a todos.\""
     },
     "team": {
         "section_subtitle": "EQUIPE",
@@ -67,5 +72,39 @@
         "phone": "Ligue para Nós",
         "email": "Envie um E-mail",
         "linkedin": "Conecte-se no LinkedIn"
+    },
+    "navbar": {
+        "home": "Início",
+        "services": "Áreas de Atuação",
+        "enterprise": "Empresa",
+        "founder": "Fundador",
+        "team": "Equipe",
+        "contact": "Fale conosco"
+    },
+    "footer": {
+        "highlights": [
+            {
+                "title": "Site 100% Seguro",
+                "desc": "Criptografia SSL para sua proteção"
+            },
+            {
+                "title": "Referência no Ramo",
+                "desc": "Serviço bem avaliado"
+            },
+            {
+                "title": "Acesso Protegido",
+                "desc": "Navegação estável e confiável"
+            }
+        ],
+        "menu_title": "MENU",
+        "areas_title": "ÁREAS DE ATUAÇÃO",
+        "all_rights_reserved": "Todos os Direitos Reservados"
+    },
+    "error": {
+        "title": "Página não encontrada",
+        "not_found": "Oops! A página que você procura não foi encontrada.",
+        "unexpected": "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+        "back_home": "Voltar para a página inicial",
+        "back_home_aria": "Voltar para a página inicial"
     }
 }
