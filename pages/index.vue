@@ -3,12 +3,19 @@
 import { ref } from 'vue';
 import ContactCard from '@/components/ContactCard.vue';
 import { useContacts } from '@/composables/useContacts';
+import { useI18n } from 'vue-i18n';
+const { t, tm } = useI18n();
 
 // 2. Composables
 const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
 
 // 3. Refs e Dados Reativos
-const heroTags = ref<string[]>(['Competência', 'Segurança', 'Experiência']);
+const heroTags = ref<string[]>([
+    t('banner.tags.0'),
+    t('banner.tags.1'),
+    t('banner.tags.2'),
+]);
+
 const teamImages = ref<string[]>([
     '/funcionarios-em-destaque/fernanda-assis.webp',
     '/funcionarios-em-destaque/letícia-ferreira.webp',
@@ -33,29 +40,29 @@ const mainServices: Service[] = [
         icon: 'my-icon:icon-direito-civil',
         headingId: 'civil-heading',
         descId: 'civil-description',
-        title: 'Direito Civil',
-        description: 'Resolvemos conflitos, indenizações e questões do dia a dia para sua segurança jurídica.',
+        title: t('services.main.0.title'),
+        description: t('services.main.0.description'),
     },
     {
         icon: 'my-icon:icon-direito-penal',
         headingId: 'penal-heading',
         descId: 'penal-description',
-        title: 'Direito Penal',
-        description: 'Defesa especializada em processos criminais, garantindo proteção em todas as etapas.',
+        title: t('services.main.1.title'),
+        description: t('services.main.1.description'),
     },
     {
         icon: 'my-icon:icon-contratos',
         headingId: 'contracts-heading',
         descId: 'contracts-description',
-        title: 'Contratos',
-        description: 'Elaboração e revisão de contratos para assegurar segurança e proteção jurídica.',
+        title: t('services.main.2.title'),
+        description: t('services.main.2.description'),
     },
     {
         icon: 'my-icon:icon-consultivo',
         headingId: 'consulting-heading',
         descId: 'consulting-description',
-        title: 'Consultivo',
-        description: 'Orientação jurídica estratégica para prevenir riscos e garantir conformidade legal.',
+        title: t('services.main.3.title'),
+        description: t('services.main.3.description'),
     },
 ];
 
@@ -64,22 +71,22 @@ const secondaryServices: Service[] = [
         icon: 'my-icon:icon-direito-do-consumidor',
         headingId: 'consumer-heading',
         descId: 'consumer-description',
-        title: 'Direito do Consumidor',
-        description: 'Defendemos os direitos dos consumidores em diversas situações, como compras online, cobranças indevidas e defeitos em produtos ou serviços.',
+        title: t('services.secondary.0.title'),
+        description: t('services.secondary.0.description'),
     },
     {
         icon: 'my-icon:icon-direito-bancario',
         headingId: 'banking-heading',
         descId: 'banking-description',
-        title: 'Direito Bancário',
-        description: 'Prestamos assessoria jurídica para questões envolvendo bancos, contratos financeiros, cobranças abusivas e renegociação de dívidas. Proteja seus direitos com nosso suporte.',
+        title: t('services.secondary.1.title'),
+        description: t('services.secondary.1.description'),
     },
     {
         icon: 'my-icon:icon-direito-trabalhista',
         headingId: 'labor-heading',
         descId: 'labor-description',
-        title: 'Direito Trabalhista',
-        description: 'Atuamos na defesa de trabalhadores e empresas em disputas trabalhistas, rescisões contratuais, direitos previdenciários e demais questões ligadas ao ambiente de trabalho.',
+        title: t('services.secondary.2.title'),
+        description: t('services.secondary.2.description'),
     },
 ];
 
@@ -121,24 +128,23 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div class="homepage__hero-text-tags mb-2 flex items-center justify-center gap-4 max-lg:gap-[4.5vw]"
                     role="list" aria-label="Características principais">
                     <div v-for="(tag, idx) in heroTags" :key="idx"
-                        class="homepage__hero-text-tags-tag flex min-w-12 items-center justify-center rounded-sm border-2 border-body-bg bg-body-bg-05 py-1 backdrop-blur-sm transition-transform duration-200 ease-in-out hover:scale-[1.1] max-lg:min-w-[20vw] max-lg:py-0.5 max-sm:min-w-[25vw]"
+                        class="homepage__hero-text-tags-tag cursor-pointer flex min-w-12 items-center justify-center rounded-sm border-2 border-body-bg bg-body-bg-05 py-1 backdrop-blur-sm transition-transform duration-200 ease-in-out hover:scale-[1.1] max-lg:min-w-[20vw] max-lg:py-0.5 max-sm:min-w-[25vw]"
                         role="listitem">
                         <p class="m-0 text-body-bg text-base max-xl:text-[1.5vw] max-sm:text-[2.7vw]">{{ tag }}</p>
                     </div>
                 </div>
                 <h1 id="banner-heading"
                     class="m-0 text-[5.8rem] font-medium transition-all duration-200 ease-in-out max-xl:text-[7.75vw] max-sm:text-[8.4vw]">
-                    EXCELÊNCIA JURÍDICA</h1>
+                    {{ t('banner.main_title') }}</h1>
                 <p
                     class="mt-[-2.5rem] text-[3.65rem] font-medium text-body-bg transition-all duration-200 ease-in-out max-xl:mt-[-2.9vw] max-xl:text-[4.9vw] max-sm:text-[5.34vw]">
-                    PARA <span
-                        class="relative top-[-0.15vw] font-scheherazade text-[4.11rem] font-bold text-accent-color transition-all duration-200 ease-in-out max-xl:text-[5.5vw] max-sm:text-[5.94vw] max-sm:top-[-0.20vw]">VOCÊ
-                        E OS SEUS NEGÓCIOS</span></p>
+                    {{ t('banner.subtitle-1')}}<span
+                        class="relative top-[-0.15vw] font-scheherazade text-[4.11rem] font-bold text-accent-color transition-all duration-200 ease-in-out max-xl:text-[5.5vw] max-sm:text-[5.94vw] max-sm:top-[-0.20vw]">{{
+                            t('banner.subtitle-2') }}</span></p>
                 <p id="banner-description"
                     class="homepage__hero-text-description mt-[-0.5rem] text-lg text-body-bg transition-all duration-200 ease-in-out max-xl:mt-[-0.5vw] max-xl:px-2 max-xl:text-[1.5vw] max-md:px-1 max-sm:text-[2.7vw]">
-                    Atendimento especializado para
-                    empresas e soluções
-                    completas em demandas bancárias e do consumidor.</p>
+                    {{ t('banner.description') }}
+                </p>
             </div>
             <div class="homepage__hero-notch absolute left-1/2 -translate-x-1/2 bottom-0 w-30 h-[18px] bg-accent-color z-2 rounded-t-sm max-md:w-[50vw]"
                 aria-hidden="true"></div>
@@ -147,24 +153,24 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <NuxtImg class="homepage__hero-image w-full h-full object-cover object-center opacity-25"
                 src="/banner-background.webp" width="1920" height="1080"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="lazy" format="webp"
-                alt="Banner de fundo da página principal com elementos gráficos abstratos"
-                />
+                alt="Banner de fundo da página principal com elementos gráficos abstratos" />
         </section>
         <section id="services-section" class="homepage__services w-full flex items-center justify-center" role="region"
             aria-labelledby="services-heading" aria-describedby="services-description">
             <div :class="[homepage__container, 'homepage__services-container w-full max-w-85']">
-                <p id="services-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">ÁREAS DE ATUAÇÃO
+                <p id="services-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">{{
+                    t('services.section_subtitle') }}
                 </p>
-                <h2 class="homepage__section-title" :class="homepage__section_title">NOSSOS SERVIÇOS</h2>
-                <p id="services-description" class="homepage__section-description" :class="homepage__section_description">Nosso
-                    corpo de profissionais atua em
-                    diferentes áreas para proteger
-                    os seus direitos ou da sua empresa.</p>
+                <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('services.section_title') }}
+                </h2>
+                <p id="services-description" class="homepage__section-description"
+                    :class="homepage__section_description">{{ t('services.section_description') }}</p>
                 <div class="homepage__services-list homepage__services-list--main grid gap-1 mt-1 grid-cols-4 max-870:grid-cols-2"
                     role="list" aria-label="Serviços principais">
-                    <div v-for="service in mainServices" :key="service.headingId" :class="homepage__services_card" role="listitem"
-                        :aria-labelledby="service.headingId" :aria-describedby="service.descId">
-                        <Icon :class="homepage__services_card_icon" :name="service.icon" @click="triggerShake" aria-hidden="true" />
+                    <div v-for="service in mainServices" :key="service.headingId" :class="homepage__services_card"
+                        role="listitem" :aria-labelledby="service.headingId" :aria-describedby="service.descId">
+                        <Icon :class="homepage__services_card_icon" :name="service.icon" @click="triggerShake"
+                            aria-hidden="true" />
                         <p :id="service.headingId" :class="homepage__services_card_title">
                             {{ service.title }}</p>
                         <p :id="service.descId" :class="homepage__services_card_description">
@@ -175,7 +181,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     role="list" aria-label="Outros serviços">
                     <div v-for="service in secondaryServices" :key="service.headingId" :class="homepage__services_card"
                         role="listitem" :aria-labelledby="service.headingId" :aria-describedby="service.descId">
-                        <Icon :class="homepage__services_card_icon" :name="service.icon" @click="triggerShake" aria-hidden="true" />
+                        <Icon :class="homepage__services_card_icon" :name="service.icon" @click="triggerShake"
+                            aria-hidden="true" />
                         <p :id="service.headingId" :class="homepage__services_card_title">
                             {{ service.title }}</p>
                         <p :id="service.descId" :class="homepage__services_card_description">
@@ -200,20 +207,12 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 </div>
                 <div class="homepage__company-info flex flex-col p-0">
                     <!-- Conteúdo para o lado direito -->
-                    <p id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EMPRESA</p>
+                    <p id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
+                        {{t('enterprise.section_subtitle')}}</p>
                     <h2 class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</h2>
                     <p id="enterprise-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
-                        Somos uma empresa especializada
-                        em assessoria e
-                        consultoria
-                        jurídica personalizada para pequenos e médios negócios, oferecendo elaboração de minutas,
-                        pareceres
-                        jurídicos, relatórios completos e suporte abrangente em questões trabalhistas. Para o grande
-                        público, atuamos em demandas bancárias, como processos de busca e apreensão, bloqueios de contas
-                        e
-                        outras áreas do Direito do Consumidor. Contamos com uma equipe de mais de 60 colaboradores e
-                        auxiliares jurídicos preparados para entregar o melhor atendimento a empresas e pessoas físicas.
+                        {{ t('enterprise.description') }}
                     </p>
                     <div class="homepage__company-info-location mt-0.5 gap-0.5 flex items-center justify-start text-secondary-text p-0"
                         role="group" aria-label="Informações de localização">
@@ -222,9 +221,9 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                             name="my-icon:icon-map"
                             @click="openLinkInBrowser('https://maps.app.goo.gl/8f6BACTToivurF4h9')"
                             aria-label="Abrir localização no Google Maps" />
-                        <p class="homepage__section_description !m-0" :class="homepage__section_description">Estamos localizados na
-                            <span class="font-medium">Rua Amazonas, 439 - Centro, São
-                                Caetano do Sul, 09520070.</span>
+                        <p class="homepage__section_description !m-0" :class="homepage__section_description">
+                            {{ t('enterprise.location', { address: '' }) }}<span class="font-medium">Rua Amazonas, 439 -
+                                Centro, São Caetano do Sul, 09520070</span>.
                         </p>
                     </div>
                     <iframe
@@ -241,7 +240,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 :class="[homepage__container, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
                 <div
                     class="homepage__seo-image relative max-w-[18rem] self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
-                    <NuxtImg src="/fundador/bruno-lima.webp" loading="lazy" format="webp" alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
+                    <NuxtImg src="/fundador/bruno-lima.webp" loading="lazy" format="webp"
+                        alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
                         class="w-full h-full" />
                     <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
                         aria-hidden="true" />
@@ -252,8 +252,9 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 </div>
                 <div
                     class="homepage__seo-info flex flex-col items-start justify-start max-md:items-center max-md:justify-center">
-                    <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FUNDADOR</p>
-                    <h2 class="homepage__section-title" :class="homepage__section_title">À FRENTE DA NOSSA VISÃO</h2>
+                    <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">{{t('seo.section_subtitle')}}
+                    </p>
+                    <h2 class="homepage__section-title" :class="homepage__section_title">{{t('seo.section_title')}}</h2>
                     <p id="seo-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description">
                         Com liderança estratégica e expertise em SEO, conduz nossa equipe rumo à inovação e excelência
@@ -267,7 +268,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <div :class="[homepage__container, 'homepage__team-content max-w-85 w-full']">
                 <p id="team-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">EQUIPE</p>
                 <h2 class="homepage__section-title" :class="homepage__section_title">NOSSOS DESTAQUES</h2>
-                <p id="team-description" class="homepage__section_description" :class="homepage__section_description">Com mais de
+                <p id="team-description" class="homepage__section_description" :class="homepage__section_description">
+                    Com mais de
                     60 colaboradores e auxiliares
                     jurídicos, entregamos
                     excelência em todos os serviços.</p>
@@ -275,7 +277,9 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     role="list">
                     <div v-for="(img, idx) in teamImages" :key="idx"
                         class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 hover:scale-105">
-                        <NuxtImg :src="img" loading="lazy" format="webp" :alt="`Foto do membro da equipe ${getNome(img)}`" :title="`${getNome(img)} - Mediari Consultoria`"
+                        <NuxtImg :src="img" loading="lazy" format="webp"
+                            :alt="`Foto do membro da equipe ${getNome(img)}`"
+                            :title="`${getNome(img)} - Mediari Consultoria`"
                             class="w-full h-full object-cover object-top" />
                         <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
                             aria-hidden="true" />
@@ -291,9 +295,11 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             class="homepage__contact homepage__contact--gray-bg w-full flex justify-center items-center" role="region"
             aria-labelledby="contact-heading" aria-describedby="contact-description">
             <div :class="[homepage__container, 'homepage__contact-content max-w-85 w-full']">
-                <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FALE CONOSCO</p>
+                <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">FALE
+                    CONOSCO</p>
                 <h2 class="homepage__section-title" :class="homepage__section_title">ENTRE EM CONTATO</h2>
-                <p id="contact-description" class="homepage__section_description" :class="homepage__section_description">Nos
+                <p id="contact-description" class="homepage__section_description"
+                    :class="homepage__section_description">Nos
                     contate através de nossas redes e
                     tenha os seus direitos protegidos.
                 </p>
@@ -328,7 +334,9 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
     &:hover .homepage__services-card-description {
         color: var(--color-accent-color);
     }
+
     position: relative;
+
     &::before {
         content: '';
         position: absolute;
@@ -340,11 +348,13 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
         z-index: 0;
         pointer-events: none;
     }
+
     &:hover::before {
         opacity: 0.2;
         transform: scale(1.1);
     }
-    > * {
+
+    >* {
         position: relative;
         z-index: 1;
     }

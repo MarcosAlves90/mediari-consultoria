@@ -1,0 +1,71 @@
+{
+    "banner": {
+        "main_title": "LEGAL EXCELLENCE",
+        "subtitle-1": "FOR ",
+        "subtitle-2": "YOU & YOUR BUSINESS!",
+        "description": "Specialized service for companies and complete solutions for banking and consumer demands.",
+        "tags": ["Competence", "Security", "Experience"]
+    },
+    "services": {
+        "section_subtitle": "AREAS OF EXPERTISE",
+        "section_title": "OUR SERVICES",
+        "section_description": "Our team of professionals works in different areas to protect your rights or your company's.",
+        "main": [
+            {
+                "title": "Civil Law",
+                "description": "We resolve conflicts, indemnities, and everyday issues for your legal security."
+            },
+            {
+                "title": "Criminal Law",
+                "description": "Specialized defense in criminal proceedings, ensuring protection at all stages."
+            },
+            {
+                "title": "Contracts",
+                "description": "Drafting and reviewing contracts to ensure legal security and protection."
+            },
+            {
+                "title": "Consulting",
+                "description": "Strategic legal guidance to prevent risks and ensure legal compliance."
+            }
+        ],
+        "secondary": [
+            {
+                "title": "Consumer Law",
+                "description": "We defend consumer rights in various situations, such as online purchases, undue charges, and product or service defects."
+            },
+            {
+                "title": "Banking Law",
+                "description": "We provide legal advice on issues involving banks, financial contracts, abusive charges, and debt renegotiation. Protect your rights with our support."
+            },
+            {
+                "title": "Labor Law",
+                "description": "We act in the defense of workers and companies in labor disputes, contract terminations, social security rights, and other work-related issues."
+            }
+        ]
+    },
+    "enterprise": {
+        "section_subtitle": "COMPANY",
+        "description": "We are a company specialized in personalized legal advice and consulting for small and medium-sized businesses, offering drafting of documents, legal opinions, complete reports, and comprehensive support in labor matters. For the general public, we work on banking demands, such as repossession processes, account blocks, and other areas of Consumer Law. We have a team of over 60 employees and legal assistants prepared to deliver the best service to companies and individuals.",
+        "location": "We are located at {address}"
+    },
+    "seo": {
+        "section_subtitle": "FOUNDER",
+        "section_title": "LEADING OUR VISION",
+        "description": "With strategic leadership and SEO expertise, he leads our team towards innovation and excellence in results.",
+        "founder_name": "Bruno Lima"
+    },
+    "team": {
+        "section_subtitle": "TEAM",
+        "section_title": "OUR HIGHLIGHTS",
+        "description": "With over 60 employees and legal assistants, we deliver excellence in all services."
+    },
+    "contact": {
+        "section_subtitle": "CONTACT US",
+        "section_title": "GET IN TOUCH",
+        "description": "Contact us through our networks and have your rights protected.",
+        "instagram": "Talk via Instagram",
+        "phone": "Call Us",
+        "email": "Send an Email",
+        "linkedin": "Connect on LinkedIn"
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "banner": {
+        "main_title": "EXCELÊNCIA JURÍDICA",
+        "subtitle-1": "PARA ",
+        "subtitle-2": "VOCÊ E OS SEUS NEGÓCIOS",
+        "description": "Atendimento especializado para empresas e soluções completas em demandas bancárias e do consumidor.",
+        "tags": ["Competência", "Segurança", "Experiência"]
+    },
+    "services": {
+        "section_subtitle": "ÁREAS DE ATUAÇÃO",
+        "section_title": "NOSSOS SERVIÇOS",
+        "section_description": "Nosso corpo de profissionais atua em diferentes áreas para proteger os seus direitos ou da sua empresa.",
+        "main": [
+            {
+                "title": "Direito Civil",
+                "description": "Resolvemos conflitos, indenizações e questões do dia a dia para sua segurança jurídica."
+            },
+            {
+                "title": "Direito Penal",
+                "description": "Defesa especializada em processos criminais, garantindo proteção em todas as etapas."
+            },
+            {
+                "title": "Contratos",
+                "description": "Elaboração e revisão de contratos para assegurar segurança e proteção jurídica."
+            },
+            {
+                "title": "Consultivo",
+                "description": "Orientação jurídica estratégica para prevenir riscos e garantir conformidade legal."
+            }
+        ],
+        "secondary": [
+            {
+                "title": "Direito do Consumidor",
+                "description": "Defendemos os direitos dos consumidores em diversas situações, como compras online, cobranças indevidas e defeitos em produtos ou serviços."
+            },
+            {
+                "title": "Direito Bancário",
+                "description": "Prestamos assessoria jurídica para questões envolvendo bancos, contratos financeiros, cobranças abusivas e renegociação de dívidas. Proteja seus direitos com nosso suporte."
+            },
+            {
+                "title": "Direito Trabalhista",
+                "description": "Atuamos na defesa de trabalhadores e empresas em disputas trabalhistas, rescisões contratuais, direitos previdenciários e demais questões ligadas ao ambiente de trabalho."
+            }
+        ]
+    },
+    "enterprise": {
+        "section_subtitle": "EMPRESA",
+        "description": "Somos uma empresa especializada em assessoria e consultoria jurídica personalizada para pequenos e médios negócios, oferecendo elaboração de minutas, pareceres jurídicos, relatórios completos e suporte abrangente em questões trabalhistas. Para o grande público, atuamos em demandas bancárias, como processos de busca e apreensão, bloqueios de contas e outras áreas do Direito do Consumidor. Contamos com uma equipe de mais de 60 colaboradores e auxiliares jurídicos preparados para entregar o melhor atendimento a empresas e pessoas físicas.",
+        "location": "Estamos localizados na {address}"
+    },
+    "seo": {
+        "section_subtitle": "FUNDADOR",
+        "section_title": "À FRENTE DA NOSSA VISÃO",
+        "description": "Com liderança estratégica e expertise em SEO, conduz nossa equipe rumo à inovação e excelência nos resultados.",
+        "founder_name": "Bruno Lima"
+    },
+    "team": {
+        "section_subtitle": "EQUIPE",
+        "section_title": "NOSSOS DESTAQUES",
+        "description": "Com mais de 60 colaboradores e auxiliares jurídicos, entregamos excelência em todos os serviços."
+    },
+    "contact": {
+        "section_subtitle": "FALE CONOSCO",
+        "section_title": "ENTRE EM CONTATO",
+        "description": "Nos contate através de nossas redes e tenha os seus direitos protegidos.",
+        "instagram": "Fale pelo Instagram",
+        "phone": "Ligue para Nós",
+        "email": "Envie um E-mail",
+        "linkedin": "Conecte-se no LinkedIn"
+    }
+}
