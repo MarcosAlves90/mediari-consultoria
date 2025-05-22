@@ -261,7 +261,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     </p>
                     <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('seo.section_title') }}</h2>
                 <!-- Citação abaixo do título -->
-                <blockquote class="homepage__seo-quote italic w-full text-secondary-text text-lg my-0.5 bg-[#e8e8e8] p-1 max-md:text-center max-md:text-base">
+                <blockquote class="homepage__seo-quote italic w-full text-secondary-text text-lg my-0.5 bg-body-bg-dark p-1 max-md:text-center max-md:text-base">
                     {{t('seo.quote')}}
                 </blockquote>
                     <p id="seo-description" class="homepage__section_description text-justify"
