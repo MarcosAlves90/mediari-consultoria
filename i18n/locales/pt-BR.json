@@ -52,8 +52,7 @@
         "description": "Somos uma empresa especializada em assessoria e consultoria jurídica personalizada para pequenos e médios negócios, oferecendo elaboração de minutas, pareceres jurídicos, relatórios completos e suporte abrangente em questões trabalhistas. Para o grande público, atuamos em demandas bancárias, como processos de busca e apreensão, bloqueios de contas e outras áreas do Direito do Consumidor. Contamos com uma equipe de mais de 60 colaboradores e auxiliares jurídicos preparados para entregar o melhor atendimento a empresas e pessoas físicas.",
         "location": "Estamos localizados na {address}"
     },
-    "seo": {
-        "title": "Direito para Empresas e Pessoas Físicas",
+    "ceo": {
         "section_subtitle": "FUNDADOR",
         "section_title": "À FRENTE DA NOSSA VISÃO",
         "description": "Advogado especializado em Direito Bancário e Direito do Consumidor, é graduado em Direito pela Universidade Anhanguera desde 2018. Com vasta experiência na gestão de processos, pessoas e recuperação de empresas, lidera uma equipe com mais de 60 colaboradores, entre advogados e auxiliares jurídicos, desde 2023, ocasião em que assumiu a gestão da Mediari e conduziu a empresa a um crescimento exponencial e ascendente. Após trabalhar durante anos com gestão comercial e crises empresariais, dedica atualmente sua carreira a atender empresas e consumidores que buscam amparo legal para situações de injustiça que lesam seus direitos mais basilares em nossa sociedade.",
@@ -106,5 +105,9 @@
         "unexpected": "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
         "back_home": "Voltar para a página inicial",
         "back_home_aria": "Voltar para a página inicial"
+    },
+    "seo": {
+        "title": "Direito para Empresas e Pessoas Físicas",
+        "description": "Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor."
     }
 }

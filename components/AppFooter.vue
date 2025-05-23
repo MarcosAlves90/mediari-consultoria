@@ -4,6 +4,9 @@ import { useGoTo } from '@/composables/useGoTo';
 import { useScreenWidth } from '@/composables/useScreenWidth';
 import { useScrollToSection } from '@/composables/useScrollToSection';
 import { useContacts } from '@/composables/useContacts';
+import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
+const { t, locale, setLocale } = useI18n();
 
 // 2. Composables
 const { goTo } = useGoTo();
@@ -29,23 +32,23 @@ interface FooterArea {
 }
 
 // 5. Dados Estáticos
-import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
 
-const footerHighlights: FooterHighlight[] = [
+const footerHighlights = computed(() => [
     { icon: 'mdi:shield-outline', title: t('footer.highlights[0].title'), desc: t('footer.highlights[0].desc') },
     { icon: 'mdi:star-outline', title: t('footer.highlights[1].title'), desc: t('footer.highlights[1].desc') },
     { icon: 'mdi:shield-home-outline', title: t('footer.highlights[2].title'), desc: t('footer.highlights[2].desc') }
-];
-const footerNavLinks: FooterNavLink[] = [
+]);
+
+const footerNavLinks = computed(() => [
     { label: t('navbar.home'), section: 'banner-section' },
     { label: t('navbar.services'), section: 'services-section' },
     { label: t('navbar.enterprise'), section: 'enterprise-section' },
     { label: t('navbar.founder'), section: 'seo-section' },
     { label: t('navbar.team'), section: 'team-section' },
     { label: t('navbar.contact'), section: 'contact-section' },
-];
-const footerAreasGroups: FooterArea[][] = [
+]);
+
+const footerAreasGroups = computed(() => [
     [
         { label: t('services.secondary[0].title') },
         { label: t('services.secondary[1].title') },
@@ -57,11 +60,23 @@ const footerAreasGroups: FooterArea[][] = [
         { label: t('services.main[3].title') },
         { label: t('services.main[2].title') },
     ]
+]);
+
+const availableLocales = [
+  { code: 'en-US', label: 'English' },
+  { code: 'pt-BR', label: 'Português' },
 ];
 
 // 6. Funções Utilitárias
 const handleFooterNavClick = (id: string) => {
     scrollToSection(id);
+};
+
+
+const changeLanguage = async (newLocale: "pt-BR" | "en-US") => {
+  if (locale.value !== newLocale) {
+    await setLocale(newLocale);
+  }
 };
 
 // 7. Constantes de Classe/Estilo
@@ -151,10 +166,21 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
             </div>
         </div>
         <div :class="[footer__location_display, 'footer__bottom bg-accent-dark-color text-center']">
-            <div
-                :class="[footer__container_util, 'footer__container text-box footer-location-display !flex-col py-2 px-4']">
-                <p :class="footer__bottom_paragraph">©2025 Mediari Consultoria Empresarial LTDA - Todos os Direitos
-                    Reservados</p>
+            <div :class="[footer__container_util, 'footer__container text-box footer-location-display !flex-col py-2 px-4']">
+                <div class="flex items-center justify-center mb-1 gap-2">
+                    <a
+                    v-for="lang in availableLocales"
+                    :key="lang.code"
+                    @click.prevent="changeLanguage(lang.code as 'pt-BR' | 'en-US')"
+                    :class="[
+                        'rounded text-sm transition-opacity text-body-bg opacity-100 hover:opacity-50 max-lg:text-xs'
+                    ]"
+                    href="#"
+                    >
+                        {{ locale === lang.code ? '> ' : '' }}{{ lang.label }}
+                    </a>
+                </div>
+                <p :class="footer__bottom_paragraph">©2025 Mediari Consultoria Empresarial LTDA - {{ t('footer.all_rights_reserved') }}</p>
                 <p :class="footer__bottom_paragraph">CNPJ 49.315.134/0001-90</p>
                 <p :class="footer__bottom_paragraph">Rua Amazonas, 439 - Centro, São Caetano do Sul, 09520070</p>
             </div>

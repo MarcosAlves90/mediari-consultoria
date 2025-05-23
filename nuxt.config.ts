@@ -82,4 +82,10 @@ export default defineNuxtConfig({
       fallbackLocale: 'pt-BR'
     },
   },
+
+  image: {
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/dgsywmzb2/image/upload'
+    },
+  }
 })

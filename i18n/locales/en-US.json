@@ -9,7 +9,7 @@
     "services": {
         "section_subtitle": "AREAS OF EXPERTISE",
         "section_title": "OUR SERVICES",
-        "section_description": "Our team of professionals works in different areas to protect your rights or your company's.",
+        "section_description": "Our team of professionals works in different areas to protect your rights or your company's interests.",
         "main": [
             {
                 "title": "Civil Law",
@@ -48,8 +48,7 @@
         "description": "We are a company specialized in personalized legal advice and consulting for small and medium-sized businesses, offering drafting of documents, legal opinions, complete reports, and comprehensive support in labor matters. For the general public, we work on banking demands, such as repossession processes, account blocks, and other areas of Consumer Law. We have a team of over 60 employees and legal assistants prepared to deliver the best service to companies and individuals.",
         "location": "We are located at {address}"
     },
-    "seo": {
-        "title": "Law for Companies and Individuals",
+    "ceo": {
         "section_subtitle": "FOUNDER",
         "section_title": "LEADING OUR VISION",
         "description": "A lawyer specializing in banking and consumer law, he graduated in law from Anhanguera University in 2018. With extensive experience in managing processes, people and business recovery, he has led a team of more than 60 employees, including lawyers and legal assistants, since 2023, when he took over the management of Mediari and led the company to exponential and upward growth. After working for years in commercial management and corporate crises, he currently dedicates his career to assisting companies and consumers seeking legal protection for situations of injustice that damage their most basic rights in our society.",
@@ -103,5 +102,9 @@
         "unexpected": "An unexpected error occurred. Please try again later.",
         "back_home": "Back to home page",
         "back_home_aria": "Back to home page"
+    },
+    "seo": {
+        "title": "Law for Companies and Individuals",
+        "description": "Legal consulting for small and medium businesses and individuals. Specialists in Labor, Banking, and Consumer Law."
     }
 }
