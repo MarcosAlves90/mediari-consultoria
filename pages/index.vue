@@ -1,10 +1,37 @@
 <script setup lang="ts">
 // 1. Imports
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import ContactCard from '@/components/ContactCard.vue';
 import { useContacts } from '@/composables/useContacts';
 import { useI18n } from 'vue-i18n';
+
 const { t, tm } = useI18n();
+
+if (import.meta.client) {
+    const L = await import('leaflet');
+    await import('leaflet/dist/leaflet.css');
+
+    var redIcon = new L.Icon({
+    iconUrl: 'https://res.cloudinary.com/dgsywmzb2/image/upload/marker-red_l5ruze.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+    });
+
+    onMounted(() => {
+        const map = L.map('map').setView([-23.61460809533691, -46.56925480555049], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/way/1184265877" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([-23.61460809533691, -46.56925480555049],{icon: redIcon}).addTo(map)
+            .bindPopup('Edifício Monumental, Rua Amazonas, 439 - Centro, São Caetano do Sul, SP')
+            .openPopup();
+    });
+}
 
 // 2. Composables
 const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
@@ -204,19 +231,18 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
         <section id="enterprise-section"
             class="homepage__company homepage__company--gray-bg w-full flex justify-center items-center bg-body-bg-dark"
             role="region" aria-labelledby="enterprise-heading" aria-describedby="enterprise-description">
-            <div
-                :class="[homepage__container, 'homepage__company-content max-w-85 w-full gap-1 flex max-md:flex-col-reverse max-md:gap-1']">
-                <div class="homepage__company-map min-w-[25.5rem] p-0 w-full max-xl:min-w-[25vw]" role="complementary"
-                    aria-label="Mapa da localização da empresa">
-                    <!-- Conteúdo para o lado esquerdo -->
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!4v1744196621406!6m8!1m7!1sEP5Wtm-s9EVnSAi5PEfDvw!2m2!1d-23.61476374919065!2d-46.56947893457005!3f56.22!4f9.540000000000006!5f0.7820865974627469"
-                        style="border:0;" allowfullscreen="true" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" class="w-full h-full rounded-sm max-md:h-12"
-                        title="Mapa interativo da localização da Mediari Consultoria"></iframe>
+            <div :class="[homepage__container, 'homepage__company-content items-stretch max-w-85 w-full gap-1 flex max-lg:flex-col-reverse max-md:gap-1']">
+                <div
+                    class="homepage__company-img-wrapper min-w-18 max-w-18 flex-1 basis-0 min-h-0 flex-shrink-0 overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:min-h-18 max-xl:w-full max-xl:max-w-none max-xl:hover:scale-102 max-lg:max-h-25 max-md:min-h-13">
+                    <NuxtImg src="/predio-439_jd1vig.webp"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" responsive="true" quality="60"
+                        provider="cloudinary" title="Prédio onde está localizado o escritório da Mediari Consultoria"
+                        alt="Foto do prédio onde está localizado o escritório da Mediari Consultoria" priority
+                        fetchpriority="high"
+                        @click="openLinkInBrowser('https://www.google.com/maps/@-23.6147637,-46.5694789,0a,22.3y,65.04h,95.74t/data=!3m4!1e1!3m2!1sEP5Wtm-s9EVnSAi5PEfDvw!2e0?source=apiv3')"
+                        class="cursor-pointer w-full h-full object-cover max-xl:object-bottom" />
                 </div>
                 <div class="homepage__company-info flex flex-col p-0">
-                    <!-- Conteúdo para o lado direito -->
                     <p id="enterprise-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
                         {{ t('enterprise.section_subtitle') }}</p>
                     <h2 class="homepage__section-title" :class="homepage__section_title">MEDIARI CONSULTORIA</h2>
@@ -236,11 +262,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                                 Centro, São Caetano do Sul, 09520070</span>.
                         </p>
                     </div>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456.9641794996792!2d-46.56925480555049!3d-23.61460809533691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5cee9ee117a1%3A0x17896a272eed7c60!2sR.%20Amazonas%2C%20439%20-%20Centro%2C%20S%C3%A3o%20Caetano%20do%20Sul%20-%20SP%2C%2009520-070!5e0!3m2!1spt-BR!2sbr!4v1744202283698!5m2!1spt-BR!2sbr"
-                        style="border:0;" allowfullscreen="true" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" class="rounded-sm mt-1 h-15 max-xl:h-12"
-                        title="Mapa detalhado da localização da Mediari Consultoria"></iframe>
+                    <div id="map" class="z-1 rounded-sm mt-1 min-h-13"></div>
                 </div>
             </div>
         </section>
@@ -265,9 +287,11 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
                         {{ t('ceo.section_subtitle') }}
                     </p>
-                    <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('ceo.section_title') }}</h2>
-                    <blockquote class="homepage__seo-quote italic w-full text-secondary-text text-lg my-0.5 bg-body-bg-dark p-1 max-md:text-center max-md:text-base">
-                        {{t('ceo.quote')}}
+                    <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('ceo.section_title') }}
+                    </h2>
+                    <blockquote
+                        class="homepage__seo-quote italic w-full text-secondary-text text-lg my-0.5 bg-body-bg-dark p-1 max-md:text-center max-md:text-base">
+                        {{ t('ceo.quote') }}
                     </blockquote>
                     <p id="seo-description" class="homepage__section_description text-justify"
                         :class="homepage__section_description" v-html="breakLinesByDot(t('ceo.description'))">
@@ -309,7 +333,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
                     {{ t('contact.section_subtitle') }}
                 </p>
-                <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('contact.section_title') }}</h2>
+                <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('contact.section_title') }}
+                </h2>
                 <p id="contact-description" class="homepage__section_description"
                     :class="homepage__section_description">
                     {{ t('contact.description') }}
