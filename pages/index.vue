@@ -17,13 +17,14 @@ const heroTags = ref<string[]>([
 ]);
 
 const teamImages = ref<string[]>([
-    '/funcionarios-em-destaque/fernanda-assis.webp',
-    '/funcionarios-em-destaque/letícia-ferreira.webp',
-    '/funcionarios-em-destaque/lucas-jesus.webp',
-    '/funcionarios-em-destaque/millena-vieira.webp',
-    '/funcionarios-em-destaque/mylena-barboza.webp',
-    '/funcionarios-em-destaque/roberta-curcios.webp',
+    'fernanda-assis_sqa0ag.webp',
+    'letícia-ferreira_qliwdi.webp',
+    'lucas-jesus_svwujc.webp',
+    'millena-vieira_kbs5vt.webp',
+    'mylena-barboza_ermcjh.webp',
+    'roberta-curcios_nokbvj.webp',
 ]);
+
 
 // 4. Tipos/Interfaces
 interface Service {
@@ -93,7 +94,7 @@ const secondaryServices: Service[] = [
 // 6. Funções Utilitárias
 // Formata nome da imagem para exibição
 const getNome = (img: string) => {
-    const nome = img.split('/').pop()?.replace('.webp', '') || '';
+    const nome = img.split('/').pop()?.split('_')[0].replace('.webp', '') || '';
     return nome.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 };
 // Animação shake para ícones
@@ -106,10 +107,15 @@ const triggerShake = (event: Event) => {
         }, 700);
     }
 };
-function breakLinesByDot(text: string): string {
-    if (!text) return '';
-    return text.replace(/\.(\s|$)/g, '.<br><br>');
-}
+// Adiciona dois <br> a cada ponto no texto recebido
+const breakLinesByDot = (text: string): string =>
+    text
+        ? text
+            .trim()
+            .replace(/\.(\s|$)/g, (match, p1, offset, str) =>
+                offset + match.length < str.length ? '.<br><br>' : '.'
+            )
+        : '';
 
 // 7. Constantes de Classe/Estilo
 const homepage__section_title = 'text-4xl text-primary-text max-md:text-center max-md:text-2xl';
@@ -155,8 +161,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <div class="homepage__hero-gradient absolute top-0 left-0 right-0 bottom-0 opacity-60" aria-hidden="true">
             </div>
             <NuxtImg class="homepage__hero-image w-full h-full object-cover object-center opacity-25"
-                src="/banner-background.webp" width="1920" height="1080"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="lazy" format="webp"
+                src="/banner-background_acqeef.webp" provider="cloudinary" width="1920" height="1080"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="lazy"
                 alt="Banner de fundo da página principal com elementos gráficos abstratos" />
         </section>
         <section id="services-section" class="homepage__services w-full flex items-center justify-center" role="region"
@@ -244,7 +250,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 :class="[homepage__container, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
                 <div
                     class="homepage__seo-image relative max-w-[18rem] min-w-[14rem] min-h-[18rem] flex-shrink-0 self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
-                    <NuxtImg src="/fundador/bruno-lima.webp" loading="lazy" format="webp"
+                    <NuxtImg src="bruno-lima_ughibo.webp" provider="cloudinary" loading="lazy"
                         alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
                         class="w-full h-full" />
                     <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
@@ -257,15 +263,14 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div
                     class="homepage__seo-info flex flex-col items-start justify-start max-md:items-center max-md:justify-center">
                     <p id="seo-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
-                        {{ t('seo.section_subtitle') }}
+                        {{ t('ceo.section_subtitle') }}
                     </p>
-                    <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('seo.section_title') }}</h2>
-                <!-- Citação abaixo do título -->
-                <blockquote class="homepage__seo-quote italic w-full text-secondary-text text-lg my-0.5 bg-body-bg-dark p-1 max-md:text-center max-md:text-base">
-                    {{t('seo.quote')}}
-                </blockquote>
+                    <h2 class="homepage__section-title" :class="homepage__section_title">{{ t('ceo.section_title') }}</h2>
+                    <blockquote class="homepage__seo-quote italic w-full text-secondary-text text-lg my-0.5 bg-body-bg-dark p-1 max-md:text-center max-md:text-base">
+                        {{t('ceo.quote')}}
+                    </blockquote>
                     <p id="seo-description" class="homepage__section_description text-justify"
-                        :class="homepage__section_description" v-html="breakLinesByDot(t('seo.description'))">
+                        :class="homepage__section_description" v-html="breakLinesByDot(t('ceo.description'))">
                     </p>
                 </div>
             </div>
@@ -283,7 +288,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     role="list">
                     <div v-for="(img, idx) in teamImages" :key="idx"
                         class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 hover:scale-105">
-                        <NuxtImg :src="img" loading="lazy" format="webp"
+                        <NuxtImg :src="img" loading="lazy" provider="cloudinary"
                             :alt="`Foto do membro da equipe ${getNome(img)}`"
                             :title="`${getNome(img)} - Mediari Consultoria`"
                             class="w-full h-full object-cover object-top" />
@@ -311,17 +316,19 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 </p>
                 <div class="homepage__contact-list mt-1 flex items-center justify-between gap-1 max-md:grid max-md:grid-cols-2"
                     role="list" aria-label="Opções de contato">
-                    <ContactCard backgroundImage="/contact-prints/instagram.webp" iconImage="instagram"
+                    <ContactCard backgroundImage="instagram_g4nm4d.webp" iconImage="instagram"
                         :buttonText="t('contact.instagram')"
                         :buttonAction="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')"
                         role="listitem" aria-label="Contato pelo Instagram" />
-                    <ContactCard backgroundImage="/contact-prints/telefone.webp" iconImage="telefone"
+
+                    <ContactCard backgroundImage="telefone_bluhgk.webp" iconImage="telefone"
                         :buttonText="t('contact.phone')" :buttonAction="openPhoneDialer" role="listitem"
                         aria-label="Contato por telefone" />
-                    <ContactCard backgroundImage="/contact-prints/gmail.webp" iconImage="gmail"
-                        :buttonText="t('contact.email')" :buttonAction="openMailTo" role="listitem"
-                        aria-label="Contato por e-mail" />
-                    <ContactCard backgroundImage="/contact-prints/linkedin.webp" iconImage="linkedin"
+
+                    <ContactCard backgroundImage="gmail_itiiyf.webp" iconImage="gmail" :buttonText="t('contact.email')"
+                        :buttonAction="openMailTo" role="listitem" aria-label="Contato por e-mail" />
+
+                    <ContactCard backgroundImage="linkedin_jbmidd.webp" iconImage="linkedin"
                         :buttonText="t('contact.linkedin')"
                         :buttonAction="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')"
                         role="listitem" aria-label="Contato pelo LinkedIn" />
@@ -347,7 +354,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
         content: '';
         position: absolute;
         inset: 0;
-        background: url('/card-background.webp') center / cover no-repeat;
+        background: url('https://res.cloudinary.com/dgsywmzb2/image/upload/card-background_jp4akg.webp') center / cover no-repeat;
         filter: blur(5px) brightness(0.7);
         opacity: 0;
         transition: opacity 0.3s ease, transform 0.3s ease;

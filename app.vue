@@ -4,9 +4,12 @@ const { t } = useI18n();
 
 useSeoMeta({
   title: t('seo.title'),
+  description: t('seo.description'),
 });
 
-defineOgImageComponent('Mediari')
+defineOgImageComponent('Mediari', {
+  title: t('seo.title')
+})
 
 onMounted(() => {
   const loader = document.getElementById('loader');
