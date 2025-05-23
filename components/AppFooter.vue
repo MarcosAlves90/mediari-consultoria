@@ -18,18 +18,6 @@ const { openPhoneDialer, openLinkInBrowser, openMailTo } = useContacts();
 // (nenhum estado reativo adicional necessário para o footer)
 
 // 4. Tipos/Interfaces
-interface FooterHighlight {
-    icon: string;
-    title: string;
-    desc: string;
-}
-interface FooterNavLink {
-    label: string;
-    section: string;
-}
-interface FooterArea {
-    label: string;
-}
 
 // 5. Dados Estáticos
 
