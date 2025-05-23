@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
+import { watch } from 'vue';
 
-useSeoMeta({
-  title: t('seo.title'),
-  description: t('seo.description'),
+const { t, locale } = useI18n();
+
+const updateSeoMeta = () => {
+  useSeoMeta({
+    title: t('seo.title'),
+    description: t('seo.description'),
+  });
+};
+
+watch(locale, () => {
+  updateSeoMeta();
 });
 
-defineOgImageComponent('Mediari', {
-  title: t('seo.title')
-})
+updateSeoMeta();
 
 onMounted(() => {
   const loader = document.getElementById('loader');
