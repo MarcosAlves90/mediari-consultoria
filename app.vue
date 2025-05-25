@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 import { useI18n } from 'vue-i18n';
 import { watch } from 'vue';
 
@@ -25,7 +26,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <Loader />
+    <AtomsLoader />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
