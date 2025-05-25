@@ -1,25 +1,17 @@
 <script setup lang="ts">
-// 1. Imports
-import { useGoTo } from '@/composables/useGoTo';
-import { useScreenWidth } from '@/composables/useScreenWidth';
-import { useScrollToSection } from '@/composables/useScrollToSection';
-import { useContacts } from '@/composables/useContacts';
+
+import { useGoTo } from '@/utils/useGoTo';
+import { useScreenWidth } from '@/utils/useScreenWidth';
+import { useScrollToSection } from '@/utils/useScrollToSection';
+import { useContacts } from '@/utils/useContacts';
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
-const { t, locale, setLocale } = useI18n();
+const { t, locale, locales, setLocale } = useI18n();
 
-// 2. Composables
 const { goTo } = useGoTo();
 const screenWidth = useScreenWidth();
 const scrollToSection = useScrollToSection();
 const { openPhoneDialer, openLinkInBrowser, openMailTo } = useContacts();
-
-// 3. Refs e Dados Reativos
-// (nenhum estado reativo adicional necessário para o footer)
-
-// 4. Tipos/Interfaces
-
-// 5. Dados Estáticos
 
 const footerHighlights = computed(() => [
     { icon: 'mdi:shield-outline', title: t('footer.highlights[0].title'), desc: t('footer.highlights[0].desc') },
@@ -50,24 +42,18 @@ const footerAreasGroups = computed(() => [
     ]
 ]);
 
-const availableLocales = [
-  { code: 'en-US', label: 'English' },
-  { code: 'pt-BR', label: 'Português' },
-];
+const availableLocales = locales.value;
 
-// 6. Funções Utilitárias
 const handleFooterNavClick = (id: string) => {
     scrollToSection(id);
 };
 
-
 const changeLanguage = async (newLocale: "pt-BR" | "en-US") => {
-  if (locale.value !== newLocale) {
-    await setLocale(newLocale);
-  }
+    if (locale.value !== newLocale) {
+        await setLocale(newLocale);
+    }
 };
 
-// 7. Constantes de Classe/Estilo
 const footer__location_display = 'footer__location-display flex justify-center items-center flex-row gap-0 box-border w-full';
 const footer__container_util = 'max-w-85 w-full max-xl:max-w-full max-xl:px-2 max-md:px-1';
 const footer__bottom_paragraph = 'text-body-bg text-sm max-lg:text-xs';
@@ -94,20 +80,24 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
                     <div
                         class="footer__contacts flex flex-row items-center justify-center gap-1 max-lg:w-full max-lg:grid max-lg:grid-cols-2">
                         <button :class="footer__contact_btn_util"
-                            @click.prevent="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')">
+                            @click.prevent="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')"
+                            aria-label="Abrir LinkedIn da Mediari">
                             <Icon :class="footer__contact_btn_icon" name="mdi:linkedin" />
                             <p v-if="screenWidth < 1280 && !(screenWidth < 640)">Mediari Consultoria</p>
                         </button>
-                        <button :class="footer__contact_btn_util" @click.prevent="openMailTo">
+                        <button :class="footer__contact_btn_util" @click.prevent="openMailTo"
+                            aria-label="Enviar e-mail para contato@mediari.com.br">
                             <Icon :class="footer__contact_btn_icon" name="mdi:email-outline" />
                             <p v-if="!(screenWidth < 640)">contato@mediari.com.br</p>
                         </button>
                         <button :class="footer__contact_btn_util"
-                            @click.prevent="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')">
+                            @click.prevent="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')"
+                            aria-label="Abrir Instagram da Mediari">
                             <Icon :class="footer__contact_btn_icon" name="mdi:instagram" />
                             <p v-if="!(screenWidth < 640)">@mediari.consultoria</p>
                         </button>
-                        <button :class="footer__contact_btn_util" @click.prevent="openPhoneDialer">
+                        <button :class="footer__contact_btn_util" @click.prevent="openPhoneDialer"
+                            aria-label="Ligar para 11 4227-3008">
                             <Icon :class="footer__contact_btn_icon" name="mdi:phone-outline" />
                             <p v-if="!(screenWidth < 640)">11 4227-3008</p>
                         </button>
@@ -123,8 +113,10 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
                                 class="footer__highlight-icon text-[3.5rem] max-xl:text-[3rem] max-lg:text-[2rem] max-sm:!hidden"
                                 :name="highlight.icon" />
                             <div class="footer__highlight-text min-w-17 max-xl:min-w-0 max-lg:min-w-15">
-                                <p class="footer__highlight-title text-lg font-bold max-lg:text-base">{{ highlight.title }}</p>
-                                <p class="footer__highlight-desc text-secondary-text text-sm max-lg:text-xs">{{ highlight.desc }}</p>
+                                <p class="footer__highlight-title text-lg font-bold max-lg:text-base">{{ highlight.title
+                                    }}</p>
+                                <p class="footer__highlight-desc text-secondary-text text-sm max-lg:text-xs">{{
+                                    highlight.desc }}</p>
                             </div>
                         </div>
                     </div>
@@ -154,21 +146,18 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
             </div>
         </div>
         <div :class="[footer__location_display, 'footer__bottom bg-accent-dark-color text-center']">
-            <div :class="[footer__container_util, 'footer__container text-box footer-location-display !flex-col py-2 px-4']">
+            <div
+                :class="[footer__container_util, 'footer__container text-box footer-location-display !flex-col py-2 px-4']">
                 <div class="flex items-center justify-center mb-1 gap-2">
-                    <a
-                    v-for="lang in availableLocales"
-                    :key="lang.code"
-                    @click.prevent="changeLanguage(lang.code as 'pt-BR' | 'en-US')"
-                    :class="[
-                        'rounded text-sm transition-opacity text-body-bg opacity-100 hover:opacity-50 max-lg:text-xs'
-                    ]"
-                    href="#"
-                    >
-                        {{ locale === lang.code ? '> ' : '' }}{{ lang.label }}
+                    <a v-for="lang in availableLocales" :key="lang.code"
+                        @click.prevent="changeLanguage(lang.code as 'pt-BR' | 'en-US')" :class="[
+                            'rounded text-sm transition-opacity text-body-bg opacity-100 hover:opacity-50 max-lg:text-xs'
+                        ]" href="#">
+                        {{ locale === lang.code ? '> ' : '' }}{{ lang.name }}
                     </a>
                 </div>
-                <p :class="footer__bottom_paragraph">©2025 Mediari Consultoria Empresarial LTDA - {{ t('footer.all_rights_reserved') }}</p>
+                <p :class="footer__bottom_paragraph">©2025 Mediari Consultoria Empresarial LTDA - {{
+                    t('footer.all_rights_reserved') }}</p>
                 <p :class="footer__bottom_paragraph">CNPJ 49.315.134/0001-90</p>
                 <p :class="footer__bottom_paragraph">Rua Amazonas, 439 - Centro, São Caetano do Sul, 09520070</p>
             </div>

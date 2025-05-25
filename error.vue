@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGoTo } from '@/composables/useGoTo';
+import { useGoTo } from '@/utils/useGoTo';
 import { useI18n } from 'vue-i18n';
 const { t, locale } = useI18n();
 
