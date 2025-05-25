@@ -75,10 +75,11 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'pt-BR',
     strategy: 'prefix_except_default',
+    baseUrl: 'https://mediari-consultoria.netlify.app',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      alwaysRedirect: true,
+      redirectOn: 'root',
       fallbackLocale: 'pt-BR'
     },
   },

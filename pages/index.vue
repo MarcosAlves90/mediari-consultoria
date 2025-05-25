@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// 1. Imports
+
 import { ref, onMounted } from 'vue';
-import ContactCard from '@/components/ContactCard.vue';
-import { useContacts } from '@/composables/useContacts';
+import ContactCard from '@/components/molecules/ContactCard.vue';
+import { useContacts } from '@/utils/useContacts';
 import { useI18n } from 'vue-i18n';
 
 const { t, tm } = useI18n();
@@ -33,10 +33,8 @@ if (import.meta.client) {
     });
 }
 
-// 2. Composables
 const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
 
-// 3. Refs e Dados Reativos
 const heroTags = ref<string[]>([
     t('banner.tags.0'),
     t('banner.tags.1'),
@@ -52,8 +50,6 @@ const teamImages = ref<string[]>([
     'roberta-curcios_nokbvj.webp',
 ]);
 
-
-// 4. Tipos/Interfaces
 interface Service {
     icon: string;
     headingId: string;
@@ -62,7 +58,6 @@ interface Service {
     description: string;
 }
 
-// 5. Dados Estáticos
 const mainServices: Service[] = [
     {
         icon: 'my-icon:icon-direito-civil',
@@ -118,13 +113,11 @@ const secondaryServices: Service[] = [
     },
 ];
 
-// 6. Funções Utilitárias
-// Formata nome da imagem para exibição
 const getNome = (img: string) => {
     const nome = img.split('/').pop()?.split('_')[0].replace('.webp', '') || '';
     return nome.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 };
-// Animação shake para ícones
+
 const triggerShake = (event: Event) => {
     const target = event.currentTarget as HTMLElement;
     if (target) {
@@ -134,7 +127,7 @@ const triggerShake = (event: Event) => {
         }, 700);
     }
 };
-// Adiciona dois <br> a cada ponto no texto recebido
+
 const breakLinesByDot = (text: string): string =>
     text
         ? text
@@ -144,7 +137,6 @@ const breakLinesByDot = (text: string): string =>
             )
         : '';
 
-// 7. Constantes de Classe/Estilo
 const homepage__section_title = 'text-4xl text-primary-text max-md:text-center max-md:text-2xl';
 const homepage__section_subtitle = 'font-scheherazade text-xl font-bold text-accent-color max-md:text-center max-md:text-lg';
 const homepage__section_description = 'mt-0.5 text-base text-secondary-text max-md:text-justify max-md:text-sm';
@@ -311,7 +303,8 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div class="homepage__team-list grid gap-1 mt-1 grid-cols-6 max-lg:grid-cols-4 max-sm:grid-cols-2"
                     role="list">
                     <div v-for="(img, idx) in teamImages" :key="idx"
-                        class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 hover:scale-105">
+                        class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 hover:scale-105"
+                        role="listitem">
                         <NuxtImg :src="img" loading="lazy" provider="cloudinary"
                             :alt="`Foto do membro da equipe ${getNome(img)}`"
                             :title="`${getNome(img)} - Mediari Consultoria`"

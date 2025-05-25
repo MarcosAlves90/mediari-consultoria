@@ -1,22 +1,19 @@
 <script setup lang="ts">
-// 1. Imports
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useScreenWidth } from '@/composables/useScreenWidth';
-import { useScrollToSection } from '@/composables/useScrollToSection';
-import { useContacts } from '@/composables/useContacts';
-import { useGoTo } from '@/composables/useGoTo';
 
-// 2. Composables
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useScreenWidth } from '@/utils/useScreenWidth';
+import { useScrollToSection } from '@/utils/useScrollToSection';
+import { useContacts } from '@/utils/useContacts';
+import { useGoTo } from '@/utils/useGoTo';
+
 const screenWidth = useScreenWidth();
 const scrollToSection = useScrollToSection();
 const { openPhoneDialer } = useContacts();
 const { goTo } = useGoTo();
 
-// 3. Refs e Dados Reativos
 const hamburguerMenuOpen = ref(false);
 const isNavbarSmall = ref(false);
 
-// 4. Tipos/Interfaces
 interface ContactLink {
     href: string;
     icon: string;
@@ -26,7 +23,6 @@ interface ContactLink {
     show: () => boolean;
 }
 
-// 5. Dados Estáticos
 const contactLinks: ContactLink[] = [
     {
         href: 'mailto:contato@mediari.com.br',
@@ -71,7 +67,6 @@ const navLinks = computed(() => [
         { label: t('navbar.contact'), section: 'contact-section' },
 ]);
 
-// 6. Funções Utilitárias
 const handleNavClick = (id: string) => {
     scrollToSection(id);
     hamburguerMenuOpen.value = false;
@@ -85,7 +80,6 @@ const toggleHamburguerMenu = () => {
     hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
 };
 
-// Ciclo de vida
 onMounted(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -105,7 +99,8 @@ onUnmounted(() => {
             <template v-for="(link, idx) in contactLinks" :key="idx">
                 <a v-if="link.show()"
                     class="app-header__top-link flex cursor-pointer items-center gap-0.5 rounded-sm no-underline transition-colors duration-200 ease-in-out hover:bg-body-bg-2"
-                    :href="link.href" :target="link.target" :rel="link.rel">
+                    :href="link.href" :target="link.target" :rel="link.rel"
+                    :aria-label="link.text">
                     <Icon
                         class="app-header__top-link-icon text-[1.8rem] transition-[font-size] duration-200 ease-in-out max-lg:text-2xl"
                         :name="link.icon" />
@@ -134,15 +129,17 @@ onUnmounted(() => {
                         class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline">
                         {{ link.label }}
                     </a>
-                    <button v-if="screenWidth >= 1280" class="app-header__nav-button common-button"
-                        @click.prevent="openPhoneDialer">
-                        <Icon class="app-header__nav-button-icon text-[1.3rem]" name="mdi:phone-outline" />
-                        11 4227-3008
-                    </button>
+                <button v-if="screenWidth >= 1280" class="app-header__nav-button common-button"
+                    @click.prevent="openPhoneDialer"
+                    aria-label="Ligar para 11 4227-3008">
+                    <Icon class="app-header__nav-button-icon text-[1.3rem]" name="mdi:phone-outline" />
+                    11 4227-3008
+                </button>
                 </nav>
                 <button v-if="screenWidth < 1024" class="app-header__hamburguer-menu common-button text-[1.5rem]"
                     :class="{ 'app-header__hamburguer-menu--open bg-accent-color-2': hamburguerMenuOpen }"
-                    @click="toggleHamburguerMenu">
+                    @click="toggleHamburguerMenu"
+                    :aria-label="hamburguerMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'">
                     <Transition name="icon-morph" mode="out-in">
                         <Icon v-if="!hamburguerMenuOpen" class="app-header__hamburguer-menu-icon w-[30px] aspect-square"
                             name="mdi:menu" key="menu" />
