@@ -1,5 +1,5 @@
 /**
- * Uma função composable que fornece métodos utilitários para interagir com opções de contato.
+ * Uma função util que fornece métodos utilitários para interagir com opções de contato.
  * Inclui métodos para abrir o discador de telefone, o cliente de email e redirecionar para um link específico.
  *
  * @returns Um objeto contendo os seguintes métodos:

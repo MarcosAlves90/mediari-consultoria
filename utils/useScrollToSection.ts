@@ -1,7 +1,7 @@
 import { useScreenWidth } from './useScreenWidth';
 
 /**
- * Uma função composable que fornece uma utilidade para rolar suavemente para uma seção
+ * Uma função util que fornece uma utilidade para rolar suavemente para uma seção
  * específica da página pelo ID do elemento, com um ajuste de deslocamento baseado na largura da tela.
  *
  * @returns Uma função que recebe o ID de um elemento como parâmetro e rola para a seção

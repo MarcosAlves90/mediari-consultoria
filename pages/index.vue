@@ -5,7 +5,7 @@ import ContactCard from '@/components/molecules/ContactCard.vue';
 import { useContacts } from '@/utils/useContacts';
 import { useI18n } from 'vue-i18n';
 
-const { t, tm } = useI18n();
+const { t } = useI18n();
 
 if (import.meta.client) {
     const L = await import('leaflet');
@@ -181,7 +181,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             </div>
             <NuxtImg class="homepage__hero-image w-full h-full object-cover object-center opacity-25"
                 src="/banner-background_acqeef.webp" provider="cloudinary" width="1920" height="1080"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="lazy"
+                sizes="xl:100vw lg:80vw" preload fit="cropping"
                 alt="Banner de fundo da página principal com elementos gráficos abstratos" />
         </section>
         <section id="services-section" class="homepage__services w-full flex items-center justify-center" role="region"
