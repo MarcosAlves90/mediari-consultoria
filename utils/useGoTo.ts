@@ -1,5 +1,5 @@
 /**
- * Uma função composable que fornece uma utilidade para navegar para uma rota especificada
+ * Uma função util que fornece uma utilidade para navegar para uma rota especificada
  * usando o método `push` do Vue Router.
  *
  * @returns Um objeto contendo a função `goTo`.

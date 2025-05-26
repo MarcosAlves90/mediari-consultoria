@@ -1,7 +1,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 /**
- * Uma função composable que fornece uma referência reativa para a largura atual da tela.
+ * Uma função util que fornece uma referência reativa para a largura atual da tela.
  * Ela escuta eventos de redimensionamento da janela e atualiza a largura da tela conforme necessário.
  *
  * @returns {Ref<number>} Uma referência reativa contendo a largura atual da tela.

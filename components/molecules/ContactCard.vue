@@ -1,7 +1,5 @@
 <script setup lang="ts">
-// 1. Imports
 
-// 2. Tipos/Interfaces
 type ButtonAction = () => void;
 interface ContactCardProps {
     backgroundImage: string;
@@ -10,7 +8,6 @@ interface ContactCardProps {
     buttonAction: ButtonAction;
 }
 
-// 3. Props
 defineProps<ContactCardProps>();
 </script>
 
