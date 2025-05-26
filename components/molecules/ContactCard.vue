@@ -24,7 +24,7 @@ defineProps<ContactCardProps>();
             <div
                 class="contact-card__icon-box absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center text-[2rem] text-white transition-opacity duration-200 ease-in-out">
                 <Icon
-                    class="contact-card__icon-box-svg text-[5rem] transition-transform duration-200 ease-in-out max-xl:text-[4rem] max-lg:text-[3.5rem]"
+                    class="contact-card__icon-box-svg text-[5rem] transition-transform duration-200 ease-in-out max-xl:text-[4rem] max-lg:text-[3.5rem]" loading="lazy"
                     :name="'my-icon:' + iconImage" />
             </div>
         </div>
