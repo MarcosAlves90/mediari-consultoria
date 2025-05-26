@@ -11,13 +11,13 @@ if (import.meta.client) {
     const L = await import('leaflet');
     await import('leaflet/dist/leaflet.css');
 
-    var redIcon = new L.Icon({
-    iconUrl: 'https://res.cloudinary.com/dgsywmzb2/image/upload/marker-red_l5ruze.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    const redIcon = new L.Icon({
+        iconUrl: 'https://res.cloudinary.com/dgsywmzb2/image/upload/marker-red_l5ruze.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
     });
 
     onMounted(() => {
@@ -113,10 +113,20 @@ const secondaryServices: Service[] = [
     },
 ];
 
-const getNome = (img: string) => {
-    const nome = img.split('/').pop()?.split('_')[0].replace('.webp', '') || '';
-    return nome.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+const getNome = (img: string): string => {
+    const fileName = img.split('/').pop();
+    if (!fileName) return 'Nome Desconhecido';
+
+    const namePart = fileName.split('_')[0];
+    if (!namePart) return 'Nome Desconhecido';
+
+    const cleanedName = namePart.replace('.webp', '');
+    return cleanedName
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 };
+
 
 const triggerShake = (event: Event) => {
     const target = event.currentTarget as HTMLElement;
@@ -227,10 +237,9 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div
                     class="homepage__company-img-wrapper min-w-18 max-w-18 flex-1 basis-0 min-h-0 flex-shrink-0 overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:min-h-18 max-xl:w-full max-xl:max-w-none max-xl:hover:scale-102 max-lg:max-h-25 max-md:min-h-13">
                     <NuxtImg src="/predio-439_jd1vig.webp"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" responsive="true" quality="60"
+                        sizes="xl:100vw lg:80vw"
                         provider="cloudinary" title="Prédio onde está localizado o escritório da Mediari Consultoria"
-                        alt="Foto do prédio onde está localizado o escritório da Mediari Consultoria" priority
-                        fetchpriority="high"
+                        alt="Foto do prédio onde está localizado o escritório da Mediari Consultoria" preload fit="cropping" :modifiers="{ gravity: 'south' }"
                         @click="openLinkInBrowser('https://www.google.com/maps/@-23.6147637,-46.5694789,0a,22.3y,65.04h,95.74t/data=!3m4!1e1!3m2!1sEP5Wtm-s9EVnSAi5PEfDvw!2e0?source=apiv3')"
                         class="cursor-pointer w-full h-full object-cover max-xl:object-bottom" />
                 </div>
