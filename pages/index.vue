@@ -342,7 +342,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                     :class="homepage__section_description">
                     {{ t('contact.description') }}
                 </p>
-                <div class="homepage__contact-list mt-1 flex items-center justify-between gap-1 max-md:grid max-md:grid-cols-2"
+                <div class="homepage__contact-list mt-1 flex items-center justify-between gap-0.5 max-md:grid max-md:grid-cols-2"
                     role="list" aria-label="Opções de contato">
                     <ContactCard backgroundImage="instagram_g4nm4d.webp" iconImage="instagram"
                         :buttonText="t('contact.instagram')"
