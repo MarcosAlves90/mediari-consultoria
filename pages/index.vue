@@ -237,7 +237,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <div
                     class="homepage__company-img-wrapper min-w-18 max-w-18 flex-1 basis-0 min-h-0 flex-shrink-0 overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:min-h-18 max-xl:w-full max-xl:max-w-none max-xl:hover:scale-102 max-lg:max-h-25 max-md:min-h-13">
                     <NuxtImg src="/predio-439_jd1vig.webp"
-                        sizes="xl:100vw lg:80vw"
+                        sizes="xl:100vw lg:80vw md:60vw"
                         provider="cloudinary" title="Prédio onde está localizado o escritório da Mediari Consultoria"
                         alt="Foto do prédio onde está localizado o escritório da Mediari Consultoria" preload fit="cropping" :modifiers="{ gravity: 'south' }"
                         @click="openLinkInBrowser('https://www.google.com/maps/@-23.6147637,-46.5694789,0a,22.3y,65.04h,95.74t/data=!3m4!1e1!3m2!1sEP5Wtm-s9EVnSAi5PEfDvw!2e0?source=apiv3')"
