@@ -1,3 +1,4 @@
-Sitemap: https://mediari-consultoria.netlify.app/sitemap.xml
 User-agent: *
 Allow: /
+
+Sitemap: https://www.mediariconsultoria.com.br/sitemap.xml

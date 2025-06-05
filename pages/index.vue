@@ -12,7 +12,7 @@ if (import.meta.client) {
     await import('leaflet/dist/leaflet.css');
 
     const redIcon = new L.Icon({
-        iconUrl: 'https://res.cloudinary.com/dgsywmzb2/image/upload/marker-red_l5ruze.png',
+        iconUrl: 'https://res.cloudinary.com/dawhjravc/image/upload/marker-icon-2x-red_tpormo_vyst4k.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -42,13 +42,13 @@ const heroTags = ref<string[]>([
 ]);
 
 const teamImages = ref<string[]>([
-    'fernanda-assis_sqa0ag.webp',
-    'letícia-ferreira_qliwdi.webp',
-    'lucas-jesus_svwujc.webp',
-    'millena-vieira_kbs5vt.webp',
-    'mylena-barboza_ermcjh.webp',
-    'roberta-curcios_nokbvj.webp',
-    'ingrid-pacheco_uuazeo.webp'
+    'fernanda-assis_sqa0ag_didohw.webp',
+    'letícia-ferreira_qliwdi_aw9w4j.webp',
+    'lucas-jesus_svwujc_fwxeqy.webp',
+    'millena-vieira_kbs5vt_lzhvnu.webp',
+    'mylena-barboza_ermcjh_rq4laa.webp',
+    'roberta-curcios_nokbvj_pyym69.webp',
+    'ingrid-pacheco_uuazeo_usy5vx.webp'
 ]);
 
 interface Service {
@@ -191,7 +191,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <div class="homepage__hero-gradient absolute top-0 left-0 right-0 bottom-0 opacity-60" aria-hidden="true">
             </div>
             <NuxtImg class="homepage__hero-image w-full h-full object-cover object-center opacity-25"
-                src="/banner-background_acqeef.webp" provider="cloudinary" width="1920" height="1080"
+                src="/banner-background_acqeef_rgmwey.webp" provider="cloudinary" width="1920" height="1080"
                 sizes="xl:100vw lg:80vw" preload fit="cropping"
                 alt="Banner de fundo da página principal com elementos gráficos abstratos" />
         </section>
@@ -237,7 +237,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
             <div :class="[homepage__container, 'homepage__company-content items-stretch max-w-85 w-full gap-1 flex max-lg:flex-col-reverse max-md:gap-1']">
                 <div
                     class="homepage__company-img-wrapper min-w-18 max-w-18 flex-1 basis-0 min-h-0 flex-shrink-0 overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:min-h-18 max-xl:w-full max-xl:max-w-none max-xl:hover:scale-102 max-lg:max-h-25 max-md:min-h-13">
-                    <NuxtImg src="/predio-439_jd1vig.webp"
+                    <NuxtImg src="/predio-439_jd1vig_gjatw0.webp"
                         sizes="xl:100vw lg:80vw md:60vw"
                         provider="cloudinary" title="Prédio onde está localizado o escritório da Mediari Consultoria"
                         alt="Foto do prédio onde está localizado o escritório da Mediari Consultoria" preload fit="cropping" :modifiers="{ gravity: 'south' }"
@@ -274,7 +274,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 :class="[homepage__container, 'homepage__seo-content max-w-85 w-full flex items-start justify-center gap-1 max-lg:flex-col-reverse']">
                 <div
                     class="homepage__seo-image relative max-w-[18rem] min-w-[14rem] min-h-[18rem] flex-shrink-0 self-center overflow-hidden rounded-t-sm transition-transform duration-200 ease-in-out hover:scale-105 max-xl:hover:scale-102 max-lg:max-h-25 max-sm:max-h-26 max-sm:w-full max-sm:max-w-none">
-                    <NuxtImg src="bruno-lima_ughibo.webp" provider="cloudinary" loading="lazy"
+                    <NuxtImg src="bruno-lima_ughibo_widbcw.webp" provider="cloudinary" loading="lazy"
                         alt="Foto do sócio fundador Bruno Lima" title="Bruno Lima - Mediari Consultoria"
                         class="w-full h-full" />
                     <div class="homepage__team-carousel-gradient absolute top-0 left-0 right-0 bottom-0 mix-blend-multiply bg-accent-color-2"
@@ -344,19 +344,19 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 </p>
                 <div class="homepage__contact-list mt-1 flex items-center justify-between gap-0.5 max-md:grid max-md:grid-cols-2"
                     role="list" aria-label="Opções de contato">
-                    <ContactCard backgroundImage="instagram_g4nm4d.webp" iconImage="instagram"
+                    <ContactCard backgroundImage="instagram_g4nm4d_vkd5ws.webp" iconImage="instagram"
                         :buttonText="t('contact.instagram')"
                         :buttonAction="() => openLinkInBrowser('https://www.instagram.com/mediari.consultoria')"
                         role="listitem" aria-label="Contato pelo Instagram" />
 
-                    <ContactCard backgroundImage="telefone_bluhgk.webp" iconImage="telefone"
+                    <ContactCard backgroundImage="telefone_bluhgk_p8rms9.webp" iconImage="telefone"
                         :buttonText="t('contact.phone')" :buttonAction="openPhoneDialer" role="listitem"
                         aria-label="Contato por telefone" />
 
-                    <ContactCard backgroundImage="gmail_itiiyf.webp" iconImage="gmail" :buttonText="t('contact.email')"
+                    <ContactCard backgroundImage="gmail_itiiyf_qn4gk0.webp" iconImage="gmail" :buttonText="t('contact.email')"
                         :buttonAction="openMailTo" role="listitem" aria-label="Contato por e-mail" />
 
-                    <ContactCard backgroundImage="linkedin_jbmidd.webp" iconImage="linkedin"
+                    <ContactCard backgroundImage="linkedin_jbmidd_faecil.webp" iconImage="linkedin"
                         :buttonText="t('contact.linkedin')"
                         :buttonAction="() => openLinkInBrowser('https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda')"
                         role="listitem" aria-label="Contato pelo LinkedIn" />
@@ -382,7 +382,7 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
         content: '';
         position: absolute;
         inset: 0;
-        background: url('https://res.cloudinary.com/dgsywmzb2/image/upload/card-background_jp4akg.webp') center / cover no-repeat;
+        background: url('https://res.cloudinary.com/dawhjravc/image/upload/card-background_jp4akg_rbjplo.webp') center / cover no-repeat;
         filter: blur(5px) brightness(0.7);
         opacity: 0;
         transition: opacity 0.3s ease, transform 0.3s ease;

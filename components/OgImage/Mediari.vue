@@ -74,9 +74,8 @@ withDefaults(defineProps<{
                 <h1 class="text-[40px] font-black text-center uppercase">
                     {{ title }}
                 </h1>
-                <!--TODO: Mudar site quando tiver domínio pronto -->
                 <p class="text-2xl pb-10 px-20 font-bold mb-0">
-                    mediari-consultoria.netlify.app
+                    www.mediariconsultoria.com.br
                 </p>
             </div>
         </div>
