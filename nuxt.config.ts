@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://mediari-consultoria.netlify.app',
+    url: 'https://www.mediariconsultoria.com.br',
     name: 'Mediari Consultoria',
   },
   schemaOrg: {
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
       name: 'Mediari Consultoria',
       alternateName: 'Mediari',
       description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
-      url: 'https://mediari-consultoria.netlify.app',
+      url: 'https://www.mediariconsultoria.com.br',
       logo: '/favicon.png',
     })
   },
@@ -75,7 +75,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'pt-BR',
     strategy: 'prefix_except_default',
-    baseUrl: 'https://mediari-consultoria.netlify.app',
+    baseUrl: 'https://www.mediariconsultoria.com.br',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
@@ -86,7 +86,7 @@ export default defineNuxtConfig({
 
   image: {
     cloudinary: {
-      baseURL: 'https://res.cloudinary.com/dgsywmzb2/image/upload'
+      baseURL: 'https://res.cloudinary.com/dawhjravc/image/upload'
     },
   }
 })
