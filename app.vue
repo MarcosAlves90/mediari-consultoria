@@ -5,10 +5,6 @@ import { watch, onMounted } from 'vue';
 
 const { t, locale } = useI18n();
 
-defineOgImageComponent('Mediari', {
-  title: t('seo.title'),
-  description: t('seo.description'),
-});
 
 const updateSeoMeta = () => {
   useSeoMeta({
@@ -22,6 +18,11 @@ watch(locale, () => {
 });
 
 updateSeoMeta();
+
+defineOgImageComponent('Mediari', {
+  title: t('seo.title'),
+  description: t('seo.description'),
+});
 
 onMounted(() => {
   const loader = document.getElementById('loader');
