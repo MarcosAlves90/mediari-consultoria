@@ -1,9 +1,14 @@
 <script setup lang="ts">
 
 import { useI18n } from 'vue-i18n';
-import { watch } from 'vue';
+import { watch, onMounted } from 'vue';
 
 const { t, locale } = useI18n();
+
+defineOgImageComponent('Mediari', {
+  title: t('seo.title'),
+  description: t('seo.description'),
+});
 
 const updateSeoMeta = () => {
   useSeoMeta({
@@ -22,6 +27,7 @@ onMounted(() => {
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('loader-ds-hidden');
 });
+
 </script>
 
 <template>
