@@ -9,31 +9,9 @@ useHead({
   link: [
     {
       rel: 'icon',
-      type: 'image/svg+xml',
-      href: '/favicon.svg'
-    },
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '96x96',
-      href: '/favicon-96x96.png'
-    },
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '192x192',
-      href: '/favicon-192x192.png'
-    },
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '512x512',
-      href: '/favicon-512x512.png'
-    },
-    {
-      rel: 'icon',
       type: 'image/x-icon',
-      href: '/favicon.ico'
+      href: '/favicon.ico',
+      sizes: '16x16 32x32 48x48'
     },
     {
       rel: 'manifest',
