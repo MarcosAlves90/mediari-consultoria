@@ -61,26 +61,26 @@ export default defineNuxtConfig({
   i18n: {
     locales: [
       {
-        code: 'pt-BR',
+        code: 'pt-br',
         iso: 'pt-BR',
         file: 'pt-BR.json',
         name: 'Português (Brasil)'
       },
       {
-        code: 'en-US',
+        code: 'en-us',
         iso: 'en-US',
         file: 'en-US.json',
         name: 'English (US)'
       }
     ],
-    defaultLocale: 'pt-BR',
+    defaultLocale: 'pt-br',
     strategy: 'prefix_except_default',
-    baseUrl: 'https://www.mediariconsultoria.com.br',
+    baseUrl: 'https://mediariconsultoria.com.br',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root',
-      fallbackLocale: 'pt-BR'
+      fallbackLocale: 'pt-br'
     },
   },
 

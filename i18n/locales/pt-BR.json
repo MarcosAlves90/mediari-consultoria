@@ -74,11 +74,12 @@
     },
     "navbar": {
         "home": "Início",
-        "services": "Áreas de Atuação",
+        "services": "Serviços",
         "enterprise": "Empresa",
         "founder": "Fundador",
         "team": "Equipe",
-        "contact": "Fale conosco"
+        "contact": "Contato",
+        "careers": "Carreiras"
     },
     "footer": {
         "highlights": [
@@ -109,5 +110,45 @@
     "seo": {
         "title": "Direito para Empresas e Pessoas Físicas",
         "description": "Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor."
+    },
+    "careers": {
+        "section_subtitle": "OPORTUNIDADES DE CARREIRA",
+        "section_title": "TRABALHE CONOSCO",
+        "section_description": "Junte-se à nossa equipe de profissionais qualificados e faça parte de uma empresa comprometida com a excelência jurídica.",
+        "form": {
+            "full_name": "Nome Completo",
+            "full_name_placeholder": "Digite seu nome completo",
+            "email": "E-mail",
+            "email_placeholder": "Digite seu e-mail",
+            "phone": "Telefone",
+            "phone_placeholder": "(11) 99999-9999",
+            "area_of_interest": "Área de Interesse",
+            "area_of_interest_placeholder": "Selecione uma área",
+            "experience": "Experiência Profissional",
+            "experience_placeholder": "Descreva brevemente sua experiência",
+            "resume": "Currículo",
+            "resume_placeholder": "Anexe seu currículo (PDF, DOC, DOCX)",
+            "cover_letter": "Carta de Apresentação",
+            "cover_letter_placeholder": "Conte-nos por que você gostaria de trabalhar conosco",
+            "privacy_consent": "Concordo com o tratamento dos meus dados pessoais conforme a LGPD",
+            "submit": "Enviar Candidatura",
+            "required_field": "Este campo é obrigatório",
+            "invalid_email": "Por favor, insira um e-mail válido",
+            "invalid_phone": "Por favor, insira um telefone válido",
+            "file_too_large": "O arquivo deve ter no máximo 5MB",
+            "invalid_file_type": "Formato de arquivo não suportado"
+        },
+        "areas": [
+            "Direito Civil",
+            "Direito Penal",
+            "Direito Trabalhista",
+            "Direito do Consumidor",
+            "Direito Bancário",
+            "Contratos",
+            "Consultivo",
+            "Administrativo"
+        ],
+        "success_message": "Sua candidatura foi enviada com sucesso! Entraremos em contato em breve.",
+        "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente."
     }
 }

@@ -65,10 +65,25 @@ const navLinks = computed(() => [
         { label: t('navbar.founder'), section: 'seo-section' },
         { label: t('navbar.team'), section: 'team-section' },
         { label: t('navbar.contact'), section: 'contact-section' },
+        { label: t('navbar.careers'), href: '/trabalhe-conosco' },
 ]);
 
-const handleNavClick = (id: string) => {
-    scrollToSection(id);
+const handleNavClick = async (link: { section?: string, href?: string }) => {
+    if (link.href) {
+        goTo(link.href);
+    } else if (link.section) {
+        // Se não estiver na página inicial, vai para a página inicial primeiro
+        if (window.location.pathname !== '/') {
+            await goTo('/');
+            // Aguarda a página carregar e então rola para a seção
+            setTimeout(() => {
+                scrollToSection(link.section!);
+            }, 100);
+        } else {
+            // Se já estiver na página inicial, apenas rola para a seção
+            scrollToSection(link.section);
+        }
+    }
     hamburguerMenuOpen.value = false;
 };
 
@@ -124,8 +139,9 @@ onUnmounted(() => {
                 </div>
                 <nav class="app-header__nav app-header__nav--desktop flex items-center justify-center gap-[2.8rem]"
                     v-if="screenWidth >= 1024">
-                    <a v-for="link in navLinks" :key="link.section" :href="'#' + link.section"
-                        @click.prevent="handleNavClick(link.section)"
+                    <a v-for="link in navLinks" :key="link.section || link.href" 
+                        :href="link.href ? link.href : '#' + link.section"
+                        @click.prevent="handleNavClick(link)"
                         class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline">
                         {{ link.label }}
                     </a>
@@ -152,8 +168,9 @@ onUnmounted(() => {
         <Transition name="slide-fade-nav">
             <nav v-show="screenWidth < 1024 && hamburguerMenuOpen"
                 class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden bg-body-bg-67 border-t-2 border-b-2 border-accent-color backdrop-blur-sm max-h-[500px] opacity-100 visible">
-                <a v-for="link in navLinks" :key="link.section" :href="'#' + link.section"
-                    @click.prevent="handleNavClick(link.section)"
+                <a v-for="link in navLinks" :key="link.section || link.href" 
+                    :href="link.href ? link.href : '#' + link.section"
+                    @click.prevent="handleNavClick(link)"
                     class="box-border w-full rounded-sm border-2 border-accent-color px-1 py-0.5 text-center text-base no-underline hover:bg-accent-color-2 max-md:text-sm">
                     {{ link.label }}
                 </a>

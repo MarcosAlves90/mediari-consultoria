@@ -27,7 +27,7 @@ defineOgImageComponent('Mediari', {
 const { goTo } = useGoTo();
 
 function goHome() {
-    goTo(locale.value === 'en-US' ? '/en-US' : '/');
+    goTo(locale.value === 'en-us' ? '/en-us' : '/');
 }
 </script>
 

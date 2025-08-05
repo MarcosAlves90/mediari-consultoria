@@ -70,11 +70,12 @@
     },
     "navbar": {
         "home": "Home",
-        "services": "Areas of Expertise",
+        "services": "Services",
         "enterprise": "Company",
         "founder": "Founder",
         "team": "Team",
-        "contact": "Contact Us"
+        "contact": "Contact",
+        "careers": "Careers"
     },
     "footer": {
         "highlights": [
@@ -106,5 +107,45 @@
     "seo": {
         "title": "Law for Companies and Individuals",
         "description": "Legal consulting for small and medium businesses and individuals. Specialists in Labor, Banking, and Consumer Law."
+    },
+    "careers": {
+        "section_subtitle": "CAREER OPPORTUNITIES",
+        "section_title": "WORK WITH US",
+        "section_description": "Join our team of qualified professionals and be part of a company committed to legal excellence.",
+        "form": {
+            "full_name": "Full Name",
+            "full_name_placeholder": "Enter your full name",
+            "email": "Email",
+            "email_placeholder": "Enter your email",
+            "phone": "Phone",
+            "phone_placeholder": "(11) 99999-9999",
+            "area_of_interest": "Area of Interest",
+            "area_of_interest_placeholder": "Select an area",
+            "experience": "Professional Experience",
+            "experience_placeholder": "Briefly describe your experience",
+            "resume": "Resume",
+            "resume_placeholder": "Attach your resume (PDF, DOC, DOCX)",
+            "cover_letter": "Cover Letter",
+            "cover_letter_placeholder": "Tell us why you would like to work with us",
+            "privacy_consent": "I agree with the processing of my personal data according to LGPD",
+            "submit": "Submit Application",
+            "required_field": "This field is required",
+            "invalid_email": "Please enter a valid email",
+            "invalid_phone": "Please enter a valid phone number",
+            "file_too_large": "File must be no larger than 5MB",
+            "invalid_file_type": "Unsupported file format"
+        },
+        "areas": [
+            "Civil Law",
+            "Criminal Law",
+            "Labor Law",
+            "Consumer Law",
+            "Banking Law",
+            "Contracts",
+            "Consulting",
+            "Administrative"
+        ],
+        "success_message": "Your application has been submitted successfully! We will contact you soon.",
+        "error_message": "An error occurred while submitting your application. Please try again."
     }
 }
