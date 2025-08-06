@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { useScreenWidth } from '@/utils/useScreenWidth';
 import { useScrollToSection } from '@/utils/useScrollToSection';
 import { useContacts } from '@/utils/useContacts';
@@ -18,8 +18,8 @@ interface ContactLink {
     href: string;
     icon: string;
     text: string;
-    target?: string;
-    rel?: string;
+    target: string;
+    rel: string;
     show: () => boolean;
 }
 
@@ -28,6 +28,8 @@ const contactLinks: ContactLink[] = [
         href: 'mailto:contato@mediari.com.br',
         icon: 'mdi:email-outline',
         text: 'contato@mediari.com.br',
+        target: '',
+        rel: '',
         show: () => true,
     },
     {
@@ -50,6 +52,8 @@ const contactLinks: ContactLink[] = [
         href: 'tel:+551142273008',
         icon: 'mdi:phone-outline',
         text: '11 4227-3008',
+        target: '',
+        rel: '',
         show: () => screenWidth.value < 1280,
     },
 ];
@@ -57,6 +61,7 @@ const contactLinks: ContactLink[] = [
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 const navLinks = computed(() => [
         { label: t('navbar.home'), section: 'banner-section' },
@@ -70,11 +75,16 @@ const navLinks = computed(() => [
 
 const handleNavClick = async (link: { section?: string, href?: string }) => {
     if (link.href) {
-        goTo(link.href);
+        // Para links com href, usa o localePath para garantir o locale correto
+        const localizedPath = localePath(link.href);
+        goTo(localizedPath);
     } else if (link.section) {
         // Se não estiver na página inicial, vai para a página inicial primeiro
-        if (window.location.pathname !== '/') {
-            await goTo('/');
+        const currentPath = window.location.pathname;
+        const homePath = localePath('/');
+        
+        if (currentPath !== homePath) {
+            await goTo(homePath);
             // Aguarda a página carregar e então rola para a seção
             setTimeout(() => {
                 scrollToSection(link.section!);
@@ -114,7 +124,9 @@ onUnmounted(() => {
             <template v-for="(link, idx) in contactLinks" :key="idx">
                 <a v-if="link.show()"
                     class="app-header__top-link flex cursor-pointer items-center gap-0.5 rounded-sm no-underline transition-colors duration-200 ease-in-out hover:bg-body-bg-2"
-                    :href="link.href" :target="link.target" :rel="link.rel"
+                    :href="link.href" 
+                    :target="link.target"
+                    :rel="link.rel"
                     :aria-label="link.text">
                     <Icon
                         class="app-header__top-link-icon text-[1.8rem] transition-[font-size] duration-200 ease-in-out max-lg:text-2xl"
@@ -129,7 +141,7 @@ onUnmounted(() => {
             <div
                 class="app-header__group flex w-full max-w-85 items-center justify-between px-4 py-1 text-base max-xl:px-2 max-lg:flex-wrap max-md:px-1">
                 <div class="app-header__logo-box flex items-center justify-center gap-1 cursor-pointer text-accent-color"
-                    @click="goTo('/')">
+                    @click="goTo(localePath('/'))">
                     <Icon
                         class="app-header__logo-box-icon text-[3.5rem] transition-[font-size] duration-200 ease-in-out"
                         :class="{ '!text-[3.2rem]': isNavbarSmall }" name="my-icon:mediari-logo" />
@@ -139,8 +151,8 @@ onUnmounted(() => {
                 </div>
                 <nav class="app-header__nav app-header__nav--desktop flex items-center justify-center gap-[2.8rem]"
                     v-if="screenWidth >= 1024">
-                    <a v-for="link in navLinks" :key="link.section || link.href" 
-                        :href="link.href ? link.href : '#' + link.section"
+                    <a v-for="(link, idx) in navLinks" :key="`desktop-nav-${idx}`" 
+                        :href="link.href ? localePath(link.href) : '#' + link.section"
                         @click.prevent="handleNavClick(link)"
                         class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline">
                         {{ link.label }}
@@ -168,8 +180,8 @@ onUnmounted(() => {
         <Transition name="slide-fade-nav">
             <nav v-show="screenWidth < 1024 && hamburguerMenuOpen"
                 class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden bg-body-bg-67 border-t-2 border-b-2 border-accent-color backdrop-blur-sm max-h-[500px] opacity-100 visible">
-                <a v-for="link in navLinks" :key="link.section || link.href" 
-                    :href="link.href ? link.href : '#' + link.section"
+                <a v-for="(link, idx) in navLinks" :key="`mobile-nav-${idx}`" 
+                    :href="link.href ? localePath(link.href) : '#' + link.section"
                     @click.prevent="handleNavClick(link)"
                     class="box-border w-full rounded-sm border-2 border-accent-color px-1 py-0.5 text-center text-base no-underline hover:bg-accent-color-2 max-md:text-sm">
                     {{ link.label }}

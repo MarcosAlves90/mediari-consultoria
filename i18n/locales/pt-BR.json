@@ -112,6 +112,7 @@
         "description": "Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor."
     },
     "careers": {
+        "page_title": "Trabalhe Conosco",
         "section_subtitle": "OPORTUNIDADES DE CARREIRA",
         "section_title": "TRABALHE CONOSCO",
         "section_description": "Junte-se à nossa equipe de profissionais qualificados e faça parte de uma empresa comprometida com a excelência jurídica.",
@@ -149,6 +150,46 @@
             "Administrativo"
         ],
         "success_message": "Sua candidatura foi enviada com sucesso! Entraremos em contato em breve.",
-        "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente."
+        "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente.",
+        "profile_test": {
+            "title": "Teste de Perfil Comportamental",
+            "subtitle": "AVALIAÇÃO DE PERSONALIDADE",
+            "description": "Responda às perguntas abaixo de forma honesta para que possamos conhecer melhor seu perfil profissional.",
+            "instruction": "Para cada afirmação, selecione a opção que melhor descreve você:",
+            "scale": {
+                "strongly_disagree": "Discordo Totalmente",
+                "disagree": "Discordo",
+                "neutral": "Neutro",
+                "agree": "Concordo",
+                "strongly_agree": "Concordo Totalmente"
+            },
+            "questions": [
+                "Sou uma pessoa que gosta de trabalhar em equipe",
+                "Prefiro trabalhar com prazos bem definidos",
+                "Sou detalhista em minhas atividades",
+                "Gosto de assumir responsabilidades",
+                "Prefiro seguir processos estabelecidos",
+                "Sou uma pessoa comunicativa",
+                "Gosto de resolver problemas complexos",
+                "Sou organizado(a) com meus materiais de trabalho",
+                "Prefiro trabalhar de forma independente",
+                "Sou persistente quando enfrento dificuldades",
+                "Gosto de aprender coisas novas constantemente",
+                "Sou uma pessoa que se adapta facilmente a mudanças",
+                "Prefiro ter um ambiente de trabalho calmo",
+                "Gosto de dar feedback para colegas",
+                "Sou uma pessoa que planeja antes de agir",
+                "Prefiro trabalhar em projetos de longo prazo",
+                "Sou uma pessoa que toma decisões rapidamente",
+                "Gosto de ajudar colegas com dificuldades",
+                "Prefiro trabalhar com dados e informações precisas",
+                "Sou uma pessoa que se motiva com desafios"
+            ],
+            "submit": "Finalizar Teste",
+            "submitting": "Enviando respostas...",
+            "completion_title": "Teste Concluído!",
+            "completion_message": "Obrigado por completar o teste de perfil comportamental. Analisaremos suas respostas junto com sua candidatura e entraremos em contato em breve.",
+            "return_home": "Voltar ao Início"
+        }
     }
 }

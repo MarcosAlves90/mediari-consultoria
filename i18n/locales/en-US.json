@@ -109,6 +109,7 @@
         "description": "Legal consulting for small and medium businesses and individuals. Specialists in Labor, Banking, and Consumer Law."
     },
     "careers": {
+        "page_title": "Work with Us",
         "section_subtitle": "CAREER OPPORTUNITIES",
         "section_title": "WORK WITH US",
         "section_description": "Join our team of qualified professionals and be part of a company committed to legal excellence.",
@@ -146,6 +147,46 @@
             "Administrative"
         ],
         "success_message": "Your application has been submitted successfully! We will contact you soon.",
-        "error_message": "An error occurred while submitting your application. Please try again."
+        "error_message": "An error occurred while submitting your application. Please try again.",
+        "profile_test": {
+            "title": "Behavioral Profile Test",
+            "subtitle": "PERSONALITY ASSESSMENT",
+            "description": "Answer the questions below honestly so we can better understand your professional profile.",
+            "instruction": "For each statement, select the option that best describes you:",
+            "scale": {
+                "strongly_disagree": "Strongly Disagree",
+                "disagree": "Disagree",
+                "neutral": "Neutral",
+                "agree": "Agree",
+                "strongly_agree": "Strongly Agree"
+            },
+            "questions": [
+                "I am a person who likes to work in a team",
+                "I prefer to work with well-defined deadlines",
+                "I am detail-oriented in my activities",
+                "I like to take on responsibilities",
+                "I prefer to follow established processes",
+                "I am a communicative person",
+                "I like to solve complex problems",
+                "I am organized with my work materials",
+                "I prefer to work independently",
+                "I am persistent when facing difficulties",
+                "I like to constantly learn new things",
+                "I am a person who easily adapts to changes",
+                "I prefer to have a calm work environment",
+                "I like to give feedback to colleagues",
+                "I am a person who plans before acting",
+                "I prefer to work on long-term projects",
+                "I am a person who makes decisions quickly",
+                "I like to help colleagues with difficulties",
+                "I prefer to work with accurate data and information",
+                "I am a person who is motivated by challenges"
+            ],
+            "submit": "Finish Test",
+            "submitting": "Submitting answers...",
+            "completion_title": "Test Completed!",
+            "completion_message": "Thank you for completing the behavioral profile test. We will analyze your responses along with your application and contact you soon.",
+            "return_home": "Return Home"
+        }
     }
 }

@@ -17,6 +17,7 @@
  */
 export function useGoTo() {
     const router = useRouter();
+    
     const goTo = async (link: string) => {
         try {
             await router.push(link);
