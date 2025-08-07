@@ -13,10 +13,8 @@ const {
     homepage__section_description,
 } = useHomepageStyles();
 
-const { initializeMap } = useMap();
-
-// Initialize the map
-initializeMap();
+// Inicializa o mapa automaticamente no onMounted
+useMap();
 </script>
 
 <template>

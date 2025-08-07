@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { useSessionStorage } from "~/composables/useSessionStorage";
-import CareersHero from "~/components/organisms/CareersHero.vue";
-import JobApplicationForm from "~/components/organisms/JobApplicationForm.vue";
-import ProfileTest from "~/components/organisms/ProfileTest.vue";
-import CompletionScreen from "~/components/organisms/CompletionScreen.vue";
+import { useSessionStorage } from "@/composables/useSessionStorage";
+import CareersHero from "@/components/organisms/CareersHero.vue";
+import JobApplicationForm from "@/components/organisms/JobApplicationForm.vue";
+import ProfileTest from "@/components/organisms/ProfileTest.vue";
+import CompletionScreen from "@/components/organisms/CompletionScreen.vue";
 
 const { t } = useI18n();
 

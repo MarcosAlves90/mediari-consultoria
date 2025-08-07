@@ -130,11 +130,22 @@
             "cover_letter_placeholder": "Tell us why you would like to work with us",
             "privacy_consent": "I agree with the processing of my personal data according to LGPD",
             "submit_button": "Continue",
+            "submitting": "Submitting data...",
+            "success_title": "Application submitted successfully!",
+            "success_message": "We will contact you soon.",
             "required_field": "This field is required",
             "invalid_email": "Please enter a valid email",
             "invalid_phone": "Please enter a valid phone number",
             "file_too_large": "File must be no larger than 5MB",
-            "invalid_file_type": "Unsupported file format"
+            "invalid_file_type": "Unsupported file format",
+            "file_upload": {
+                "click_to_upload": "Click to upload",
+                "drag_file_here": " or drag file here",
+                "file_selected": "File selected",
+                "help_text": "Accepted formats: PDF, DOC, DOCX (max 5MB)",
+                "file_too_large": "File too large. Maximum allowed size: 5MB",
+                "invalid_file_type": "Invalid file type. Accepted formats: PDF, DOC, DOCX"
+            }
         },
         "areas": {
             "0": "Civil Law",
@@ -149,7 +160,7 @@
         "success_message": "Your application has been submitted successfully! We will contact you soon.",
         "error_message": "An error occurred while submitting your application. Please try again.",
         "profile_test": {
-            "title": "Behavioral Profile Test",
+            "title": "Behavioral Test",
             "subtitle": "PERSONALITY ASSESSMENT",
             "description": "Answer the questions below honestly so we can better understand your professional profile.",
             "instruction": "For each statement, select the option that best describes you:",
@@ -182,6 +193,7 @@
                 "18": "I prefer to work with accurate data and information",
                 "19": "I am a person who is motivated by challenges"
             },
+            "progress_text": "{answered} of {total} questions answered",
             "submit": "Finish Test",
             "submitting": "Submitting answers...",
             "completion_title": "Test Completed!",

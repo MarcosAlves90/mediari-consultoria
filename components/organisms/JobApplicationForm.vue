@@ -197,13 +197,13 @@
             <button
                 type="submit"
                 :class="submit_button"
-                :disabled="isSubmitting"
+                :disabled="isSubmitting || !isFormComplete"
             >
                 <span
                     v-if="isSubmitting"
-                    class="flex items-center justify-center gap-0.75"
+                    class="flex items-center justify-center gap-2"
                 >
-                    <Loader />
+                    <ButtonLoader />
                     {{ t("careers.form.submitting") }}
                 </span>
                 <span v-else>{{ t("careers.form.submit_button") }}</span>
@@ -217,7 +217,7 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useJobApplicationForm } from "~/composables/useJobApplicationForm";
 import FileUpload from "~/components/molecules/FileUpload.vue";
-import Loader from "~/components/atoms/Loader.vue";
+import ButtonLoader from "~/components/atoms/ButtonLoader.vue";
 
 interface Props {
     showSuccess?: boolean;
@@ -257,6 +257,7 @@ const {
     errors,
     isSubmitting,
     hasError,
+    isFormComplete,
     submitForm,
     formatPhone,
 } = useJobApplicationForm();

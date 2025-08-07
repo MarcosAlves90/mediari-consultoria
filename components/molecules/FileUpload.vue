@@ -38,14 +38,14 @@
 
                 <!-- Upload Text -->
                 <div v-if="!modelValue" class="text-sm text-primary-text">
-                    <span class="font-medium">Clique para enviar</span>
-                    <span class="text-secondary-text"> ou arraste o arquivo aqui</span>
+                    <span class="font-medium">{{ t("careers.form.file_upload.click_to_upload") }}</span>
+                    <span class="text-secondary-text">{{ t("careers.form.file_upload.drag_file_here") }}</span>
                 </div>
 
                 <!-- File Selected -->
                 <div v-else class="text-sm">
                     <div class="font-medium text-white mb-0.5">
-                        ✓ Arquivo selecionado
+                        ✓ {{ t("careers.form.file_upload.file_selected") }}
                     </div>
                     <div class="text-white">
                         {{ modelValue.name }}
@@ -69,7 +69,7 @@
         </div>
 
         <span class="text-xs text-secondary-text mt-0.5 block">
-            {{ helpText }}
+            {{ defaultHelpText }}
         </span>
         <span v-if="errorMessage" class="text-xs text-accent-color mt-0.5">
             {{ errorMessage }}
@@ -79,6 +79,9 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 interface Props {
     id: string;
@@ -100,9 +103,12 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
     maxSize: 5 * 1024 * 1024, // 5MB
     required: false,
-    helpText: 'Formatos aceitos: PDF, DOC, DOCX (máx. 5MB)',
     labelClasses: 'mb-0.75 text-sm font-medium text-primary-text max-md:mb-0.5',
 });
+
+const defaultHelpText = computed(() =>
+    props.helpText || t("careers.form.file_upload.help_text")
+);
 
 const emit = defineEmits<Emits>();
 
@@ -113,7 +119,7 @@ const hasError = computed(() => !!props.errorMessage);
 const processFile = (file: File) => {
     // Validate file size
     if (file.size > props.maxSize) {
-        emit('error', 'Arquivo muito grande. Tamanho máximo permitido: 5MB');
+        emit('error', t("careers.form.file_upload.file_too_large"));
         if (fileInput.value) {
             fileInput.value.value = "";
         }
@@ -128,7 +134,7 @@ const processFile = (file: File) => {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-        emit('error', 'Tipo de arquivo inválido. Formatos aceitos: PDF, DOC, DOCX');
+        emit('error', t("careers.form.file_upload.invalid_file_type"));
         if (fileInput.value) {
             fileInput.value.value = "";
         }

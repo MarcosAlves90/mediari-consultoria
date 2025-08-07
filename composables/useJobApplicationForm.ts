@@ -1,4 +1,4 @@
-import { ref, reactive, watch } from "vue";
+import { ref, reactive, watch, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useSessionStorage } from "./useSessionStorage";
 
@@ -280,12 +280,24 @@ export const useJobApplicationForm = () => {
         hasError.value = false;
     };
 
+    // Check if all required fields are filled (for button state)
+    const isFormComplete = computed(() => {
+        return formData.fullName.trim() !== "" &&
+               formData.email.trim() !== "" &&
+               formData.phone.trim() !== "" &&
+               formData.areaOfInterest.trim() !== "" &&
+               formData.experience.trim() !== "" &&
+               formData.resume !== null &&
+               formData.privacyConsent === true;
+    });
+
     return {
         // Form data and state
         formData,
         errors,
         isSubmitting,
         hasError,
+        isFormComplete,
 
         // Form methods
         validateForm,

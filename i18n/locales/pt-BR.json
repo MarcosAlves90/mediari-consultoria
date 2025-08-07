@@ -133,11 +133,22 @@
             "cover_letter_placeholder": "Conte-nos por que você gostaria de trabalhar conosco",
             "privacy_consent": "Concordo com o tratamento dos meus dados pessoais conforme a LGPD",
             "submit_button": "Continuar",
+            "submitting": "Enviando dados...",
+            "success_title": "Candidatura enviada com sucesso!",
+            "success_message": "Entraremos em contato em breve.",
             "required_field": "Este campo é obrigatório",
             "invalid_email": "Por favor, insira um e-mail válido",
             "invalid_phone": "Por favor, insira um telefone válido",
             "file_too_large": "O arquivo deve ter no máximo 5MB",
-            "invalid_file_type": "Formato de arquivo não suportado"
+            "invalid_file_type": "Formato de arquivo não suportado",
+            "file_upload": {
+                "click_to_upload": "Clique para enviar",
+                "drag_file_here": " ou arraste o arquivo aqui",
+                "file_selected": "Arquivo selecionado",
+                "help_text": "Formatos aceitos: PDF, DOC, DOCX (máx. 5MB)",
+                "file_too_large": "Arquivo muito grande. Tamanho máximo permitido: 5MB",
+                "invalid_file_type": "Tipo de arquivo inválido. Formatos aceitos: PDF, DOC, DOCX"
+            }
         },
         "areas": {
             "0": "Direito Civil",
@@ -152,7 +163,7 @@
         "success_message": "Sua candidatura foi enviada com sucesso! Entraremos em contato em breve.",
         "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente.",
         "profile_test": {
-            "title": "Teste de Perfil Comportamental",
+            "title": "Teste Comportamental",
             "subtitle": "AVALIAÇÃO DE PERSONALIDADE",
             "description": "Responda às perguntas abaixo de forma honesta para que possamos conhecer melhor seu perfil profissional.",
             "instruction": "Para cada afirmação, selecione a opção que melhor descreve você:",
@@ -185,6 +196,7 @@
                 "18": "Prefiro trabalhar com dados e informações precisas",
                 "19": "Sou uma pessoa que se motiva com desafios"
             },
+            "progress_text": "{answered} de {total} questões respondidas",
             "submit": "Finalizar Teste",
             "submitting": "Enviando respostas...",
             "completion_title": "Teste Concluído!",

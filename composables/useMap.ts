@@ -1,4 +1,4 @@
-import { onMounted } from 'vue';
+import { onMounted, nextTick } from 'vue';
 
 /**
  * Composable para gerenciar o mapa Leaflet
@@ -18,7 +18,11 @@ export const useMap = () => {
         shadowSize: [41, 41]
       });
 
-      onMounted(() => {
+      // Aguarda um tick para garantir que o DOM está pronto
+      await nextTick();
+
+      const mapElement = document.getElementById('map');
+      if (mapElement) {
         const map = L.map('map').setView([-23.61460809533691, -46.56925480555049], 15);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -28,9 +32,14 @@ export const useMap = () => {
         L.marker([-23.61460809533691, -46.56925480555049], { icon: redIcon }).addTo(map)
           .bindPopup('Edifício Monumental, Rua Amazonas, 439 - Centro, São Caetano do Sul, SP')
           .openPopup();
-      });
+      }
     }
   };
+
+  // Executa a inicialização quando o componente for montado
+  onMounted(() => {
+    initializeMap();
+  });
 
   return {
     initializeMap,

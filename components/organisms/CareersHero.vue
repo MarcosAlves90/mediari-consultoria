@@ -47,7 +47,7 @@ const section_description = "mt-0.5 text-base text-secondary-text max-md:text-ju
 
 @media (max-width: 768px) {
     .careers__hero {
-        padding-top: 60px;
+        padding-top: calc(88px + 40px);
     }
 }
 </style>
