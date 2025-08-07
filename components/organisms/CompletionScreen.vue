@@ -1,7 +1,7 @@
 <template>
     <div :class="completion_container">
         <div class="mb-2">
-            <svg class="w-16 h-16 text-green-500 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-7 h-7 text-green-500 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
         </div>
@@ -27,16 +27,18 @@
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 const goToHome = () => {
-    navigateTo('/');
+    // Use localePath to preserve the current locale when navigating
+    navigateTo(localePath('/'));
 };
 
 // Completion screen styling
-const completion_container = "text-center py-2 max-w-70 w-full bg-body-bg-dark rounded-sm border border-gray-600 p-8 max-md:p-4";
+const completion_container = "text-center py-2 max-w-70 w-full bg-body-bg-dark rounded-sm border-2 border-gray-600 p-8 max-md:p-4";
 const completion_title = "text-2xl text-primary-text mb-1 max-md:text-xl";
 const completion_message = "text-base text-secondary-text mb-2 max-md:text-sm";
-const home_button = "common-button mx-auto px-2 py-0.75";
+const home_button = "common-button mx-auto px-1.5 py-0.5";
 </script>
 
 <style scoped>

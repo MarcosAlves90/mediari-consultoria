@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import { useSessionStorage } from "~/composables/useSessionStorage";
 import CareersHero from "~/components/organisms/CareersHero.vue";
 import JobApplicationForm from "~/components/organisms/JobApplicationForm.vue";
 import ProfileTest from "~/components/organisms/ProfileTest.vue";
@@ -17,9 +18,33 @@ useSeoMeta({
     ogImage: "/mediari-logo.svg",
 });
 
+// Configurar sessionStorage para o estado atual do processo
+const [persistedState, setPersistedState, clearPersistedState] = useSessionStorage<{
+    currentStep: 'form' | 'test' | 'completed';
+    showSuccess: boolean;
+}>(
+    'mediari-careers-state',
+    {
+        currentStep: 'form',
+        showSuccess: false
+    }
+);
+
 // Current step state
-const currentStep = ref<'form' | 'test' | 'completed'>('form');
-const showSuccess = ref(false);
+const currentStep = ref<'form' | 'test' | 'completed'>(persistedState.value.currentStep);
+const showSuccess = ref(persistedState.value.showSuccess);
+
+// Sincronizar mudanças de estado com sessionStorage
+watch(
+    () => ({
+        currentStep: currentStep.value,
+        showSuccess: showSuccess.value
+    }),
+    (newState) => {
+        setPersistedState(newState);
+    },
+    { deep: true }
+);
 
 // Computed properties for hero content
 const heroTitle = computed(() => {
@@ -59,6 +84,14 @@ const onFormSubmitted = () => {
 
 const onTestCompleted = () => {
     currentStep.value = 'completed';
+    // Limpar todos os dados persistidos quando o processo for concluído
+    clearAllPersistedData();
+};
+
+// Função para limpar todos os dados persistidos
+const clearAllPersistedData = () => {
+    clearPersistedState();
+    // Os dados específicos do formulário e teste serão limpos pelos próprios composables
 };
 
 // Container classes

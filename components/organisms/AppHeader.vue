@@ -14,6 +14,13 @@ const { goTo } = useGoTo();
 const hamburguerMenuOpen = ref(false);
 const isNavbarSmall = ref(false);
 
+// Verifica se está na página inicial
+const isHomePage = computed(() => {
+    const currentPath = route.path;
+    const homePath = localePath('/');
+    return currentPath === homePath || currentPath === '/' || currentPath === '/pt-br' || currentPath === '/en-us';
+});
+
 interface ContactLink {
     href: string;
     icon: string;
@@ -62,6 +69,7 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const localePath = useLocalePath();
+const route = useRoute();
 
 const navLinks = computed(() => [
         { label: t('navbar.home'), section: 'banner-section' },
@@ -82,7 +90,7 @@ const handleNavClick = async (link: { section?: string, href?: string }) => {
         // Se não estiver na página inicial, vai para a página inicial primeiro
         const currentPath = window.location.pathname;
         const homePath = localePath('/');
-        
+
         if (currentPath !== homePath) {
             await goTo(homePath);
             // Aguarda a página carregar e então rola para a seção
@@ -117,14 +125,19 @@ onUnmounted(() => {
 
 <template>
     <header
-        class="app-header fixed top-0 right-0 left-0 z-99 border-b-2 border-transparent transition-colors duration-200 ease-in-out"
-        :class="{ 'app-header--small !border-accent-color': isNavbarSmall }">
+        class="app-header fixed top-0 right-0 left-0 z-99 border-b-2 transition-colors duration-200 ease-in-out"
+        :class="{
+            'app-header--small': isNavbarSmall,
+            'border-accent-color': isNavbarSmall,
+            'border-body-bg-dark': !isHomePage && !isNavbarSmall,
+            'border-transparent': isHomePage && !isNavbarSmall,
+        }">
         <div class="app-header__top flex items-center justify-center gap-1 bg-accent-color py-0.5 text-sm text-accent-text-color transition-[height] duration-200 ease-in-out max-md:justify-evenly"
             :class="{ 'app-header--small': isNavbarSmall }">
             <template v-for="(link, idx) in contactLinks" :key="idx">
                 <a v-if="link.show()"
                     class="app-header__top-link flex cursor-pointer items-center gap-0.5 rounded-sm no-underline transition-colors duration-200 ease-in-out hover:bg-body-bg-2"
-                    :href="link.href" 
+                    :href="link.href"
                     :target="link.target"
                     :rel="link.rel"
                     :aria-label="link.text">
@@ -136,8 +149,13 @@ onUnmounted(() => {
                 </a>
             </template>
         </div>
-        <div class="app-header__bottom flex items-center justify-center backdrop-blur-xs bg-body-bg-67 transition duration-200 ease-in-out"
-            :class="{ '!backdrop-blur-md': isNavbarSmall }">
+        <div class="app-header__bottom flex items-center justify-center transition duration-200 ease-in-out"
+            :class="{
+                '!backdrop-blur-md bg-body-bg-67': isNavbarSmall && isHomePage,
+                '!bg-body-bg': isNavbarSmall && !isHomePage,
+                'backdrop-blur-xs bg-body-bg-67': !isNavbarSmall && isHomePage,
+                'bg-body-bg': !isNavbarSmall && !isHomePage
+            }">
             <div
                 class="app-header__group flex w-full max-w-85 items-center justify-between px-4 py-1 text-base max-xl:px-2 max-lg:flex-wrap max-md:px-1">
                 <div class="app-header__logo-box flex items-center justify-center gap-1 cursor-pointer text-accent-color"
@@ -151,7 +169,7 @@ onUnmounted(() => {
                 </div>
                 <nav class="app-header__nav app-header__nav--desktop flex items-center justify-center gap-[2.8rem]"
                     v-if="screenWidth >= 1024">
-                    <a v-for="(link, idx) in navLinks" :key="`desktop-nav-${idx}`" 
+                    <a v-for="(link, idx) in navLinks" :key="`desktop-nav-${idx}`"
                         :href="link.href ? localePath(link.href) : '#' + link.section"
                         @click.prevent="handleNavClick(link)"
                         class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline">
@@ -179,11 +197,19 @@ onUnmounted(() => {
         </div>
         <Transition name="slide-fade-nav">
             <nav v-show="screenWidth < 1024 && hamburguerMenuOpen"
-                class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden bg-body-bg-67 border-t-2 border-b-2 border-accent-color backdrop-blur-sm max-h-[500px] opacity-100 visible">
-                <a v-for="(link, idx) in navLinks" :key="`mobile-nav-${idx}`" 
+                class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden border-t-2 border-b-2 backdrop-blur-sm max-h-[500px] opacity-100 visible"
+                :class="{
+                    'bg-body-bg-67 border-accent-color': isHomePage,
+                    'bg-white border-gray-400': !isHomePage
+                }">
+                <a v-for="(link, idx) in navLinks" :key="`mobile-nav-${idx}`"
                     :href="link.href ? localePath(link.href) : '#' + link.section"
                     @click.prevent="handleNavClick(link)"
-                    class="box-border w-full rounded-sm border-2 border-accent-color px-1 py-0.5 text-center text-base no-underline hover:bg-accent-color-2 max-md:text-sm">
+                    class="box-border w-full rounded-sm border-2 px-1 py-0.5 text-center text-base no-underline max-md:text-sm"
+                    :class="{
+                        'border-accent-color hover:bg-accent-color-2': isHomePage,
+                        'border-gray-400 hover:bg-gray-100': !isHomePage
+                    }">
                     {{ link.label }}
                 </a>
             </nav>

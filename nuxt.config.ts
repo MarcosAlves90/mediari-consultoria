@@ -109,14 +109,14 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'pt-br',
-        iso: 'pt-BR',
-        file: 'pt-BR.json',
+        iso: 'pt-br',
+        file: 'pt-br.json',
         name: 'Português (Brasil)'
       },
       {
         code: 'en-us',
-        iso: 'en-US',
-        file: 'en-US.json',
+        iso: 'en-us',
+        file: 'en-us.json',
         name: 'English (US)'
       }
     ],

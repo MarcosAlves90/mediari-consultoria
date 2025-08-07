@@ -185,7 +185,7 @@ const formatFileSize = (bytes: number): string => {
 <style scoped>
 /* File upload area styling */
 .file-upload-area {
-    min-height: 80px;
+    min-height: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,8 +210,8 @@ const formatFileSize = (bytes: number): string => {
 
 @media (max-width: 768px) {
     .file-upload-area {
-        min-height: 70px;
-        padding: 0.75rem;
+        min-height: 60px;
+        padding: 0.625rem;
     }
 
     .file-upload-area svg {
