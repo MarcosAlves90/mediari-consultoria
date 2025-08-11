@@ -160,7 +160,6 @@
             "6": "Consultivo",
             "7": "Administrativo"
         },
-        "success_message": "Sua candidatura foi enviada com sucesso! Entraremos em contato em breve.",
         "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente.",
         "profile_test": {
             "title": "Teste Comportamental",
@@ -202,6 +201,61 @@
             "completion_title": "Teste Concluído!",
             "completion_message": "Obrigado por completar o teste de perfil comportamental. Analisaremos suas respostas junto com sua candidatura e entraremos em contato em breve.",
             "return_home": "Voltar ao Início"
+        }
+    },
+    "admin": {
+        "login": {
+            "page_title": "Login Administrativo",
+            "page_description": "Acesso restrito para administradores do sistema",
+            "title": "Painel Administrativo",
+            "welcome_back": "Bem-vindo de volta!",
+            "welcome_message": "Faça login para acessar o painel administrativo da Mediari Consultoria.",
+            "email": "E-mail",
+            "password": "Senha",
+            "password_placeholder": "Digite sua senha",
+            "sign_in": "Entrar",
+            "logging_in": "Entrando...",
+            "error_title": "Erro de Autenticação",
+            "invalid_credentials": "E-mail ou senha incorretos. Tente novamente.",
+            "server_error": "Erro no servidor. Tente novamente em alguns minutos."
+        },
+        "nav": {
+            "candidates": "Candidaturas",
+            "back_to_site": "Voltar ao Site",
+            "welcome": "Bem-vindo",
+            "logout": "Sair",
+            "logging_out": "Saindo..."
+        },
+        "footer": {
+            "copyright": "©",
+            "admin_panel": "Painel Administrativo"
+        },
+        "candidates": {
+            "page_title": "Análise de Candidaturas",
+            "page_description": "Visualize e analise todas as candidaturas recebidas através do formulário 'Trabalhe Conosco'",
+            "candidates_list": "Lista de Candidatos",
+            "total_applications": "{count} candidatura(s) recebida(s)",
+            "refresh": "Atualizar",
+            "search_placeholder": "Buscar por nome ou e-mail...",
+            "all_areas": "Todas as áreas",
+            "loading": "Carregando candidaturas...",
+            "no_results": "Nenhum resultado encontrado para os filtros aplicados.",
+            "no_candidates": "Nenhuma candidatura recebida ainda.",
+            "test_score": "Teste",
+            "select_candidate": "Selecione um candidato",
+            "select_candidate_description": "Escolha um candidato da lista ao lado para visualizar suas informações detalhadas.",
+            "submitted_on": "Enviado em",
+            "download_resume": "Baixar Currículo",
+            "resume_file": "Arquivo do Currículo",
+            "no_file": "Nenhum arquivo anexado",
+            "completion_rate": "Taxa de Conclusão",
+            "test_summary": "Resumo do Teste Comportamental",
+            "positive_responses": "Respostas Positivas",
+            "neutral_responses": "Respostas Neutras",
+            "negative_responses": "Respostas Negativas",
+            "average_score": "Média Geral",
+            "behavioral_insights": "Perfil Comportamental",
+            "no_answer": "Não respondido"
         }
     }
 }

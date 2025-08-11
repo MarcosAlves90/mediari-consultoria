@@ -81,7 +81,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useProfileTest } from "~/composables/useProfileTest";
+import { useProfileTest } from "~/composables/trabalhe-conosco";
 import ButtonLoader from "~/components/atoms/ButtonLoader.vue";
 
 interface Emits {

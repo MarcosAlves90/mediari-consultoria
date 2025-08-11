@@ -215,7 +215,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { useJobApplicationForm } from "~/composables/useJobApplicationForm";
+import { useJobApplicationForm } from "~/composables/trabalhe-conosco";
 import FileUpload from "~/components/molecules/FileUpload.vue";
 import ButtonLoader from "~/components/atoms/ButtonLoader.vue";
 
