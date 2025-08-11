@@ -43,7 +43,6 @@ const heroTags = ref<string[]>([
 
 const teamImages = ref<string[]>([
     'fernanda-assis_sqa0ag_didohw.webp',
-    'letícia-ferreira_qliwdi_aw9w4j.webp',
     'lucas-jesus_svwujc_fwxeqy.webp',
     'millena-vieira_kbs5vt_lzhvnu.webp',
     'mylena-barboza_ermcjh_rq4laa.webp',
@@ -310,10 +309,10 @@ const homepage__container = 'py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 m
                 <p id="team-description" class="homepage__section_description" :class="homepage__section_description">
                     {{ t('team.description') }}
                 </p>
-                <div class="homepage__team-list grid gap-0.5 mt-1 grid-cols-7 max-xl:grid-cols-5 max-lg:grid-cols-4 max-sm:grid-cols-2"
+                <div class="homepage__team-list grid gap-0.5 mt-1 grid-cols-6 max-xl:grid-cols-4 max-lg:grid-cols-3 max-sm:grid-cols-2"
                     role="list">
                     <div v-for="(img, idx) in teamImages" :key="idx"
-                        class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 lg:hover:scale-105"
+                        class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 lg:hover:scale-105 aspect-[3/4.5]"
                         role="listitem">
                         <NuxtImg :src="img" loading="lazy" provider="cloudinary"
                             :alt="`Foto do membro da equipe ${getNome(img)}`"
