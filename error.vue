@@ -3,7 +3,8 @@ import type { PropType } from 'vue';
 import { useGoTo } from '@/utils/useGoTo';
 import { useI18n } from 'vue-i18n';
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
+const localePath = useLocalePath();
 
 const props = defineProps({
     error: {
@@ -27,7 +28,7 @@ defineOgImageComponent('Mediari', {
 const { goTo } = useGoTo();
 
 function goHome() {
-    goTo(locale.value === 'en-US' ? '/en-US' : '/');
+    goTo(localePath('/'));
 }
 </script>
 

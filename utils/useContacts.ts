@@ -1,28 +1,56 @@
+import { CONTACT_INFO } from '~/constants';
+
 /**
- * Uma função util que fornece métodos utilitários para interagir com opções de contato.
- * Inclui métodos para abrir o discador de telefone, o cliente de email e redirecionar para um link específico.
- *
+ * Composable para gerenciar interações de contato
+ * Fornece métodos utilitários para interagir com opções de contato da empresa.
+ * 
  * @returns Um objeto contendo os seguintes métodos:
- * - `openPhoneDialer`: Abre o discador de telefone com um número de telefone predefinido.
- * - `openMailTo`: Abre o cliente de email padrão com um endereço de email predefinido.
- * - `openLink`: Redireciona para um link específico.
+ * - `openPhoneDialer`: Abre o discador de telefone com o número da empresa
+ * - `openMailTo`: Abre o cliente de email padrão com o email da empresa
+ * - `openLinkInBrowser`: Abre um link em nova aba com configurações de segurança
+ * - `getContactInfo`: Retorna as informações de contato da empresa
  */
 export function useContacts() {
-    function openPhoneDialer() {
-        const phoneNumber = "+551142273008";
-        const phoneLink = `tel:${phoneNumber}`;
+    /**
+     * Abre o discador de telefone com o número da empresa
+     */
+    function openPhoneDialer(): void {
+        const phoneLink = `tel:${CONTACT_INFO.phone}`;
         window.location.href = phoneLink;
     }
 
-    function openMailTo() {
-        const email = "contato@mediari.com.br";
-        const mailtoLink = `mailto:${email}`;
+    /**
+     * Abre o cliente de email padrão com o email da empresa
+     */
+    function openMailTo(): void {
+        const mailtoLink = `mailto:${CONTACT_INFO.email}`;
         window.location.href = mailtoLink;
     }
 
-    const openLinkInBrowser = (link: string) => {
-        window.open(link, '_blank', 'noopener');
+    /**
+     * Abre um link em nova aba com configurações de segurança
+     * @param link - URL para abrir
+     */
+    function openLinkInBrowser(link: string): void {
+        if (!link) {
+            console.warn('Link não fornecido para openLinkInBrowser');
+            return;
+        }
+        
+        window.open(link, '_blank', 'noopener,noreferrer');
     }
 
-    return { openPhoneDialer, openMailTo, openLinkInBrowser };
+    /**
+     * Retorna as informações de contato da empresa
+     */
+    function getContactInfo() {
+        return CONTACT_INFO;
+    }
+
+    return { 
+        openPhoneDialer, 
+        openMailTo, 
+        openLinkInBrowser,
+        getContactInfo 
+    };
 }

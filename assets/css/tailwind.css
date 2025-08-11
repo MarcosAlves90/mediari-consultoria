@@ -17,7 +17,7 @@
     --color-accent-color-5: rgba(var(--color-accent-color-rgb), 0.5);
     --color-accent-color-3: rgba(var(--color-accent-color-rgb), 0.3);
     --color-accent-color-2: rgba(var(--color-accent-color-rgb), 0.2);
-    
+
     /* Cor de destaque escura */
     --color-accent-dark-color: #480000;
 
@@ -32,7 +32,7 @@
     --color-body-bg-25: rgba(var(--color-body-bg-rgb), 0.25);
     --color-body-bg-2: rgba(var(--color-body-bg-rgb), 0.2);
     --color-body-bg-05: rgba(var(--color-body-bg-rgb), 0.05);
-    
+
     /* Fundo escuro */
     --color-body-bg-dark: #ebebeb;
 

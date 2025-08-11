@@ -6,7 +6,9 @@ import { useScrollToSection } from '@/utils/useScrollToSection';
 import { useContacts } from '@/utils/useContacts';
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
-const { t, locale, locales, setLocale } = useI18n();
+const { t, locale, locales } = useI18n();
+const router = useRouter();
+const switchLocalePath = useSwitchLocalePath();
 
 const { goTo } = useGoTo();
 const screenWidth = useScreenWidth();
@@ -26,6 +28,7 @@ const footerNavLinks = computed(() => [
     { label: t('navbar.founder'), section: 'seo-section' },
     { label: t('navbar.team'), section: 'team-section' },
     { label: t('navbar.contact'), section: 'contact-section' },
+    { label: t('navbar.careers'), href: '/trabalhe-conosco' },
 ]);
 
 const footerAreasGroups = computed(() => [
@@ -44,13 +47,23 @@ const footerAreasGroups = computed(() => [
 
 const availableLocales = locales.value;
 
-const handleFooterNavClick = (id: string) => {
-    scrollToSection(id);
+const localePath = useLocalePath();
+
+const handleFooterNavClick = (link: { section?: string, href?: string }) => {
+    if (link.href) {
+        // Para links com href, usa o localePath para garantir o locale correto
+        const localizedPath = localePath(link.href);
+        goTo(localizedPath);
+    } else if (link.section) {
+        scrollToSection(link.section);
+    }
 };
 
-const changeLanguage = async (newLocale: "pt-BR" | "en-US") => {
+const changeLanguage = async (newLocale: "pt-br" | "en-us") => {
     if (locale.value !== newLocale) {
-        await setLocale(newLocale);
+        // Usa switchLocalePath para navegar para a mesma página no novo idioma
+        const localizedPath = switchLocalePath(newLocale);
+        await router.push(localizedPath);
     }
 };
 
@@ -125,9 +138,9 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
                         <div :class="[footer__nav_section_util, 'footer__nav-section']">
                             <p :class="[footer__nav_title]">{{ t('footer.menu_title') }}</p>
                             <ul :class="[footer__nav_ul_util]">
-                                <li v-for="item in footerNavLinks" :key="item.section">
-                                    <a :class="[footer__nav_a_util]" href="/"
-                                        @click.prevent="handleFooterNavClick(item.section)">{{ item.label }}</a>
+                                <li v-for="(item, idx) in footerNavLinks" :key="`nav-${idx}`">
+                                    <a :class="[footer__nav_a_util]" :href="item.href ? item.href : '/'"
+                                        @click.prevent="handleFooterNavClick(item)">{{ item.label }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -150,7 +163,7 @@ const footer__nav_title = 'text-xl border-b-2 border-body-bg max-lg:text-lg';
                 :class="[footer__container_util, 'footer__container text-box footer-location-display !flex-col py-2 px-4']">
                 <div class="flex items-center justify-center mb-1 gap-2">
                     <a v-for="lang in availableLocales" :key="lang.code"
-                        @click.prevent="changeLanguage(lang.code as 'pt-BR' | 'en-US')" :class="[
+                        @click.prevent="changeLanguage(lang.code as 'pt-br' | 'en-us')" :class="[
                             'rounded text-sm transition-opacity text-body-bg opacity-100 hover:opacity-50 max-lg:text-xs'
                         ]" href="#">
                         {{ locale === lang.code ? '> ' : '' }}{{ lang.name }}

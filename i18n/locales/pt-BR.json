@@ -74,11 +74,12 @@
     },
     "navbar": {
         "home": "Início",
-        "services": "Áreas de Atuação",
+        "services": "Serviços",
         "enterprise": "Empresa",
         "founder": "Fundador",
         "team": "Equipe",
-        "contact": "Fale conosco"
+        "contact": "Contato",
+        "careers": "Carreiras"
     },
     "footer": {
         "highlights": [
@@ -109,5 +110,152 @@
     "seo": {
         "title": "Direito para Empresas e Pessoas Físicas",
         "description": "Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor."
+    },
+    "careers": {
+        "page_title": "Trabalhe Conosco",
+        "section_subtitle": "OPORTUNIDADES DE CARREIRA",
+        "section_title": "TRABALHE CONOSCO",
+        "section_description": "Junte-se à nossa equipe de profissionais qualificados e faça parte de uma empresa comprometida com a excelência jurídica.",
+        "form": {
+            "full_name": "Nome Completo",
+            "full_name_placeholder": "Digite seu nome completo",
+            "email": "E-mail",
+            "email_placeholder": "Digite seu e-mail",
+            "phone": "Telefone",
+            "phone_placeholder": "(11) 99999-9999",
+            "area_of_interest": "Área de Interesse",
+            "area_of_interest_placeholder": "Selecione uma área",
+            "experience": "Experiência Profissional",
+            "experience_placeholder": "Descreva brevemente sua experiência",
+            "resume": "Currículo",
+            "resume_placeholder": "Anexe seu currículo (PDF, DOC, DOCX)",
+            "cover_letter": "Carta de Apresentação",
+            "cover_letter_placeholder": "Conte-nos por que você gostaria de trabalhar conosco",
+            "privacy_consent": "Concordo com o tratamento dos meus dados pessoais conforme a LGPD",
+            "submit_button": "Continuar",
+            "submitting": "Enviando dados...",
+            "success_title": "Candidatura enviada com sucesso!",
+            "success_message": "Entraremos em contato em breve.",
+            "required_field": "Este campo é obrigatório",
+            "invalid_email": "Por favor, insira um e-mail válido",
+            "invalid_phone": "Por favor, insira um telefone válido",
+            "file_too_large": "O arquivo deve ter no máximo 5MB",
+            "invalid_file_type": "Formato de arquivo não suportado",
+            "file_upload": {
+                "click_to_upload": "Clique para enviar",
+                "drag_file_here": " ou arraste o arquivo aqui",
+                "file_selected": "Arquivo selecionado",
+                "help_text": "Formatos aceitos: PDF, DOC, DOCX (máx. 5MB)",
+                "file_too_large": "Arquivo muito grande. Tamanho máximo permitido: 5MB",
+                "invalid_file_type": "Tipo de arquivo inválido. Formatos aceitos: PDF, DOC, DOCX"
+            }
+        },
+        "areas": {
+            "0": "Direito Civil",
+            "1": "Direito Penal",
+            "2": "Direito Trabalhista",
+            "3": "Direito do Consumidor",
+            "4": "Direito Bancário",
+            "5": "Contratos",
+            "6": "Consultivo",
+            "7": "Administrativo"
+        },
+        "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente.",
+        "profile_test": {
+            "title": "Teste Comportamental",
+            "subtitle": "AVALIAÇÃO DE PERSONALIDADE",
+            "description": "Responda às perguntas abaixo de forma honesta para que possamos conhecer melhor seu perfil profissional.",
+            "instruction": "Para cada afirmação, selecione a opção que melhor descreve você:",
+            "scale": {
+                "strongly_disagree": "Discordo Totalmente",
+                "disagree": "Discordo",
+                "neutral": "Neutro",
+                "agree": "Concordo",
+                "strongly_agree": "Concordo Totalmente"
+            },
+            "questions": {
+                "0": "Sou uma pessoa que gosta de trabalhar em equipe",
+                "1": "Prefiro trabalhar com prazos bem definidos",
+                "2": "Sou detalhista em minhas atividades",
+                "3": "Gosto de assumir responsabilidades",
+                "4": "Prefiro seguir processos estabelecidos",
+                "5": "Sou uma pessoa comunicativa",
+                "6": "Gosto de resolver problemas complexos",
+                "7": "Sou organizado(a) com meus materiais de trabalho",
+                "8": "Prefiro trabalhar de forma independente",
+                "9": "Sou persistente quando enfrento dificuldades",
+                "10": "Gosto de aprender coisas novas constantemente",
+                "11": "Sou uma pessoa que se adapta facilmente a mudanças",
+                "12": "Prefiro ter um ambiente de trabalho calmo",
+                "13": "Gosto de dar feedback para colegas",
+                "14": "Sou uma pessoa que planeja antes de agir",
+                "15": "Prefiro trabalhar em projetos de longo prazo",
+                "16": "Sou uma pessoa que toma decisões rapidamente",
+                "17": "Gosto de ajudar colegas com dificuldades",
+                "18": "Prefiro trabalhar com dados e informações precisas",
+                "19": "Sou uma pessoa que se motiva com desafios"
+            },
+            "progress_text": "{answered} de {total} questões respondidas",
+            "submit": "Finalizar Teste",
+            "submitting": "Enviando respostas...",
+            "completion_title": "Teste Concluído!",
+            "completion_message": "Obrigado por completar o teste de perfil comportamental. Analisaremos suas respostas junto com sua candidatura e entraremos em contato em breve.",
+            "return_home": "Voltar ao Início"
+        }
+    },
+    "admin": {
+        "login": {
+            "page_title": "Login Administrativo",
+            "page_description": "Acesso restrito para administradores do sistema",
+            "title": "Painel Administrativo",
+            "welcome_back": "Bem-vindo de volta!",
+            "welcome_message": "Faça login para acessar o painel administrativo da Mediari Consultoria.",
+            "email": "E-mail",
+            "password": "Senha",
+            "password_placeholder": "Digite sua senha",
+            "sign_in": "Entrar",
+            "logging_in": "Entrando...",
+            "error_title": "Erro de Autenticação",
+            "invalid_credentials": "E-mail ou senha incorretos. Tente novamente.",
+            "server_error": "Erro no servidor. Tente novamente em alguns minutos."
+        },
+        "nav": {
+            "candidates": "Candidaturas",
+            "back_to_site": "Voltar ao Site",
+            "welcome": "Bem-vindo",
+            "logout": "Sair",
+            "logging_out": "Saindo..."
+        },
+        "footer": {
+            "copyright": "©",
+            "admin_panel": "Painel Administrativo"
+        },
+        "candidates": {
+            "page_title": "Análise de Candidaturas",
+            "page_description": "Visualize e analise todas as candidaturas recebidas através do formulário 'Trabalhe Conosco'",
+            "candidates_list": "Lista de Candidatos",
+            "total_applications": "{count} candidatura(s) recebida(s)",
+            "refresh": "Atualizar",
+            "search_placeholder": "Buscar por nome ou e-mail...",
+            "all_areas": "Todas as áreas",
+            "loading": "Carregando candidaturas...",
+            "no_results": "Nenhum resultado encontrado para os filtros aplicados.",
+            "no_candidates": "Nenhuma candidatura recebida ainda.",
+            "test_score": "Teste",
+            "select_candidate": "Selecione um candidato",
+            "select_candidate_description": "Escolha um candidato da lista ao lado para visualizar suas informações detalhadas.",
+            "submitted_on": "Enviado em",
+            "download_resume": "Baixar Currículo",
+            "resume_file": "Arquivo do Currículo",
+            "no_file": "Nenhum arquivo anexado",
+            "completion_rate": "Taxa de Conclusão",
+            "test_summary": "Resumo do Teste Comportamental",
+            "positive_responses": "Respostas Positivas",
+            "neutral_responses": "Respostas Neutras",
+            "negative_responses": "Respostas Negativas",
+            "average_score": "Média Geral",
+            "behavioral_insights": "Perfil Comportamental",
+            "no_answer": "Não respondido"
+        }
     }
 }
