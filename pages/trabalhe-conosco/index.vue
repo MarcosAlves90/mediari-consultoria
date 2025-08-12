@@ -16,7 +16,7 @@ import {
     JobApplicationForm,
     ProfileTest,
     CompletionScreen
-} from "@/components/trabalhe-conosco";
+} from "~/components/page-trabalhe-conosco";
 
 // Composable para internacionalização
 const { t } = useI18n();

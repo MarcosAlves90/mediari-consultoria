@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { AdminLogin } from "@/components/admin";
+import { AdminLogin } from "~/components/page-admin";
 
 /**
  * Configura as meta tags de SEO para a página de login administrativa.

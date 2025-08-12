@@ -4,7 +4,7 @@
             <div
                 v-for="(question, index) in questions"
                 :key="index"
-                class="border border-gray-200 rounded-lg p-1"
+                class="bg-accent-color-2/30 rounded p-1"
             >
                 <div class="flex items-start justify-between">
                     <div class="flex-1 pr-1">
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Summary -->
-        <div class="mt-1.5 bg-gray-50 rounded-lg p-1">
+        <div class="mt-1.5 bg-body-bg rounded p-1">
             <h3 class="text-sm font-medium text-primary-text mb-0.75">
                 {{ t("admin.candidates.test_summary") }}
             </h3>
@@ -83,7 +83,7 @@
         </div>
 
         <!-- Behavioral Insights -->
-        <div class="mt-1.5 bg-blue-50 rounded-lg p-1">
+        <div class="mt-1.5 bg-accent-color-2/30 rounded p-1">
             <h3 class="text-sm font-medium text-primary-text mb-0.75">
                 {{ t("admin.candidates.behavioral_insights") }}
             </h3>
@@ -116,66 +116,72 @@
     </div>
 </template><script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import ScaleBar from "@/components/atoms/ScaleBar.vue";
+import ScaleBar from "~/components/page-trabalhe-conosco/atoms/ScaleBar.vue";
 
-interface Props {
-    answers: Record<number, number>;
-    questions: string[];
-    scaleOptions: Array<{ value: number; label: string }>;
+export interface ScaleOption {
+    value: number;
+    label: string;
 }
 
-const props = defineProps<Props>();
+export interface BehavioralCategory {
+    category: string;
+    questionIndexes: number[];
+}
+
+export interface ProfileTestResultsProps {
+    answers: Record<number, number>;
+    questions: string[];
+    scaleOptions: ScaleOption[];
+    behavioralCategories?: BehavioralCategory[];
+}
+
+const defaultCategories: BehavioralCategory[] = [
+    { category: "Trabalho em Equipe", questionIndexes: [0, 5, 13, 17] },
+    { category: "Organização", questionIndexes: [1, 2, 7, 14] },
+    { category: "Liderança", questionIndexes: [3, 6, 9, 16] },
+    { category: "Adaptabilidade", questionIndexes: [8, 10, 11, 19] },
+    { category: "Detalhismo", questionIndexes: [2, 4, 18] },
+    { category: "Independência", questionIndexes: [8, 12, 15] }
+];
+
+const props = defineProps<ProfileTestResultsProps>();
 const { t } = useI18n();
 
-const getScoreLabel = (score: number): string => {
+function getScoreLabel(score: number): string {
     const option = props.scaleOptions.find(opt => opt.value === score);
     return option?.label || t("admin.candidates.no_answer");
-};
+}
 
-const getScoreColorClass = (score: number): string => {
+function getScoreColorClass(score: number): string {
     if (score >= 4) return "bg-green-100 text-green-800";
     if (score === 3) return "bg-yellow-100 text-yellow-800";
     if (score >= 1) return "bg-red-100 text-red-800";
     return "bg-gray-100 text-gray-800";
-};
+}
 
-const getScoreCount = (min: number, max: number): number => {
+function getScoreCount(min: number, max: number): number {
     return Object.values(props.answers).filter(score => score >= min && score <= max).length;
-};
+}
 
-const calculateAverageScore = (): number => {
+function calculateAverageScore(): number {
     const scores = Object.values(props.answers);
     if (scores.length === 0) return 0;
     const sum = scores.reduce((acc, score) => acc + score, 0);
     return sum / scores.length;
-};
+}
 
-const getBehavioralInsights = () => {
-    // Map specific questions to behavioral categories
-    const categories = {
-        "Trabalho em Equipe": [0, 5, 13, 17], // Team-related questions
-        "Organização": [1, 2, 7, 14], // Organization-related questions
-        "Liderança": [3, 6, 9, 16], // Leadership-related questions
-        "Adaptabilidade": [8, 10, 11, 19], // Adaptability-related questions
-        "Detalhismo": [2, 4, 18], // Detail-oriented questions
-        "Independência": [8, 12, 15] // Independence-related questions
-    };
-
-    return Object.entries(categories).map(([category, questionIndexes]) => {
+function getBehavioralInsights(): Array<{ category: string; score: number }> {
+    const categories = props.behavioralCategories || defaultCategories;
+    return categories.map(({ category, questionIndexes }) => {
         const relevantAnswers = questionIndexes
             .map(index => props.answers[index])
             .filter(answer => answer !== undefined);
-
         const averageScore = relevantAnswers.length > 0
             ? relevantAnswers.reduce((sum, score) => sum + score, 0) / relevantAnswers.length
             : 0;
-
-        return {
-            category,
-            score: averageScore
-        };
+        return { category, score: averageScore };
     }).sort((a, b) => b.score - a.score);
-};
+}
 </script>
 
 <style scoped>

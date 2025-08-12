@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import HeroSection from '@/components/organisms/HeroSection.vue';
-import ServicesSection from '@/components/organisms/ServicesSection.vue';
-import CompanySection from '@/components/organisms/CompanySection.vue';
-import CEOSection from '@/components/organisms/CEOSection.vue';
-import TeamSection from '@/components/organisms/TeamSection.vue';
-import ContactSection from '@/components/organisms/ContactSection.vue';
+import HeroSection from '~/components/page-index/organisms/HeroSection.vue';
+import ServicesSection from '~/components/page-index/organisms/ServicesSection.vue';
+import CompanySection from '~/components/page-index/organisms/CompanySection.vue';
+import CEOSection from '~/components/page-index/organisms/CEOSection.vue';
+import TeamSection from '~/components/page-index/organisms/TeamSection.vue';
+import ContactSection from '~/components/page-index/organisms/ContactSection.vue';
 </script>
 
 <template>
@@ -17,7 +17,3 @@ import ContactSection from '@/components/organisms/ContactSection.vue';
         <ContactSection />
     </main>
 </template>
-
-<style scoped>
-/* Estilos específicos da homepage foram movidos para os componentes individuais */
-</style>

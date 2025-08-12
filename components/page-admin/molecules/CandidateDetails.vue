@@ -1,7 +1,7 @@
 <template>
-    <div v-if="!candidate" class="bg-body-bg-dark rounded-lg shadow border border-gray-200 p-2 text-center">
-        <Icon name="mdi:account-outline" class="w-4 h-4 text-gray-400 mx-auto mb-1" />
-        <h3 class="text-lg font-medium text-primary-text mb-0.5">
+    <div v-if="!candidate" class="bg-body-bg-dark rounded p-2 text-center border-2 border-accent-color">
+        <Icon name="mdi:account-outline" size="50" class="text-secondary-text mx-auto mb-0.5" />
+        <h3 class="text-lg font-medium text-secondary-text mb-0.5">
             {{ t("admin.candidates.select_candidate") }}
         </h3>
         <p class="text-secondary-text">
@@ -11,7 +11,7 @@
 
     <div v-else class="space-y-1.5">
         <!-- Personal Information -->
-        <div class="bg-body-bg-dark rounded-lg shadow border border-gray-200">
+        <div class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <div class="flex items-start justify-between mb-1">
                     <div>
@@ -26,7 +26,7 @@
                         <button
                             @click="$emit('download-resume')"
                             :disabled="!candidate.resumeUrl"
-                            class="inline-flex items-center px-0.75 py-0.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-primary-text bg-body-bg-dark hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-accent-color disabled:opacity-50"
+                            class="common-button"
                         >
                             <Icon name="mdi:download" class="w-1 h-1 mr-0.5" />
                             {{ t("admin.candidates.download_resume") }}
@@ -64,31 +64,31 @@
         </div>
 
         <!-- Experience -->
-        <div class="bg-body-bg-dark rounded-lg shadow border border-gray-200">
+        <div class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <h3 class="text-lg font-semibold text-primary-text mb-0.75">
                     {{ t("careers.form.experience") }}
                 </h3>
-                <div class="prose prose-sm max-w-none">
-                    <p class="text-primary-text whitespace-pre-wrap">{{ candidate.experience }}</p>
+                <div class="prose prose-xs max-w-none">
+                    <p class="text-sm text-primary-text whitespace-pre-wrap">{{ candidate.experience }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Cover Letter -->
-        <div v-if="candidate.coverLetter" class="bg-body-bg-dark rounded-lg shadow border border-gray-200">
+        <div v-if="candidate.coverLetter" class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <h3 class="text-lg font-semibold text-primary-text mb-0.75">
                     {{ t("careers.form.cover_letter") }}
                 </h3>
-                <div class="prose prose-sm max-w-none">
-                    <p class="text-primary-text whitespace-pre-wrap">{{ candidate.coverLetter }}</p>
+                <div class="prose prose-xs max-w-none">
+                    <p class="text-sm text-primary-text whitespace-pre-wrap">{{ candidate.coverLetter }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Profile Test Results -->
-        <div v-if="candidate.testAnswers" class="bg-body-bg-dark rounded-lg shadow border border-gray-200">
+        <div v-if="candidate.testAnswers" class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <div class="flex items-center justify-between mb-1">
                     <h3 class="text-lg font-semibold text-primary-text">

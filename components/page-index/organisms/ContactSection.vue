@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import ContactCard from '@/components/molecules/ContactCard.vue';
-import { useContacts } from '@/utils/useContacts';
-import { useHomepageStyles } from '@/composables/useHomepageStyles';
+import ContactCard from '~/components/page-index/molecules/ContactCard.vue';
+import { useContacts } from '~/utils/useContacts';
+import { useHomepageStyles } from '~/composables/useHomepageStyles';
 
 const { t } = useI18n();
 const { openPhoneDialer, openMailTo, openLinkInBrowser } = useContacts();
