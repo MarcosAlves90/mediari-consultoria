@@ -117,7 +117,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import type { Candidate } from "~/composables/admin/useAdminCandidates";
-import ProfileTestResults from "./ProfileTestResults.vue";
+import ProfileTestResults from "~/components/page-admin/molecules/ProfileTestResults.vue";
 
 interface Props {
     candidate: Candidate | null;
