@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+const localePath = useLocalePath();
+
+const goToHome = () => {
+    // Use localePath to preserve the current locale when navigating
+    navigateTo(localePath('/'));
+};
+
+// Completion screen styling
+const completion_container = "text-center py-2 max-w-70 w-full bg-body-bg-dark rounded-sm border-2 border-gray-600 p-8 max-md:p-2";
+const completion_title = "text-2xl text-primary-text mb-1 max-md:text-xl";
+const completion_message = "text-base text-secondary-text mb-2 max-md:text-sm";
+const home_button = "common-button mx-auto px-1.5 py-0.5";
+</script>
+
 <template>
     <div :class="completion_container">
         <div class="mb-2">
@@ -22,24 +40,6 @@
         </button>
     </div>
 </template>
-
-<script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
-const { t } = useI18n();
-const localePath = useLocalePath();
-
-const goToHome = () => {
-    // Use localePath to preserve the current locale when navigating
-    navigateTo(localePath('/'));
-};
-
-// Completion screen styling
-const completion_container = "text-center py-2 max-w-70 w-full bg-body-bg-dark rounded-sm border-2 border-gray-600 p-8 max-md:p-2";
-const completion_title = "text-2xl text-primary-text mb-1 max-md:text-xl";
-const completion_message = "text-base text-secondary-text mb-2 max-md:text-sm";
-const home_button = "common-button mx-auto px-1.5 py-0.5";
-</script>
 
 <style scoped>
 /* Completion screen styling */

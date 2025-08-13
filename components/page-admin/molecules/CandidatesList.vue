@@ -1,53 +1,85 @@
+
 <script setup lang="ts">
+// Importações de dependências do Vue e componentes
 import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import type { Candidate } from "~/composables/admin/useAdminCandidates";
 import Loader from "~/components/atoms/Loader.vue";
 
+/**
+ * Propriedades esperadas pelo componente CandidatesList
+ * @property candidates - Lista de candidatos recebida como prop
+ * @property selectedCandidate - Candidato atualmente selecionado
+ * @property isLoading - Indica se os dados estão sendo carregados
+ */
 interface Props {
     candidates: Candidate[];
     selectedCandidate: Candidate | null;
     isLoading: boolean;
 }
 
+/**
+ * Eventos emitidos pelo componente
+ * @event select - Emite o candidato selecionado
+ */
 interface Emits {
     (e: 'select', candidate: Candidate): void;
 }
 
+// Definição das props e eventos
 const props = defineProps<Props>();
-const emit = defineEmits<Emits>();
+defineEmits<Emits>();
 const { t } = useI18n();
 
-// Search and filter
-const searchQuery = ref("");
-const selectedArea = ref("");
+// ===============================
+// Estados reativos para busca e filtro
+// ===============================
+const searchQuery = ref(""); // Armazena o texto da busca
+const selectedArea = ref(""); // Armazena a área selecionada para filtro
 
-// Computed properties
+// ===============================
+// Propriedades computadas
+// ===============================
+
+/**
+ * Retorna uma lista de áreas de interesse únicas dos candidatos
+ */
 const areas = computed(() => {
-    const uniqueAreas = new Set(props.candidates.map((c: any) => c.areaOfInterest));
+    const uniqueAreas = new Set(props.candidates.map((c: Candidate) => c.areaOfInterest));
     return Array.from(uniqueAreas).sort();
 });
 
+/**
+ * Filtra e ordena os candidatos conforme busca e área selecionada
+ */
 const filteredCandidates = computed(() => {
     let filtered = props.candidates;
 
+    // Filtra por nome ou e-mail se houver busca
     if (searchQuery.value) {
         const query = searchQuery.value.toLowerCase();
-        filtered = filtered.filter((candidate: any) =>
+        filtered = filtered.filter((candidate: Candidate) =>
             candidate.fullName.toLowerCase().includes(query) ||
             candidate.email.toLowerCase().includes(query)
         );
     }
 
+    // Filtra por área de interesse se selecionada
     if (selectedArea.value) {
-        filtered = filtered.filter((candidate: any) =>
+        filtered = filtered.filter((candidate: Candidate) =>
             candidate.areaOfInterest === selectedArea.value
         );
     }
 
-    return filtered.sort((a: any, b: any) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
+    // Ordena por data de envio (mais recente primeiro)
+    return filtered.sort((a: Candidate, b: Candidate) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
 });
 
+/**
+ * Formata a data de envio do candidato para o padrão brasileiro
+ * @param dateString - Data em formato string
+ * @returns Data formatada (dd/mm/aaaa hh:mm)
+ */
 const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
         day: '2-digit',
@@ -60,14 +92,22 @@ const formatDate = (dateString: string) => {
 </script>
 
 <template>
-    <div class="bg-body-bg-dark rounded border-2 border-accent-color">
-        <div class="p-1 border-b-2 border-body-bg">
-            <h2 class="text-lg font-semibold text-primary-text">
+    <!--
+        Componente de listagem de candidatos
+        - Permite busca por nome ou e-mail
+        - Permite filtrar por área de interesse
+        - Exibe estados de carregamento e vazio
+        - Emite evento ao selecionar um candidato
+    -->
+    <div class="bg-body-bg-dark rounded border-2 border-accent-color h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 flex flex-col">
+        <div class="border-b-2 border-body-bg flex-shrink-0">
+            <h2 class="text-lg font-semibold text-body-bg bg-accent-color px-1 py-0.5">
                 {{ t("admin.candidates.candidates_list") }}
             </h2>
 
-            <!-- Search and Filter -->
-            <div class="mt-0.75 space-y-0.75">
+            <!-- Área de busca e filtro -->
+            <div class="space-y-0.75 px-1 py-1">
+                <!-- Campo de busca por nome ou e-mail -->
                 <input
                     v-model="searchQuery"
                     type="text"
@@ -75,6 +115,7 @@ const formatDate = (dateString: string) => {
                     class="w-full px-0.75 py-0.5 bg-body-bg rounded focus:outline-none focus:ring-accent-color focus:border-accent-color text-sm border-2 border-accent-color"
                 />
 
+                <!-- Seleção de área de interesse -->
                 <select
                     v-model="selectedArea"
                     class="w-full px-0.75 py-0.5 bg-body-bg rounded focus:outline-none focus:ring-accent-color focus:border-accent-color text-sm border-2 border-accent-color"
@@ -87,24 +128,29 @@ const formatDate = (dateString: string) => {
             </div>
         </div>
 
-        <!-- Loading State -->
-        <div v-if="isLoading" class="p-1 text-center">
+        <!-- Estado de carregamento -->
+        <div v-if="isLoading" class="p-1 text-center flex-shrink-0">
             <Loader />
             <p class="text-secondary-text text-sm mt-0.5">
                 {{ t("admin.candidates.loading") }}
             </p>
         </div>
 
-        <!-- Empty State -->
-        <div v-else-if="filteredCandidates.length === 0" class="p-1.5 text-center">
-            <Icon name="mdi:account-search" class="w-3 h-3 text-gray-400 mx-auto mb-0.75" />
+        <!-- Estado vazio (nenhum candidato ou nenhum resultado) -->
+        <div v-else-if="filteredCandidates.length === 0" class="p-1.5 text-center flex-shrink-0">
+            <div class="w-3 h-3 text-gray-400 mx-auto mb-0.75 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
             <p class="text-secondary-text">
                 {{ searchQuery || selectedArea ? t("admin.candidates.no_results") : t("admin.candidates.no_candidates") }}
             </p>
         </div>
 
-        <!-- Candidates List -->
-        <div v-else class="divide-y divide-gray-200 max-h-30 overflow-y-auto">
+        <!-- Lista de candidatos -->
+        <div v-else class="divide-y divide-gray-200 overflow-y-auto flex-1">
+            <!-- Item de candidato -->
             <div
                 v-for="candidate in filteredCandidates"
                 :key="candidate.id"
@@ -116,21 +162,26 @@ const formatDate = (dateString: string) => {
             >
                 <div class="flex items-start justify-between">
                     <div class="flex-1 min-w-0">
+                        <!-- Nome do candidato -->
                         <h3 class="text-sm font-medium text-primary-text truncate">
                             {{ candidate.fullName }}
                         </h3>
+                        <!-- E-mail do candidato -->
                         <p class="text-xs text-secondary-text truncate">
                             {{ candidate.email }}
                         </p>
                         <div class="flex items-center mt-0.25 gap-0.5">
+                            <!-- Área de interesse -->
                             <span class="inline-flex items-center px-0.5 py-0.125 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                 {{ candidate.areaOfInterest }}
                             </span>
+                            <!-- Nota do teste, se houver -->
                             <span v-if="candidate.testScore" class="text-xs text-secondary-text">
                                 {{ t("admin.candidates.test_score") }}: {{ candidate.testScore }}%
                             </span>
                         </div>
                     </div>
+                    <!-- Data de envio da candidatura -->
                     <div class="text-xs text-secondary-text">
                         {{ formatDate(candidate.submittedAt) }}
                     </div>

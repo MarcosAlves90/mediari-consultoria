@@ -1,17 +1,3 @@
-<template>
-    <div :class="containerClass">
-        <div
-            v-for="i in max"
-            :key="i"
-            :class="[
-                'rounded-full transition-colors duration-200',
-                barClass,
-                i <= value ? activeBarClass : inactiveBarClass
-            ]"
-        ></div>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from "vue";
 
@@ -50,3 +36,17 @@ const inactiveBarClass = computed(() => {
     return 'bg-gray-200';
 });
 </script>
+
+<template>
+    <div :class="containerClass">
+        <div
+            v-for="i in max"
+            :key="i"
+            :class="[
+                'rounded-full transition-colors duration-200',
+                barClass,
+                i <= value ? activeBarClass : inactiveBarClass
+            ]"
+        ></div>
+    </div>
+</template>

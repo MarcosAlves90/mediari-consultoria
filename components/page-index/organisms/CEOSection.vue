@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { useHomepageStyles } from '@/composables/useHomepageStyles';
-import { useTextUtils } from '@/composables/useTextUtils';
+import { useHomepageStyles } from '~/composables/useHomepageStyles';
+import { useTextUtils } from '~/composables/useTextUtils';
 
 const { t } = useI18n();
 const {

@@ -1,4 +1,10 @@
 <template>
+    <!--
+        Componente de detalhes do candidato
+        - Exibe informações pessoais, experiência, carta de apresentação e resultados do teste de perfil
+        - Permite download do currículo
+        - Mostra mensagem caso nenhum candidato esteja selecionado
+    -->
     <div v-if="!candidate" class="bg-body-bg-dark rounded p-2 text-center border-2 border-accent-color">
         <Icon name="mdi:account-outline" size="50" class="text-secondary-text mx-auto mb-0.5" />
         <h3 class="text-lg font-medium text-secondary-text mb-0.5">
@@ -10,11 +16,12 @@
     </div>
 
     <div v-else class="space-y-1.5">
-        <!-- Personal Information -->
+        <!-- Informações pessoais do candidato -->
         <div class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <div class="flex items-start justify-between mb-1">
                     <div>
+                        <!-- Nome completo e data de envio -->
                         <h2 class="text-xl font-semibold text-primary-text">
                             {{ candidate.fullName }}
                         </h2>
@@ -23,36 +30,51 @@
                         </p>
                     </div>
                     <div class="flex gap-0.5">
-                        <button
-                            @click="$emit('download-resume')"
-                            :disabled="!candidate.resumeUrl"
-                            class="common-button"
+                        <!-- Botão para abrir o currículo em nova aba -->
+                        <a
+                            v-if="candidate.resumeUrl"
+                            :href="candidate.resumeUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="common-button flex items-center"
                         >
-                            <Icon name="mdi:download" class="w-1 h-1 mr-0.5" />
-                            {{ t("admin.candidates.download_resume") }}
+                            <Icon name="mdi:open-in-new" class="w-1 h-1 mr-0.5" />
+                            {{ t("admin.candidates.open_resume") }}
+                        </a>
+                        <button
+                            v-else
+                            class="common-button opacity-50 cursor-not-allowed"
+                            disabled
+                        >
+                            <Icon name="mdi:open-in-new" class="w-1 h-1 mr-0.5" />
+                            {{ t("admin.candidates.open_resume") }}
                         </button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+                    <!-- E-mail -->
                     <div>
                         <label class="block text-sm font-medium text-secondary-text mb-0.25">
                             {{ t("careers.form.email") }}
                         </label>
                         <p class="text-primary-text">{{ candidate.email }}</p>
                     </div>
+                    <!-- Telefone -->
                     <div>
                         <label class="block text-sm font-medium text-secondary-text mb-0.25">
                             {{ t("careers.form.phone") }}
                         </label>
                         <p class="text-primary-text">{{ candidate.phone }}</p>
                     </div>
+                    <!-- Área de interesse -->
                     <div>
                         <label class="block text-sm font-medium text-secondary-text mb-0.25">
                             {{ t("careers.form.area_of_interest") }}
                         </label>
                         <p class="text-primary-text">{{ candidate.areaOfInterest }}</p>
                     </div>
+                    <!-- Nome do arquivo do currículo -->
                     <div>
                         <label class="block text-sm font-medium text-secondary-text mb-0.25">
                             {{ t("admin.candidates.resume_file") }}
@@ -63,7 +85,7 @@
             </div>
         </div>
 
-        <!-- Experience -->
+        <!-- Experiência profissional -->
         <div class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <h3 class="text-lg font-semibold text-primary-text mb-0.75">
@@ -75,7 +97,7 @@
             </div>
         </div>
 
-        <!-- Cover Letter -->
+        <!-- Carta de apresentação -->
         <div v-if="candidate.coverLetter" class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <h3 class="text-lg font-semibold text-primary-text mb-0.75">
@@ -87,7 +109,7 @@
             </div>
         </div>
 
-        <!-- Profile Test Results -->
+        <!-- Resultados do teste de perfil -->
         <div v-if="candidate.testAnswers" class="bg-body-bg-dark rounded border-2 border-accent-color">
             <div class="p-1.5">
                 <div class="flex items-center justify-between mb-1">
@@ -115,25 +137,38 @@
 </template>
 
 <script setup lang="ts">
+// Importações de dependências e componentes
 import { useI18n } from "vue-i18n";
 import type { Candidate } from "~/composables/admin/useAdminCandidates";
 import ProfileTestResults from "~/components/page-admin/molecules/ProfileTestResults.vue";
 
+/**
+ * Propriedades esperadas pelo componente CandidateDetails
+ * @property candidate - Objeto do candidato selecionado (ou null)
+ * @property profileQuestions - Lista de perguntas do teste de perfil
+ * @property scaleOptions - Opções de escala para respostas do teste
+ */
 interface Props {
     candidate: Candidate | null;
     profileQuestions: string[];
     scaleOptions: Array<{ value: number; label: string }>;
 }
 
-interface Emits {
-    (e: 'download-resume'): void;
-}
+/**
+ * Eventos emitidos pelo componente
+ * (nenhum evento relacionado ao currículo é mais emitido)
+ */
 
+// Definição das props
 defineProps<Props>();
-defineEmits<Emits>();
 
 const { t } = useI18n();
 
+/**
+ * Formata a data de envio do candidato para o padrão brasileiro
+ * @param dateString - Data em formato string
+ * @returns Data formatada (dd/mm/aaaa hh:mm)
+ */
 const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
         day: '2-digit',

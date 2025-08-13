@@ -217,7 +217,9 @@
             "logging_in": "Entrando...",
             "error_title": "Erro de Autenticação",
             "invalid_credentials": "E-mail ou senha incorretos. Tente novamente.",
-            "server_error": "Erro no servidor. Tente novamente em alguns minutos."
+            "server_error": "Erro no servidor. Tente novamente em alguns minutos.",
+            "hide_password": "Ocultar senha",
+            "show_password": "Mostrar senha"
         },
         "nav": {
             "candidates": "Candidaturas",
@@ -246,6 +248,7 @@
             "select_candidate_description": "Escolha um candidato da lista ao lado para visualizar suas informações detalhadas.",
             "submitted_on": "Enviado em",
             "download_resume": "Baixar Currículo",
+            "open_resume": "Abrir Currículo",
             "resume_file": "Arquivo do Currículo",
             "no_file": "Nenhum arquivo anexado",
             "completion_rate": "Taxa de Conclusão",

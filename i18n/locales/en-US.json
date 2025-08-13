@@ -214,7 +214,9 @@
             "logging_in": "Signing in...",
             "error_title": "Authentication Error",
             "invalid_credentials": "Incorrect email or password. Please try again.",
-            "server_error": "Server error. Please try again in a few minutes."
+            "server_error": "Server error. Please try again in a few minutes.",
+            "hide_password": "Hide password",
+            "show_password": "Show password"
         },
         "nav": {
             "candidates": "Applications",
@@ -243,6 +245,7 @@
             "select_candidate_description": "Choose a candidate from the list on the side to view their detailed information.",
             "submitted_on": "Submitted on",
             "download_resume": "Download Resume",
+            "open_resume": "Open Resume",
             "resume_file": "Resume File",
             "no_file": "No file attached",
             "completion_rate": "Completion Rate",

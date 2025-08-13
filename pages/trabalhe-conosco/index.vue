@@ -10,7 +10,7 @@
 
 import { ref, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { useSessionStorage } from "@/composables/useSessionStorage";
+import { useSessionStorage } from "~/composables/useSessionStorage";
 import {
     CareersHero,
     JobApplicationForm,
