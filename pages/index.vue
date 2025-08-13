@@ -4,6 +4,7 @@ import ServicesSection from '~/components/page-index/organisms/ServicesSection.v
 import CompanySection from '~/components/page-index/organisms/CompanySection.vue';
 import CEOSection from '~/components/page-index/organisms/CEOSection.vue';
 import TeamSection from '~/components/page-index/organisms/TeamSection.vue';
+import SocialActionSection from '~/components/page-index/organisms/SocialActionSection.vue';
 import ContactSection from '~/components/page-index/organisms/ContactSection.vue';
 </script>
 
@@ -14,6 +15,7 @@ import ContactSection from '~/components/page-index/organisms/ContactSection.vue
         <CompanySection />
         <CEOSection />
         <TeamSection />
+        <SocialActionSection />
         <ContactSection />
     </main>
 </template>

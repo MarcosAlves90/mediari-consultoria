@@ -16,7 +16,7 @@ const {
 
 <template>
     <section id="contact-section"
-        class="homepage__contact homepage__contact--gray-bg w-full flex justify-center items-center" role="region"
+        class="homepage__contact homepage__contact--gray-bg w-full flex justify-center items-center bg-body-bg-dark" role="region"
         aria-labelledby="contact-heading" aria-describedby="contact-description">
         <div :class="[homepage__container, 'homepage__contact-content max-w-85 w-full']">
             <p id="contact-heading" class="homepage__section-subtitle" :class="homepage__section_subtitle">
