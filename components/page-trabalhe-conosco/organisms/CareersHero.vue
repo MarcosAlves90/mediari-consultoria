@@ -42,7 +42,7 @@ const section_description = "mt-0.5 text-base text-secondary-text max-md:text-ju
 
 <style scoped>
 .careers__hero {
-    padding-top: calc(88px + 44.8px); /* Account for header height */
+    padding-top: calc(88px + 44.8px);
 }
 
 @media (max-width: 768px) {

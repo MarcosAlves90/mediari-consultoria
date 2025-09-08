@@ -2,6 +2,7 @@
 
 import { useProfileTest } from "~/composables/trabalhe-conosco";
 import { useI18n } from "vue-i18n";
+import { ref, onMounted, watch } from "vue";
 import ButtonLoader from "~/components/atoms/ButtonLoader.vue";
 
 interface Emits {
@@ -25,6 +26,31 @@ const handleSubmit = async () => {
     const success = await submitProfileTest();
     if (success) emit('completed');
 };
+
+// utilitário de shuffle (Fisher-Yates)
+function shuffleArray<T>(arr: T[]) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+// matriz com as opções de cada grupo já embaralhadas
+const shuffledOptions = ref<Array<Array<{ key: string; label: string }>>>([]);
+
+const buildShuffledOptions = () => {
+    const groups = (GROUPS || []) as Array<Record<string, string>>;
+    shuffledOptions.value = groups.map((g) => {
+        const keys = ['A', 'B', 'C', 'D'];
+        const opts = keys.map((k) => ({ key: k, label: g[k] }));
+        return shuffleArray(opts);
+    });
+};
+
+onMounted(buildShuffledOptions);
+watch(() => GROUPS, buildShuffledOptions, { immediate: true });
 
 const progress_bar = "w-full bg-accent-color-2 rounded h-1 mb-2";
 const progress_fill = "bg-accent-color h-1 rounded transition-all duration-300";
@@ -62,29 +88,29 @@ const submit_button = "common-button w-full text-base font-medium !min-h-[48px] 
 
         <div class="space-y-1.5 mb-2">
             <div
-                v-for="(group, index) in GROUPS"
+                v-for="(_, index) in GROUPS"
                 :key="index"
                 :class="question_container"
             >
                 <div :class="scale_container">
                     <label
-                        v-for="key in ['A','B','C','D']"
-                        :key="key"
+                        v-for="option in (shuffledOptions[index] || [])"
+                        :key="option.key"
                         :class="[
                             'scale-option',
                             scale_option,
-                            profileTestAnswers[index] === key ? 'selected' : ''
+                            profileTestAnswers[index] === option.key ? 'selected' : ''
                         ]"
                     >
                         <input
                             :name="`group-${index}`"
-                            :value="key"
+                            :value="option.key"
                             type="radio"
                             v-model="profileTestAnswers[index]"
                             :class="scale_radio"
                         />
                         <div class="radio-indicator"></div>
-                        <span :class="scale_label">{{ group[key] }}</span>
+                        <span :class="scale_label">{{ option.label }}</span>
                     </label>
                 </div>
             </div>
