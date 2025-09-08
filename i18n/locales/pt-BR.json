@@ -114,7 +114,57 @@
     "socialAction": {
         "section_subtitle": "RESPONSABILIDADE SOCIAL",
         "section_title": "AÇÕES SOCIAIS",
-        "section_description": "Acreditamos no poder transformador do direito e nos dedicamos a projetos que promovem justiça social e impacto positivo na comunidade."
+        "section_description": "Acreditamos no poder transformador do direito e nos dedicamos a projetos que promovem justiça social e impacto positivo na comunidade.",
+        "actions": {
+            "abrigo_irma_tereza": {
+                "name": "Abrigo Irmã Tereza",
+                "description": "Doação de produtos de higiene e fraldas geriátricas e mantimentos para apoiar os idosos do abrigo.",
+                "impact": "Idosos assistidos",
+                "category": "Assistência Social"
+            },
+            "instituto_tuh": {
+                "name": "Instituto TUH",
+                "description": "Doação de cestas básicas para famílias em situação vulnerável, garantindo segurança alimentar.",
+                "impact": "Famílias atendidas",
+                "category": "Segurança Alimentar"
+            },
+            "tragedia_rio_grande_sul": {
+                "name": "Tragédia Rio Grande do Sul",
+                "description": "Doação de roupas, calçados e mantimentos para vítimas da tragédia climática no RS.",
+                "impact": "Vítimas assistidas",
+                "category": "Emergência Social"
+            },
+            "casa_florescer": {
+                "name": "Casa Florescer (LGBTQIA+)",
+                "description": "Doação de roupas de cama e kits de higiene para apoiar a comunidade LGBTQIA+ em vulnerabilidade.",
+                "impact": "Pessoas apoiadas",
+                "category": "Direitos Humanos"
+            },
+            "nucleo_menino_jesus": {
+                "name": "Núcleo Menino Jesus",
+                "description": "Doação de mantimentos (leite, bolacha e pães) para crianças em situação de vulnerabilidade.",
+                "impact": "Crianças alimentadas",
+                "category": "Proteção Infantil"
+            },
+            "instituto_losurdo": {
+                "name": "Instituto Losurdo",
+                "description": "Doação de cestas básicas para famílias necessitadas, promovendo dignidade e segurança alimentar.",
+                "impact": "Famílias beneficiadas",
+                "category": "Assistência Social"
+            },
+            "instituto_borboleta_azul": {
+                "name": "Instituto Borboleta Azul",
+                "description": "Doação de materiais para pintar, desenhar e jogos interativos para desenvolvimento educacional.",
+                "impact": "Crianças beneficiadas",
+                "category": "Educação e Arte"
+            },
+            "projeto_social_abencoe": {
+                "name": "Projeto Social Abençoe",
+                "description": "Doação de mantimentos, produtos de higiene e brinquedos para crianças carentes do sertão.",
+                "impact": "Crianças do sertão",
+                "category": "Proteção Infantil"
+            }
+        }
     },
     "careers": {
         "page_title": "Trabalhe Conosco",

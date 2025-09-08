@@ -1,18 +1,59 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useHomepageStyles } from '~/composables/useHomepageStyles';
-import { SOCIAL_ACTIONS } from '~/constants';
 
 const { t } = useI18n();
 const {
-    homepage__container,
-    homepage__section_title,
-    homepage__section_subtitle,
-    homepage__section_description,
+        homepage__container,
+        homepage__section_title,
+        homepage__section_subtitle,
+        homepage__section_description,
 } = useHomepageStyles();
 
-// Doações Mediari - Ações sociais realizadas
-const socialActions = SOCIAL_ACTIONS;
+// Tipos: mantemos separação entre os dados brutos (chaves de i18n)
+// e o objeto final que a view consome (com textos já traduzidos).
+interface SocialActionRaw {
+    id: number;
+    nameKey: string;
+    descriptionKey: string;
+    impactKey: string;
+    categoryKey: string;
+    icon: string;
+}
+
+interface SocialAction {
+    id: number;
+    name: string;
+    description: string;
+    impact: string;
+    category: string;
+    icon: string;
+}
+
+// Dados estáticos — apenas chaves de tradução e meta (icone/id).
+const rawActions: SocialActionRaw[] = [
+    { id: 1, nameKey: 'socialAction.actions.abrigo_irma_tereza.name', descriptionKey: 'socialAction.actions.abrigo_irma_tereza.description', impactKey: 'socialAction.actions.abrigo_irma_tereza.impact', categoryKey: 'socialAction.actions.abrigo_irma_tereza.category', icon: 'mdi:heart-plus-outline' },
+    { id: 2, nameKey: 'socialAction.actions.instituto_tuh.name', descriptionKey: 'socialAction.actions.instituto_tuh.description', impactKey: 'socialAction.actions.instituto_tuh.impact', categoryKey: 'socialAction.actions.instituto_tuh.category', icon: 'mdi:food-outline' },
+    { id: 3, nameKey: 'socialAction.actions.tragedia_rio_grande_sul.name', descriptionKey: 'socialAction.actions.tragedia_rio_grande_sul.description', impactKey: 'socialAction.actions.tragedia_rio_grande_sul.impact', categoryKey: 'socialAction.actions.tragedia_rio_grande_sul.category', icon: 'mdi:hand-heart-outline' },
+    { id: 4, nameKey: 'socialAction.actions.casa_florescer.name', descriptionKey: 'socialAction.actions.casa_florescer.description', impactKey: 'socialAction.actions.casa_florescer.impact', categoryKey: 'socialAction.actions.casa_florescer.category', icon: 'mdi:home-heart' },
+    { id: 5, nameKey: 'socialAction.actions.nucleo_menino_jesus.name', descriptionKey: 'socialAction.actions.nucleo_menino_jesus.description', impactKey: 'socialAction.actions.nucleo_menino_jesus.impact', categoryKey: 'socialAction.actions.nucleo_menino_jesus.category', icon: 'mdi:baby-face-outline' },
+    { id: 6, nameKey: 'socialAction.actions.instituto_losurdo.name', descriptionKey: 'socialAction.actions.instituto_losurdo.description', impactKey: 'socialAction.actions.instituto_losurdo.impact', categoryKey: 'socialAction.actions.instituto_losurdo.category', icon: 'mdi:basket-fill' },
+    { id: 7, nameKey: 'socialAction.actions.instituto_borboleta_azul.name', descriptionKey: 'socialAction.actions.instituto_borboleta_azul.description', impactKey: 'socialAction.actions.instituto_borboleta_azul.impact', categoryKey: 'socialAction.actions.instituto_borboleta_azul.category', icon: 'mdi:palette-outline' },
+    { id: 8, nameKey: 'socialAction.actions.projeto_social_abencoe.name', descriptionKey: 'socialAction.actions.projeto_social_abencoe.description', impactKey: 'socialAction.actions.projeto_social_abencoe.impact', categoryKey: 'socialAction.actions.projeto_social_abencoe.category', icon: 'mdi:gift-outline' }
+];
+
+// Computed: resolve as traduções dinamicamente — mantém reatividade quando o idioma muda.
+const socialActions = computed<SocialAction[]>(() =>
+    rawActions.map((a) => ({
+        id: a.id,
+        name: t(a.nameKey),
+        description: t(a.descriptionKey),
+        impact: t(a.impactKey),
+        category: t(a.categoryKey),
+        icon: a.icon,
+    }))
+);
 </script>
 
 <template>

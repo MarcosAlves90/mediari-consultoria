@@ -111,7 +111,57 @@
     "socialAction": {
         "section_subtitle": "SOCIAL RESPONSIBILITY",
         "section_title": "SOCIAL ACTIONS",
-        "section_description": "We believe in the transformative power of law and dedicate ourselves to projects that promote social justice and positive impact in the community."
+        "section_description": "We believe in the transformative power of law and dedicate ourselves to projects that promote social justice and positive impact in the community.",
+        "actions": {
+            "abrigo_irma_tereza": {
+                "name": "Sister Tereza Shelter",
+                "description": "Donation of hygiene products, geriatric diapers, and groceries to support elderly residents at the shelter.",
+                "impact": "Elderly assisted",
+                "category": "Social Assistance"
+            },
+            "instituto_tuh": {
+                "name": "TUH Institute",
+                "description": "Donation of basic food baskets to vulnerable families, ensuring food security.",
+                "impact": "Families served",
+                "category": "Food Security"
+            },
+            "tragedia_rio_grande_sul": {
+                "name": "Rio Grande do Sul Tragedy",
+                "description": "Donation of clothing, footwear, and groceries to victims of the climate tragedy in RS.",
+                "impact": "Victims assisted",
+                "category": "Social Emergency"
+            },
+            "casa_florescer": {
+                "name": "Casa Florescer (LGBTQIA+)",
+                "description": "Donation of bedding and hygiene kits to support the vulnerable LGBTQIA+ community.",
+                "impact": "People supported",
+                "category": "Human Rights"
+            },
+            "nucleo_menino_jesus": {
+                "name": "Baby Jesus Center",
+                "description": "Donation of groceries (milk, cookies, and bread) for children in vulnerable situations.",
+                "impact": "Children fed",
+                "category": "Child Protection"
+            },
+            "instituto_losurdo": {
+                "name": "Losurdo Institute",
+                "description": "Donation of basic food baskets to needy families, promoting dignity and food security.",
+                "impact": "Families benefited",
+                "category": "Social Assistance"
+            },
+            "instituto_borboleta_azul": {
+                "name": "Blue Butterfly Institute",
+                "description": "Donation of painting, drawing materials, and interactive games for educational development.",
+                "impact": "Children benefited",
+                "category": "Education and Arts"
+            },
+            "projeto_social_abencoe": {
+                "name": "Abençoe Social Project",
+                "description": "Donation of groceries, hygiene products, and toys for underprivileged children in the countryside.",
+                "impact": "Countryside children",
+                "category": "Child Protection"
+            }
+        }
     },
     "careers": {
         "page_title": "Work with Us",
