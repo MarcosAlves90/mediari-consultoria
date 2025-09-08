@@ -46,7 +46,7 @@ const teamImages = ref<string[]>([
     'lucas-jesus_svwujc_fwxeqy.webp',
     'millena-vieira_kbs5vt_lzhvnu.webp',
     'mylena-barboza_ermcjh_rq4laa.webp',
-    'roberta-curcios_nokbvj_pyym69.webp',
+    'roberta-curcio_nokbvj_pyym69.webp',
     'ingrid-pacheco_uuazeo_usy5vx.webp'
 ]);
 
