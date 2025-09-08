@@ -216,42 +216,11 @@
         "profile_test": {
             "title": "Behavioral Test",
             "subtitle": "PERSONALITY ASSESSMENT",
-            "description": "Answer the questions below honestly so we can better understand your professional profile.",
-            "instruction": "For each statement, select the option that best describes you:",
-            "scale": {
-                "strongly_disagree": "Strongly Disagree",
-                "disagree": "Disagree",
-                "neutral": "Neutral",
-                "agree": "Agree",
-                "strongly_agree": "Strongly Agree"
-            },
-            "questions": {
-                "0": "I am a person who likes to work in a team",
-                "1": "I prefer to work with well-defined deadlines",
-                "2": "I am detail-oriented in my activities",
-                "3": "I like to take on responsibilities",
-                "4": "I prefer to follow established processes",
-                "5": "I am a communicative person",
-                "6": "I like to solve complex problems",
-                "7": "I am organized with my work materials",
-                "8": "I prefer to work independently",
-                "9": "I am persistent when facing difficulties",
-                "10": "I like to constantly learn new things",
-                "11": "I am a person who easily adapts to changes",
-                "12": "I prefer to have a calm work environment",
-                "13": "I like to give feedback to colleagues",
-                "14": "I am a person who plans before acting",
-                "15": "I prefer to work on long-term projects",
-                "16": "I am a person who makes decisions quickly",
-                "17": "I like to help colleagues with difficulties",
-                "18": "I prefer to work with accurate data and information",
-                "19": "I am a person who is motivated by challenges"
-            },
+            "description": "For each group of options below, select the one that best describes you and answer honestly to help us understand your professional profile.",
             "progress_text": "{answered} of {total} questions answered",
             "submit": "Finish Test",
             "submitting": "Submitting answers...",
             "completion_title": "Test Completed!",
-            "completion_message": "Thank you for completing the behavioral profile test. We will analyze your responses along with your application and contact you soon.",
             "return_home": "Return Home"
         }
     },

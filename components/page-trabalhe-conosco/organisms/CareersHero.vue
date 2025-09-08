@@ -34,10 +34,10 @@ interface Props {
 defineProps<Props>();
 
 // CSS classes
-const container_classes = "py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 max-md:px-1";
+const container_classes = "py-4.5 px-4 max-lg:py-3.5 max-xl:px-2 max-md:py-2 max-md:px-1 flex items-center justify-center flex-col";
 const section_title = "text-4xl text-primary-text max-md:text-center max-md:text-2xl";
 const section_subtitle = "font-scheherazade text-xl font-bold text-accent-color max-md:text-center max-md:text-lg";
-const section_description = "mt-0.5 text-base text-secondary-text max-md:text-justify max-md:text-sm";
+const section_description = "mt-0.5 text-base text-secondary-text max-md:text-justify max-md:text-sm max-w-60";
 </script>
 
 <style scoped>

@@ -219,42 +219,11 @@
         "profile_test": {
             "title": "Teste Comportamental",
             "subtitle": "AVALIAÇÃO DE PERSONALIDADE",
-            "description": "Responda às perguntas abaixo de forma honesta para que possamos conhecer melhor seu perfil profissional.",
-            "instruction": "Para cada afirmação, selecione a opção que melhor descreve você:",
-            "scale": {
-                "strongly_disagree": "Discordo Totalmente",
-                "disagree": "Discordo",
-                "neutral": "Neutro",
-                "agree": "Concordo",
-                "strongly_agree": "Concordo Totalmente"
-            },
-            "questions": {
-                "0": "Sou uma pessoa que gosta de trabalhar em equipe",
-                "1": "Prefiro trabalhar com prazos bem definidos",
-                "2": "Sou detalhista em minhas atividades",
-                "3": "Gosto de assumir responsabilidades",
-                "4": "Prefiro seguir processos estabelecidos",
-                "5": "Sou uma pessoa comunicativa",
-                "6": "Gosto de resolver problemas complexos",
-                "7": "Sou organizado(a) com meus materiais de trabalho",
-                "8": "Prefiro trabalhar de forma independente",
-                "9": "Sou persistente quando enfrento dificuldades",
-                "10": "Gosto de aprender coisas novas constantemente",
-                "11": "Sou uma pessoa que se adapta facilmente a mudanças",
-                "12": "Prefiro ter um ambiente de trabalho calmo",
-                "13": "Gosto de dar feedback para colegas",
-                "14": "Sou uma pessoa que planeja antes de agir",
-                "15": "Prefiro trabalhar em projetos de longo prazo",
-                "16": "Sou uma pessoa que toma decisões rapidamente",
-                "17": "Gosto de ajudar colegas com dificuldades",
-                "18": "Prefiro trabalhar com dados e informações precisas",
-                "19": "Sou uma pessoa que se motiva com desafios"
-            },
+            "description": "Para cada grupo de opções abaixo, selecione aquela que melhor descreve você e responda com sinceridade para nos ajudar a entender seu perfil profissional.",
             "progress_text": "{answered} de {total} questões respondidas",
             "submit": "Finalizar Teste",
             "submitting": "Enviando respostas...",
             "completion_title": "Teste Concluído!",
-            "completion_message": "Obrigado por completar o teste de perfil comportamental. Analisaremos suas respostas junto com sua candidatura e entraremos em contato em breve.",
             "return_home": "Voltar ao Início"
         }
     },

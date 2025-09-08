@@ -1,186 +1,91 @@
 <template>
     <div class="profile-test-results">
         <div class="space-y-1">
-            <div
-                v-for="(question, index) in questions"
-                :key="index"
-                class="bg-accent-color-2/30 rounded p-1"
-            >
+            <div v-for="(group, index) in groups" :key="index" class="bg-accent-color-2/30 rounded p-1">
                 <div class="flex items-start justify-between">
                     <div class="flex-1 pr-1">
-                        <h4 class="text-sm font-medium text-primary-text mb-0.5">
-                            {{ index + 1 }}. {{ question }}
-                        </h4>
-
+                        <h4 class="text-sm font-medium text-primary-text mb-0.5">{{ index + 1 }}.</h4>
+                        <div class="flex gap-1 mb-1 flex-wrap text-sm">
+                            <span v-for="key in ['A','B','C','D']" :key="key" class="text-secondary-text text-xs">
+                                <strong class="mr-0.25">{{ key }}:</strong> {{ group[key as 'A'|'B'|'C'|'D'] }}
+                            </span>
+                        </div>
                         <div class="flex items-center gap-0.5">
                             <span class="text-xs text-secondary-text">Resposta:</span>
-                            <span
-                                :class="[
-                                    'inline-flex items-center px-0.5 py-0.125 rounded-full text-xs font-medium',
-                                    getScoreColorClass(answers[index] || 0)
-                                ]"
-                            >
-                                {{ getScoreLabel(answers[index] || 0) }}
+                            <span class="inline-flex items-center px-0.5 py-0.125 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                {{ answerLabel(index) }}
                             </span>
                         </div>
                     </div>
-
-                    <!-- Visual Scale -->
-                    <div class="flex-shrink-0">
-                        <ScaleBar
-                            :value="answers[index] || 0"
-                            :max="5"
-                            :size="'sm'"
-                        />
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Summary -->
         <div class="mt-1.5 bg-body-bg rounded p-1">
-            <h3 class="text-sm font-medium text-primary-text mb-0.75">
-                {{ t("admin.candidates.test_summary") }}
-            </h3>
-
+            <h3 class="text-sm font-medium text-primary-text mb-0.75">Resultado por grupo</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-1 text-center">
                 <div>
-                    <div class="text-xl font-bold text-green-600">
-                        {{ getScoreCount(4, 5) }}
-                    </div>
-                    <div class="text-xs text-secondary-text">
-                        {{ t("admin.candidates.positive_responses") }}
-                    </div>
+                    <div class="text-xl font-bold text-accent-color">{{ distributionLetters.A }}</div>
+                    <div class="text-xs text-secondary-text">A — INFLUENTE</div>
                 </div>
-
                 <div>
-                    <div class="text-xl font-bold text-yellow-600">
-                        {{ getScoreCount(3, 3) }}
-                    </div>
-                    <div class="text-xs text-secondary-text">
-                        {{ t("admin.candidates.neutral_responses") }}
-                    </div>
+                    <div class="text-xl font-bold text-accent-color">{{ distributionLetters.B }}</div>
+                    <div class="text-xs text-secondary-text">B — DOMINANTE</div>
                 </div>
-
                 <div>
-                    <div class="text-xl font-bold text-red-600">
-                        {{ getScoreCount(1, 2) }}
-                    </div>
-                    <div class="text-xs text-secondary-text">
-                        {{ t("admin.candidates.negative_responses") }}
-                    </div>
+                    <div class="text-xl font-bold text-accent-color">{{ distributionLetters.C }}</div>
+                    <div class="text-xs text-secondary-text">C — ANALISTA</div>
                 </div>
-
                 <div>
-                    <div class="text-xl font-bold text-accent-color">
-                        {{ calculateAverageScore().toFixed(1) }}
-                    </div>
-                    <div class="text-xs text-secondary-text">
-                        {{ t("admin.candidates.average_score") }}
-                    </div>
+                    <div class="text-xl font-bold text-accent-color">{{ distributionLetters.D }}</div>
+                    <div class="text-xs text-secondary-text">D — ESTÁVEL</div>
                 </div>
             </div>
-        </div>
-
-        <!-- Behavioral Insights -->
-        <div class="mt-1.5 bg-accent-color-2/30 rounded p-1">
-            <h3 class="text-sm font-medium text-primary-text mb-0.75">
-                {{ t("admin.candidates.behavioral_insights") }}
-            </h3>
-
-            <div class="space-y-0.75">
-                <div
-                    v-for="insight in getBehavioralInsights()"
-                    :key="insight.category"
-                    class="flex items-center justify-between"
-                >
-                    <span class="text-sm text-primary-text">{{ insight.category }}</span>
-                    <div class="flex items-center gap-0.5">
-                        <div class="w-5 bg-gray-200 rounded-full h-0.5">
-                            <div
-                                :class="[
-                                    'h-0.5 rounded-full transition-all duration-300',
-                                    insight.score >= 4 ? 'bg-green-500' :
-                                    insight.score >= 3 ? 'bg-yellow-500' : 'bg-red-500'
-                                ]"
-                                :style="{ width: `${(insight.score / 5) * 100}%` }"
-                            ></div>
-                        </div>
-                        <span class="text-sm font-medium text-secondary-text w-2">
-                            {{ insight.score.toFixed(1) }}
-                        </span>
-                    </div>
-                </div>
+            <div class="mt-2 text-center">
+                <div class="text-sm font-semibold">Perfil predominante</div>
+                <div class="text-lg font-bold">{{ topProfile.label || '-' }}</div>
             </div>
         </div>
     </div>
-</template><script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import ScaleBar from "~/components/page-trabalhe-conosco/atoms/ScaleBar.vue";
+</template>
+<script setup lang="ts">
+import { computed } from 'vue';
 
-export interface ScaleOption {
-    value: number;
-    label: string;
-}
-
-export interface BehavioralCategory {
-    category: string;
-    questionIndexes: number[];
-}
+export type Letter = 'A'|'B'|'C'|'D';
 
 export interface ProfileTestResultsProps {
-    answers: Record<number, number>;
-    questions: string[];
-    scaleOptions: ScaleOption[];
-    behavioralCategories?: BehavioralCategory[];
+    answers: Record<number, string>;
+    groups: Array<Record<'A'|'B'|'C'|'D', string>>;
 }
-
-const defaultCategories: BehavioralCategory[] = [
-    { category: "Trabalho em Equipe", questionIndexes: [0, 5, 13, 17] },
-    { category: "Organização", questionIndexes: [1, 2, 7, 14] },
-    { category: "Liderança", questionIndexes: [3, 6, 9, 16] },
-    { category: "Adaptabilidade", questionIndexes: [8, 10, 11, 19] },
-    { category: "Detalhismo", questionIndexes: [2, 4, 18] },
-    { category: "Independência", questionIndexes: [8, 12, 15] }
-];
 
 const props = defineProps<ProfileTestResultsProps>();
-const { t } = useI18n();
 
-function getScoreLabel(score: number): string {
-    const option = props.scaleOptions.find(opt => opt.value === score);
-    return option?.label || t("admin.candidates.no_answer");
-}
+const distributionLetters = computed(() => {
+    const dist: Record<Letter, number> = { A: 0, B: 0, C: 0, D: 0 };
+    Object.values(props.answers).forEach(v => {
+        if (typeof v === 'string' && ['A','B','C','D'].includes(v)) {
+            dist[v as Letter] += 1;
+        }
+    });
+    return dist;
+});
 
-function getScoreColorClass(score: number): string {
-    if (score >= 4) return "bg-green-100 text-green-800";
-    if (score === 3) return "bg-yellow-100 text-yellow-800";
-    if (score >= 1) return "bg-red-100 text-red-800";
-    return "bg-gray-100 text-gray-800";
-}
+const topProfile = computed(() => {
+    const entries = Object.entries(distributionLetters.value) as [Letter, number][];
+    entries.sort((a,b) => b[1] - a[1]);
+    const top = entries[0];
+    if (!top || top[1] === 0) return { letter: null as Letter | null, label: null as string | null };
+    const mapping: Record<Letter, string> = { A: 'INFLUENTE', B: 'DOMINANTE', C: 'ANALISTA', D: 'ESTÁVEL' };
+    return { letter: top[0], label: mapping[top[0]] };
+});
 
-function getScoreCount(min: number, max: number): number {
-    return Object.values(props.answers).filter(score => score >= min && score <= max).length;
-}
-
-function calculateAverageScore(): number {
-    const scores = Object.values(props.answers);
-    if (scores.length === 0) return 0;
-    const sum = scores.reduce((acc, score) => acc + score, 0);
-    return sum / scores.length;
-}
-
-function getBehavioralInsights(): Array<{ category: string; score: number }> {
-    const categories = props.behavioralCategories || defaultCategories;
-    return categories.map(({ category, questionIndexes }) => {
-        const relevantAnswers = questionIndexes
-            .map(index => props.answers[index])
-            .filter(answer => answer !== undefined);
-        const averageScore = relevantAnswers.length > 0
-            ? relevantAnswers.reduce((sum, score) => sum + score, 0) / relevantAnswers.length
-            : 0;
-        return { category, score: averageScore };
-    }).sort((a, b) => b.score - a.score);
+function answerLabel(index: number) {
+    const ans = props.answers[index];
+    if (!ans) return '-';
+    const group = props.groups[index];
+    if (!group) return ans;
+    const key = ans as 'A'|'B'|'C'|'D';
+    return group[key] || ans;
 }
 </script>
 

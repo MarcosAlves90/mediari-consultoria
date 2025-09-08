@@ -128,8 +128,7 @@
 
                 <ProfileTestResults
                     :answers="candidate.testAnswers"
-                    :questions="profileQuestions"
-                    :scale-options="scaleOptions"
+                    :groups="groups"
                 />
             </div>
         </div>
@@ -145,13 +144,13 @@ import ProfileTestResults from "~/components/page-admin/molecules/ProfileTestRes
 /**
  * Propriedades esperadas pelo componente CandidateDetails
  * @property candidate - Objeto do candidato selecionado (ou null)
- * @property profileQuestions - Lista de perguntas do teste de perfil
+ * @property groups - Lista de grupos (A-D) com rótulos para cada linha do teste
  * @property scaleOptions - Opções de escala para respostas do teste
  */
 interface Props {
     candidate: Candidate | null;
-    profileQuestions: string[];
-    scaleOptions: Array<{ value: number; label: string }>;
+    groups: Array<Record<'A'|'B'|'C'|'D', string>>;
+    // scaleOptions removido - test usa apenas letras A-D
 }
 
 /**

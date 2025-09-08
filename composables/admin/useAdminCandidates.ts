@@ -11,7 +11,7 @@ export interface Candidate {
     resumeFileName: string;
     resumeUrl: string;
     submittedAt: string;
-    testAnswers?: Record<number, number>;
+    testAnswers?: Record<number, string>;
     testScore?: number;
     privacyConsent: boolean;
 }
@@ -36,8 +36,8 @@ export const useAdminCandidates = () => {
             resumeUrl: "/resumes/ana-silva-curriculo.pdf",
             submittedAt: "2024-08-08T10:30:00Z",
             testAnswers: {
-                0: 5, 1: 4, 2: 5, 3: 4, 4: 3, 5: 5, 6: 4, 7: 5, 8: 2, 9: 5,
-                10: 5, 11: 4, 12: 3, 13: 4, 14: 4, 15: 3, 16: 3, 17: 5, 18: 5, 19: 4
+                0: 'A', 1: 'B', 2: 'A', 3: 'B', 4: 'C', 5: 'A', 6: 'B', 7: 'A', 8: 'D', 9: 'A',
+                10: 'A', 11: 'B', 12: 'C', 13: 'B', 14: 'B', 15: 'C', 16: 'C', 17: 'A', 18: 'A', 19: 'B'
             },
             testScore: 85,
             privacyConsent: true
@@ -54,8 +54,8 @@ export const useAdminCandidates = () => {
             resumeUrl: "/resumes/carlos-oliveira-cv.pdf",
             submittedAt: "2024-08-07T14:15:00Z",
             testAnswers: {
-                0: 4, 1: 5, 2: 4, 3: 5, 4: 4, 5: 3, 6: 5, 7: 4, 8: 4, 9: 5,
-                10: 4, 11: 3, 12: 4, 13: 3, 14: 5, 15: 4, 16: 4, 17: 4, 18: 5, 19: 5
+                0: 'B', 1: 'B', 2: 'B', 3: 'B', 4: 'B', 5: 'C', 6: 'B', 7: 'B', 8: 'B', 9: 'B',
+                10: 'B', 11: 'C', 12: 'B', 13: 'C', 14: 'B', 15: 'B', 16: 'B', 17: 'B', 18: 'B', 19: 'B'
             },
             testScore: 92,
             privacyConsent: true
@@ -72,8 +72,8 @@ export const useAdminCandidates = () => {
             resumeUrl: "/resumes/mariana-lima-curriculo.docx",
             submittedAt: "2024-08-06T09:45:00Z",
             testAnswers: {
-                0: 5, 1: 3, 2: 4, 3: 3, 4: 4, 5: 5, 6: 3, 7: 4, 8: 3, 9: 4,
-                10: 5, 11: 5, 12: 4, 13: 5, 14: 3, 15: 2, 16: 2, 17: 5, 18: 4, 19: 3
+                0: 'A', 1: 'C', 2: 'B', 3: 'C', 4: 'B', 5: 'A', 6: 'C', 7: 'B', 8: 'C', 9: 'B',
+                10: 'A', 11: 'A', 12: 'B', 13: 'A', 14: 'C', 15: 'D', 16: 'D', 17: 'A', 18: 'B', 19: 'C'
             },
             testScore: 78,
             privacyConsent: true
@@ -90,8 +90,8 @@ export const useAdminCandidates = () => {
             resumeUrl: "/resumes/roberto-santos-cv.pdf",
             submittedAt: "2024-08-05T16:20:00Z",
             testAnswers: {
-                0: 3, 1: 5, 2: 5, 3: 5, 4: 5, 5: 3, 6: 5, 7: 5, 8: 4, 9: 5,
-                10: 4, 11: 3, 12: 3, 13: 3, 14: 5, 15: 5, 16: 5, 17: 3, 18: 5, 19: 4
+                0: 'C', 1: 'B', 2: 'B', 3: 'B', 4: 'B', 5: 'C', 6: 'B', 7: 'B', 8: 'B', 9: 'B',
+                10: 'B', 11: 'C', 12: 'C', 13: 'C', 14: 'B', 15: 'B', 16: 'B', 17: 'C', 18: 'B', 19: 'B'
             },
             testScore: 88,
             privacyConsent: true
