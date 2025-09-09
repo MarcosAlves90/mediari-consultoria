@@ -14,7 +14,6 @@
                 modelValue ? 'border-accent-color border-solid file-selected' : '',
                 'hover:border-accent-color hover:border-solid hover:shadow-md hover:-translate-y-0.5'
             ]"
-            @click="() => fileInput?.click()"
             @dragover.prevent="onDragOver"
             @dragleave.prevent="onDragLeave"
             @drop.prevent="onDrop"

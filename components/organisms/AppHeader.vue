@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+// TODO: Adicionar seção de Ação Social na navbar
+
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { useScreenWidth } from '@/utils/useScreenWidth';
 import { useScrollToSection } from '@/utils/useScrollToSection';
