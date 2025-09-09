@@ -1,61 +1,35 @@
 
 <script setup lang="ts">
-// Importações de dependências do Vue e componentes
 import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import type { Candidate } from "~/composables/admin/useAdminCandidates";
 import Loader from "~/components/atoms/Loader.vue";
 
-/**
- * Propriedades esperadas pelo componente CandidatesList
- * @property candidates - Lista de candidatos recebida como prop
- * @property selectedCandidate - Candidato atualmente selecionado
- * @property isLoading - Indica se os dados estão sendo carregados
- */
 interface Props {
     candidates: Candidate[];
     selectedCandidate: Candidate | null;
     isLoading: boolean;
 }
 
-/**
- * Eventos emitidos pelo componente
- * @event select - Emite o candidato selecionado
- */
 interface Emits {
     (e: 'select', candidate: Candidate): void;
 }
 
-// Definição das props e eventos
 const props = defineProps<Props>();
 defineEmits<Emits>();
 const { t } = useI18n();
 
-// ===============================
-// Estados reativos para busca e filtro
-// ===============================
-const searchQuery = ref(""); // Armazena o texto da busca
-const selectedArea = ref(""); // Armazena a área selecionada para filtro
+const searchQuery = ref("");
+const selectedArea = ref("");
 
-// ===============================
-// Propriedades computadas
-// ===============================
-
-/**
- * Retorna uma lista de áreas de interesse únicas dos candidatos
- */
 const areas = computed(() => {
     const uniqueAreas = new Set(props.candidates.map((c: Candidate) => c.areaOfInterest));
     return Array.from(uniqueAreas).sort();
 });
 
-/**
- * Filtra e ordena os candidatos conforme busca e área selecionada
- */
 const filteredCandidates = computed(() => {
     let filtered = props.candidates;
 
-    // Filtra por nome ou e-mail se houver busca
     if (searchQuery.value) {
         const query = searchQuery.value.toLowerCase();
         filtered = filtered.filter((candidate: Candidate) =>
@@ -64,22 +38,15 @@ const filteredCandidates = computed(() => {
         );
     }
 
-    // Filtra por área de interesse se selecionada
     if (selectedArea.value) {
         filtered = filtered.filter((candidate: Candidate) =>
             candidate.areaOfInterest === selectedArea.value
         );
     }
 
-    // Ordena por data de envio (mais recente primeiro)
     return filtered.sort((a: Candidate, b: Candidate) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
 });
 
-/**
- * Formata a data de envio do candidato para o padrão brasileiro
- * @param dateString - Data em formato string
- * @returns Data formatada (dd/mm/aaaa hh:mm)
- */
 const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
         day: '2-digit',
@@ -92,13 +59,7 @@ const formatDate = (dateString: string) => {
 </script>
 
 <template>
-    <!--
-        Componente de listagem de candidatos
-        - Permite busca por nome ou e-mail
-        - Permite filtrar por área de interesse
-        - Exibe estados de carregamento e vazio
-        - Emite evento ao selecionar um candidato
-    -->
+
     <div class="bg-body-bg-dark rounded border-2 border-accent-color h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 flex flex-col">
         <div class="border-b-2 border-body-bg flex-shrink-0">
             <h2 class="text-lg font-semibold text-body-bg bg-accent-color px-1 py-0.5">
@@ -152,12 +113,13 @@ const formatDate = (dateString: string) => {
         <div v-else class="divide-y divide-gray-200 overflow-y-auto flex-1">
             <!-- Item de candidato -->
             <div
-                v-for="candidate in filteredCandidates"
+                v-for="(candidate, index) in filteredCandidates"
                 :key="candidate.id"
                 @click="$emit('select', candidate)"
                 :class="[
                     'p-1 cursor-pointer hover:bg-body-bg border-y-2 border-transparent',
-                    selectedCandidate?.id === candidate.id ? 'bg-accent-color-2 !border-accent-color hover:!bg-accent-color-3' : ''
+                    selectedCandidate?.id === candidate.id ? 'bg-accent-color-2 !border-accent-color hover:!bg-accent-color-3' : '',
+                    index === filteredCandidates.length - 1 ? '!border-b-transparent' : ''
                 ]"
             >
                 <div class="flex items-start justify-between">

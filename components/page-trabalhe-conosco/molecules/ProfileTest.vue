@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+// TODO: Deixar responsivo no mobile
+
 import { useProfileTest } from "~/composables/trabalhe-conosco";
 import { useI18n } from "vue-i18n";
 import { ref, onMounted, watch } from "vue";
