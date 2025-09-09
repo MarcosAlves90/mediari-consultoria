@@ -4,6 +4,7 @@ import { useProfileTest } from "~/composables/trabalhe-conosco";
 import { useI18n } from "vue-i18n";
 import { ref, onMounted, watch } from "vue";
 import ButtonLoader from "~/components/atoms/ButtonLoader.vue";
+import createShuffle from '~/composables/useShuffle';
 
 interface Emits {
     (e: 'completed'): void;
@@ -27,30 +28,23 @@ const handleSubmit = async () => {
     if (success) emit('completed');
 };
 
-// utilitário de shuffle (Fisher-Yates)
-function shuffleArray<T>(arr: T[]) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-}
+// usar composable para shuffle
+const shuffle = createShuffle();
 
 // matriz com as opções de cada grupo já embaralhadas
 const shuffledOptions = ref<Array<Array<{ key: string; label: string }>>>([]);
 
 const buildShuffledOptions = () => {
+    if (typeof window === 'undefined') return;
     const groups = (GROUPS || []) as Array<Record<string, string>>;
-    shuffledOptions.value = groups.map((g) => {
-        const keys = ['A', 'B', 'C', 'D'];
-        const opts = keys.map((k) => ({ key: k, label: g[k] }));
-        return shuffleArray(opts);
-    });
+    shuffledOptions.value = shuffle.getShuffled(groups, 'profile-test');
 };
 
 onMounted(buildShuffledOptions);
-watch(() => GROUPS, buildShuffledOptions, { immediate: true });
+// evitar execução no servidor: o onMounted já chama a versão client-side
+watch(() => GROUPS, () => {
+    if (typeof window !== 'undefined') buildShuffledOptions();
+});
 
 const progress_bar = "w-full bg-accent-color-2 rounded h-1 mb-2";
 const progress_fill = "bg-accent-color h-1 rounded transition-all duration-300";
@@ -83,7 +77,7 @@ const submit_button = "common-button w-full text-base font-medium !min-h-[48px] 
             v-if="hasError"
             class="mb-2 p-1 bg-red-100 border-2 border-accent-color text-accent-color rounded-sm text-center"
         >
-            Teste incompleto. Responda todas as opções.
+            {{ t('careers.profile_test.incomplete') }}
         </div>
 
         <div class="space-y-1.5 mb-2">
@@ -123,9 +117,9 @@ const submit_button = "common-button w-full text-base font-medium !min-h-[48px] 
             :disabled="isSubmittingTest || !isTestComplete"
         >
             <span v-if="isSubmittingTest" class="flex items-center justify-center gap-2">
-                <ButtonLoader /> Enviando...
+                <ButtonLoader /> {{ t('careers.profile_test.submitting') }}
             </span>
-            <span v-else>Enviar</span>
+            <span v-else>{{ t('careers.profile_test.submit') }}</span>
         </button>
     </div>
 </template>

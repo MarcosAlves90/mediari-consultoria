@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useSessionStorage } from "~/composables/useSessionStorage";
 import {
@@ -34,6 +34,12 @@ const [persistedState, setPersistedState, clearPersistedState] = useSessionStora
 
 const currentStep = ref<'form' | 'test' | 'completed'>(persistedState.value.currentStep);
 const showSuccess = ref(persistedState.value.showSuccess);
+
+// Evita mismatch entre SSR e CSR: renderizar a área do formulário apenas no cliente
+const isClient = ref(false);
+onMounted(() => {
+    isClient.value = true;
+});
 
 watch(
     () => ({
@@ -102,6 +108,7 @@ const profile_container = "max-w-70 w-full";
         />
 
         <section
+            v-if="isClient"
             class="careers__form w-full flex justify-center items-center bg-body-bg-dark"
             role="region"
             aria-labelledby="form-heading"

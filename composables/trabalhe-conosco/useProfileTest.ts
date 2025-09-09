@@ -1,4 +1,5 @@
 import { ref, reactive, computed, watch } from "vue";
+import { useI18n } from 'vue-i18n';
 import { useSessionStorage } from "../useSessionStorage";
 
 type Letter = 'A' | 'B' | 'C' | 'D';
@@ -7,77 +8,98 @@ interface TestAnswers {
     [questionIndex: number]: TestAnswerValue;
 }
 
+const LETTERS: Letter[] = ['A', 'B', 'C', 'D'];
+
+const FALLBACK_GROUPS: Array<Record<Letter, string>> = [
+    { A: "Animado", B: "Aventureiro", C: "Analítico", D: "Adaptável" },
+    { A: "Brincalhão", B: "Persuasivo", C: "Persistente", D: "Sereno" },
+    { A: "Sociável", B: "Energético", C: "Doador", D: "Submisso" },
+    { A: "Convincente", B: "Competitivo", C: "Atencioso", D: "Controlado" },
+    { A: "Estimulante", B: "Habilidoso", C: "Respeitoso", D: "Reservado" },
+    { A: "Espirituoso", B: "Auto-suficiente", C: "Sensível", D: "Satisfeito" },
+    { A: "Charmoso", B: "Positivo", C: "Planejador", D: "Paciente" },
+    { A: "Espontâneo", B: "Seguro", C: "Organizado", D: "Tímido" },
+    { A: "Otimista", B: "Franco", C: "Ordeiro", D: "Serviçal" },
+    { A: "Engraçado", B: "Vigoroso", C: "Fiel", D: "Amigável" },
+    { A: "Encantador", B: "Audacioso", C: "Minucioso", D: "Diplomático" },
+    { A: "Alegre", B: "Confiante", C: "Culto", D: "Previsível" },
+    { A: "Inspirado", B: "Independente", C: "Idealista", D: "Inofensivo" },
+    { A: "Demonstrativo", B: "Decidido", C: "Profundo", D: "Irônico" },
+    { A: "Desembaraçado", B: "Ativo", C: "Musical", D: "Mediador" },
+    { A: "Conversador", B: "Firme", C: "Pensativo", D: "Tolerante" },
+    { A: "Metido", B: "Mandão", C: "Acanhado", D: "Vazio" },
+    { A: "Indisciplinado", B: "Insensível", C: "Rancoroso", D: "Desinteressado" },
+    { A: "Vivo", B: "Líder", C: "Leal", D: "Ouvinte" },
+    { A: "Atraente", B: "Chefe", C: "Detalhista", D: "Contente" },
+    { A: "Popular", B: "Produtivo", C: "Perfeccionista", D: "Agradável" },
+    { A: "Vivaz", B: "Valente", C: "Comportado", D: "Equilibrado" },
+    { A: "Repetitível", B: "Inflexível", C: "Ressentido", D: "Relutante" },
+    { A: "Esquecido", B: "Franco", C: "Complicado", D: "Medroso" },
+    { A: "Inoportuno", B: "Impaciente", C: "Inseguro", D: "Indeciso" },
+    { A: "Imprevisível", B: "Frio", C: "Impopular", D: "Desligado" },
+    { A: "Casual", B: "Cabeçudo", C: "Insatisfeito", D: "Exitante" },
+    { A: "Permissivo", B: "Orgulhoso", C: "Cauteloso", D: "Simples" },
+    { A: "Esquentado", B: "Discutidor", C: "Alienado", D: "Incerto" },
+    { A: "Ingênuo", B: "Ousado", C: "Negativo", D: "Indiferente" },
+    { A: "Egoísta", B: "Trabalhador", C: "Retraído", D: "Preocupado" },
+    { A: "Tagarela", B: "Indelicado", C: "Sensível demais", D: "Tímido" },
+    { A: "Desorganizado", B: "Mandão", C: "Deprimido", D: "Confuso" },
+    { A: "Inconstante", B: "Intolerante", C: "Introvertido", D: "Apático" },
+    { A: "Desordenado", B: "Manipulador", C: "Triste", D: "Resmungão" },
+    { A: "Convencido", B: "Obstinado", C: "Cético (não acreditar)", D: "Lento" },
+    { A: "Barulhento", B: "Tirânico", C: "Solitário", D: "Preguiçoso" },
+    { A: "Distraído", B: "Irritável", C: "Desconfiado", D: "Vagaroso" },
+    { A: "Agitado", B: "Imprudente", C: "Vingativo", D: "Relutante" },
+    { A: "Instável", B: "Astuto", C: "Crítico", D: "Acomodado" },
+];
+
 export const useProfileTest = () => {
     const [persistedAnswers, setPersistedAnswers, clearPersistedAnswers] = useSessionStorage<Record<number, string>>('mediari-profile-test-answers', {});
 
     const profileTestAnswers = reactive<TestAnswers>(persistedAnswers.value as unknown as TestAnswers || {});
-    const isSubmittingTest = ref<boolean>(false);
-    const hasError = ref<boolean>(false);
+    const isSubmittingTest = ref(false);
+    const hasError = ref(false);
 
     watch(
         () => ({ ...profileTestAnswers }),
-        (newAnswers) => {
-            setPersistedAnswers(newAnswers);
-        },
+        (newAnswers) => setPersistedAnswers(newAnswers),
         { deep: true }
     );
 
-    const GROUPS: Array<Record<'A'|'B'|'C'|'D', string>> = [
-        { A: "Animado", B: "Aventureiro", C: "Analítico", D: "Adaptável" },
-        { A: "Brincalhão", B: "Persuasivo", C: "Persistente", D: "Sereno" },
-        { A: "Sociável", B: "Energético", C: "Doador", D: "Submisso" },
-        { A: "Convincente", B: "Competitivo", C: "Atencioso", D: "Controlado" },
-        { A: "Estimulante", B: "Habilidoso", C: "Respeitoso", D: "Reservado" },
-        { A: "Espirituoso", B: "Auto-suficiente", C: "Sensível", D: "Satisfeito" },
-        { A: "Charmoso", B: "Positivo", C: "Planejador", D: "Paciente" },
-        { A: "Espontâneo", B: "Seguro", C: "Organizado", D: "Tímido" },
-        { A: "Otimista", B: "Franco", C: "Ordeiro", D: "Serviçal" },
-        { A: "Engraçado", B: "Vigoroso", C: "Fiel", D: "Amigável" },
-        { A: "Encantador", B: "Audacioso", C: "Minucioso", D: "Diplomático" },
-        { A: "Alegre", B: "Confiante", C: "Culto", D: "Previsível" },
-        { A: "Inspirado", B: "Independente", C: "Idealista", D: "Inofensivo" },
-        { A: "Demonstrativo", B: "Decidido", C: "Profundo", D: "Irônico" },
-        { A: "Desembaraçado", B: "Ativo", C: "Musical", D: "Mediador" },
-        { A: "Conversador", B: "Firme", C: "Pensativo", D: "Tolerante" },
-        { A: "Metido", B: "Mandão", C: "Acanhado", D: "Vazio" },
-        { A: "Indisciplinado", B: "Insensível", C: "Rancoroso", D: "Desinteressado" },
-        { A: "Vivo", B: "Líder", C: "Leal", D: "Ouvinte" },
-        { A: "Atraente", B: "Chefe", C: "Detalhista", D: "Contente" },
-        { A: "Popular", B: "Produtivo", C: "Perfeccionista", D: "Agradável" },
-        { A: "Vivaz", B: "Valente", C: "Comportado", D: "Equilibrado" },
-        { A: "Repetitível", B: "Inflexível", C: "Ressentido", D: "Relutante" },
-        { A: "Esquecido", B: "Franco", C: "Complicado", D: "Medroso" },
-        { A: "Inoportuno", B: "Impaciente", C: "Inseguro", D: "Indeciso" },
-        { A: "Imprevisível", B: "Frio", C: "Impopular", D: "Desligado" },
-        { A: "Casual", B: "Cabeçudo", C: "Insatisfeito", D: "Exitante" },
-        { A: "Permissivo", B: "Orgulhoso", C: "Cauteloso", D: "Simples" },
-        { A: "Esquentado", B: "Discutidor", C: "Alienado", D: "Incerto" },
-        { A: "Ingênuo", B: "Ousado", C: "Negativo", D: "Indiferente" },
-        { A: "Egoísta", B: "Trabalhador", C: "Retraído", D: "Preocupado" },
-        { A: "Tagarela", B: "Indelicado", C: "Sensível demais", D: "Tímido" },
-        { A: "Desorganizado", B: "Mandão", C: "Deprimido", D: "Confuso" },
-        { A: "Inconstante", B: "Intolerante", C: "Introvertido", D: "Apático" },
-        { A: "Desordenado", B: "Manipulador", C: "Triste", D: "Resmungão" },
-        { A: "Convencido", B: "Obstinado", C: "Cético (não acreditar)", D: "Lento" },
-        { A: "Barulhento", B: "Tirânico", C: "Solitário", D: "Preguiçoso" },
-        { A: "Distraído", B: "Irritável", C: "Desconfiado", D: "Vagaroso" },
-        { A: "Agitado", B: "Imprudente", C: "Vingativo", D: "Relutante" },
-        { A: "Instável", B: "Astuto", C: "Crítico", D: "Acomodado" },
-    ];
+    const { t, te } = useI18n();
 
+    const tryBuildGroupsFromI18n = (): Array<Record<Letter, string>> | null => {
+        const count = FALLBACK_GROUPS.length;
+        const groups: Array<Record<Letter, string>> = [];
+
+        for (let i = 0; i < count; i++) {
+            const group: Partial<Record<Letter, string>> = {};
+
+            for (const k of LETTERS) {
+                const path = `careers.profile_test.groups.${i}.${k}`;
+                if (!te(path)) return null;
+                const value = t(path);
+                if (!value || typeof value !== 'string') return null;
+                group[k] = value;
+            }
+
+            groups.push(group as Record<Letter, string>);
+        }
+
+        return groups;
+    };
+
+    const GROUPS = tryBuildGroupsFromI18n() ?? FALLBACK_GROUPS;
     const TOTAL_QUESTIONS = GROUPS.length;
 
-    const progress = computed(() => {
-        const answered = Object.keys(profileTestAnswers).length;
-        return TOTAL_QUESTIONS > 0 ? (answered / TOTAL_QUESTIONS) * 100 : 0;
-    });
+    const answeredCount = computed(() => Object.keys(profileTestAnswers).length);
 
-    const isTestComplete = computed(() => Object.keys(profileTestAnswers).length === TOTAL_QUESTIONS);
+    const progress = computed(() => (TOTAL_QUESTIONS > 0 ? (answeredCount.value / TOTAL_QUESTIONS) * 100 : 0));
+    const isTestComplete = computed(() => answeredCount.value === TOTAL_QUESTIONS);
 
     const submitProfileTest = async (): Promise<boolean> => {
         if (!isTestComplete.value) {
             hasError.value = true;
-            console.warn("useProfileTest: Tentativa de submissão com teste incompleto");
             return false;
         }
 
@@ -86,38 +108,25 @@ export const useProfileTest = () => {
 
         try {
             await new Promise((resolve) => setTimeout(resolve, 2000));
-
             clearTestData();
-
-            console.log("useProfileTest: Teste enviado com sucesso");
             return true;
-
-        } catch (error) {
-            console.error("useProfileTest: Erro durante submissão do teste de perfil:", error);
+        } catch (e) {
             hasError.value = true;
             return false;
-
         } finally {
             isSubmittingTest.value = false;
         }
     };
 
     const clearTestData = (): void => {
-        Object.keys(profileTestAnswers).forEach(key => {
-            delete profileTestAnswers[Number(key)];
-        });
-
+        Object.keys(profileTestAnswers).forEach((key) => delete profileTestAnswers[Number(key)]);
         clearPersistedAnswers();
-
         hasError.value = false;
-
-        console.log("useProfileTest: Dados do teste limpos com sucesso");
     };
 
     const setAnswer = (questionIndex: number, answerValue: TestAnswerValue): void => {
         if (questionIndex < 0 || questionIndex >= TOTAL_QUESTIONS) return;
-        const allowed: Letter[] = ['A','B','C','D'];
-        if (!allowed.includes(answerValue)) return;
+        if (!LETTERS.includes(answerValue)) return;
         profileTestAnswers[questionIndex] = answerValue;
     };
 
@@ -129,13 +138,13 @@ export const useProfileTest = () => {
         const totalPending = TOTAL_QUESTIONS - totalAnswered;
 
         const distributionLetters: Record<Letter, number> = { A: 0, B: 0, C: 0, D: 0 };
-        answers.forEach(l => { distributionLetters[l] = (distributionLetters[l] || 0) + 1; });
+        answers.forEach((l) => { distributionLetters[l] = (distributionLetters[l] || 0) + 1; });
 
-        const topProfile = ((): { letter: Letter | null; label: string | null } => {
+        const topProfile = (() => {
             const entries = Object.entries(distributionLetters) as [Letter, number][];
-            entries.sort((a,b) => b[1] - a[1]);
+            entries.sort((a, b) => b[1] - a[1]);
             const top = entries[0];
-            if (!top || top[1] === 0) return { letter: null, label: null };
+            if (!top || top[1] === 0) return { letter: null as Letter | null, label: null as string | null };
             const mapping: Record<Letter, string> = { A: 'INFLUENTE', B: 'DOMINANTE', C: 'ANALISTA', D: 'ESTÁVEL' };
             return { letter: top[0], label: mapping[top[0]] };
         })();
@@ -144,7 +153,7 @@ export const useProfileTest = () => {
             totalAnswered,
             totalPending,
             distributionLetters,
-            topProfile
+            topProfile,
         };
     };
 
