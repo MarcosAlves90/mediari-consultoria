@@ -1,24 +1,20 @@
-export default defineNuxtRouteMiddleware((to) => {
-    /**
-     * Middleware de proteção das rotas administrativas.
-     * Executa apenas no lado do cliente e verifica se o usuário está autenticado via sessionStorage.
-     * Caso não esteja autenticado, redireciona para a página de login.
-     */
+/**
+ * Middleware para proteger rotas administrativas.
+ * Verifica se o usuário está autenticado antes de permitir acesso às rotas admin.
+ * Se não estiver autenticado, redireciona para a página de login.
+ */
+export default defineNuxtRouteMiddleware(async (to) => {
+    // Permite que a página de login seja pública
+    if (to.path === '/admin' || to.path === '/admin/') return
 
-    // Executa apenas no lado do cliente
-    if (import.meta.server) return;
-
-    // Permite acesso à página de login do admin
-    if (to.path === '/admin' || to.path === '/admin/') {
-        return;
-    }
-
-    // Para demais páginas administrativas, verifica autenticação
-    if (import.meta.client) {
-        const session = sessionStorage.getItem('mediari-admin-session');
-        if (!session) {
-            // Usuário não autenticado, redireciona para login
-            return navigateTo('/admin');
+    try {
+        // Consulta o endpoint do servidor que valida o cookie de sessão httpOnly
+        const res = await $fetch('/api/session')
+        if (!res || !res.authenticated) {
+            return navigateTo('/admin')
         }
+    } catch (e) {
+        // Se ocorrer qualquer erro, redireciona para o login
+        return navigateTo('/admin')
     }
-});
+})

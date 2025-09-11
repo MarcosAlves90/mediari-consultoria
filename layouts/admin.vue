@@ -135,7 +135,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useScreenWidth } from '@/utils/useScreenWidth';
 
@@ -146,14 +146,23 @@ const currentYear = computed(() => new Date().getFullYear());
 const isLoggingOut = ref(false);
 const hamburguerMenuOpen = ref(false);
 
-// Get current user from session storage
+// Get current user from server session endpoint
 const currentUser = ref<any>(null);
-if (process.client) {
-    const session = sessionStorage.getItem('mediari-admin-session');
-    if (session) {
-        currentUser.value = JSON.parse(session);
+onMounted(async () => {
+    try {
+        const res = await $fetch('/api/session')
+        if (res && (res as any).authenticated) {
+            const s = res as any
+            currentUser.value = {
+                id: s.uid,
+                email: s.email || null,
+                name: s.name || null,
+            }
+        }
+    } catch (e) {
+        // ignore
     }
-}
+});
 
 const toggleHamburguerMenu = () => {
     hamburguerMenuOpen.value = !hamburguerMenuOpen.value;
@@ -162,20 +171,32 @@ const toggleHamburguerMenu = () => {
 const handleLogout = async () => {
     isLoggingOut.value = true;
     hamburguerMenuOpen.value = false; // Fecha o menu ao fazer logout
-    try {
-        // Clear session
-        if (process.client) {
-            sessionStorage.removeItem('mediari-admin-session');
+        try {
+            // Request server to clear session cookie
+            try {
+                await $fetch('/api/session', { method: 'DELETE' })
+            } catch (e) {
+                // ignore
+            }
+
+            // Clear any local fallback session if present
+            if (typeof window !== 'undefined') {
+                try {
+                    sessionStorage.removeItem('mediari-admin-session')
+                } catch (e) {
+                    // Ignore errors during session cleanup (e.g., sessionStorage not available)
+                    // Optionally log for debugging: console.warn('Session cleanup error:', e);
+                }
+            }
+
+            // Simulate delay
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Redirect to login
+            await navigateTo('/admin');
+        } finally {
+            isLoggingOut.value = false;
         }
-
-        // Simulate delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        // Redirect to login
-        await navigateTo('/admin');
-    } finally {
-        isLoggingOut.value = false;
-    }
 };
 </script>
 

@@ -8,7 +8,8 @@ useSeoMeta({
 });
 
 definePageMeta({
-    layout: 'default'
+    layout: 'default',
+    middleware: 'guest-to-admin'
 });
 </script>
 

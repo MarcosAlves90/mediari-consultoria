@@ -3,34 +3,36 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineOrganization } from 'nuxt-schema-org/schema'
 
 export default defineNuxtConfig({
+  // Data de compatibilidade para garantir que o Nuxt funcione corretamente
   compatibilityDate: '2024-11-01',
+  // Habilita ferramentas de desenvolvimento
   devtools: { enabled: true },
 
-  // Performance optimizations
+  // Otimizações de performance
   experimental: {
     payloadExtraction: false,
   },
 
-  // Modules
+  // Módulos utilizados no projeto
   modules: [
-    '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxtjs/seo',
-    '@nuxtjs/i18n'
+    '@nuxt/fonts', // Gerenciamento de fontes
+    '@nuxt/icon', // Ícones
+    '@nuxt/image', // Otimização de imagens
+    '@nuxtjs/seo', // SEO
+    '@nuxtjs/i18n' // Internacionalização
   ],
 
   // CSS
   css: ['@/assets/css/tailwind.css'],
 
-  // Vite configuration
+  // Configuração do Vite
   vite: {
     plugins: [
       tailwindcss(),
     ],
   },
 
-  // Icon configuration
+  // Configuração de ícones
   icon: {
     provider: 'server',
     customCollections: [
@@ -44,14 +46,14 @@ export default defineNuxtConfig({
     }
   },
 
-  // Fonts configuration
+  // Configuração de fontes
   fonts: {
     defaults: {
       weights: [400, 500, 600, 700]
     }
   },
 
-  // Site configuration
+  // Configuração do site
   site: {
     url: 'https://www.mediariconsultoria.com.br',
     name: 'Mediari Consultoria',
@@ -59,7 +61,7 @@ export default defineNuxtConfig({
     defaultLocale: 'pt-BR',
   },
 
-  // Schema.org configuration
+  // Configuração do Schema.org
   schemaOrg: {
     identity: defineOrganization({
       name: 'Mediari Consultoria',
@@ -80,7 +82,7 @@ export default defineNuxtConfig({
     })
   },
 
-  // SEO configuration
+  // Configuração de SEO
   seo: {
     meta: {
       description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
@@ -90,7 +92,7 @@ export default defineNuxtConfig({
     }
   },
 
-  // App configuration
+  // Configuração do aplicativo
   app: {
     head: {
       titleTemplate: '%s - Mediari Consultoria',
@@ -105,6 +107,8 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  // Configuração de internacionalização
   i18n: {
     locales: [
       {
@@ -131,9 +135,27 @@ export default defineNuxtConfig({
     },
   },
 
+  // Configuração de imagens
   image: {
     cloudinary: {
       baseURL: 'https://res.cloudinary.com/dawhjravc/image/upload'
     },
+  },
+
+  // Configuração de runtime (segura): Configurações do Firebase são expostas via public runtimeConfig
+  // Defina esses valores aqui para que o código não codifique segredos. Você pode sobrescrevê-los via
+  // variáveis de ambiente ou configuração de runtime do provedor de hospedagem (recomendado).
+  runtimeConfig: {
+    public: {
+      firebase: {
+        apiKey: process.env.NUXT_PUBLIC_FIREBASE_API_KEY as string,
+        authDomain: process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN as string,
+        projectId: process.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID as string,
+        storageBucket: process.env.NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET as string,
+        messagingSenderId: process.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID as string,
+        appId: process.env.NUXT_PUBLIC_FIREBASE_APP_ID as string,
+        measurementId: process.env.NUXT_PUBLIC_FIREBASE_MEASUREMENT_ID as string,
+      }
+    }
   }
 })

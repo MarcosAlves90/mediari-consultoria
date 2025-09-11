@@ -283,6 +283,10 @@
             "error_title": "Authentication Error",
             "invalid_credentials": "Incorrect email or password. Please try again.",
             "server_error": "Server error. Please try again in a few minutes.",
+            "user_disabled": "Account disabled. Contact support.",
+            "too_many_requests": "Too many attempts. Please try again later.",
+            "session_error": "Unable to start session. Please try again.",
+            "network_error": "Network issue. Check your connection and try again.",
             "hide_password": "Hide password",
             "show_password": "Show password"
         },

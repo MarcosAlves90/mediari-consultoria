@@ -286,6 +286,10 @@
             "error_title": "Erro de Autenticação",
             "invalid_credentials": "E-mail ou senha incorretos. Tente novamente.",
             "server_error": "Erro no servidor. Tente novamente em alguns minutos.",
+            "user_disabled": "Conta desabilitada. Entre em contato com o suporte.",
+            "too_many_requests": "Muitas tentativas. Tente novamente mais tarde.",
+            "session_error": "Não foi possível iniciar a sessão. Tente novamente.",
+            "network_error": "Problema de rede. Verifique sua conexão e tente novamente.",
             "hide_password": "Ocultar senha",
             "show_password": "Mostrar senha"
         },
