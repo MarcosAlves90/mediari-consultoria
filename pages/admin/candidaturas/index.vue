@@ -1,41 +1,45 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useI18n } from "vue-i18n";
-import { useAdminCandidates } from "~/composables/admin";
-import { useProfileTest } from "~/composables/trabalhe-conosco";
-import { AdminHeader, CandidatesList, CandidateDetails } from "~/components/page-admin";
+  import { onMounted } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useAdminCandidates } from '~/composables/admin'
+  import { useProfileTest } from '~/composables/trabalhe-conosco'
+  import {
+    AdminHeader,
+    CandidatesList,
+    CandidateDetails,
+  } from '~/components/page-admin'
 
-definePageMeta({
-  layout: 'admin',
-  middleware: 'admin'
-});
+  definePageMeta({
+    layout: 'admin',
+    middleware: 'admin',
+  })
 
-const { t } = useI18n();
+  const { t } = useI18n()
 
-useSeoMeta({
-  title: `${t("admin.candidates.page_title")} - Mediari Consultoria`,
-  description: t("admin.candidates.page_description"),
-  robots: "noindex, nofollow",
-});
+  useSeoMeta({
+    title: `${t('admin.candidates.page_title')} - Mediari Consultoria`,
+    description: t('admin.candidates.page_description'),
+    robots: 'noindex, nofollow',
+  })
 
-const {
-  candidates,
-  selectedCandidate,
-  isLoading,
-  loadCandidates,
-  selectCandidate,
-  downloadResume,
-} = useAdminCandidates();
+  const {
+    candidates,
+    selectedCandidate,
+    isLoading,
+    loadCandidates,
+    selectCandidate,
+    downloadResume,
+  } = useAdminCandidates()
 
-const { GROUPS } = useProfileTest();
+  const { GROUPS } = useProfileTest()
 
-const refreshCandidates = async (): Promise<void> => {
-  await loadCandidates();
-};
+  const refreshCandidates = async (): Promise<void> => {
+    await loadCandidates()
+  }
 
-onMounted(() => {
-  loadCandidates();
-});
+  onMounted(() => {
+    loadCandidates()
+  })
 </script>
 
 <template>
@@ -45,9 +49,15 @@ onMounted(() => {
       :description="t('admin.candidates.page_description')"
     >
       <template #actions>
-        <div class="flex flex-col 500:flex-row items-stretch 500:items-center gap-0.5 500:gap-1 w-full 500:w-auto">
+        <div
+          class="flex flex-col 500:flex-row items-stretch 500:items-center gap-0.5 500:gap-1 w-full 500:w-auto"
+        >
           <div class="text-secondary-text">
-            {{ t("admin.candidates.total_applications", { count: candidates.length }) }}
+            {{
+              t('admin.candidates.total_applications', {
+                count: candidates.length,
+              })
+            }}
           </div>
 
           <button
@@ -60,15 +70,18 @@ onMounted(() => {
               class="w-1 h-1 mr-0.5"
               :class="{ 'animate-spin': isLoading }"
             />
-            <span>{{ t("admin.candidates.refresh") }}</span>
+            <span>{{ t('admin.candidates.refresh') }}</span>
           </button>
         </div>
       </template>
     </AdminHeader>
 
-    <div class="max-w-7xl mx-auto px-0.5 300:px-0.75 500:px-1 870:px-1.5 py-0.75 500:py-1 870:py-1.5">
-      <div class="grid grid-cols-1 870:grid-cols-3 gap-0.75 500:gap-1 870:gap-1.5">
-
+    <div
+      class="max-w-7xl mx-auto px-0.5 300:px-0.75 500:px-1 870:px-1.5 py-0.75 500:py-1 870:py-1.5"
+    >
+      <div
+        class="grid grid-cols-1 870:grid-cols-3 gap-0.75 500:gap-1 870:gap-1.5"
+      >
         <CandidatesList
           :candidates="candidates"
           :selected-candidate="selectedCandidate"
@@ -83,27 +96,26 @@ onMounted(() => {
             @download-resume="downloadResume"
           />
         </div>
-
       </div>
     </div>
   </main>
 </template>
 
 <style scoped>
-.admin-candidates-page {
-  min-height: 100vh;
-  background: #fafafa;
-}
-
-@media (max-width: 300px) {
   .admin-candidates-page {
-    padding: 0;
+    min-height: 100vh;
+    background: #fafafa;
   }
-}
 
-@media (min-width: 500px) and (max-width: 869px) {
-  .admin-candidates-page {
-    padding-top: 0.5rem;
+  @media (max-width: 300px) {
+    .admin-candidates-page {
+      padding: 0;
+    }
   }
-}
+
+  @media (min-width: 500px) and (max-width: 869px) {
+    .admin-candidates-page {
+      padding-top: 0.5rem;
+    }
+  }
 </style>

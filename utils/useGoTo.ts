@@ -16,15 +16,15 @@
  * @throws Irá registrar um erro no console se a mudança de rota falhar.
  */
 export function useGoTo() {
-    const router = useRouter();
-    
-    const goTo = async (link: string) => {
-        try {
-            await router.push(link);
-        } catch (error) {
-            console.error('Erro ao mudar de rota:', error);
-        }
-    };
+  const router = useRouter();
 
-    return { goTo };
+  const goTo = async (link: string) => {
+    try {
+      await router.push(link);
+    } catch (error) {
+      console.error('Erro ao mudar de rota:', error);
+    }
+  };
+
+  return { goTo };
 }

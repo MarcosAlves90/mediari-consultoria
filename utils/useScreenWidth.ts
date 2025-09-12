@@ -19,20 +19,20 @@ import { ref, onMounted, onUnmounted } from 'vue';
  * ```
  */
 export function useScreenWidth() {
-    const screenWidth = ref(0); // Inicializa com 0 (ou null)
+  const screenWidth = ref(0); // Inicializa com 0 (ou null)
 
-    const updateScreenWidth = () => {
-        screenWidth.value = window.innerWidth;
-    };
+  const updateScreenWidth = () => {
+    screenWidth.value = window.innerWidth;
+  };
 
-    onMounted(() => {
-        window.addEventListener('resize', updateScreenWidth);
-        updateScreenWidth();
-    });
+  onMounted(() => {
+    window.addEventListener('resize', updateScreenWidth);
+    updateScreenWidth();
+  });
 
-    onUnmounted(() => {
-        window.removeEventListener('resize', updateScreenWidth);
-    });
+  onUnmounted(() => {
+    window.removeEventListener('resize', updateScreenWidth);
+  });
 
-    return screenWidth;
+  return screenWidth;
 }

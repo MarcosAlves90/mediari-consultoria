@@ -1,336 +1,467 @@
 {
-    "banner": {
-        "main_title": "EXCELÊNCIA JURÍDICA",
-        "subtitle-1": "PARA ",
-        "subtitle-2": "VOCÊ E OS SEUS NEGÓCIOS",
-        "description": "Atendimento especializado para empresas e soluções completas em demandas bancárias e do consumidor.",
-        "tags": [
-            "Competência",
-            "Segurança",
-            "Experiência"
-        ]
+  "banner": {
+    "main_title": "EXCELÊNCIA JURÍDICA",
+    "subtitle-1": "PARA ",
+    "subtitle-2": "VOCÊ E OS SEUS NEGÓCIOS",
+    "description": "Atendimento especializado para empresas e soluções completas em demandas bancárias e do consumidor.",
+    "tags": ["Competência", "Segurança", "Experiência"]
+  },
+  "services": {
+    "section_subtitle": "ÁREAS DE ATUAÇÃO",
+    "section_title": "NOSSOS SERVIÇOS",
+    "section_description": "Nosso corpo de profissionais atua em diferentes áreas para proteger os seus direitos ou da sua empresa.",
+    "main": [
+      {
+        "title": "Direito Civil",
+        "description": "Resolvemos conflitos, indenizações e questões do dia a dia para sua segurança jurídica."
+      },
+      {
+        "title": "Direito Penal",
+        "description": "Defesa especializada em processos criminais, garantindo proteção em todas as etapas."
+      },
+      {
+        "title": "Contratos",
+        "description": "Elaboração e revisão de contratos para assegurar segurança e proteção jurídica."
+      },
+      {
+        "title": "Consultivo",
+        "description": "Orientação jurídica estratégica para prevenir riscos e garantir conformidade legal."
+      }
+    ],
+    "secondary": [
+      {
+        "title": "Direito do Consumidor",
+        "description": "Defendemos os direitos dos consumidores em diversas situações, como compras online, cobranças indevidas e defeitos em produtos ou serviços."
+      },
+      {
+        "title": "Direito Bancário",
+        "description": "Prestamos assessoria jurídica para questões envolvendo bancos, contratos financeiros, cobranças abusivas e renegociação de dívidas. Proteja seus direitos com nosso suporte."
+      },
+      {
+        "title": "Direito Trabalhista",
+        "description": "Atuamos na defesa de trabalhadores e empresas em disputas trabalhistas, rescisões contratuais, direitos previdenciários e demais questões ligadas ao ambiente de trabalho."
+      }
+    ]
+  },
+  "enterprise": {
+    "section_subtitle": "EMPRESA",
+    "description": "Somos uma empresa especializada em assessoria e consultoria jurídica personalizada para pequenos e médios negócios, oferecendo elaboração de minutas, pareceres jurídicos, relatórios completos e suporte abrangente em questões trabalhistas. Para o grande público, atuamos em demandas bancárias, como processos de busca e apreensão, bloqueios de contas e outras áreas do Direito do Consumidor. Contamos com uma equipe de mais de 60 colaboradores e auxiliares jurídicos preparados para entregar o melhor atendimento a empresas e pessoas físicas.",
+    "location": "Estamos localizados na {address}"
+  },
+  "ceo": {
+    "section_subtitle": "FUNDADOR",
+    "section_title": "À FRENTE DA NOSSA VISÃO",
+    "description": "Advogado especializado em Direito Bancário e Direito do Consumidor, é graduado em Direito pela Universidade Anhanguera desde 2018. Com vasta experiência na gestão de processos, pessoas e recuperação de empresas, lidera uma equipe com mais de 60 colaboradores, entre advogados e auxiliares jurídicos, desde 2023, ocasião em que assumiu a gestão da Mediari e conduziu a empresa a um crescimento exponencial e ascendente. Após trabalhar durante anos com gestão comercial e crises empresariais, dedica atualmente sua carreira a atender empresas e consumidores que buscam amparo legal para situações de injustiça que lesam seus direitos mais basilares em nossa sociedade.",
+    "quote": "\"A justiça não é um privilégio, é um direito — e nossa missão é garantir que ela seja acessível a todos.\""
+  },
+  "team": {
+    "section_subtitle": "EQUIPE",
+    "section_title": "NOSSOS DESTAQUES",
+    "description": "Com mais de 60 colaboradores e auxiliares jurídicos, entregamos excelência em todos os serviços."
+  },
+  "contact": {
+    "section_subtitle": "FALE CONOSCO",
+    "section_title": "ENTRE EM CONTATO",
+    "description": "Nos contate através de nossas redes e tenha os seus direitos protegidos.",
+    "instagram": "Fale pelo Instagram",
+    "phone": "Ligue para Nós",
+    "email": "Envie um E-mail",
+    "linkedin": "Conecte-se no LinkedIn"
+  },
+  "navbar": {
+    "home": "Início",
+    "services": "Serviços",
+    "enterprise": "Empresa",
+    "founder": "Fundador",
+    "team": "Equipe",
+    "contact": "Contato",
+    "careers": "Carreiras"
+  },
+  "footer": {
+    "highlights": [
+      {
+        "title": "Site 100% Seguro",
+        "desc": "Criptografia SSL para sua proteção"
+      },
+      {
+        "title": "Referência no Ramo",
+        "desc": "Serviço bem avaliado"
+      },
+      {
+        "title": "Acesso Protegido",
+        "desc": "Navegação estável e confiável"
+      }
+    ],
+    "menu_title": "MENU",
+    "areas_title": "ÁREAS DE ATUAÇÃO",
+    "all_rights_reserved": "Todos os Direitos Reservados"
+  },
+  "error": {
+    "title": "Página não encontrada",
+    "not_found": "Oops! A página que você procura não foi encontrada.",
+    "unexpected": "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+    "back_home": "Voltar para a página inicial",
+    "back_home_aria": "Voltar para a página inicial"
+  },
+  "seo": {
+    "title": "Direito para Empresas e Pessoas Físicas",
+    "description": "Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor."
+  },
+  "socialAction": {
+    "section_subtitle": "RESPONSABILIDADE SOCIAL",
+    "section_title": "AÇÕES SOCIAIS",
+    "section_description": "Acreditamos no poder transformador do direito e nos dedicamos a projetos que promovem justiça social e impacto positivo na comunidade.",
+    "actions": {
+      "abrigo_irma_tereza": {
+        "name": "Abrigo Irmã Tereza",
+        "description": "Doação de produtos de higiene e fraldas geriátricas e mantimentos para apoiar os idosos do abrigo.",
+        "impact": "Idosos assistidos",
+        "category": "Assistência Social"
+      },
+      "instituto_tuh": {
+        "name": "Instituto TUH",
+        "description": "Doação de cestas básicas para famílias em situação vulnerável, garantindo segurança alimentar.",
+        "impact": "Famílias atendidas",
+        "category": "Segurança Alimentar"
+      },
+      "tragedia_rio_grande_sul": {
+        "name": "Tragédia Rio Grande do Sul",
+        "description": "Doação de roupas, calçados e mantimentos para vítimas da tragédia climática no RS.",
+        "impact": "Vítimas assistidas",
+        "category": "Emergência Social"
+      },
+      "casa_florescer": {
+        "name": "Casa Florescer (LGBTQIA+)",
+        "description": "Doação de roupas de cama e kits de higiene para apoiar a comunidade LGBTQIA+ em vulnerabilidade.",
+        "impact": "Pessoas apoiadas",
+        "category": "Direitos Humanos"
+      },
+      "nucleo_menino_jesus": {
+        "name": "Núcleo Menino Jesus",
+        "description": "Doação de mantimentos (leite, bolacha e pães) para crianças em situação de vulnerabilidade.",
+        "impact": "Crianças alimentadas",
+        "category": "Proteção Infantil"
+      },
+      "instituto_losurdo": {
+        "name": "Instituto Losurdo",
+        "description": "Doação de cestas básicas para famílias necessitadas, promovendo dignidade e segurança alimentar.",
+        "impact": "Famílias beneficiadas",
+        "category": "Assistência Social"
+      },
+      "instituto_borboleta_azul": {
+        "name": "Instituto Borboleta Azul",
+        "description": "Doação de materiais para pintar, desenhar e jogos interativos para desenvolvimento educacional.",
+        "impact": "Crianças beneficiadas",
+        "category": "Educação e Arte"
+      },
+      "projeto_social_abencoe": {
+        "name": "Projeto Social Abençoe",
+        "description": "Doação de mantimentos, produtos de higiene e brinquedos para crianças carentes do sertão.",
+        "impact": "Crianças do sertão",
+        "category": "Proteção Infantil"
+      }
+    }
+  },
+  "careers": {
+    "page_title": "Trabalhe Conosco",
+    "section_subtitle": "OPORTUNIDADES DE CARREIRA",
+    "section_title": "TRABALHE CONOSCO",
+    "section_description": "Junte-se à nossa equipe de profissionais qualificados e faça parte de uma empresa comprometida com a excelência jurídica.",
+    "form": {
+      "full_name": "Nome Completo",
+      "full_name_placeholder": "Digite seu nome completo",
+      "email": "E-mail",
+      "email_placeholder": "Digite seu e-mail",
+      "phone": "Telefone",
+      "phone_placeholder": "(11) 99999-9999",
+      "area_of_interest": "Área de Interesse",
+      "area_of_interest_placeholder": "Selecione uma área",
+      "experience": "Experiência Profissional",
+      "experience_placeholder": "Descreva brevemente sua experiência",
+      "resume": "Currículo",
+      "resume_placeholder": "Anexe seu currículo (PDF, DOC, DOCX)",
+      "cover_letter": "Carta de Apresentação",
+      "cover_letter_placeholder": "Conte-nos por que você gostaria de trabalhar conosco",
+      "privacy_consent": "Concordo com o tratamento dos meus dados pessoais conforme a LGPD",
+      "submit_button": "Continuar",
+      "submitting": "Enviando dados...",
+      "success_title": "Candidatura enviada com sucesso!",
+      "success_message": "Entraremos em contato em breve.",
+      "required_field": "Este campo é obrigatório",
+      "invalid_email": "Por favor, insira um e-mail válido",
+      "invalid_phone": "Por favor, insira um telefone válido",
+      "file_too_large": "O arquivo deve ter no máximo 5MB",
+      "invalid_file_type": "Formato de arquivo não suportado",
+      "file_upload": {
+        "click_to_upload": "Clique para enviar",
+        "drag_file_here": " ou arraste o arquivo aqui",
+        "file_selected": "Arquivo selecionado",
+        "help_text": "Formatos aceitos: PDF, DOC, DOCX (máx. 5MB)",
+        "file_too_large": "Arquivo muito grande. Tamanho máximo permitido: 5MB",
+        "invalid_file_type": "Tipo de arquivo inválido. Formatos aceitos: PDF, DOC, DOCX"
+      }
     },
-    "services": {
-        "section_subtitle": "ÁREAS DE ATUAÇÃO",
-        "section_title": "NOSSOS SERVIÇOS",
-        "section_description": "Nosso corpo de profissionais atua em diferentes áreas para proteger os seus direitos ou da sua empresa.",
-        "main": [
-            {
-                "title": "Direito Civil",
-                "description": "Resolvemos conflitos, indenizações e questões do dia a dia para sua segurança jurídica."
-            },
-            {
-                "title": "Direito Penal",
-                "description": "Defesa especializada em processos criminais, garantindo proteção em todas as etapas."
-            },
-            {
-                "title": "Contratos",
-                "description": "Elaboração e revisão de contratos para assegurar segurança e proteção jurídica."
-            },
-            {
-                "title": "Consultivo",
-                "description": "Orientação jurídica estratégica para prevenir riscos e garantir conformidade legal."
-            }
-        ],
-        "secondary": [
-            {
-                "title": "Direito do Consumidor",
-                "description": "Defendemos os direitos dos consumidores em diversas situações, como compras online, cobranças indevidas e defeitos em produtos ou serviços."
-            },
-            {
-                "title": "Direito Bancário",
-                "description": "Prestamos assessoria jurídica para questões envolvendo bancos, contratos financeiros, cobranças abusivas e renegociação de dívidas. Proteja seus direitos com nosso suporte."
-            },
-            {
-                "title": "Direito Trabalhista",
-                "description": "Atuamos na defesa de trabalhadores e empresas em disputas trabalhistas, rescisões contratuais, direitos previdenciários e demais questões ligadas ao ambiente de trabalho."
-            }
-        ]
+    "areas": {
+      "0": "Direito Civil",
+      "1": "Direito Penal",
+      "2": "Direito Trabalhista",
+      "3": "Direito do Consumidor",
+      "4": "Direito Bancário",
+      "5": "Contratos",
+      "6": "Consultivo",
+      "7": "Administrativo"
     },
-    "enterprise": {
-        "section_subtitle": "EMPRESA",
-        "description": "Somos uma empresa especializada em assessoria e consultoria jurídica personalizada para pequenos e médios negócios, oferecendo elaboração de minutas, pareceres jurídicos, relatórios completos e suporte abrangente em questões trabalhistas. Para o grande público, atuamos em demandas bancárias, como processos de busca e apreensão, bloqueios de contas e outras áreas do Direito do Consumidor. Contamos com uma equipe de mais de 60 colaboradores e auxiliares jurídicos preparados para entregar o melhor atendimento a empresas e pessoas físicas.",
-        "location": "Estamos localizados na {address}"
+    "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente.",
+    "profile_test": {
+      "title": "Teste Comportamental",
+      "subtitle": "AVALIAÇÃO DE PERSONALIDADE",
+      "description": "Para cada grupo de opções abaixo, selecione aquela que melhor descreve você e responda com sinceridade para nos ajudar a entender seu perfil profissional.",
+      "progress_text": "{answered} de {total} questões respondidas",
+      "incomplete": "Teste incompleto. Responda todas as opções.",
+      "groups": [
+        {
+          "A": "Animado",
+          "B": "Aventureiro",
+          "C": "Analítico",
+          "D": "Adaptável"
+        },
+        {
+          "A": "Brincalhão",
+          "B": "Persuasivo",
+          "C": "Persistente",
+          "D": "Sereno"
+        },
+        { "A": "Sociável", "B": "Energético", "C": "Doador", "D": "Submisso" },
+        {
+          "A": "Convincente",
+          "B": "Competitivo",
+          "C": "Atencioso",
+          "D": "Controlado"
+        },
+        {
+          "A": "Estimulante",
+          "B": "Habilidoso",
+          "C": "Respeitoso",
+          "D": "Reservado"
+        },
+        {
+          "A": "Espirituoso",
+          "B": "Auto-suficiente",
+          "C": "Sensível",
+          "D": "Satisfeito"
+        },
+        {
+          "A": "Charmoso",
+          "B": "Positivo",
+          "C": "Planejador",
+          "D": "Paciente"
+        },
+        { "A": "Espontâneo", "B": "Seguro", "C": "Organizado", "D": "Tímido" },
+        { "A": "Otimista", "B": "Franco", "C": "Ordeiro", "D": "Serviçal" },
+        { "A": "Engraçado", "B": "Vigoroso", "C": "Fiel", "D": "Amigável" },
+        {
+          "A": "Encantador",
+          "B": "Audacioso",
+          "C": "Minucioso",
+          "D": "Diplomático"
+        },
+        { "A": "Alegre", "B": "Confiante", "C": "Culto", "D": "Previsível" },
+        {
+          "A": "Inspirado",
+          "B": "Independente",
+          "C": "Idealista",
+          "D": "Inofensivo"
+        },
+        {
+          "A": "Demonstrativo",
+          "B": "Decidido",
+          "C": "Profundo",
+          "D": "Irônico"
+        },
+        { "A": "Desembaraçado", "B": "Ativo", "C": "Musical", "D": "Mediador" },
+        {
+          "A": "Conversador",
+          "B": "Firme",
+          "C": "Pensativo",
+          "D": "Tolerante"
+        },
+        { "A": "Metido", "B": "Mandão", "C": "Acanhado", "D": "Vazio" },
+        {
+          "A": "Indisciplinado",
+          "B": "Insensível",
+          "C": "Rancoroso",
+          "D": "Desinteressado"
+        },
+        { "A": "Vivo", "B": "Líder", "C": "Leal", "D": "Ouvinte" },
+        { "A": "Atraente", "B": "Chefe", "C": "Detalhista", "D": "Contente" },
+        {
+          "A": "Popular",
+          "B": "Produtivo",
+          "C": "Perfeccionista",
+          "D": "Agradável"
+        },
+        { "A": "Vivaz", "B": "Valente", "C": "Comportado", "D": "Equilibrado" },
+        {
+          "A": "Repetitível",
+          "B": "Inflexível",
+          "C": "Ressentido",
+          "D": "Relutante"
+        },
+        { "A": "Esquecido", "B": "Franco", "C": "Complicado", "D": "Medroso" },
+        {
+          "A": "Inoportuno",
+          "B": "Impaciente",
+          "C": "Inseguro",
+          "D": "Indeciso"
+        },
+        {
+          "A": "Imprevisível",
+          "B": "Frio",
+          "C": "Impopular",
+          "D": "Desligado"
+        },
+        {
+          "A": "Casual",
+          "B": "Cabeçudo",
+          "C": "Insatisfeito",
+          "D": "Exitante"
+        },
+        {
+          "A": "Permissivo",
+          "B": "Orgulhoso",
+          "C": "Cauteloso",
+          "D": "Simples"
+        },
+        {
+          "A": "Esquentado",
+          "B": "Discutidor",
+          "C": "Alienado",
+          "D": "Incerto"
+        },
+        { "A": "Ingênuo", "B": "Ousado", "C": "Negativo", "D": "Indiferente" },
+        {
+          "A": "Egoísta",
+          "B": "Trabalhador",
+          "C": "Retraído",
+          "D": "Preocupado"
+        },
+        {
+          "A": "Tagarela",
+          "B": "Indelicado",
+          "C": "Sensível demais",
+          "D": "Tímido"
+        },
+        {
+          "A": "Desorganizado",
+          "B": "Mandão",
+          "C": "Deprimido",
+          "D": "Confuso"
+        },
+        {
+          "A": "Inconstante",
+          "B": "Intolerante",
+          "C": "Introvertido",
+          "D": "Apático"
+        },
+        {
+          "A": "Desordenado",
+          "B": "Manipulador",
+          "C": "Triste",
+          "D": "Resmungão"
+        },
+        {
+          "A": "Convencido",
+          "B": "Obstinado",
+          "C": "Cético (não acreditar)",
+          "D": "Lento"
+        },
+        {
+          "A": "Barulhento",
+          "B": "Tirânico",
+          "C": "Solitário",
+          "D": "Preguiçoso"
+        },
+        {
+          "A": "Distraído",
+          "B": "Irritável",
+          "C": "Desconfiado",
+          "D": "Vagaroso"
+        },
+        {
+          "A": "Agitado",
+          "B": "Imprudente",
+          "C": "Vingativo",
+          "D": "Relutante"
+        },
+        { "A": "Instável", "B": "Astuto", "C": "Crítico", "D": "Acomodado" }
+      ],
+      "submit": "Finalizar teste",
+      "submitting": "Enviando respostas...",
+      "completion_title": "Teste Concluído!",
+      "completion_message": "Obrigado por concluir o teste. Suas respostas foram registradas com sucesso.",
+      "return_home": "Voltar ao Início"
+    }
+  },
+  "admin": {
+    "login": {
+      "page_title": "Login Administrativo",
+      "page_description": "Acesso restrito para administradores do sistema",
+      "title": "Painel Administrativo",
+      "welcome_back": "Bem-vindo de volta!",
+      "welcome_message": "Faça login para acessar o painel administrativo da Mediari Consultoria.",
+      "email": "E-mail",
+      "password": "Senha",
+      "password_placeholder": "Digite sua senha",
+      "sign_in": "Entrar",
+      "logging_in": "Entrando...",
+      "error_title": "Erro de Autenticação",
+      "invalid_credentials": "E-mail ou senha incorretos. Tente novamente.",
+      "server_error": "Erro no servidor. Tente novamente em alguns minutos.",
+      "user_disabled": "Conta desabilitada. Entre em contato com o suporte.",
+      "too_many_requests": "Muitas tentativas. Tente novamente mais tarde.",
+      "session_error": "Não foi possível iniciar a sessão. Tente novamente.",
+      "network_error": "Problema de rede. Verifique sua conexão e tente novamente.",
+      "hide_password": "Ocultar senha",
+      "show_password": "Mostrar senha"
     },
-    "ceo": {
-        "section_subtitle": "FUNDADOR",
-        "section_title": "À FRENTE DA NOSSA VISÃO",
-        "description": "Advogado especializado em Direito Bancário e Direito do Consumidor, é graduado em Direito pela Universidade Anhanguera desde 2018. Com vasta experiência na gestão de processos, pessoas e recuperação de empresas, lidera uma equipe com mais de 60 colaboradores, entre advogados e auxiliares jurídicos, desde 2023, ocasião em que assumiu a gestão da Mediari e conduziu a empresa a um crescimento exponencial e ascendente. Após trabalhar durante anos com gestão comercial e crises empresariais, dedica atualmente sua carreira a atender empresas e consumidores que buscam amparo legal para situações de injustiça que lesam seus direitos mais basilares em nossa sociedade.",
-        "quote": "\"A justiça não é um privilégio, é um direito — e nossa missão é garantir que ela seja acessível a todos.\""
-    },
-    "team": {
-        "section_subtitle": "EQUIPE",
-        "section_title": "NOSSOS DESTAQUES",
-        "description": "Com mais de 60 colaboradores e auxiliares jurídicos, entregamos excelência em todos os serviços."
-    },
-    "contact": {
-        "section_subtitle": "FALE CONOSCO",
-        "section_title": "ENTRE EM CONTATO",
-        "description": "Nos contate através de nossas redes e tenha os seus direitos protegidos.",
-        "instagram": "Fale pelo Instagram",
-        "phone": "Ligue para Nós",
-        "email": "Envie um E-mail",
-        "linkedin": "Conecte-se no LinkedIn"
-    },
-    "navbar": {
-        "home": "Início",
-        "services": "Serviços",
-        "enterprise": "Empresa",
-        "founder": "Fundador",
-        "team": "Equipe",
-        "contact": "Contato",
-        "careers": "Carreiras"
+    "nav": {
+      "candidates": "Candidaturas",
+      "back_to_site": "Voltar ao Site",
+      "welcome": "Bem-vindo",
+      "logout": "Sair",
+      "logging_out": "Saindo..."
     },
     "footer": {
-        "highlights": [
-            {
-                "title": "Site 100% Seguro",
-                "desc": "Criptografia SSL para sua proteção"
-            },
-            {
-                "title": "Referência no Ramo",
-                "desc": "Serviço bem avaliado"
-            },
-            {
-                "title": "Acesso Protegido",
-                "desc": "Navegação estável e confiável"
-            }
-        ],
-        "menu_title": "MENU",
-        "areas_title": "ÁREAS DE ATUAÇÃO",
-        "all_rights_reserved": "Todos os Direitos Reservados"
+      "copyright": "©",
+      "admin_panel": "Painel Administrativo"
     },
-    "error": {
-        "title": "Página não encontrada",
-        "not_found": "Oops! A página que você procura não foi encontrada.",
-        "unexpected": "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
-        "back_home": "Voltar para a página inicial",
-        "back_home_aria": "Voltar para a página inicial"
-    },
-    "seo": {
-        "title": "Direito para Empresas e Pessoas Físicas",
-        "description": "Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor."
-    },
-    "socialAction": {
-        "section_subtitle": "RESPONSABILIDADE SOCIAL",
-        "section_title": "AÇÕES SOCIAIS",
-        "section_description": "Acreditamos no poder transformador do direito e nos dedicamos a projetos que promovem justiça social e impacto positivo na comunidade.",
-        "actions": {
-            "abrigo_irma_tereza": {
-                "name": "Abrigo Irmã Tereza",
-                "description": "Doação de produtos de higiene e fraldas geriátricas e mantimentos para apoiar os idosos do abrigo.",
-                "impact": "Idosos assistidos",
-                "category": "Assistência Social"
-            },
-            "instituto_tuh": {
-                "name": "Instituto TUH",
-                "description": "Doação de cestas básicas para famílias em situação vulnerável, garantindo segurança alimentar.",
-                "impact": "Famílias atendidas",
-                "category": "Segurança Alimentar"
-            },
-            "tragedia_rio_grande_sul": {
-                "name": "Tragédia Rio Grande do Sul",
-                "description": "Doação de roupas, calçados e mantimentos para vítimas da tragédia climática no RS.",
-                "impact": "Vítimas assistidas",
-                "category": "Emergência Social"
-            },
-            "casa_florescer": {
-                "name": "Casa Florescer (LGBTQIA+)",
-                "description": "Doação de roupas de cama e kits de higiene para apoiar a comunidade LGBTQIA+ em vulnerabilidade.",
-                "impact": "Pessoas apoiadas",
-                "category": "Direitos Humanos"
-            },
-            "nucleo_menino_jesus": {
-                "name": "Núcleo Menino Jesus",
-                "description": "Doação de mantimentos (leite, bolacha e pães) para crianças em situação de vulnerabilidade.",
-                "impact": "Crianças alimentadas",
-                "category": "Proteção Infantil"
-            },
-            "instituto_losurdo": {
-                "name": "Instituto Losurdo",
-                "description": "Doação de cestas básicas para famílias necessitadas, promovendo dignidade e segurança alimentar.",
-                "impact": "Famílias beneficiadas",
-                "category": "Assistência Social"
-            },
-            "instituto_borboleta_azul": {
-                "name": "Instituto Borboleta Azul",
-                "description": "Doação de materiais para pintar, desenhar e jogos interativos para desenvolvimento educacional.",
-                "impact": "Crianças beneficiadas",
-                "category": "Educação e Arte"
-            },
-            "projeto_social_abencoe": {
-                "name": "Projeto Social Abençoe",
-                "description": "Doação de mantimentos, produtos de higiene e brinquedos para crianças carentes do sertão.",
-                "impact": "Crianças do sertão",
-                "category": "Proteção Infantil"
-            }
-        }
-    },
-    "careers": {
-        "page_title": "Trabalhe Conosco",
-        "section_subtitle": "OPORTUNIDADES DE CARREIRA",
-        "section_title": "TRABALHE CONOSCO",
-        "section_description": "Junte-se à nossa equipe de profissionais qualificados e faça parte de uma empresa comprometida com a excelência jurídica.",
-        "form": {
-            "full_name": "Nome Completo",
-            "full_name_placeholder": "Digite seu nome completo",
-            "email": "E-mail",
-            "email_placeholder": "Digite seu e-mail",
-            "phone": "Telefone",
-            "phone_placeholder": "(11) 99999-9999",
-            "area_of_interest": "Área de Interesse",
-            "area_of_interest_placeholder": "Selecione uma área",
-            "experience": "Experiência Profissional",
-            "experience_placeholder": "Descreva brevemente sua experiência",
-            "resume": "Currículo",
-            "resume_placeholder": "Anexe seu currículo (PDF, DOC, DOCX)",
-            "cover_letter": "Carta de Apresentação",
-            "cover_letter_placeholder": "Conte-nos por que você gostaria de trabalhar conosco",
-            "privacy_consent": "Concordo com o tratamento dos meus dados pessoais conforme a LGPD",
-            "submit_button": "Continuar",
-            "submitting": "Enviando dados...",
-            "success_title": "Candidatura enviada com sucesso!",
-            "success_message": "Entraremos em contato em breve.",
-            "required_field": "Este campo é obrigatório",
-            "invalid_email": "Por favor, insira um e-mail válido",
-            "invalid_phone": "Por favor, insira um telefone válido",
-            "file_too_large": "O arquivo deve ter no máximo 5MB",
-            "invalid_file_type": "Formato de arquivo não suportado",
-            "file_upload": {
-                "click_to_upload": "Clique para enviar",
-                "drag_file_here": " ou arraste o arquivo aqui",
-                "file_selected": "Arquivo selecionado",
-                "help_text": "Formatos aceitos: PDF, DOC, DOCX (máx. 5MB)",
-                "file_too_large": "Arquivo muito grande. Tamanho máximo permitido: 5MB",
-                "invalid_file_type": "Tipo de arquivo inválido. Formatos aceitos: PDF, DOC, DOCX"
-            }
-        },
-        "areas": {
-            "0": "Direito Civil",
-            "1": "Direito Penal",
-            "2": "Direito Trabalhista",
-            "3": "Direito do Consumidor",
-            "4": "Direito Bancário",
-            "5": "Contratos",
-            "6": "Consultivo",
-            "7": "Administrativo"
-        },
-        "error_message": "Ocorreu um erro ao enviar sua candidatura. Tente novamente.",
-        "profile_test": {
-            "title": "Teste Comportamental",
-            "subtitle": "AVALIAÇÃO DE PERSONALIDADE",
-            "description": "Para cada grupo de opções abaixo, selecione aquela que melhor descreve você e responda com sinceridade para nos ajudar a entender seu perfil profissional.",
-            "progress_text": "{answered} de {total} questões respondidas",
-            "incomplete": "Teste incompleto. Responda todas as opções.",
-            "groups": [
-                { "A": "Animado", "B": "Aventureiro", "C": "Analítico", "D": "Adaptável" },
-                { "A": "Brincalhão", "B": "Persuasivo", "C": "Persistente", "D": "Sereno" },
-                { "A": "Sociável", "B": "Energético", "C": "Doador", "D": "Submisso" },
-                { "A": "Convincente", "B": "Competitivo", "C": "Atencioso", "D": "Controlado" },
-                { "A": "Estimulante", "B": "Habilidoso", "C": "Respeitoso", "D": "Reservado" },
-                { "A": "Espirituoso", "B": "Auto-suficiente", "C": "Sensível", "D": "Satisfeito" },
-                { "A": "Charmoso", "B": "Positivo", "C": "Planejador", "D": "Paciente" },
-                { "A": "Espontâneo", "B": "Seguro", "C": "Organizado", "D": "Tímido" },
-                { "A": "Otimista", "B": "Franco", "C": "Ordeiro", "D": "Serviçal" },
-                { "A": "Engraçado", "B": "Vigoroso", "C": "Fiel", "D": "Amigável" },
-                { "A": "Encantador", "B": "Audacioso", "C": "Minucioso", "D": "Diplomático" },
-                { "A": "Alegre", "B": "Confiante", "C": "Culto", "D": "Previsível" },
-                { "A": "Inspirado", "B": "Independente", "C": "Idealista", "D": "Inofensivo" },
-                { "A": "Demonstrativo", "B": "Decidido", "C": "Profundo", "D": "Irônico" },
-                { "A": "Desembaraçado", "B": "Ativo", "C": "Musical", "D": "Mediador" },
-                { "A": "Conversador", "B": "Firme", "C": "Pensativo", "D": "Tolerante" },
-                { "A": "Metido", "B": "Mandão", "C": "Acanhado", "D": "Vazio" },
-                { "A": "Indisciplinado", "B": "Insensível", "C": "Rancoroso", "D": "Desinteressado" },
-                { "A": "Vivo", "B": "Líder", "C": "Leal", "D": "Ouvinte" },
-                { "A": "Atraente", "B": "Chefe", "C": "Detalhista", "D": "Contente" },
-                { "A": "Popular", "B": "Produtivo", "C": "Perfeccionista", "D": "Agradável" },
-                { "A": "Vivaz", "B": "Valente", "C": "Comportado", "D": "Equilibrado" },
-                { "A": "Repetitível", "B": "Inflexível", "C": "Ressentido", "D": "Relutante" },
-                { "A": "Esquecido", "B": "Franco", "C": "Complicado", "D": "Medroso" },
-                { "A": "Inoportuno", "B": "Impaciente", "C": "Inseguro", "D": "Indeciso" },
-                { "A": "Imprevisível", "B": "Frio", "C": "Impopular", "D": "Desligado" },
-                { "A": "Casual", "B": "Cabeçudo", "C": "Insatisfeito", "D": "Exitante" },
-                { "A": "Permissivo", "B": "Orgulhoso", "C": "Cauteloso", "D": "Simples" },
-                { "A": "Esquentado", "B": "Discutidor", "C": "Alienado", "D": "Incerto" },
-                { "A": "Ingênuo", "B": "Ousado", "C": "Negativo", "D": "Indiferente" },
-                { "A": "Egoísta", "B": "Trabalhador", "C": "Retraído", "D": "Preocupado" },
-                { "A": "Tagarela", "B": "Indelicado", "C": "Sensível demais", "D": "Tímido" },
-                { "A": "Desorganizado", "B": "Mandão", "C": "Deprimido", "D": "Confuso" },
-                { "A": "Inconstante", "B": "Intolerante", "C": "Introvertido", "D": "Apático" },
-                { "A": "Desordenado", "B": "Manipulador", "C": "Triste", "D": "Resmungão" },
-                { "A": "Convencido", "B": "Obstinado", "C": "Cético (não acreditar)", "D": "Lento" },
-                { "A": "Barulhento", "B": "Tirânico", "C": "Solitário", "D": "Preguiçoso" },
-                { "A": "Distraído", "B": "Irritável", "C": "Desconfiado", "D": "Vagaroso" },
-                { "A": "Agitado", "B": "Imprudente", "C": "Vingativo", "D": "Relutante" },
-                { "A": "Instável", "B": "Astuto", "C": "Crítico", "D": "Acomodado" }
-            ],
-            "submit": "Finalizar teste",
-            "submitting": "Enviando respostas...",
-            "completion_title": "Teste Concluído!",
-            "completion_message": "Obrigado por concluir o teste. Suas respostas foram registradas com sucesso.",
-            "return_home": "Voltar ao Início"
-        }
-    },
-    "admin": {
-        "login": {
-            "page_title": "Login Administrativo",
-            "page_description": "Acesso restrito para administradores do sistema",
-            "title": "Painel Administrativo",
-            "welcome_back": "Bem-vindo de volta!",
-            "welcome_message": "Faça login para acessar o painel administrativo da Mediari Consultoria.",
-            "email": "E-mail",
-            "password": "Senha",
-            "password_placeholder": "Digite sua senha",
-            "sign_in": "Entrar",
-            "logging_in": "Entrando...",
-            "error_title": "Erro de Autenticação",
-            "invalid_credentials": "E-mail ou senha incorretos. Tente novamente.",
-            "server_error": "Erro no servidor. Tente novamente em alguns minutos.",
-            "user_disabled": "Conta desabilitada. Entre em contato com o suporte.",
-            "too_many_requests": "Muitas tentativas. Tente novamente mais tarde.",
-            "session_error": "Não foi possível iniciar a sessão. Tente novamente.",
-            "network_error": "Problema de rede. Verifique sua conexão e tente novamente.",
-            "hide_password": "Ocultar senha",
-            "show_password": "Mostrar senha"
-        },
-        "nav": {
-            "candidates": "Candidaturas",
-            "back_to_site": "Voltar ao Site",
-            "welcome": "Bem-vindo",
-            "logout": "Sair",
-            "logging_out": "Saindo..."
-        },
-        "footer": {
-            "copyright": "©",
-            "admin_panel": "Painel Administrativo"
-        },
-        "candidates": {
-            "page_title": "Análise de Candidaturas",
-            "page_description": "Visualize e analise todas as candidaturas recebidas através do formulário 'Trabalhe Conosco'",
-            "candidates_list": "Lista de Candidatos",
-            "total_applications": "{count} candidatura(s) recebida(s)",
-            "refresh": "Atualizar",
-            "search_placeholder": "Buscar por nome ou e-mail...",
-            "all_areas": "Todas as áreas",
-            "loading": "Carregando candidaturas...",
-            "no_results": "Nenhum resultado encontrado para os filtros aplicados.",
-            "no_candidates": "Nenhuma candidatura recebida ainda.",
-            "test_score": "Teste",
-            "select_candidate": "Selecione um candidato",
-            "select_candidate_description": "Escolha um candidato da lista ao lado para visualizar suas informações detalhadas.",
-            "submitted_on": "Enviado em",
-            "download_resume": "Baixar Currículo",
-            "open_resume": "Abrir Currículo",
-            "resume_file": "Arquivo do Currículo",
-            "no_file": "Nenhum arquivo anexado",
-            "completion_rate": "Taxa de Conclusão",
-            "test_summary": "Resumo do Teste Comportamental",
-            "positive_responses": "Respostas Positivas",
-            "neutral_responses": "Respostas Neutras",
-            "negative_responses": "Respostas Negativas",
-            "average_score": "Média Geral",
-            "behavioral_insights": "Perfil Comportamental",
-            "no_answer": "Não respondido"
-        }
+    "candidates": {
+      "page_title": "Análise de Candidaturas",
+      "page_description": "Visualize e analise todas as candidaturas recebidas através do formulário 'Trabalhe Conosco'",
+      "candidates_list": "Lista de Candidatos",
+      "total_applications": "{count} candidatura(s) recebida(s)",
+      "refresh": "Atualizar",
+      "search_placeholder": "Buscar por nome ou e-mail...",
+      "all_areas": "Todas as áreas",
+      "loading": "Carregando candidaturas...",
+      "no_results": "Nenhum resultado encontrado para os filtros aplicados.",
+      "no_candidates": "Nenhuma candidatura recebida ainda.",
+      "test_score": "Teste",
+      "select_candidate": "Selecione um candidato",
+      "select_candidate_description": "Escolha um candidato da lista ao lado para visualizar suas informações detalhadas.",
+      "submitted_on": "Enviado em",
+      "download_resume": "Baixar Currículo",
+      "open_resume": "Abrir Currículo",
+      "resume_file": "Arquivo do Currículo",
+      "no_file": "Nenhum arquivo anexado",
+      "completion_rate": "Taxa de Conclusão",
+      "test_summary": "Resumo do Teste Comportamental",
+      "positive_responses": "Respostas Positivas",
+      "neutral_responses": "Respostas Neutras",
+      "negative_responses": "Respostas Negativas",
+      "average_score": "Média Geral",
+      "behavioral_insights": "Perfil Comportamental",
+      "no_answer": "Não respondido"
     }
+  }
 }

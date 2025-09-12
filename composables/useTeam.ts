@@ -11,7 +11,7 @@ export const useTeam = () => {
     'millena-vieira_kbs5vt_lzhvnu.webp',
     'mylena-barboza_ermcjh_rq4laa.webp',
     'roberta-curcios_nokbvj_pyym69.webp',
-    'ingrid-pacheco_uuazeo_usy5vx.webp'
+    'ingrid-pacheco_uuazeo_usy5vx.webp',
   ]);
 
   const getNome = (img: string): string => {
@@ -24,7 +24,7 @@ export const useTeam = () => {
     const cleanedName = namePart.replace('.webp', '');
     return cleanedName
       .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
   };
 

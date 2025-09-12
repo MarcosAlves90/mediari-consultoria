@@ -59,4 +59,11 @@ export interface SEOData {
 
 export type LocaleCode = 'pt-br' | 'en-us';
 
-export type ServiceType = 'civil' | 'criminal' | 'contracts' | 'consulting' | 'consumer' | 'banking' | 'labor';
+export type ServiceType =
+  | 'civil'
+  | 'criminal'
+  | 'contracts'
+  | 'consulting'
+  | 'consumer'
+  | 'banking'
+  | 'labor';

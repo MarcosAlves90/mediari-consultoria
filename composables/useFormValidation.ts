@@ -3,9 +3,11 @@
  * Fornece validadores comuns e gerenciamento de estado de validação
  */
 
+import { ref, readonly } from 'vue';
+
 export interface ValidationRule {
   message: string;
-  validator: (value: any) => boolean;
+  validator: (value: unknown) => boolean;
 }
 
 export interface ValidationState {
@@ -18,7 +20,7 @@ export function useFormValidation() {
   const validationState = ref<ValidationState>({
     isValid: true,
     errors: {},
-    touched: {}
+    touched: {},
   });
 
   /**
@@ -27,57 +29,77 @@ export function useFormValidation() {
   const validators = {
     required: (message = 'Este campo é obrigatório'): ValidationRule => ({
       message,
-      validator: (value: any) => {
+      validator: (value: unknown) => {
         if (typeof value === 'string') return value.trim().length > 0;
-        return value !== null && value !== undefined && value !== '';
-      }
+        if (value === null || value === undefined) return false;
+        return String(value).trim().length > 0;
+      },
     }),
 
     email: (message = 'Digite um e-mail válido'): ValidationRule => ({
       message,
-      validator: (value: string) => {
+      validator: (value: unknown) => {
+        if (!value) return true;
+        const v = String(value);
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return !value || emailRegex.test(value);
-      }
+        return emailRegex.test(v);
+      },
     }),
 
     phone: (message = 'Digite um telefone válido'): ValidationRule => ({
       message,
-      validator: (value: string) => {
+      validator: (value: unknown) => {
+        if (!value) return true;
+        const v = String(value);
         const phoneRegex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-        return !value || phoneRegex.test(value);
-      }
+        return phoneRegex.test(v);
+      },
     }),
 
     minLength: (min: number, message?: string): ValidationRule => ({
       message: message || `Mínimo de ${min} caracteres`,
-      validator: (value: string) => !value || value.length >= min
+      validator: (value: unknown) => {
+        if (!value) return true;
+        return String(value).length >= min;
+      },
     }),
 
     fileSize: (maxSizeMB: number, message?: string): ValidationRule => ({
       message: message || `Arquivo deve ter no máximo ${maxSizeMB}MB`,
-      validator: (file: File) => !file || file.size <= maxSizeMB * 1024 * 1024
+      validator: (file: unknown) => {
+        if (!file) return true;
+        if (file instanceof File) return file.size <= maxSizeMB * 1024 * 1024;
+        return true;
+      },
     }),
 
     fileType: (allowedTypes: string[], message?: string): ValidationRule => ({
       message: message || `Tipo de arquivo não suportado`,
-      validator: (file: File) => !file || allowedTypes.includes(file.type)
-    })
+      validator: (file: unknown) => {
+        if (!file) return true;
+        if (file instanceof File) return allowedTypes.includes(file.type);
+        return true;
+      },
+    }),
   };
 
   /**
    * Valida um campo específico
    */
-  function validateField(fieldName: string, value: any, rules: ValidationRule[]): boolean {
+  function validateField(
+    fieldName: string,
+    value: unknown,
+    rules: ValidationRule[]
+  ): boolean {
     validationState.value.touched[fieldName] = true;
-    
+
     for (const rule of rules) {
       if (!rule.validator(value)) {
         validationState.value.errors[fieldName] = rule.message;
         return false;
       }
     }
-    
+
     delete validationState.value.errors[fieldName];
     return true;
   }
@@ -85,16 +107,19 @@ export function useFormValidation() {
   /**
    * Valida um formulário completo
    */
-  function validateForm(formData: Record<string, any>, validationRules: Record<string, ValidationRule[]>): boolean {
+  function validateForm(
+    formData: Record<string, unknown>,
+    validationRules: Record<string, ValidationRule[]>
+  ): boolean {
     let isFormValid = true;
-    
+
     for (const [fieldName, rules] of Object.entries(validationRules)) {
       const isFieldValid = validateField(fieldName, formData[fieldName], rules);
       if (!isFieldValid) {
         isFormValid = false;
       }
     }
-    
+
     validationState.value.isValid = isFormValid;
     return isFormValid;
   }
@@ -106,7 +131,7 @@ export function useFormValidation() {
     validationState.value = {
       isValid: true,
       errors: {},
-      touched: {}
+      touched: {},
     };
   }
 
@@ -114,7 +139,10 @@ export function useFormValidation() {
    * Verifica se um campo tem erro
    */
   function hasError(fieldName: string): boolean {
-    return fieldName in validationState.value.errors && validationState.value.touched[fieldName];
+    return (
+      fieldName in validationState.value.errors &&
+      validationState.value.touched[fieldName]
+    );
   }
 
   /**
@@ -131,6 +159,6 @@ export function useFormValidation() {
     validateForm,
     resetValidation,
     hasError,
-    getError
+    getError,
   };
 }

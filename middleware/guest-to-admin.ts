@@ -5,14 +5,14 @@
  */
 export default defineNuxtRouteMiddleware(async (to) => {
   // Executa apenas na página de login
-  if (to.path !== '/admin' && to.path !== '/admin/') return
+  if (to.path !== '/admin' && to.path !== '/admin/') return;
 
   try {
-    const res = await $fetch('/api/session')
+    const res = await $fetch('/api/session');
     if (res && res.authenticated) {
-      return navigateTo('/admin/candidaturas')
+      return navigateTo('/admin/candidaturas');
     }
-  } catch (e) {
+  } catch {
     // Ignora erros — permite que o usuário veja o login
   }
-})
+});

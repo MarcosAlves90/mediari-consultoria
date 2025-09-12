@@ -10,41 +10,34 @@ export const CONTACT_INFO = {
   socialMedia: {
     instagram: 'https://instagram.com/mediariconsultoria',
     linkedin: 'https://linkedin.com/company/mediari-consultoria',
-  }
+  },
 } as const;
 
 export const COMPANY_INFO = {
   name: 'Mediari Consultoria',
   fullName: 'Mediari Consultoria Empresarial LTDA',
-  description: 'Consultoria jurídica especializada para empresas e pessoas físicas',
+  description:
+    'Consultoria jurídica especializada para empresas e pessoas físicas',
   foundedYear: 2018,
   teamSize: '60+',
-  website: 'https://www.mediariconsultoria.com.br'
+  website: 'https://www.mediariconsultoria.com.br',
 } as const;
 
 export const SERVICES = {
-  main: [
-    'civil',
-    'criminal',
-    'contracts',
-    'consulting'
-  ],
-  secondary: [
-    'consumer',
-    'banking',
-    'labor'
-  ]
+  main: ['civil', 'criminal', 'contracts', 'consulting'],
+  secondary: ['consumer', 'banking', 'labor'],
 } as const;
 
 export const SEO_DEFAULTS = {
   titleTemplate: '%s - Mediari Consultoria',
-  description: 'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+  description:
+    'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
   keywords: [
     'consultoria jurídica',
     'direito empresarial',
     'direito bancário',
     'direito do consumidor',
     'advocacia',
-    'São Paulo'
-  ]
+    'São Paulo',
+  ],
 } as const;

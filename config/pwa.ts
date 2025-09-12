@@ -6,7 +6,8 @@
 export const pwaConfig = {
   name: 'Mediari Consultoria',
   short_name: 'Mediari',
-  description: 'Consultoria jurídica especializada para empresas e pessoas físicas',
+  description:
+    'Consultoria jurídica especializada para empresas e pessoas físicas',
   theme_color: '#590100',
   background_color: '#ffffff',
   display: 'standalone',
@@ -20,14 +21,14 @@ export const pwaConfig = {
       src: '/favicon-192x192.png',
       sizes: '192x192',
       type: 'image/png',
-      purpose: 'any maskable'
+      purpose: 'any maskable',
     },
     {
       src: '/favicon-512x512.png',
       sizes: '512x512',
       type: 'image/png',
-      purpose: 'any maskable'
-    }
+      purpose: 'any maskable',
+    },
   ],
   shortcuts: [
     {
@@ -38,9 +39,9 @@ export const pwaConfig = {
       icons: [
         {
           src: '/favicon-96x96.png',
-          sizes: '96x96'
-        }
-      ]
+          sizes: '96x96',
+        },
+      ],
     },
     {
       name: 'Serviços',
@@ -50,9 +51,9 @@ export const pwaConfig = {
       icons: [
         {
           src: '/favicon-96x96.png',
-          sizes: '96x96'
-        }
-      ]
-    }
-  ]
+          sizes: '96x96',
+        },
+      ],
+    },
+  ],
 } as const;

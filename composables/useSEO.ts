@@ -11,9 +11,12 @@ export function useSEO() {
    * @param seoData - Dados de SEO para a página
    */
   function setSEO(seoData: Partial<SEOData>) {
-    const title = seoData.title ? `${seoData.title} - ${COMPANY_INFO.name}` : COMPANY_INFO.name;
+    const title = seoData.title
+      ? `${seoData.title} - ${COMPANY_INFO.name}`
+      : COMPANY_INFO.name;
     const description = seoData.description || SEO_DEFAULTS.description;
-    const keywords = seoData.keywords?.join(', ') || SEO_DEFAULTS.keywords.join(', ');
+    const keywords =
+      seoData.keywords?.join(', ') || SEO_DEFAULTS.keywords.join(', ');
     const image = seoData.image || '/favicon.png';
     const url = seoData.url || COMPANY_INFO.website;
 
@@ -39,7 +42,10 @@ export function useSEO() {
    * @param serviceName - Nome do serviço
    * @param serviceDescription - Descrição do serviço
    */
-  function setServiceStructuredData(serviceName: string, serviceDescription: string) {
+  function setServiceStructuredData(
+    serviceName: string,
+    serviceDescription: string
+  ) {
     useSchemaOrg([
       {
         '@type': 'Service',
@@ -62,7 +68,8 @@ export function useSEO() {
       {
         '@type': 'ContactPage',
         name: 'Contato - Mediari Consultoria',
-        description: 'Entre em contato com a Mediari Consultoria para serviços jurídicos especializados.',
+        description:
+          'Entre em contato com a Mediari Consultoria para serviços jurídicos especializados.',
       },
     ]);
   }
