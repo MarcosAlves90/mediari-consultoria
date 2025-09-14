@@ -1,6 +1,8 @@
 import { ref, reactive, computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useSessionStorage } from '../useSessionStorage';
+import { useCandidateService } from './useCandidateService';
+import type { ProfileTestResult } from '~/types/candidates';
 
 type Letter = 'A' | 'B' | 'C' | 'D';
 type TestAnswerValue = Letter;
@@ -116,11 +118,34 @@ export const useProfileTest = () => {
     isSubmittingTest.value = true;
     hasError.value = false;
 
+    const { submitProfileTest } = useCandidateService();
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const candidateId =
+        typeof window !== 'undefined'
+          ? window.sessionStorage.getItem('mediari-candidate-id')
+          : null;
+
+      const basePayload = {
+        answers: { ...profileTestAnswers } as Record<number, string>,
+      } as unknown;
+
+      if (candidateId)
+        (basePayload as Record<string, unknown>).candidateId = candidateId;
+
+      // completedAt será definido no servidor (Firestore) preferencialmente
+
+      await submitProfileTest(basePayload as ProfileTestResult);
+
+      // Limpar dados locais
       clearTestData();
+
+      // Remover candidateId se desejar (opcional)
+      if (candidateId && typeof window !== 'undefined')
+        window.sessionStorage.removeItem('mediari-candidate-id');
+
       return true;
-    } catch {
+    } catch (_e) {
       hasError.value = true;
       return false;
     } finally {

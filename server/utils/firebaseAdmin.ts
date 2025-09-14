@@ -10,7 +10,7 @@ let initialized = false;
  */
 export function initFirebaseAdmin() {
   if (initialized) return admin;
-
+  // Forçar uso apenas de NUXT_FIREBASE_ADMIN_SA (base64) para credenciais do Admin
   const saBase64 =
     process.env.NUXT_FIREBASE_ADMIN_SA || process.env.FIREBASE_ADMIN_SA_BASE64;
   let credential;
@@ -27,16 +27,9 @@ export function initFirebaseAdmin() {
         e
       );
     }
-  }
-
-  if (!credential && process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-    // Usa credenciais padrão do aplicativo se disponíveis
-    credential = admin.credential.applicationDefault();
-  }
-
-  if (!credential) {
+  } else {
     console.error(
-      '[firebase-admin] Nenhuma conta de serviço encontrada. Defina NUXT_FIREBASE_ADMIN_SA (base64) ou GOOGLE_APPLICATION_CREDENTIALS'
+      '[firebase-admin] NUXT_FIREBASE_ADMIN_SA não definida. Defina a variável com o JSON da service account codificado em base64.'
     );
   }
 

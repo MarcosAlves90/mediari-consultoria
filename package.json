@@ -36,10 +36,13 @@
     "postinstall": "nuxt prepare",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "format:md": "prettier --write \"**/*.md\"",
+    "format:md:check": "prettier --check \"**/*.md\"",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "format:lint": "npm run format && npm run lint",
-    "type-check": "nuxt typecheck"
+    "type-check": "nuxt typecheck",
+    "encode:service-account": "pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass -File scripts/encode-service-account.ps1"
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",

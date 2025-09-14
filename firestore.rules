@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Regras para candidatos - apenas admins podem criar e ler
+    match /candidates/{candidateId} {
+      // Permitir criação via backend (server-side Admin SDK)
+      allow create: if request.auth != null && request.auth.token.admin == true;
+      // Permitir leitura apenas para admins
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      // Não permitir atualizações diretas (apenas via backend)
+      allow update, delete: if false;
+
+      // Subcoleção de testes de perfil
+      match /profileTests/{testId} {
+        // Permitir criação via backend (server-side Admin SDK)
+        allow create: if request.auth != null && request.auth.token.admin == true;
+        // Permitir leitura apenas para admins
+        allow read: if request.auth != null && request.auth.token.admin == true;
+        // Não permitir atualizações ou deleções
+        allow update, delete: if false;
+      }
+    }
+
+    // Coleção global de testes de perfil (quando candidateId não está disponível)
+    match /profileTests/{testId} {
+      // Permitir criação via backend (server-side Admin SDK)
+      allow create: if request.auth != null && request.auth.token.admin == true;
+      // Permitir leitura apenas para admins
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      // Não permitir atualizações ou deleções
+      allow update, delete: if false;
+    }
+
+    // Negar acesso a qualquer outra coleção por padrão
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -94,6 +94,17 @@ export default [
     },
     rules: {
       'no-undef': 'off',
+      // Evita uso de `.value` diretamente em templates Vue (refs já são desembrulhadas)
+      // Usa AST selector para detectar MemberExpression dentro de VExpressionContainer
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            "VExpressionContainer MemberExpression[property.name='value']",
+          message:
+            'Não use `.value` no template — refs em templates do Vue são desembrulhados automaticamente.',
+        },
+      ],
     },
   },
 

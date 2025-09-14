@@ -24,6 +24,8 @@
 import { ref, reactive, watch, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useSessionStorage } from '../useSessionStorage';
+import { useCandidateService } from './useCandidateService';
+import type { JobApplication } from '~/types/candidates';
 
 /**
  * Interface principal dos dados do formulário de candidatura
@@ -225,6 +227,7 @@ export const useJobApplicationForm = () => {
    * @description Usado para exibir mensagens de erro gerais na interface
    */
   const hasError = ref<boolean>(false);
+  const uploadProgress = ref<number>(0);
 
   // ==================== VALIDADORES ====================
 
@@ -466,25 +469,41 @@ export const useJobApplicationForm = () => {
     isSubmitting.value = true;
     hasError.value = false;
 
-    try {
-      // Simulação de chamada à API - substituir por implementação real
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+    const { submitApplication } = useCandidateService();
 
-      // TODO: Implementar integração com API real
-      // const response = await $fetch('/api/candidaturas', {
-      //     method: 'POST',
-      //     headers: {
-      //         'Content-Type': 'multipart/form-data',
-      //     },
-      //     body: createFormDataForUpload(formData)
-      // });
+    try {
+      const application: JobApplication = {
+        firstName: formData.fullName.split(' ')[0] || formData.fullName,
+        lastName: formData.fullName.split(' ').slice(1).join(' ') || '',
+        email: formData.email,
+        phone: formData.phone,
+        positionApplied: formData.areaOfInterest,
+        metadata: { experience: formData.experience },
+        status: 'submitted',
+      };
+
+      const resumeFile = formData.resume ?? undefined;
+      const result = await submitApplication(
+        application,
+        resumeFile as File | undefined,
+        (p: number) => {
+          uploadProgress.value = p;
+        }
+      );
+
+      if (result?.candidateId && typeof window !== 'undefined') {
+        window.sessionStorage.setItem(
+          'mediari-candidate-id',
+          result.candidateId
+        );
+      }
 
       // Limpeza automática após envio bem-sucedido
       clearFormData();
+      uploadProgress.value = 0;
 
       return true;
     } catch (error) {
-      // Log estruturado para debugging e monitoramento
       console.error(
         'useJobApplicationForm: Erro durante submissão da candidatura:',
         error
@@ -492,7 +511,6 @@ export const useJobApplicationForm = () => {
       hasError.value = true;
       return false;
     } finally {
-      // Sempre restaurar estado de carregamento
       isSubmitting.value = false;
     }
   };
@@ -630,5 +648,7 @@ export const useJobApplicationForm = () => {
     clearErrors,
     /** Limpa completamente todos os dados do formulário */
     clearFormData,
+    /** Progresso de upload do currículo (0-100) */
+    uploadProgress,
   };
 };

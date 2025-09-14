@@ -36,6 +36,7 @@
     isFormComplete,
     submitForm,
     formatPhone,
+    uploadProgress,
   } = useJobApplicationForm()
 
   function handlePhoneInput(event: Event): void {
@@ -263,6 +264,17 @@
       }}</span>
 
       <!-- Submit Button -->
+      <div v-if="uploadProgress > 0" class="mb-2">
+        <div class="w-full bg-gray-200 rounded h-2 overflow-hidden">
+          <div
+            :style="{ width: `${uploadProgress}%` }"
+            class="bg-accent-color h-2 transition-width"
+          ></div>
+        </div>
+        <div class="text-xs text-secondary-text mt-1">
+          {{ uploadProgress }}%
+        </div>
+      </div>
       <button
         type="submit"
         :class="CSS_CLASSES.submitButton"
