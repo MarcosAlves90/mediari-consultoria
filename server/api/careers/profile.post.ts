@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
     return createError({ statusCode: 400, statusMessage: 'invalid payload' });
 
   const data = parse.data;
+  const isEmulator = process.env.FIREBASE_STORAGE_EMULATOR_HOST;
 
   try {
     const db = admin.firestore();
@@ -30,7 +31,9 @@ export default defineEventHandler(async (event) => {
 
       await profileRef.set({
         answers: data.answers,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAt: isEmulator
+          ? new Date().toISOString()
+          : admin.firestore.FieldValue.serverTimestamp(),
       });
 
       return { ok: true };
@@ -40,7 +43,9 @@ export default defineEventHandler(async (event) => {
     const genericRef = db.collection('profileTests').doc();
     await genericRef.set({
       answers: data.answers,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: isEmulator
+        ? new Date().toISOString()
+        : admin.firestore.FieldValue.serverTimestamp(),
     });
 
     return { ok: true };

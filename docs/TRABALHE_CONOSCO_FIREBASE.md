@@ -83,17 +83,25 @@ O sistema "Trabalhe Conosco" implementa um fluxo completo de candidatura com as 
 
 - **`server/utils/firebaseAdmin.ts`**
   - Inicializa Firebase Admin SDK
-  - Suporta autenticação via `NUXT_FIREBASE_ADMIN_SA` (base64) ou `GOOGLE_APPLICATION_CREDENTIALS`
+  - Detecta automaticamente se está em modo emulator ou produção
+  - Suporta autenticação via `NUXT_FIREBASE_ADMIN_SA` (base64) para produção
+  - Configuração automática para emulators em desenvolvimento
+
+- **`server/utils/cleanTempFiles.ts`**
+  - Utilitário para limpeza automática de arquivos temporários
+  - Suporte a dry-run para testes
+  - Configurável por idade de arquivo em horas
 
 ---
 
 ## 3. Especificação das APIs
 
-### Endpoint: Upload URL
+### Endpoint: Upload URL (Atualizado)
 
 **`POST /api/careers/upload-url`**
 
-Gera signed URL para upload seguro de arquivos.
+Gera signed URL para upload seguro de arquivos em produção ou retorna endpoint direto para
+emulators.
 
 **Request Body:**
 
@@ -104,12 +112,42 @@ Gera signed URL para upload seguro de arquivos.
 }
 ```
 
-**Response:**
+**Response (Produção):**
 
 ```json
 {
   "uploadUrl": "https://storage.googleapis.com/...",
   "storagePath": "candidates/temp/1660000000000-curriculo.pdf"
+}
+```
+
+**Response (Emulator):**
+
+```json
+{
+  "uploadUrl": "/api/careers/upload-direct",
+  "storagePath": "candidates/temp/1660000000000-curriculo.pdf",
+  "emulatorMode": true,
+  "fileName": "curriculo.pdf"
+}
+```
+
+### Endpoint: Upload Direto (Apenas Emulator)
+
+**`POST /api/careers/upload-direct`**
+
+Upload direto de arquivos para o Storage Emulator via multipart form.
+
+**Request:** Multipart form data com campo `file`
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "storagePath": "candidates/temp/1660000000000-curriculo.pdf",
+  "fileName": "curriculo.pdf"
+}
 ```
 
 ### Endpoint: Submit Candidatura
@@ -139,15 +177,16 @@ Processa os dados do candidato e organiza arquivos no storage.
 }
 ```
 
-**Comportamento do Servidor:**
+**Comportamento do Servidor (Atualizado):**
 
 - Cria documento `candidates/{candidateId}` com os campos: `firstName`, `lastName`, `email`,
   `phone`, `positionApplied`, `status`, `createdAt`, `updatedAt`
 - Se `storagePath` estiver presente:
-  - Move o arquivo de `candidates/temp/...` para `candidates/{candidateId}/{filename}`
-  - Utiliza preferencialmente `move()` do storage client, com fallback para copy+delete
-  - Atualiza o documento com informações de `attachments` incluindo `name`, `storagePath` (final) e
-    `uploadedAt`
+  - **Produção**: Move o arquivo de `candidates/temp/...` para `candidates/{candidateId}/{filename}`
+    utilizando método `move()` do storage client, com fallback para copy+delete
+  - **Emulator**: Registra arquivo no documento sem movimentação (para compatibilidade de testes)
+  - Atualiza o documento com informações de `attachments` incluindo `name`, `storagePath` (final em
+    produção, original em emulator) e `uploadedAt`
 
 ### Endpoint: Profile Test
 
@@ -266,7 +305,7 @@ candidates/
 
 Armazena informações principais dos candidatos.
 
-**Estrutura do Documento:**
+**Estrutura do Documento (Atualizada):**
 
 ```json
 {
@@ -276,18 +315,23 @@ Armazena informações principais dos candidatos.
   "phone": "(11) 99999-9999",
   "positionApplied": "Consultor Jurídico",
   "status": "submitted",
-  "createdAt": "<serverTimestamp>",
-  "updatedAt": "<serverTimestamp>",
+  "createdAt": "2025-09-14T22:35:42.179Z",
+  "updatedAt": "2025-09-14T22:35:42.179Z",
   "attachments": [
     {
       "name": "curriculo.pdf",
       "storagePath": "candidates/abc123/curriculo.pdf",
-      "uploadedAt": "<serverTimestamp>",
+      "uploadedAt": "2025-09-14T22:35:42.179Z",
       "moved": true
     }
   ]
 }
 ```
+
+**Observações:**
+
+- Em **produção**: usa `admin.firestore.FieldValue.serverTimestamp()` para timestamps
+- Em **emulator**: usa `new Date().toISOString()` para compatibilidade
 
 ### Subcoleção `candidates/{id}/profileTests`
 
@@ -333,12 +377,6 @@ Para otimização de consultas:
 - `candidates`: composto por `status` + `createdAt` (descendente)
 - `candidates`: composto por `positionApplied` + `createdAt` (descendente)
 - `profileTests`: simples em `createdAt` (descendente)
-
----
-
-"createdAt": <serverTimestamp>, "updatedAt": <serverTimestamp>, "attachments": [ { "name":
-"curriculo.pdf", "storagePath": "candidates/abc123/curriculo.pdf", "uploadedAt": <serverTimestamp>,
-"moved": true }
 
 ---
 
@@ -563,7 +601,7 @@ Configure emulators para `firestore`, `storage` e `auth`:
 **3. Inicialização dos Emulators:**
 
 ```bash
-firebase emulators:start --only firestore,storage,auth
+firebase emulators:start
 ```
 
 ### Configuração de Variáveis de Ambiente
@@ -573,17 +611,26 @@ firebase emulators:start --only firestore,storage,auth
 Configure `NUXT_FIREBASE_ADMIN_SA` apontando para a conta de serviço do emulator ou adapte
 `firebaseAdmin` para detectar emulator via `FIREBASE_AUTH_EMULATOR_HOST`.
 
-### Fluxo de Testes
+### Fluxo de Testes Atualizado
 
 **5. Validação Completa do Sistema:**
 
-1. **Upload URL:** `POST /api/careers/upload-url` → obter `uploadUrl`
-2. **Upload Arquivo:** PUT do arquivo para `uploadUrl` (curl ou fetch/XHR)
-3. **Submit Candidatura:** `POST /api/careers/submit` com `storagePath` → verificar
+1. **Upload URL:** `POST /api/careers/upload-url` → obter `uploadUrl` e `storagePath`
+2. **Upload Arquivo:**
+   - **Produção**: PUT do arquivo para `uploadUrl` (signed URL)
+   - **Emulator**: POST multipart para `/api/careers/upload-direct`
+3. **Submit Candidatura:** `POST /api/careers/submit` com `storagePath` → verificar documento
    `candidates/{id}` criado
 4. **Profile Test:** `POST /api/careers/profile` → verificar subcoleção `profileTests`
 
-**Exemplo de Upload via cURL:**
+**Exemplo de Upload via cURL (Emulator):**
+
+```bash
+curl -X POST http://localhost:3000/api/careers/upload-direct \
+     -F "file=@curriculo.pdf"
+```
+
+**Exemplo de Upload via cURL (Produção):**
 
 ```bash
 curl -X PUT "<uploadUrl>" \
@@ -599,7 +646,7 @@ curl -X PUT "<uploadUrl>" \
 
 ### Configuração de Infraestrutura
 
-- [ ] **Service Account:** Criar e configurar conta de serviço com permissões necessárias
+- [x] **Service Account:** Criar e configurar conta de serviço com permissões necessárias ✅
 - [ ] **Variáveis de Ambiente:** Definir `NUXT_FIREBASE_ADMIN_SA` (base64) no ambiente de deploy
 - [x] **Firestore Rules:** Validar e publicar Firestore Rules ✅
 - [ ] **Storage Setup:** Ativar Firebase Storage no console e publicar policies
@@ -615,18 +662,13 @@ curl -X PUT "<uploadUrl>" \
 - [ ] **Rotina de Limpeza:** Agendar limpeza para `candidates/temp` (Cloud Scheduler/Function/Run)
 - [ ] **Sistema de Logs:** Implementar monitoramento para falhas em `/api/careers/submit`
 - [ ] **Alertas:** Configurar alerts para operações críticas de Storage
-- [ ] **Testes E2E:** Executar testes completos no Firebase Emulator
+- [x] **Testes E2E:** Executar testes completos no Firebase Emulator ✅
 
 ### Conformidade Legal
 
 - [ ] **LGPD Compliance:** Revisar consentimento, período de retenção, mecanismo de remoção
 - [ ] **Política de Privacidade:** Documentar tratamento de dados pessoais
 - [ ] **Workflow Admin:** Implementar acesso a signed download URLs via painel administrativo
-
-### Status Atual
-
-- ✅ **Firestore Rules:** Validadas e deployadas
-- ⚠️ **Storage Setup:** Regras corretas, aguardando ativação do Storage no console Firebase
 
 ---
 
