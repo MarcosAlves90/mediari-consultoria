@@ -5,8 +5,28 @@
         - Permite download do currículo
         - Mostra mensagem caso nenhum candidato esteja selecionado
     -->
+  <!-- Loading skeleton -->
   <div
-    v-if="!candidate"
+    v-if="isLoading"
+    class="bg-body-bg-dark rounded p-2 border-2 border-accent-color space-y-2"
+  >
+    <Skeleton width="50%" height="1.5rem" />
+    <Skeleton width="66%" height="0.75rem" />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div>
+        <Skeleton width="75%" height="0.75rem" />
+        <Skeleton width="100%" height="2.5rem" />
+      </div>
+      <div>
+        <Skeleton width="75%" height="0.75rem" />
+        <Skeleton width="100%" height="2.5rem" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state: no candidate selected -->
+  <div
+    v-else-if="!candidate"
     class="bg-body-bg-dark rounded p-2 text-center border-2 border-accent-color"
   >
     <Icon
@@ -165,6 +185,7 @@
   import { useI18n } from 'vue-i18n'
   import type { Candidate } from '~/composables/admin/useAdminCandidates'
   import ProfileTestResults from '~/components/page-admin/molecules/ProfileTestResults.vue'
+  import Skeleton from '~/components/atoms/Skeleton.vue'
 
   /**
    * Propriedades esperadas pelo componente CandidateDetails
@@ -175,6 +196,7 @@
   interface Props {
     candidate: Candidate | null
     groups: Array<Record<'A' | 'B' | 'C' | 'D', string>>
+    isLoading?: boolean
     // scaleOptions removido - test usa apenas letras A-D
   }
 

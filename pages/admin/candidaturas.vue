@@ -93,6 +93,7 @@
           <CandidateDetails
             :candidate="selectedCandidate"
             :groups="GROUPS"
+            :is-loading="isLoading"
             @download-resume="downloadResume"
           />
         </div>

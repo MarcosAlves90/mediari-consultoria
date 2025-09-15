@@ -11,14 +11,16 @@ export function initFirebaseAdmin() {
   if (initialized) return admin;
 
   // Detectar se estamos usando emulators
-  const isEmulator = process.env.FIRESTORE_EMULATOR_HOST || process.env.FIREBASE_STORAGE_EMULATOR_HOST;
+  const isEmulator =
+    process.env.FIRESTORE_EMULATOR_HOST ||
+    process.env.FIREBASE_STORAGE_EMULATOR_HOST;
 
   if (isEmulator) {
     console.log('[firebase-admin] Modo emulator detectado');
     try {
       admin.initializeApp({
         projectId: 'mediari',
-        storageBucket: 'mediari.appspot.com'
+        storageBucket: 'mediari.appspot.com',
       });
       initialized = true;
       console.log('[firebase-admin] Inicializado para emulators');

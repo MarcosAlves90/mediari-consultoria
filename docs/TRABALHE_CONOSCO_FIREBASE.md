@@ -653,9 +653,9 @@ curl -X PUT "<uploadUrl>" \
 
 ### Segurança e Autenticação
 
-- [ ] **Middleware Admin:** Configurar e verificar `server/middleware/adminAuth.ts`
-- [ ] **Session Cookies:** Validar criação/validação de cookie `mediari_session` no fluxo admin
-- [ ] **Endpoint Protection:** Verificar proteção de todos os endpoints `/api/admin/**`
+- [x] **Middleware Admin:** Configurar e verificar `server/middleware/adminAuth.ts` ✅
+- [x] **Session Cookies:** Validar criação/validação de cookie `mediari_session` no fluxo admin ✅
+- [x] **Endpoint Protection:** Verificar proteção de todos os endpoints `/api/admin/**` ✅
 
 ### Monitoramento e Manutenção
 

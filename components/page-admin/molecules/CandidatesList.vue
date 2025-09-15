@@ -2,8 +2,7 @@
   import { ref, computed } from 'vue'
   import { useI18n } from 'vue-i18n'
   import type { Candidate } from '~/composables/admin/useAdminCandidates'
-  import Loader from '~/components/atoms/Loader.vue'
-
+  import Skeleton from '~/components/atoms/Skeleton.vue'
   interface Props {
     candidates: Candidate[]
     selectedCandidate: Candidate | null
@@ -98,9 +97,13 @@
       </div>
     </div>
 
-    <!-- Estado de carregamento -->
+    <!-- Estado de carregamento: skeletons -->
     <div v-if="isLoading" class="p-1 text-center flex-shrink-0">
-      <Loader />
+      <div class="space-y-2">
+        <Skeleton width="66%" height="1rem" />
+        <Skeleton width="80%" height="0.75rem" />
+        <Skeleton width="60%" height="0.75rem" />
+      </div>
       <p class="text-secondary-text text-sm mt-0.5">
         {{ t('admin.candidates.loading') }}
       </p>

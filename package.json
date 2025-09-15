@@ -42,7 +42,8 @@
     "lint:check": "eslint .",
     "format:lint": "npm run format && npm run lint",
     "type-check": "nuxt typecheck",
-    "encode:service-account": "pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass -File scripts/encode-service-account.ps1"
+    "encode:service-account": "pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass -File scripts/encode-service-account.ps1",
+    "fb:emu": "firebase emulators:start"
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",

@@ -68,14 +68,8 @@
                     isLoggingOut ? 'animate-spin' : '',
                   ]"
                 />
-                <span class="z-10 hidden 300:inline">{{
-                  isLoggingOut
-                    ? t('admin.nav.logging_out')
-                    : t('admin.nav.logout')
-                }}</span>
-                <span class="z-10 300:hidden">{{
-                  isLoggingOut ? '...' : 'Sair'
-                }}</span>
+                <span class="z-10 hidden 300:inline">{{ logoutLabel }}</span>
+                <span class="z-10 300:hidden">{{ logoutLabelShort }}</span>
               </button>
             </div>
 
@@ -85,11 +79,7 @@
               class="common-button text-[1.5rem]"
               :class="{ 'bg-accent-color-2': hamburguerMenuOpen }"
               @click="toggleHamburguerMenu"
-              :aria-label="
-                hamburguerMenuOpen
-                  ? 'Fechar menu de navegação'
-                  : 'Abrir menu de navegação'
-              "
+              :aria-label="hamburgerAriaLabel"
             >
               <Transition name="icon-morph" mode="out-in">
                 <Icon
@@ -129,10 +119,7 @@
 
         <!-- Logout Button Mobile -->
         <button
-          @click="
-            handleLogout()
-            hamburguerMenuOpen = false
-          "
+          @click="handleLogoutAndClose"
           :disabled="isLoggingOut"
           class="box-border w-full rounded-sm border-2 border-accent-color px-1 py-0.5 text-center text-base hover:bg-accent-color-2 flex items-center justify-center gap-0.5 bg-transparent"
         >
@@ -140,9 +127,7 @@
             :name="isLoggingOut ? 'mdi:loading' : 'mdi:logout'"
             :class="['w-1 h-1 mr-0.5', isLoggingOut ? 'animate-spin' : '']"
           />
-          {{
-            isLoggingOut ? t('admin.nav.logging_out') : t('admin.nav.logout')
-          }}
+          {{ logoutLabel }}
         </button>
       </nav>
     </Transition>
@@ -226,6 +211,24 @@
 
   const toggleHamburguerMenu = () => {
     hamburguerMenuOpen.value = !hamburguerMenuOpen.value
+  }
+
+  // Computed labels for template (avoids complex inline expressions)
+  const logoutLabel = computed(() =>
+    isLoggingOut.value ? t('admin.nav.logging_out') : t('admin.nav.logout')
+  )
+
+  const logoutLabelShort = computed(() => (isLoggingOut.value ? '...' : 'Sair'))
+
+  const hamburgerAriaLabel = computed(() =>
+    hamburguerMenuOpen.value
+      ? 'Fechar menu de navegação'
+      : 'Abrir menu de navegação'
+  )
+
+  const handleLogoutAndClose = async () => {
+    hamburguerMenuOpen.value = false
+    await handleLogout()
   }
 
   const handleLogout = async () => {
