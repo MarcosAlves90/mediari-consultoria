@@ -10,6 +10,9 @@
     "section_subtitle": "AREAS OF EXPERTISE",
     "section_title": "OUR SERVICES",
     "section_description": "Our team of professionals works in different areas to protect your rights or your company's interests.",
+    "main_aria_label": "Main services",
+    "secondary_aria_label": "Other services",
+    "icon_button_label": "Action: {service}",
     "main": [
       {
         "title": "Civil Law",

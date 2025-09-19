@@ -10,6 +10,9 @@
     "section_subtitle": "ÁREAS DE ATUAÇÃO",
     "section_title": "NOSSOS SERVIÇOS",
     "section_description": "Nosso corpo de profissionais atua em diferentes áreas para proteger os seus direitos ou da sua empresa.",
+    "main_aria_label": "Serviços principais",
+    "secondary_aria_label": "Outros serviços",
+    "icon_button_label": "Ação: {service}",
     "main": [
       {
         "title": "Direito Civil",
