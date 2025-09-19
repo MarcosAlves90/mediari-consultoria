@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { useContacts } from '~/utils/useContacts'
-  import { useHomepageStyles } from '~/composables/useHomepageStyles'
-  import { useMap } from '~/composables/useMap'
+  import { useHomepageStyles } from '~/composables/page-index/useHomepageStyles'
+  import { useMap } from '~/composables/page-index/useMap'
 
   const { t } = useI18n()
   const { openLinkInBrowser } = useContacts()
