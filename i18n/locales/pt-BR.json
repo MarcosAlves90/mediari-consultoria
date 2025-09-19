@@ -4,6 +4,12 @@
     "subtitle-1": "PARA ",
     "subtitle-2": "VOCÊ E OS SEUS NEGÓCIOS",
     "description": "Atendimento especializado para empresas e soluções completas em demandas bancárias e do consumidor.",
+    "aria": {
+      "banner_text": "Texto do banner principal",
+      "main_traits": "Características principais",
+      "filter_by": "Filtrar por {tag}",
+      "background_alt": "Banner de fundo da página principal com elementos gráficos abstratos"
+    },
     "tags": ["Competência", "Segurança", "Experiência"]
   },
   "services": {

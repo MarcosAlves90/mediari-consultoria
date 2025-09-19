@@ -4,6 +4,12 @@
     "subtitle-1": "FOR ",
     "subtitle-2": "YOU & YOUR BUSINESS!",
     "description": "Specialized service for companies and complete solutions for banking and consumer needs.",
+    "aria": {
+      "banner_text": "Main banner text",
+      "main_traits": "Main features",
+      "filter_by": "Filter by {tag}",
+      "background_alt": "Main page background banner with abstract graphic elements"
+    },
     "tags": ["Competence", "Security", "Experience"]
   },
   "services": {

@@ -1,9 +1,17 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { useHeroTags } from '~/composables/page-index/useHeroTags'
+  import { defineEmits } from 'vue'
 
   const { t } = useI18n()
   const { heroTags } = useHeroTags()
+
+  // Emit evento quando uma tag for selecionada (por clique ou teclado)
+  const emit = defineEmits<{ (e: 'select-tag', tag: string): void }>()
+
+  function onSelectTag(tag: string) {
+    emit('select-tag', tag)
+  }
 </script>
 
 <template>
@@ -16,25 +24,30 @@
   >
     <div
       class="homepage__hero-text absolute top-1/2 left-1/2 z-3 mt-[54px] w-full -translate-x-1/2 -translate-y-1/2 text-center text-body-bg"
-      aria-label="Texto do banner principal"
+      :aria-label="t('banner.aria.banner_text')"
     >
       <div
         class="homepage__hero-text-tags mb-2 flex items-center justify-center gap-4 max-lg:gap-[4.5vw]"
         role="list"
-        aria-label="Características principais"
+        :aria-label="t('banner.aria.main_traits')"
       >
-        <div
-          v-for="(tag, idx) in heroTags"
-          :key="idx"
-          class="homepage__hero-text-tags-tag cursor-pointer flex min-w-12 items-center justify-center rounded-sm border-2 border-body-bg bg-body-bg-05 py-1 backdrop-blur-sm transition-transform duration-200 ease-in-out hover:scale-[1.1] max-lg:min-w-[20vw] max-lg:py-0.5 max-sm:min-w-[25vw]"
-          role="listitem"
-        >
-          <p
-            class="m-0 text-body-bg text-base max-xl:text-[1.5vw] max-sm:text-[2.7vw]"
+        <template v-for="tag in heroTags" :key="tag">
+          <button
+            @click="onSelectTag(tag)"
+            @keyup.enter.prevent="onSelectTag(tag)"
+            @keyup.space.prevent="onSelectTag(tag)"
+            class="homepage__hero-text-tags-tag flex min-w-12 items-center justify-center rounded-sm border-2 border-body-bg bg-body-bg-05 py-1 backdrop-blur-sm transition-transform duration-200 ease-in-out hover:scale-[1.1] focus:outline-none focus-visible:ring-4 focus-visible:ring-accent-color/40 max-lg:min-w-[20vw] max-lg:py-0.5 max-sm:min-w-[25vw]"
+            role="listitem"
+            :aria-label="t('banner.aria.filter_by', { tag })"
+            type="button"
           >
-            {{ tag }}
-          </p>
-        </div>
+            <span
+              class="m-0 text-body-bg text-base max-xl:text-[1.5vw] max-sm:text-[2.7vw]"
+            >
+              {{ tag }}
+            </span>
+          </button>
+        </template>
       </div>
       <h1
         id="banner-heading"
@@ -75,7 +88,10 @@
       sizes="xl:100vw lg:80vw"
       preload
       fit="cropping"
-      alt="Banner de fundo da página principal com elementos gráficos abstratos"
+      :alt="t('banner.aria.background_alt')"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
     />
   </section>
 </template>
