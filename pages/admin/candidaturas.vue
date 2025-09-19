@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useAdminCandidates } from '~/composables/admin'
-  import { useProfileTest } from '~/composables/trabalhe-conosco'
+  import { useAdminCandidates } from '~/composables/page-admin'
+  import { useProfileTest } from '~/composables/page-careers'
   import {
     AdminHeader,
     CandidatesList,
