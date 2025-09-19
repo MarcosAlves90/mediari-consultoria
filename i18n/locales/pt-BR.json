@@ -79,7 +79,9 @@
     "socialAction": "Social",
     "team": "Equipe",
     "contact": "Contato",
-    "careers": "Carreiras"
+    "careers": "Carreiras",
+    "sections": "Seções",
+    "callPhone": "Ligar para {phone}"
   },
   "footer": {
     "highlights": [
