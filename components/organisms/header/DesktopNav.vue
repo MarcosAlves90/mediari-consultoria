@@ -1,6 +1,6 @@
 <script setup lang="ts">
   // TODO: Deixar o link das carreiras depois de seções
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useContacts } from '@/utils/useContacts'
   import { useScreenWidth } from '@/utils/useScreenWidth'
@@ -18,6 +18,7 @@
   const { onNavClick } = defineProps<Props>()
 
   const sectionsDropdownOpen = ref(false)
+  const dropdownRef = ref<HTMLElement | null>(null)
 
   const navLinks = computed(() => [
     { label: t('navbar.home'), section: 'banner-section' },
@@ -48,17 +49,27 @@
 
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as Element
-    if (sectionsDropdownOpen.value && !target.closest('.relative')) {
+    if (!sectionsDropdownOpen.value) return
+    if (!dropdownRef.value) return
+    if (!dropdownRef.value.contains(target)) {
+      sectionsDropdownOpen.value = false
+    }
+  }
+
+  const handleKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' || event.key === 'Esc') {
       sectionsDropdownOpen.value = false
     }
   }
 
   onMounted(() => {
     document.addEventListener('click', handleClickOutside)
+    document.addEventListener('keydown', handleKeydown)
   })
 
   onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside)
+    document.removeEventListener('keydown', handleKeydown)
   })
 </script>
 
@@ -66,6 +77,7 @@
   <nav
     class="app-header__nav app-header__nav--desktop flex items-center justify-center gap-[2.8rem]"
     v-if="screenWidth >= 1024"
+    aria-label="Main navigation"
   >
     <a
       v-for="(link, idx) in navLinks"
@@ -78,12 +90,15 @@
     </a>
 
     <!-- Dropdown de Seções -->
-    <div class="relative">
+    <div class="relative" ref="dropdownRef">
       <button
         @click="toggleSectionsDropdown"
+        :aria-expanded="sectionsDropdownOpen"
+        aria-haspopup="menu"
+        :aria-controls="'sections-menu'"
         class="flex items-center gap-1 bg-transparent border-none cursor-pointer text-primary-text-color"
       >
-        Seções
+        {{ t('navbar.sections') }}
         <Icon
           name="mdi:chevron-down"
           class="text-[1.2rem] transition-transform duration-200"
@@ -94,6 +109,8 @@
       <Transition name="dropdown-fade">
         <div
           v-show="sectionsDropdownOpen"
+          id="sections-menu"
+          role="menu"
           class="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 rounded bg-body-bg shadow-lg border-2 z-50 transition duration-200 ease-in-out"
           @click="closeSectionsDropdown"
         >
@@ -102,6 +119,7 @@
             v-for="(link, idx) in sectionLinks"
             :key="`sections-${idx}`"
             :href="'#' + link.section"
+            role="menuitem"
             @click.prevent="handleNavClick(link)"
             class="block px-4 py-1 text-sm text-gray-700 hover:bg-accent-color/20 hover:text-accent-color transition-colors duration-200 no-underline"
           >
@@ -116,7 +134,7 @@
       v-if="screenWidth >= 1280"
       class="app-header__nav-button common-button"
       @click.prevent="openPhoneDialer"
-      aria-label="Ligar para 11 4227-3008"
+      :aria-label="t('navbar.callPhone', { phone: '11 4227-3008' })"
     >
       <Icon
         class="app-header__nav-button-icon text-[1.3rem]"
