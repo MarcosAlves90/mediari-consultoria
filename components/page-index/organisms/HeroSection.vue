@@ -104,4 +104,25 @@
       var(--color-secondary-text) 100%
     );
   }
+
+  /* Ajustes de acessibilidade: foco visível e menos movimento para preferências do usuário */
+  .homepage__hero-text-tags-tag:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+    transform: none; /* evita transformações que possam confundir */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .homepage__hero-text-tags-tag,
+    .homepage__hero-text-tags-tag:hover,
+    .homepage__hero-text-tags-tag:focus-visible,
+    .homepage__hero-text-tags-tag:active {
+      transition: none !important;
+    }
+
+    .homepage__hero-image {
+      transition: none !important;
+      will-change: auto !important;
+    }
+  }
 </style>
