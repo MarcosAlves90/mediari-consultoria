@@ -1,6 +1,6 @@
 import { ref, reactive, computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useSessionStorage } from '../useSessionStorage';
+import { useSessionStorage } from './useSessionStorage';
 import { useCandidateService } from './useCandidateService';
 import type { ProfileTestResult } from '~/types/candidates';
 

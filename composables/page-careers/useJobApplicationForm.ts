@@ -23,7 +23,7 @@
 
 import { ref, reactive, watch, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useSessionStorage } from '../useSessionStorage';
+import { useSessionStorage } from './useSessionStorage';
 import { useCandidateService } from './useCandidateService';
 import type { JobApplication } from '~/types/candidates';
 
