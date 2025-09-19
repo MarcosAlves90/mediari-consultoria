@@ -1,13 +1,13 @@
 <script setup lang="ts">
   import { ref, computed, watch, onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useSessionStorage } from '~/composables/useSessionStorage'
+  import { useSessionStorage } from '~/composables/page-careers/useSessionStorage'
   import {
     CareersHero,
     JobApplicationForm,
     ProfileTest,
     CompletionScreen,
-  } from '~/components/page-trabalhe-conosco'
+  } from '~/components/page-careers'
 
   const { t } = useI18n()
 

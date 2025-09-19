@@ -1,11 +1,11 @@
 <script setup lang="ts">
   // TODO: Deixar responsivo no mobile
 
-  import { useProfileTest } from '~/composables/trabalhe-conosco'
+  import { useProfileTest } from '~/composables/page-careers'
   import { useI18n } from 'vue-i18n'
   import { ref, onMounted, watch } from 'vue'
   import ButtonLoader from '~/components/atoms/ButtonLoader.vue'
-  import createShuffle from '~/composables/useShuffle'
+  import createShuffle from '~/composables/page-careers/useShuffle'
 
   interface Emits {
     (e: 'completed'): void

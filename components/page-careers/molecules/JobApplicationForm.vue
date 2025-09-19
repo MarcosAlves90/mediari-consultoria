@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useJobApplicationForm } from '~/composables/trabalhe-conosco'
+  import { useJobApplicationForm } from '~/composables/page-careers'
   import FileUpload from '~/components/molecules/FileUpload.vue'
   import ButtonLoader from '~/components/atoms/ButtonLoader.vue'
 
