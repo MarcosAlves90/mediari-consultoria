@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref, computed } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import type { Candidate } from '~/composables/admin/useAdminCandidates'
+  import type { Candidate } from '~/composables/page-admin/useAdminCandidates'
   import Skeleton from '~/components/atoms/Skeleton.vue'
   interface Props {
     candidates: Candidate[]

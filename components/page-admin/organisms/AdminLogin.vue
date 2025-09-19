@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref, computed } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useFirebaseAuth } from '~/composables/admin/useFirebaseAuth'
+  import { useFirebaseAuth } from '~/composables/page-admin/useFirebaseAuth'
   import { mapFirebaseAuthError } from '~/utils/mapFirebaseAuthError'
 
   const { t } = useI18n()

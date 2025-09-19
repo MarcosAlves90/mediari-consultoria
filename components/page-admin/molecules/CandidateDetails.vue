@@ -183,7 +183,7 @@
 <script setup lang="ts">
   // Importações de dependências e componentes
   import { useI18n } from 'vue-i18n'
-  import type { Candidate } from '~/composables/admin/useAdminCandidates'
+  import type { Candidate } from '~/composables/page-admin/useAdminCandidates'
   import ProfileTestResults from '~/components/page-admin/molecules/ProfileTestResults.vue'
   import Skeleton from '~/components/atoms/Skeleton.vue'
 
