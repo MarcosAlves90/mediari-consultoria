@@ -21,6 +21,7 @@ logs
 .github
 _old
 curriculo-teste.pdf
+docs/
 
 # Local env files
 .env
