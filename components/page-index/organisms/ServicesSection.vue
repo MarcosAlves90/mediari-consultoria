@@ -49,12 +49,12 @@
       >
         {{ t('services.section_description') }}
       </p>
-      <div
+      <ul
         class="homepage__services-list homepage__services-list--main grid gap-1 mt-1 grid-cols-4 max-870:grid-cols-2"
         role="list"
-        aria-label="Serviços principais"
+        :aria-label="t('services.main_aria_label')"
       >
-        <div
+        <li
           v-for="service in mainServices"
           :key="service.headingId"
           :class="homepage__services_card"
@@ -62,26 +62,34 @@
           :aria-labelledby="service.headingId"
           :aria-describedby="service.descId"
         >
-          <Icon
-            :class="homepage__services_card_icon"
-            :name="service.icon"
+          <button
+            type="button"
+            class="homepage__services-icon-button"
             @click="triggerShake"
-            aria-hidden="true"
-          />
+            :aria-label="
+              t('services.icon_button_label', { service: service.title })
+            "
+          >
+            <Icon
+              :class="homepage__services_card_icon"
+              :name="service.icon"
+              aria-hidden="true"
+            />
+          </button>
           <p :id="service.headingId" :class="homepage__services_card_title">
             {{ service.title }}
           </p>
           <p :id="service.descId" :class="homepage__services_card_description">
             {{ service.description }}
           </p>
-        </div>
-      </div>
-      <div
+        </li>
+      </ul>
+      <ul
         class="homepage__services-list homepage__services-list--secondary grid gap-1 mt-1 grid-cols-3 max-870:grid-cols-1"
         role="list"
-        aria-label="Outros serviços"
+        :aria-label="t('services.secondary_aria_label')"
       >
-        <div
+        <li
           v-for="service in secondaryServices"
           :key="service.headingId"
           :class="homepage__services_card"
@@ -89,20 +97,28 @@
           :aria-labelledby="service.headingId"
           :aria-describedby="service.descId"
         >
-          <Icon
-            :class="homepage__services_card_icon"
-            :name="service.icon"
+          <button
+            type="button"
+            class="homepage__services-icon-button"
             @click="triggerShake"
-            aria-hidden="true"
-          />
+            :aria-label="
+              t('services.icon_button_label', { service: service.title })
+            "
+          >
+            <Icon
+              :class="homepage__services_card_icon"
+              :name="service.icon"
+              aria-hidden="true"
+            />
+          </button>
           <p :id="service.headingId" :class="homepage__services_card_title">
             {{ service.title }}
           </p>
           <p :id="service.descId" :class="homepage__services_card_description">
             {{ service.description }}
           </p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
