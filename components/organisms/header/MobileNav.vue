@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  // TODO: Deixar fundo do mobile menu com cor sólida ou blur
   import { ref, computed } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useScreenWidth } from '@/utils/useScreenWidth'

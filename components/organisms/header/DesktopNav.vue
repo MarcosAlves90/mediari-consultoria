@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  // TODO: Deixar o link das carreiras depois de seções
   import { ref, computed } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useContacts } from '@/utils/useContacts'
@@ -96,7 +97,7 @@
           class="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 rounded bg-body-bg shadow-lg border-2 z-50 transition duration-200 ease-in-out"
           @click="closeSectionsDropdown"
         >
-          <div class="h-0.5 bg-accent-color"/>
+          <div class="h-0.5 bg-accent-color" />
           <a
             v-for="(link, idx) in sectionLinks"
             :key="`sections-${idx}`"
@@ -106,7 +107,7 @@
           >
             {{ link.label }}
           </a>
-          <div class="h-0.5 bg-accent-color"/>
+          <div class="h-0.5 bg-accent-color" />
         </div>
       </Transition>
     </div>
