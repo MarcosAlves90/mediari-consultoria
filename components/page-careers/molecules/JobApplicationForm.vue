@@ -74,29 +74,39 @@
 
 <template>
   <div class="job-application-form">
-    <!-- Success Message -->
+    <!-- Mensagem de sucesso -->
     <div
       v-if="showSuccess"
       class="mb-1 p-1 bg-green-100 border-2 border-green-500 text-green-700 rounded-sm text-center"
+      role="status"
+      aria-live="polite"
     >
-      {{ t('careers.form.success_title') }}
+      <strong class="sr-only">{{ t('careers.form.success_title') }}</strong>
       {{ t('careers.form.success_message') }}
     </div>
 
-    <!-- Error Message -->
+    <!-- Mensagem de erro -->
     <div
       v-if="hasError"
       class="mb-1 p-1 bg-red-100 border-2 border-accent-color text-accent-color rounded-sm text-center"
+      role="alert"
+      aria-live="assertive"
     >
+      <strong class="sr-only">{{ t('careers.error_message') }}</strong>
       {{ t('careers.error_message') }}
     </div>
 
     <form
       @submit.prevent="handleSubmit"
       class="careers__form-container grid gap-0 max-md:grid-cols-1"
+      novalidate
+      aria-labelledby="careers-form-title"
     >
+      <h2 id="careers-form-title" class="sr-only">
+        {{ t('careers.form.title') }}
+      </h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 max-lg:gap-0">
-        <!-- Full Name -->
+        <!-- Nome completo -->
         <div :class="CSS_CLASSES.formGroup">
           <label for="fullName" :class="CSS_CLASSES.formLabel">
             {{ t('careers.form.full_name') }}
@@ -104,6 +114,7 @@
           </label>
           <input
             id="fullName"
+            autocomplete="name"
             v-model="formData.fullName"
             type="text"
             :class="[
@@ -111,11 +122,19 @@
               errors.fullName ? 'border-accent-color' : '',
             ]"
             :placeholder="t('careers.form.full_name_placeholder')"
+            :aria-invalid="errors.fullName ? 'true' : 'false'"
+            aria-required="true"
+            :aria-describedby="errors.fullName ? 'fullName-error' : ''"
             required
           />
-          <span v-if="errors.fullName" :class="CSS_CLASSES.errorText">{{
-            errors.fullName
-          }}</span>
+          <span
+            v-if="errors.fullName"
+            :id="'fullName-error'"
+            :class="CSS_CLASSES.errorText"
+            role="alert"
+          >
+            {{ errors.fullName }}
+          </span>
         </div>
 
         <!-- Email -->
@@ -126,6 +145,7 @@
           </label>
           <input
             id="email"
+            autocomplete="email"
             v-model="formData.email"
             type="email"
             :class="[
@@ -133,17 +153,25 @@
               errors.email ? 'border-accent-color' : '',
             ]"
             :placeholder="t('careers.form.email_placeholder')"
+            :aria-invalid="errors.email ? 'true' : 'false'"
+            aria-required="true"
+            :aria-describedby="errors.email ? 'email-error' : ''"
             required
           />
-          <span v-if="errors.email" :class="CSS_CLASSES.errorText">{{
-            errors.email
-          }}</span>
+          <span
+            v-if="errors.email"
+            :id="'email-error'"
+            :class="CSS_CLASSES.errorText"
+            role="alert"
+          >
+            {{ errors.email }}
+          </span>
         </div>
       </div>
 
-      <!-- Row 2: Phone and Area of Interest -->
+      <!-- Linha 2: Telefone e Área de Interesse -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 max-lg:gap-0">
-        <!-- Phone -->
+        <!-- Telefone -->
         <div :class="CSS_CLASSES.formGroup">
           <label for="phone" :class="CSS_CLASSES.formLabel">
             {{ t('careers.form.phone') }}
@@ -151,8 +179,10 @@
           </label>
           <input
             id="phone"
+            autocomplete="tel"
             v-model="formData.phone"
             type="tel"
+            inputmode="tel"
             :class="[
               CSS_CLASSES.formInput,
               errors.phone ? 'border-accent-color' : '',
@@ -160,14 +190,22 @@
             :placeholder="t('careers.form.phone_placeholder')"
             @input="handlePhoneInput"
             maxlength="15"
+            :aria-invalid="errors.phone ? 'true' : 'false'"
+            aria-required="true"
+            :aria-describedby="errors.phone ? 'phone-error' : ''"
             required
           />
-          <span v-if="errors.phone" :class="CSS_CLASSES.errorText">{{
-            errors.phone
-          }}</span>
+          <span
+            v-if="errors.phone"
+            :id="'phone-error'"
+            :class="CSS_CLASSES.errorText"
+            role="alert"
+          >
+            {{ errors.phone }}
+          </span>
         </div>
 
-        <!-- Area of Interest -->
+        <!-- Área de Interesse -->
         <div :class="CSS_CLASSES.formGroup">
           <label for="areaOfInterest" :class="CSS_CLASSES.formLabel">
             {{ t('careers.form.area_of_interest') }}
@@ -180,6 +218,11 @@
               CSS_CLASSES.formSelect,
               errors.areaOfInterest ? 'border-accent-color' : '',
             ]"
+            aria-required="true"
+            :aria-invalid="errors.areaOfInterest ? 'true' : 'false'"
+            :aria-describedby="
+              errors.areaOfInterest ? 'areaOfInterest-error' : ''
+            "
             required
           >
             <option value="">
@@ -189,13 +232,18 @@
               {{ area }}
             </option>
           </select>
-          <span v-if="errors.areaOfInterest" :class="CSS_CLASSES.errorText">{{
-            errors.areaOfInterest
-          }}</span>
+          <span
+            v-if="errors.areaOfInterest"
+            :id="'areaOfInterest-error'"
+            :class="CSS_CLASSES.errorText"
+            role="alert"
+          >
+            {{ errors.areaOfInterest }}
+          </span>
         </div>
       </div>
 
-      <!-- Experience -->
+      <!-- Experiência -->
       <div :class="CSS_CLASSES.formGroup">
         <label for="experience" :class="CSS_CLASSES.formLabel">
           {{ t('careers.form.experience') }}
@@ -209,14 +257,22 @@
             errors.experience ? 'border-accent-color' : '',
           ]"
           :placeholder="t('careers.form.experience_placeholder')"
+          :aria-invalid="errors.experience ? 'true' : 'false'"
+          aria-required="true"
+          :aria-describedby="errors.experience ? 'experience-error' : ''"
           required
         ></textarea>
-        <span v-if="errors.experience" :class="CSS_CLASSES.errorText">{{
-          errors.experience
-        }}</span>
+        <span
+          v-if="errors.experience"
+          :id="'experience-error'"
+          :class="CSS_CLASSES.errorText"
+          role="alert"
+        >
+          {{ errors.experience }}
+        </span>
       </div>
 
-      <!-- Resume Upload -->
+      <!-- Envio de currículo -->
       <div :class="CSS_CLASSES.formGroup">
         <FileUpload
           id="resume"
@@ -225,24 +281,39 @@
           accept=".pdf,.doc,.docx"
           :error-message="errors.resume"
           required
+          aria-required="true"
+          :aria-describedby="errors.resume ? 'resume-error' : ''"
           @error="(message) => (errors.resume = message)"
         />
+        <span
+          v-if="errors.resume"
+          id="resume-error"
+          :class="CSS_CLASSES.errorText"
+          role="alert"
+        >
+          {{ errors.resume }}
+        </span>
       </div>
 
-      <!-- Cover Letter -->
+      <!-- Carta de apresentação -->
       <div :class="CSS_CLASSES.formGroup">
         <label for="coverLetter" :class="CSS_CLASSES.formLabel">
           {{ t('careers.form.cover_letter') }}
         </label>
         <textarea
           id="coverLetter"
+          autocomplete="off"
           v-model="formData.coverLetter"
           :class="CSS_CLASSES.formTextarea"
           :placeholder="t('careers.form.cover_letter_placeholder')"
+          :aria-describedby="'coverLetter-help'"
         ></textarea>
+        <span id="coverLetter-help" class="sr-only">{{
+          t('careers.form.cover_letter_help')
+        }}</span>
       </div>
 
-      <!-- Privacy Consent -->
+      <!-- Consentimento de privacidade -->
       <div :class="CSS_CLASSES.checkboxWrapper">
         <input
           id="privacyConsent"
@@ -252,6 +323,8 @@
             CSS_CLASSES.checkboxInput,
             errors.privacyConsent ? 'border-accent-color' : '',
           ]"
+          :aria-invalid="errors.privacyConsent ? 'true' : 'false'"
+          aria-required="true"
           required
         />
         <label for="privacyConsent" :class="CSS_CLASSES.checkboxLabel">
@@ -259,19 +332,38 @@
           <span class="text-accent-color">*</span>
         </label>
       </div>
-      <span v-if="errors.privacyConsent" :class="CSS_CLASSES.errorText">{{
-        errors.privacyConsent
-      }}</span>
+      <span
+        v-if="errors.privacyConsent"
+        id="privacyConsent-error"
+        :class="CSS_CLASSES.errorText"
+        role="alert"
+        >{{ errors.privacyConsent }}</span
+      >
 
-      <!-- Submit Button -->
-      <div v-if="uploadProgress > 0" class="mb-2">
-        <div class="w-full bg-gray-200 rounded h-2 overflow-hidden">
+      <!-- Botão de envio -->
+      <div
+        v-if="uploadProgress > 0"
+        class="mb-2"
+        role="group"
+        aria-labelledby="upload-progress-label"
+      >
+        <div id="upload-progress-label" class="sr-only">
+          {{ t('careers.form.upload_progress') }}
+        </div>
+        <div
+          class="w-full bg-gray-200 rounded h-2 overflow-hidden"
+          role="progressbar"
+          :aria-valuenow="uploadProgress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          :aria-valuetext="`${uploadProgress}%`"
+        >
           <div
             :style="{ width: `${uploadProgress}%` }"
             class="bg-accent-color h-2 transition-width"
           ></div>
         </div>
-        <div class="text-xs text-secondary-text mt-1">
+        <div class="text-xs text-secondary-text mt-1" aria-hidden="true">
           {{ uploadProgress }}%
         </div>
       </div>
