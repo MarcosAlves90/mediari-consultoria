@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { useHeroTags } from '~/composables/page-index/useHeroTags'
-  import { defineEmits } from 'vue'
 
   const { t } = useI18n()
   const { heroTags } = useHeroTags()
