@@ -81,29 +81,32 @@
           : 'Abrir menu de navegação'
       "
     >
-        <!-- Container com tamanho fixo para evitar 'jump' quando o ícone ainda não carregou -->
-        <div class="app-header__hamburguer-menu-icon-container w-[30px] h-[30px] relative" key="icon-wrap">
-          <!-- Ambos ícones montados; alternamos visibilidade por classes para animar opacidade sem alterar layout -->
-          <Icon
-            :class="[
-              'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
-              { 'is-hidden': hamburguerMenuOpen }
-            ]"
-            name="mdi:menu"
-            aria-hidden="true"
-            key="menu"
-          />
+      <!-- Container com tamanho fixo para evitar 'jump' quando o ícone ainda não carregou -->
+      <div
+        class="app-header__hamburguer-menu-icon-container w-[30px] h-[30px] relative"
+        key="icon-wrap"
+      >
+        <!-- Ambos ícones montados; alternamos visibilidade por classes para animar opacidade sem alterar layout -->
+        <Icon
+          :class="[
+            'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
+            { 'is-hidden': hamburguerMenuOpen },
+          ]"
+          name="mdi:menu"
+          aria-hidden="true"
+          key="menu"
+        />
 
-          <Icon
-            :class="[
-              'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
-              { 'is-hidden': !hamburguerMenuOpen }
-            ]"
-            name="mdi:close"
-            aria-hidden="true"
-            key="close"
-          />
-        </div>
+        <Icon
+          :class="[
+            'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
+            { 'is-hidden': !hamburguerMenuOpen },
+          ]"
+          name="mdi:close"
+          aria-hidden="true"
+          key="close"
+        />
+      </div>
     </button>
 
     <Transition name="slide-fade-nav">
