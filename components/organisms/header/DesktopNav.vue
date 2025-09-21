@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  // TODO: Deixar o link das carreiras depois de seções
   import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useContacts } from '@/utils/useContacts'
@@ -19,11 +18,6 @@
 
   const sectionsDropdownOpen = ref(false)
   const dropdownRef = ref<HTMLElement | null>(null)
-
-  const navLinks = computed(() => [
-    { label: t('navbar.home'), section: 'banner-section' },
-    { label: t('navbar.careers'), href: '/trabalhe-conosco' },
-  ])
 
   const sectionLinks = computed(() => [
     { label: t('navbar.services'), section: 'services-section' },
@@ -80,13 +74,12 @@
     aria-label="Main navigation"
   >
     <a
-      v-for="(link, idx) in navLinks"
-      :key="`desktop-nav-${idx}`"
-      :href="link.href ? localePath(link.href) : '#' + link.section"
-      @click.prevent="handleNavClick(link)"
+      :href="localePath('/')"
+      @click.prevent="handleNavClick({ href: '/' })"
       class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline"
+      key="desktop-nav-home"
     >
-      {{ link.label }}
+      {{ t('navbar.home') }}
     </a>
 
     <!-- Dropdown de Seções -->
@@ -129,6 +122,15 @@
         </div>
       </Transition>
     </div>
+
+    <a
+      :href="localePath('/trabalhe-conosco')"
+      @click.prevent="handleNavClick({ href: '/trabalhe-conosco' })"
+      class="after:absolute after:bottom-[-3px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:bg-accent-color after:content-[''] after:h-[2px] hover:after:w-full no-underline"
+      key="desktop-nav-careers"
+    >
+      {{ t('navbar.careers') }}
+    </a>
 
     <button
       v-if="screenWidth >= 1280"
