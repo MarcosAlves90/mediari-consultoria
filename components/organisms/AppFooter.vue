@@ -36,9 +36,9 @@
     { label: t('navbar.home'), section: 'banner-section' },
     { label: t('navbar.services'), section: 'services-section' },
     { label: t('navbar.enterprise'), section: 'enterprise-section' },
-    { label: t('navbar.socialAction'), section: 'social-action-section' },
     { label: t('navbar.founder'), section: 'seo-section' },
     { label: t('navbar.team'), section: 'team-section' },
+    { label: t('navbar.socialAction'), section: 'social-action-section' },
     { label: t('navbar.contact'), section: 'contact-section' },
     { label: t('navbar.careers'), href: '/trabalhe-conosco' },
   ])
