@@ -387,12 +387,12 @@
 
 <style scoped>
   /**
- * Job Application Form Styles
+ * Estilos do formulário de candidatura
  *
- * Professional styling with responsive design and accessibility features.
+ * Estilização profissional com design responsivo e melhorias de acessibilidade.
  */
 
-  /* Form Container */
+  /* Container do formulário */
   .careers__form-container {
     padding: 2rem;
     background: rgba(255, 255, 255, 0.02);
@@ -400,14 +400,14 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Focus states for accessibility */
+  /* Estados de foco (acessibilidade) */
   .careers__form-container input:focus,
   .careers__form-container select:focus,
   .careers__form-container textarea:focus {
     box-shadow: 0 0 0 3px rgba(var(--color-accent-color-rgb), 0.1);
   }
 
-  /* Checkbox specific styles */
+  /* Estilos específicos para checkbox */
   .careers__form-container input[type='checkbox'] {
     appearance: none;
     -webkit-appearance: none;
@@ -447,7 +447,7 @@
     border-color: var(--color-accent-color);
   }
 
-  /* Responsive Design */
+  /* Design responsivo */
   @media (max-width: 1024px) {
     .careers__form-container {
       padding: 1.5rem;
