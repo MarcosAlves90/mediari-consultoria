@@ -149,7 +149,9 @@
   }
 
   .icon-fade {
-    transition: opacity 0.18s ease, transform 0.18s ease;
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease;
     will-change: opacity, transform;
     opacity: 1;
     transform: scale(1);
