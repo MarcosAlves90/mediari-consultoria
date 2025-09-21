@@ -81,29 +81,38 @@
           : 'Abrir menu de navegação'
       "
     >
-      <Transition name="icon-morph" mode="out-in">
-        <Icon
-          v-if="!hamburguerMenuOpen"
-          class="app-header__hamburguer-menu-icon w-[30px] aspect-square"
-          name="mdi:menu"
-          key="menu"
-        />
-        <Icon
-          v-else
-          class="app-header__hamburguer-menu-icon w-[30px] aspect-square"
-          name="mdi:close"
-          key="close"
-        />
-      </Transition>
+        <!-- Container com tamanho fixo para evitar 'jump' quando o ícone ainda não carregou -->
+        <div class="app-header__hamburguer-menu-icon-container w-[30px] h-[30px] relative" key="icon-wrap">
+          <!-- Ambos ícones montados; alternamos visibilidade por classes para animar opacidade sem alterar layout -->
+          <Icon
+            :class="[
+              'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
+              { 'is-hidden': hamburguerMenuOpen }
+            ]"
+            name="mdi:menu"
+            aria-hidden="true"
+            key="menu"
+          />
+
+          <Icon
+            :class="[
+              'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
+              { 'is-hidden': !hamburguerMenuOpen }
+            ]"
+            name="mdi:close"
+            aria-hidden="true"
+            key="close"
+          />
+        </div>
     </button>
 
     <Transition name="slide-fade-nav">
       <nav
         v-show="hamburguerMenuOpen"
-        class="app-header__nav app-header__nav--mobile flex absolute top-full left-0 right-0 flex-col gap-1 p-1 overflow-hidden border-t-2 border-b-2 backdrop-blur-sm max-h-[500px] opacity-100 visible"
+        class="app-header__nav app-header__nav--mobile flex absolute top-full shadow-lg left-0 right-0 flex-col gap-1 p-1 overflow-hidden border-t-2 border-b-2 max-h-[500px] opacity-100 visible"
         :class="{
-          'bg-body-bg-67 border-accent-color': isHomePage,
-          'bg-white border-gray-400': !isHomePage,
+          'bg-body-bg/95 border-accent-color': isHomePage,
+          'border-gray-400': !isHomePage,
         }"
       >
         <!-- Links (home, seções..., trabalhe-conosco) no mobile -->
@@ -128,6 +137,25 @@
 <style scoped>
   .app-header__hamburguer-menu-icon {
     transition: font-size 0.2s ease-in-out;
+  }
+
+  /* Mantém tamanho do container e faz fade/scale suave dos ícones sem reflow */
+  .app-header__hamburguer-menu-icon-container {
+    display: inline-block;
+    line-height: 0; /* remove espaço extra */
+  }
+
+  .icon-fade {
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    will-change: opacity, transform;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .icon-fade.is-hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
   }
 
   .slide-fade-nav-enter-active,
