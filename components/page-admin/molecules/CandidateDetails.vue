@@ -10,16 +10,16 @@
     v-if="isLoading"
     class="bg-body-bg-dark rounded p-2 border-2 border-accent-color space-y-2"
   >
-    <Skeleton width="50%" height="1.5rem" />
-    <Skeleton width="66%" height="0.75rem" />
+    <Skeleton width="50%" :height="1.5" />
+    <Skeleton width="66%" :height="0.75" />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
       <div>
-        <Skeleton width="75%" height="0.75rem" />
-        <Skeleton width="100%" height="2.5rem" />
+        <Skeleton width="75%" :height="0.75" />
+        <Skeleton width="100%" :height="2.5" />
       </div>
       <div>
-        <Skeleton width="75%" height="0.75rem" />
-        <Skeleton width="100%" height="2.5rem" />
+        <Skeleton width="75%" :height="0.75" />
+        <Skeleton width="100%" :height="2.5" />
       </div>
     </div>
   </div>

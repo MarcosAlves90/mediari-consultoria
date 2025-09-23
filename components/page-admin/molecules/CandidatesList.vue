@@ -99,14 +99,12 @@
 
     <!-- Estado de carregamento: skeletons -->
     <div v-if="isLoading" class="p-1 text-center flex-shrink-0">
-      <div class="space-y-2">
-        <Skeleton width="66%" height="1rem" />
-        <Skeleton width="80%" height="0.75rem" />
-        <Skeleton width="60%" height="0.75rem" />
+      <div class="space-y-1">
+        <!-- usar múltiplos de var(--spacing). 1 = 1 * spacing (1rem) -->
+        <Skeleton width="100%" :height="3" />
+        <Skeleton width="100%" :height="3" />
+        <Skeleton width="100%" :height="3" />
       </div>
-      <p class="text-secondary-text text-sm mt-0.5">
-        {{ t('admin.candidates.loading') }}
-      </p>
     </div>
 
     <!-- Estado vazio (nenhum candidato ou nenhum resultado) -->
