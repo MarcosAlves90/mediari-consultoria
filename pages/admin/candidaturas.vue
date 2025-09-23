@@ -17,7 +17,7 @@
   const { t } = useI18n()
 
   useSeoMeta({
-    title: `${t('admin.candidates.page_title')} - Mediari Consultoria`,
+    title: `${t('admin.candidates.page_title')}`,
     description: t('admin.candidates.page_description'),
     robots: 'noindex, nofollow',
   })
