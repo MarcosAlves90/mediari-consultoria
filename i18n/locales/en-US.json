@@ -411,13 +411,6 @@
       "hide_password": "Hide password",
       "show_password": "Show password"
     },
-    "nav": {
-      "candidates": "Applications",
-      "back_to_site": "Back to Site",
-      "welcome": "Welcome",
-      "logout": "Logout",
-      "logging_out": "Logging out..."
-    },
     "footer": {
       "copyright": "©",
       "admin_panel": "Administrative Panel"

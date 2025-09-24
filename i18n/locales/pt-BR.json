@@ -436,13 +436,6 @@
       "hide_password": "Ocultar senha",
       "show_password": "Mostrar senha"
     },
-    "nav": {
-      "candidates": "Candidaturas",
-      "back_to_site": "Voltar ao Site",
-      "welcome": "Bem-vindo",
-      "logout": "Sair",
-      "logging_out": "Saindo..."
-    },
     "footer": {
       "copyright": "©",
       "admin_panel": "Painel Administrativo"
