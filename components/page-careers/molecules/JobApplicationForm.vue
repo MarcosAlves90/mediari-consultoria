@@ -15,14 +15,27 @@
 
   const { t } = useI18n()
 
+  /**
+   * Mapeamento de índices para as chaves de tradução `careers.areas`.
+   * Mantido aqui como comentário para referência rápida ao trabalhar com o formulário.
+   * Valores (conforme `i18n/locales/pt-BR.json`):
+   *  'careers.areas.0' => 'Direito Civil'
+   *  'careers.areas.1' => 'Direito Penal'
+   *  'careers.areas.2' => 'Direito Trabalhista'
+   *  'careers.areas.3' => 'Direito do Consumidor'
+   *  'careers.areas.4' => 'Direito Bancário'
+   *  'careers.areas.5' => 'Contratos'
+   *  'careers.areas.6' => 'Consultivo'
+   *  'careers.areas.7' => 'Administrativo'
+   */
   const AREA_KEYS = [
-    'careers.areas.0',
-    'careers.areas.1',
-    'careers.areas.2',
-    'careers.areas.3',
+    // 'careers.areas.0',
+    // 'careers.areas.1',
+    // 'careers.areas.2',
+    // 'careers.areas.3',
     'careers.areas.4',
-    'careers.areas.5',
-    'careers.areas.6',
+    // 'careers.areas.5',
+    // 'careers.areas.6',
     'careers.areas.7',
   ] as const
 
