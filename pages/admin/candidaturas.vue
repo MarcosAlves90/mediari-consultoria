@@ -103,10 +103,6 @@
 </template>
 
 <style scoped>
-  .admin-candidates-page {
-    min-height: 100vh;
-    background: #fafafa;
-  }
 
   @media (max-width: 300px) {
     .admin-candidates-page {
