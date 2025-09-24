@@ -1,0 +1,380 @@
+<template>
+  <nav
+    class="bg-body-bg/90 backdrop-blur-sm shadow-md border-b border-body-bg-dark fixed top-0 left-0 right-0 z-50"
+  >
+    <div class="max-w-7xl mx-auto px-0.5 300:px-0.75 500:px-1 870:px-1.5">
+      <div class="flex items-center justify-between h-4">
+        <!-- Logo/Brand -->
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <Icon
+              class="text-[2.9em] transition-[font-size] duration-200 text-accent-color"
+              name="my-icon:mediari-logo"
+            />
+          </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden 870:flex items-center space-x-2">
+          <div class="flex items-center space-x-1">
+            <NuxtLink
+              to="/admin/dashboard"
+              class="nav-link"
+              active-class="nav-link-active"
+            >
+              Dashboard
+            </NuxtLink>
+            <NuxtLink
+              to="/admin/users"
+              class="nav-link"
+              active-class="nav-link-active"
+            >
+              Usuários
+            </NuxtLink>
+            <NuxtLink
+              to="/admin/content"
+              class="nav-link"
+              active-class="nav-link-active"
+            >
+              Conteúdo
+            </NuxtLink>
+            <NuxtLink
+              to="/admin/settings"
+              class="nav-link"
+              active-class="nav-link-active"
+            >
+              Configurações
+            </NuxtLink>
+          </div>
+
+          <!-- User Menu Desktop -->
+          <div class="flex items-center ml-2 pl-2 border-l border-body-bg-dark">
+            <div class="flex items-center space-x-1">
+              <div class="text-secondary-text text-sm">
+                <span class="font-medium text-primary-text">{{
+                  currentUser?.name || currentUser?.email || 'Admin'
+                }}</span>
+              </div>
+              <button
+                @click="handleLogout"
+                :disabled="isLoggingOut"
+                class="nav-link text-sm !text-accent-color hover:!bg-accent-color-2 cursor-pointer"
+              >
+                {{ logoutLabel }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="870:hidden">
+          <button
+            @click="toggleHamburguerMenu"
+            :aria-label="hamburgerAriaLabel"
+            class="text-accent-color hover:bg-accent-color-2 p-0.5 rounded transition-colors duration-200"
+          >
+            <Transition name="icon-morph" mode="out-in">
+              <svg
+                v-if="!hamburguerMenuOpen"
+                class="h-1.5 w-1.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                v-else
+                class="h-1.5 w-1.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </Transition>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <Transition name="slide-fade-nav">
+      <div
+        v-if="hamburguerMenuOpen"
+        class="870:hidden bg-body-bg border-t border-body-bg-dark"
+      >
+        <div class="px-1 300:px-1.5 500:px-2 pt-1 pb-1.5 space-y-0.5">
+          <!-- User Info Mobile -->
+          <div class="border-b border-body-bg-dark pb-1 mb-1">
+            <div class="flex items-center justify-between">
+              <div class="text-primary-text">
+                <div class="font-medium text-sm">
+                  {{ currentUser?.name || currentUser?.email || 'Admin' }}
+                </div>
+                <div
+                  v-if="currentUser?.name && currentUser?.email"
+                  class="text-xs text-secondary-text"
+                >
+                  {{ currentUser.email }}
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-0.25 h-0.25 bg-green-500 rounded-full mr-0.25 animate-pulse"
+                ></div>
+                <span class="text-secondary-text text-xs">Online</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Links Mobile -->
+          <div class="space-y-0.25">
+            <NuxtLink
+              to="/admin/dashboard"
+              @click="hamburguerMenuOpen = false"
+              class="mobile-nav-link"
+              active-class="mobile-nav-link-active"
+            >
+              Dashboard
+            </NuxtLink>
+            <NuxtLink
+              to="/admin/users"
+              @click="hamburguerMenuOpen = false"
+              class="mobile-nav-link"
+              active-class="mobile-nav-link-active"
+            >
+              Usuários
+            </NuxtLink>
+            <NuxtLink
+              to="/admin/content"
+              @click="hamburguerMenuOpen = false"
+              class="mobile-nav-link"
+              active-class="mobile-nav-link-active"
+            >
+              Conteúdo
+            </NuxtLink>
+            <NuxtLink
+              to="/admin/settings"
+              @click="hamburguerMenuOpen = false"
+              class="mobile-nav-link"
+              active-class="mobile-nav-link-active"
+            >
+              Configurações
+            </NuxtLink>
+          </div>
+
+          <!-- Logout Mobile -->
+          <div class="pt-1 border-t border-body-bg-dark">
+            <button
+              @click="handleLogoutAndClose"
+              :disabled="isLoggingOut"
+              class="w-full text-left mobile-nav-link !text-accent-color hover:!bg-accent-color-2"
+            >
+              {{ logoutLabelShort }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </nav>
+</template>
+
+<script setup lang="ts">
+  import { ref, computed, onMounted } from 'vue'
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
+  const isLoggingOut = ref(false)
+  const hamburguerMenuOpen = ref(false)
+
+  // Get current user from server session endpoint
+  type CurrentUser = {
+    id: string
+    email: string | null
+    name: string | null
+  } | null
+  const currentUser = ref<CurrentUser>(null)
+  onMounted(async () => {
+    try {
+      const res = await $fetch('/api/session')
+      if (res && (res as Record<string, unknown>).authenticated) {
+        const s = res as Record<string, unknown>
+        currentUser.value = {
+          id: String(s.uid ?? ''),
+          email: (s.email as string) || null,
+          name: (s.name as string) || null,
+        }
+      }
+    } catch (e: unknown) {
+      console.warn('[components/AdminNavbar] falha ao buscar sessão', e)
+    }
+  })
+
+  const toggleHamburguerMenu = () => {
+    hamburguerMenuOpen.value = !hamburguerMenuOpen.value
+  }
+
+  // Computed labels for template (avoids complex inline expressions)
+  const logoutLabel = computed(() =>
+    isLoggingOut.value ? t('admin.nav.logging_out') : t('admin.nav.logout')
+  )
+
+  const logoutLabelShort = computed(() => (isLoggingOut.value ? '...' : 'Sair'))
+
+  const hamburgerAriaLabel = computed(() =>
+    hamburguerMenuOpen.value
+      ? 'Fechar menu de navegação'
+      : 'Abrir menu de navegação'
+  )
+
+  const handleLogoutAndClose = async () => {
+    hamburguerMenuOpen.value = false
+    await handleLogout()
+  }
+
+  const handleLogout = async () => {
+    isLoggingOut.value = true
+    hamburguerMenuOpen.value = false
+    try {
+      // Request server to clear session cookie
+      try {
+        await $fetch('/api/session', { method: 'DELETE' })
+      } catch {
+        // ignore
+      }
+
+      // Clear any local fallback session if present
+      if (typeof window !== 'undefined') {
+        try {
+          sessionStorage.removeItem('mediari-admin-session')
+        } catch {
+          // Ignore errors during session cleanup
+        }
+      }
+
+      // Simulate delay
+      await new Promise((resolve) => setTimeout(resolve, 500))
+
+      // Redirect to login
+      await navigateTo('/admin')
+    } finally {
+      isLoggingOut.value = false
+    }
+  }
+</script>
+
+<style scoped>
+  /* Navigation Links */
+  .nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-secondary-text);
+    border-radius: 0.375rem;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    background-color: var(--color-body-bg-dark);
+    color: var(--color-primary-text);
+  }
+
+  .nav-link-active {
+    background-color: var(--color-accent-color);
+    color: var(--color-accent-text-color);
+    font-weight: 600;
+  }
+
+  .nav-link-active:hover {
+    background-color: var(--color-accent-dark-color);
+    color: var(--color-accent-text-color);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-secondary-text);
+    border-radius: 0.375rem;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+    text-decoration: none;
+  }
+
+  .mobile-nav-link:hover {
+    background-color: var(--color-body-bg-dark);
+    color: var(--color-primary-text);
+  }
+
+  .mobile-nav-link-active {
+    background-color: var(--color-accent-color-2);
+    color: var(--color-accent-color);
+    font-weight: 600;
+  }
+
+  /* Animations */
+  .slide-fade-nav-enter-active,
+  .slide-fade-nav-leave-active {
+    transition:
+      opacity 0.3s,
+      max-height 0.3s,
+      transform 0.3s;
+    will-change: opacity, max-height, transform;
+  }
+
+  .slide-fade-nav-enter-from,
+  .slide-fade-nav-leave-to {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+
+  .slide-fade-nav-enter-to,
+  .slide-fade-nav-leave-from {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+
+  .icon-morph-enter-active,
+  .icon-morph-leave-active {
+    transition:
+      opacity 0.2s,
+      filter 0.2s,
+      border-radius 0.2s,
+      transform 0.2s;
+  }
+
+  .icon-morph-enter-from,
+  .icon-morph-leave-to {
+    opacity: 0;
+    filter: blur(6px);
+    border-radius: 50%;
+    transform: scale(0.7) rotate(-90deg);
+  }
+
+  .icon-morph-enter-to,
+  .icon-morph-leave-from {
+    opacity: 1;
+    filter: blur(0);
+    border-radius: 0;
+    transform: scale(1) rotate(0deg);
+  }
+</style>
