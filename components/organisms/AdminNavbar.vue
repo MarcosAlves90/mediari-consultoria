@@ -22,28 +22,28 @@
               class="nav-link"
               active-class="nav-link-active"
             >
-              Dashboard
+              {{ t('admin.nav.dashboard') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/users"
               class="nav-link"
               active-class="nav-link-active"
             >
-              Usuários
+              {{ t('admin.nav.users') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/content"
               class="nav-link"
               active-class="nav-link-active"
             >
-              Conteúdo
+              {{ t('admin.nav.content') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/settings"
               class="nav-link"
               active-class="nav-link-active"
             >
-              Configurações
+              {{ t('admin.nav.settings') }}
             </NuxtLink>
           </div>
 
@@ -52,7 +52,9 @@
             <div class="flex items-center space-x-1">
               <div class="text-secondary-text text-sm">
                 <span class="font-medium text-primary-text">{{
-                  currentUser?.name || currentUser?.email || 'Admin'
+                  currentUser?.name ||
+                  currentUser?.email ||
+                  t('admin.nav.admin_default')
                 }}</span>
               </div>
               <button
@@ -120,7 +122,11 @@
             <div class="flex items-center justify-between">
               <div class="text-primary-text">
                 <div class="font-medium text-sm">
-                  {{ currentUser?.name || currentUser?.email || 'Admin' }}
+                  {{
+                    currentUser?.name ||
+                    currentUser?.email ||
+                    t('admin.nav.admin_default')
+                  }}
                 </div>
                 <div
                   v-if="currentUser?.name && currentUser?.email"
@@ -133,7 +139,9 @@
                 <div
                   class="w-0.25 h-0.25 bg-green-500 rounded-full mr-0.25 animate-pulse"
                 ></div>
-                <span class="text-secondary-text text-xs">Online</span>
+                <span class="text-secondary-text text-xs">{{
+                  t('admin.nav.online')
+                }}</span>
               </div>
             </div>
           </div>
@@ -146,7 +154,7 @@
               class="mobile-nav-link"
               active-class="mobile-nav-link-active"
             >
-              Dashboard
+              {{ t('admin.nav.dashboard') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/users"
@@ -154,7 +162,7 @@
               class="mobile-nav-link"
               active-class="mobile-nav-link-active"
             >
-              Usuários
+              {{ t('admin.nav.users') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/content"
@@ -162,7 +170,7 @@
               class="mobile-nav-link"
               active-class="mobile-nav-link-active"
             >
-              Conteúdo
+              {{ t('admin.nav.content') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/settings"
@@ -170,7 +178,7 @@
               class="mobile-nav-link"
               active-class="mobile-nav-link-active"
             >
-              Configurações
+              {{ t('admin.nav.settings') }}
             </NuxtLink>
           </div>
 
@@ -194,18 +202,47 @@
   import { ref, computed, onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
 
+  /**
+   * @file AdminNavbar.vue
+   * @description Componente de barra de navegação para a área administrativa.
+   * Inclui links de navegação, informações do usuário e funcionalidade de logout.
+   * É responsivo, adaptando-se a layouts de desktop e mobile.
+   */
+
   const { t } = useI18n()
 
+  /**
+   * @description Controla o estado de carregamento durante o processo de logout.
+   * @type {ref<boolean>}
+   */
   const isLoggingOut = ref(false)
+
+  /**
+   * @description Controla a visibilidade do menu de navegação mobile (hambúrguer).
+   * @type {ref<boolean>}
+   */
   const hamburguerMenuOpen = ref(false)
 
-  // Get current user from server session endpoint
+  /**
+   * @description Define o tipo para os dados do usuário atual.
+   */
   type CurrentUser = {
     id: string
     email: string | null
     name: string | null
   } | null
+
+  /**
+   * @description Armazena os dados do usuário logado.
+   * @type {ref<CurrentUser>}
+   */
   const currentUser = ref<CurrentUser>(null)
+
+  /**
+   * @description Hook executado após a montagem do componente.
+   * Busca os dados da sessão do usuário no servidor para exibir informações
+   * como nome e email na barra de navegação.
+   */
   onMounted(async () => {
     try {
       const res = await $fetch('/api/session')
@@ -222,52 +259,82 @@
     }
   })
 
+  /**
+   * @description Alterna a visibilidade do menu de navegação mobile.
+   */
   const toggleHamburguerMenu = () => {
     hamburguerMenuOpen.value = !hamburguerMenuOpen.value
   }
 
-  // Computed labels for template (avoids complex inline expressions)
+  /**
+   * @description Propriedade computada para o texto do botão de logout.
+   * Retorna 'Saindo...' durante o processo de logout ou 'Sair' em estado normal.
+   * @returns {string}
+   */
   const logoutLabel = computed(() =>
     isLoggingOut.value ? t('admin.nav.logging_out') : t('admin.nav.logout')
   )
 
-  const logoutLabelShort = computed(() => (isLoggingOut.value ? '...' : 'Sair'))
-
-  const hamburgerAriaLabel = computed(() =>
-    hamburguerMenuOpen.value
-      ? 'Fechar menu de navegação'
-      : 'Abrir menu de navegação'
+  /**
+   * @description Propriedade computada para a versão curta do texto do botão de logout (mobile).
+   * Retorna 'Saindo...' ou 'Sair'.
+   * @returns {string}
+   */
+  const logoutLabelShort = computed(() =>
+    isLoggingOut.value
+      ? t('admin.nav.logging_out_short')
+      : t('admin.nav.logout_short')
   )
 
+  /**
+   * @description Propriedade computada para o `aria-label` do botão do menu hambúrguer.
+   * Melhora a acessibilidade ao indicar a ação do botão (abrir ou fechar o menu).
+   * @returns {string}
+   */
+  const hamburgerAriaLabel = computed(() =>
+    hamburguerMenuOpen.value
+      ? t('admin.nav.close_menu')
+      : t('admin.nav.open_menu')
+  )
+
+  /**
+   * @description Manipula o logout e fecha o menu mobile.
+   * Garante que o menu seja fechado antes de iniciar o processo de logout.
+   */
   const handleLogoutAndClose = async () => {
     hamburguerMenuOpen.value = false
     await handleLogout()
   }
 
+  /**
+   * @description Executa o processo de logout do usuário.
+   * Define o estado de `isLoggingOut`, limpa a sessão no servidor e localmente,
+   * e redireciona o usuário para a página de login.
+   */
   const handleLogout = async () => {
     isLoggingOut.value = true
     hamburguerMenuOpen.value = false
     try {
-      // Request server to clear session cookie
+      // Solicita ao servidor para limpar o cookie de sessão
       try {
         await $fetch('/api/session', { method: 'DELETE' })
       } catch {
-        // ignore
+        // ignorar
       }
 
-      // Clear any local fallback session if present
+      // Limpa qualquer sessão local de fallback, se presente
       if (typeof window !== 'undefined') {
         try {
           sessionStorage.removeItem('mediari-admin-session')
         } catch {
-          // Ignore errors during session cleanup
+          // Ignora erros durante a limpeza da sessão
         }
       }
 
-      // Simulate delay
+      // Simula um atraso
       await new Promise((resolve) => setTimeout(resolve, 500))
 
-      // Redirect to login
+      // Redireciona para o login
       await navigateTo('/admin')
     } finally {
       isLoggingOut.value = false
