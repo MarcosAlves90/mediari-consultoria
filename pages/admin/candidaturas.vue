@@ -43,7 +43,6 @@
 </script>
 
 <template>
-  <main class="admin-candidates-page">
     <AdminHeader
       :title="t('admin.candidates.page_title')"
       :description="t('admin.candidates.page_description')"
@@ -99,20 +98,4 @@
         </div>
       </div>
     </div>
-  </main>
 </template>
-
-<style scoped>
-
-  @media (max-width: 300px) {
-    .admin-candidates-page {
-      padding: 0;
-    }
-  }
-
-  @media (min-width: 500px) and (max-width: 869px) {
-    .admin-candidates-page {
-      padding-top: 0.5rem;
-    }
-  }
-</style>
