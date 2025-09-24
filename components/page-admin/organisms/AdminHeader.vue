@@ -1,37 +1,33 @@
 <template>
-  <div class="admin-header bg-accent-color">
-    <!-- Container responsivo com padding adaptativo -->
+  <header class="bg-accent-color shadow-md">
     <div
-      class="max-w-7xl mx-auto px-0.5 300:px-0.75 500:px-1 870:px-1.5 py-0.75 500:py-1 870:py-1.5"
+      class="max-w-7xl mx-auto px-1 sm:px-1.5 lg:px-2 py-1 sm:py-1.5 lg:py-2"
     >
-      <!-- Layout flexível que se adapta aos breakpoints -->
       <div
-        class="flex flex-col 500:flex-row items-start 500:items-center justify-between gap-0.75 500:gap-1"
+        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-1.5"
       >
-        <!-- Seção do título e descrição -->
         <div class="flex-1 min-w-0">
           <h1
-            class="text-lg 500:text-xl 870:text-xl font-bold text-white truncate"
+            class="text-xl sm:text-2xl lg:text-xl font-bold text-accent-text-color truncate"
           >
             {{ title }}
           </h1>
           <p
             v-if="description"
-            class="text-xs 500:text-sm text-secondary-text mt-0.25 line-clamp-2 500:line-clamp-1"
+            class="text-sm sm:text-base lg:text-sm text-accent-text-color/90 mt-0.5 line-clamp-2"
           >
             {{ description }}
           </p>
         </div>
 
-        <!-- Seção de ações com layout responsivo -->
         <div
-          class="flex items-center gap-0.5 500:gap-1 w-full 500:w-auto flex-shrink-0"
+          class="flex items-center gap-1 sm:gap-1.5 w-full sm:w-auto flex-shrink-0"
         >
           <slot name="actions" />
         </div>
       </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <script setup lang="ts">
@@ -42,3 +38,18 @@
 
   defineProps<Props>()
 </script>
+
+<style scoped>
+  header :deep(.common-button) {
+    color: var(--color-accent-text-color);
+    border-color: var(--color-accent-text-color);
+  }
+
+  header :deep(.common-button:hover) {
+    background-color: var(--color-accent-text-color-20);
+  }
+
+  header :deep(.actions-text) {
+    color: var(--color-accent-text-color);
+  }
+</style>

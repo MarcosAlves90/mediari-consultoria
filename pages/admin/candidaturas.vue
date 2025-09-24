@@ -43,59 +43,58 @@
 </script>
 
 <template>
-    <AdminHeader
-      :title="t('admin.candidates.page_title')"
-      :description="t('admin.candidates.page_description')"
-    >
-      <template #actions>
-        <div
-          class="flex flex-col 500:flex-row items-stretch 500:items-center gap-0.5 500:gap-1 w-full 500:w-auto"
-        >
-          <div class="text-secondary-text">
-            {{
-              t('admin.candidates.total_applications', {
-                count: candidates.length,
-              })
-            }}
-          </div>
-
-          <button
-            @click="refreshCandidates"
-            :disabled="isLoading"
-            class="cursor-pointer bg-body-bg text-primary-text rounded p-0.5"
-          >
-            <Icon
-              name="mdi:refresh"
-              class="w-1 h-1 mr-0.5"
-              :class="{ 'animate-spin': isLoading }"
-            />
-            <span>{{ t('admin.candidates.refresh') }}</span>
-          </button>
-        </div>
-      </template>
-    </AdminHeader>
-
-    <div
-      class="max-w-7xl mx-auto px-0.5 300:px-0.75 500:px-1 870:px-1.5 py-0.75 500:py-1 870:py-1.5"
-    >
+  <AdminHeader
+    :title="t('admin.candidates.page_title')"
+    :description="t('admin.candidates.page_description')"
+  >
+    <template #actions>
       <div
-        class="grid grid-cols-1 870:grid-cols-3 gap-0.75 500:gap-1 870:gap-1.5"
+        class="flex flex-col sm:flex-row items-stretch sm:items-center gap-0.5 sm:gap-1 w-full sm:w-auto"
       >
+        <div class="actions-text text-sm self-center">
+          {{
+            t('admin.candidates.total_applications', {
+              count: candidates.length,
+            })
+          }}
+        </div>
+
+        <button
+          @click="refreshCandidates"
+          :disabled="isLoading"
+          class="common-button"
+          :title="t('admin.candidates.refresh')"
+        >
+          <Icon
+            name="mdi:refresh"
+            class="w-1 h-1"
+            :class="{ 'animate-spin': isLoading }"
+          />
+          <span>{{ t('admin.candidates.refresh') }}</span>
+        </button>
+      </div>
+    </template>
+  </AdminHeader>
+
+  <main class="max-w-7xl mx-auto px-0.5 500:px-1 870:px-1.5 py-1 870:py-1.5">
+    <div class="flex flex-col 870:flex-row gap-1 870:gap-1.5">
+      <div class="w-full 870:w-1/3">
         <CandidatesList
           :candidates="candidates"
           :selected-candidate="selectedCandidate"
           :is-loading="isLoading"
           @select="selectCandidate"
         />
+      </div>
 
-        <div class="870:col-span-2 order-1 870:order-2">
-          <CandidateDetails
-            :candidate="selectedCandidate"
-            :groups="GROUPS"
-            :is-loading="isLoading"
-            @download-resume="downloadResume"
-          />
-        </div>
+      <div class="w-full 870:w-2/3">
+        <CandidateDetails
+          :candidate="selectedCandidate"
+          :groups="GROUPS"
+          :is-loading="isLoading"
+          @download-resume="downloadResume"
+        />
       </div>
     </div>
+  </main>
 </template>
