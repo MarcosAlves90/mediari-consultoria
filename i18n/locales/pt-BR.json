@@ -438,7 +438,9 @@
     },
     "footer": {
       "copyright": "©",
-      "admin_panel": "Painel Administrativo"
+      "admin_panel": "Painel Administrativo",
+      "aria_label": "Rodapé do painel administrativo",
+      "system_status": "Sistema Online"
     },
     "candidates": {
       "page_title": "Análise de Candidaturas",
@@ -466,6 +468,20 @@
       "average_score": "Média Geral",
       "behavioral_insights": "Perfil Comportamental",
       "no_answer": "Não respondido"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "users": "Usuários",
+      "content": "Conteúdo",
+      "settings": "Configurações",
+      "admin_default": "Admin",
+      "logout": "Sair",
+      "logging_out": "Saindo...",
+      "logout_short": "Sair",
+      "logging_out_short": "...",
+      "close_menu": "Fechar menu de navegação",
+      "open_menu": "Abrir menu de navegação",
+      "online": "Online"
     }
   }
 }

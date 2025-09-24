@@ -413,7 +413,9 @@
     },
     "footer": {
       "copyright": "©",
-      "admin_panel": "Administrative Panel"
+      "admin_panel": "Administrative Panel",
+      "aria_label": "Admin panel footer",
+      "system_status": "System Online"
     },
     "candidates": {
       "page_title": "Application Analysis",
@@ -441,6 +443,20 @@
       "average_score": "Overall Average",
       "behavioral_insights": "Behavioral Profile",
       "no_answer": "Not answered"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "content": "Content",
+      "settings": "Settings",
+      "admin_default": "Admin",
+      "logout": "Logout",
+      "logging_out": "Logging out...",
+      "logout_short": "Logout",
+      "logging_out_short": "...",
+      "close_menu": "Close navigation menu",
+      "open_menu": "Open navigation menu",
+      "online": "Online"
     }
   }
 }
