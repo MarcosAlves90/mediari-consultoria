@@ -19,29 +19,29 @@
           <div class="flex items-center space-x-1">
             <NuxtLink
               to="/admin/dashboard"
-              class="nav-link"
-              active-class="nav-link-active"
+              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
             >
               {{ t('admin.nav.dashboard') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/users"
-              class="nav-link"
-              active-class="nav-link-active"
+              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
             >
               {{ t('admin.nav.users') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/content"
-              class="nav-link"
-              active-class="nav-link-active"
+              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
             >
               {{ t('admin.nav.content') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/settings"
-              class="nav-link"
-              active-class="nav-link-active"
+              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
             >
               {{ t('admin.nav.settings') }}
             </NuxtLink>
@@ -60,7 +60,7 @@
               <button
                 @click="handleLogout"
                 :disabled="isLoggingOut"
-                class="nav-link text-sm !text-accent-color hover:!bg-accent-color-2 cursor-pointer"
+                class="py-0.5 px-1 text-sm font-medium transition-colors duration-200 no-underline rounded !text-accent-color hover:!bg-accent-color-2 cursor-pointer"
               >
                 {{ logoutLabel }}
               </button>
@@ -151,32 +151,32 @@
             <NuxtLink
               to="/admin/dashboard"
               @click="hamburguerMenuOpen = false"
-              class="mobile-nav-link"
-              active-class="mobile-nav-link-active"
+              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
             >
               {{ t('admin.nav.dashboard') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/users"
               @click="hamburguerMenuOpen = false"
-              class="mobile-nav-link"
-              active-class="mobile-nav-link-active"
+              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
             >
               {{ t('admin.nav.users') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/content"
               @click="hamburguerMenuOpen = false"
-              class="mobile-nav-link"
-              active-class="mobile-nav-link-active"
+              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
             >
               {{ t('admin.nav.content') }}
             </NuxtLink>
             <NuxtLink
               to="/admin/settings"
               @click="hamburguerMenuOpen = false"
-              class="mobile-nav-link"
-              active-class="mobile-nav-link-active"
+              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
+              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
             >
               {{ t('admin.nav.settings') }}
             </NuxtLink>
@@ -187,7 +187,7 @@
             <button
               @click="handleLogoutAndClose"
               :disabled="isLoggingOut"
-              class="w-full text-left mobile-nav-link !text-accent-color hover:!bg-accent-color-2"
+              class="w-full text-left block py-0.75 px-1 text-base font-medium rounded-md transition-colors duration-200 no-underline !text-accent-color hover:!bg-accent-color-2"
             >
               {{ logoutLabelShort }}
             </button>
@@ -343,60 +343,6 @@
 </script>
 
 <style scoped>
-  /* Navigation Links */
-  .nav-link {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-secondary-text);
-    border-radius: 0.375rem;
-    transition:
-      background-color 0.2s,
-      color 0.2s;
-    text-decoration: none;
-  }
-
-  .nav-link:hover {
-    background-color: var(--color-body-bg-dark);
-    color: var(--color-primary-text);
-  }
-
-  .nav-link-active {
-    background-color: var(--color-accent-color);
-    color: var(--color-accent-text-color);
-    font-weight: 600;
-  }
-
-  .nav-link-active:hover {
-    background-color: var(--color-accent-dark-color);
-    color: var(--color-accent-text-color);
-  }
-
-  .mobile-nav-link {
-    display: block;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--color-secondary-text);
-    border-radius: 0.375rem;
-    transition:
-      background-color 0.2s,
-      color 0.2s;
-    text-decoration: none;
-  }
-
-  .mobile-nav-link:hover {
-    background-color: var(--color-body-bg-dark);
-    color: var(--color-primary-text);
-  }
-
-  .mobile-nav-link-active {
-    background-color: var(--color-accent-color-2);
-    color: var(--color-accent-color);
-    font-weight: 600;
-  }
-
-  /* Animations */
   .slide-fade-nav-enter-active,
   .slide-fade-nav-leave-active {
     transition:
