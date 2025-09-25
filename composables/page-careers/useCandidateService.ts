@@ -107,6 +107,8 @@ export const useCandidateService = () => {
         email: application.email,
         phone: application.phone || null,
         positionApplied: application.positionApplied || null,
+        experience: application.experience || null, // ✅ Experiência
+        coverLetter: application.coverLetter || null, // ✅ Carta de apresentação
         storagePath: storagePath || undefined,
       } as Record<string, unknown>;
 

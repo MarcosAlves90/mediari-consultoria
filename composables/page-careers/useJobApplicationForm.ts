@@ -212,7 +212,8 @@ export const useJobApplicationForm = () => {
         email: formData.email,
         phone: formData.phone,
         positionApplied: formData.areaOfInterest,
-        metadata: { experience: formData.experience },
+        experience: formData.experience,
+        coverLetter: formData.coverLetter,
         status: 'submitted',
       };
 

@@ -27,6 +27,7 @@ export interface CandidateAttachment {
 
 export interface JobApplication extends CandidateBase {
   coverLetter?: string;
+  experience?: string;
   resumeFileName?: string;
   additionalFields?: Record<string, unknown> | null;
 }
