@@ -49,7 +49,6 @@
     isFormComplete,
     submitForm,
     formatPhone,
-    uploadProgress,
   } = useJobApplicationForm()
 
   function handlePhoneInput(event: Event): void {
@@ -342,33 +341,6 @@
         >{{ errors.privacyConsent }}</span
       >
 
-      <!-- Botão de envio -->
-      <div
-        v-if="uploadProgress > 0"
-        class="mb-2"
-        role="group"
-        aria-labelledby="upload-progress-label"
-      >
-        <div id="upload-progress-label" class="sr-only">
-          {{ t('careers.form.upload_progress') }}
-        </div>
-        <div
-          class="w-full bg-gray-200 rounded h-2 overflow-hidden"
-          role="progressbar"
-          :aria-valuenow="uploadProgress"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          :aria-valuetext="`${uploadProgress}%`"
-        >
-          <div
-            :style="{ width: `${uploadProgress}%` }"
-            class="bg-accent-color h-2 transition-width"
-          ></div>
-        </div>
-        <div class="text-xs text-secondary-text mt-1" aria-hidden="true">
-          {{ uploadProgress }}%
-        </div>
-      </div>
       <!-- Mensagem de erro -->
       <div
         v-if="hasError"
