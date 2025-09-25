@@ -13,6 +13,11 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
 
+  // Suprime avisos não críticos de middleware
+  build: {
+    transpile: [],
+  },
+
   // Módulos utilizados no projeto
   modules: [
     '@nuxt/fonts', // Gerenciamento de fontes

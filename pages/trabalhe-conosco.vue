@@ -12,7 +12,7 @@
   const { t } = useI18n()
 
   useSeoMeta({
-    title: `${t('careers.page_title')} - Mediari Consultoria`,
+    title: `${t('careers.page_title')}`,
     description: t('careers.section_description'),
     ogTitle: `${t('careers.section_title')} - Mediari Consultoria`,
     ogDescription: t('careers.section_description'),
