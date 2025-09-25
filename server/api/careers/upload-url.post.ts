@@ -2,57 +2,105 @@ import { initFirebaseAdmin } from '~/server/utils/firebaseAdmin';
 import type { H3Event } from 'h3';
 import type { GetSignedUrlConfig } from '@google-cloud/storage';
 
-export default defineEventHandler(async (event: H3Event) => {
-  const admin = initFirebaseAdmin();
-  if (!admin)
-    return createError({
-      statusCode: 500,
-      statusMessage: 'firebase-admin not initialized',
-    });
+interface UploadUrlRequest {
+  fileName?: string;
+  contentType?: string;
+}
 
-  const body = (await readBody(event)) as {
-    fileName?: string;
-    contentType?: string;
-  };
-  const { fileName = 'upload.bin', contentType = 'application/octet-stream' } =
-    body;
+interface UploadUrlResponse {
+  uploadUrl: string;
+  storagePath: string;
+  emulatorMode?: boolean;
+  fileName?: string;
+}
 
-  try {
-    const filePath = `candidates/temp/${Date.now()}-${fileName}`;
+const DEFAULT_FILE_NAME = 'upload.bin';
+const DEFAULT_CONTENT_TYPE = 'application/octet-stream';
 
-    // Verificar se estamos usando emulators
-    const isEmulator = process.env.FIREBASE_STORAGE_EMULATOR_HOST;
+export default defineEventHandler(
+  async (event: H3Event): Promise<UploadUrlResponse> => {
+    const admin = initFirebaseAdmin();
 
-    if (isEmulator) {
-      // Para emulators, usar multipart upload através de endpoint dedicado
-      console.log(
-        '[upload-url] Modo emulator - redirecionando para upload direto'
-      );
-      return {
-        uploadUrl: `/api/careers/upload-direct`,
-        storagePath: filePath,
-        emulatorMode: true,
-        fileName,
-      };
-    } else {
-      // Modo produção - usar signed URLs
-      const bucket = admin.storage().bucket();
-      const file = bucket.file(filePath);
-
-      const opts: GetSignedUrlConfig = {
-        action: 'write',
-        expires: Date.now() + 1000 * 60 * 10, // 10 minutes
-        contentType,
-      };
-
-      const [url] = await file.getSignedUrl(opts);
-      return { uploadUrl: url, storagePath: filePath };
+    if (!admin) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Firebase Admin not initialized',
+      });
     }
-  } catch (e) {
-    console.error('upload-url error', e);
-    return createError({
+
+    const body = await readBody<UploadUrlRequest>(event);
+    const { fileName = DEFAULT_FILE_NAME, contentType = DEFAULT_CONTENT_TYPE } =
+      body;
+
+    try {
+      const filePath = generateFilePath(fileName);
+      const isEmulatorMode = isRunningInEmulator();
+
+      if (isEmulatorMode) {
+        return handleEmulatorUpload(filePath, fileName);
+      }
+
+      return await handleProductionUpload(admin, filePath, contentType);
+    } catch (error) {
+      console.error('[upload-url] Error creating signed URL:', error);
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Failed to create signed URL',
+      });
+    }
+  }
+);
+
+function generateFilePath(fileName: string): string {
+  return `candidates/temp/${Date.now()}-${fileName}`;
+}
+
+function isRunningInEmulator(): boolean {
+  return Boolean(process.env.FIREBASE_STORAGE_EMULATOR_HOST);
+}
+
+function handleEmulatorUpload(
+  filePath: string,
+  fileName: string
+): UploadUrlResponse {
+  console.log('[upload-url] Emulator mode - redirecting to direct upload');
+
+  return {
+    uploadUrl: '/api/careers/upload-direct',
+    storagePath: filePath,
+    emulatorMode: true,
+    fileName,
+  };
+}
+
+async function handleProductionUpload(
+  admin: NonNullable<ReturnType<typeof initFirebaseAdmin>>,
+  filePath: string,
+  contentType: string
+): Promise<UploadUrlResponse> {
+  const bucketName = process.env.FIREBASE_STORAGE_BUCKET;
+
+  if (!bucketName) {
+    console.error('[upload-url] FIREBASE_STORAGE_BUCKET not defined');
+    throw createError({
       statusCode: 500,
-      statusMessage: 'failed to create signed url',
+      statusMessage: 'Storage bucket not configured',
     });
   }
-});
+
+  const bucket = admin.storage().bucket(bucketName);
+  const file = bucket.file(filePath);
+
+  const signedUrlConfig: GetSignedUrlConfig = {
+    action: 'write',
+    expires: Date.now() + 1000 * 60 * 10, // 10 minutes
+    contentType,
+  };
+
+  const [signedUrl] = await file.getSignedUrl(signedUrlConfig);
+
+  return {
+    uploadUrl: signedUrl,
+    storagePath: filePath,
+  };
+}
