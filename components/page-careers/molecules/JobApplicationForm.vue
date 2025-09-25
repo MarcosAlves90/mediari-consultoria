@@ -98,17 +98,6 @@
       {{ t('careers.form.success_message') }}
     </div>
 
-    <!-- Mensagem de erro -->
-    <div
-      v-if="hasError"
-      class="mb-1 p-1 bg-red-100 border-2 border-accent-color text-accent-color rounded-sm text-center"
-      role="alert"
-      aria-live="assertive"
-    >
-      <strong class="sr-only">{{ t('careers.error_message') }}</strong>
-      {{ t('careers.error_message') }}
-    </div>
-
     <form
       @submit.prevent="handleSubmit"
       class="careers__form-container grid gap-0 max-md:grid-cols-1"
@@ -379,6 +368,16 @@
         <div class="text-xs text-secondary-text mt-1" aria-hidden="true">
           {{ uploadProgress }}%
         </div>
+      </div>
+      <!-- Mensagem de erro -->
+      <div
+        v-if="hasError"
+        class="mb-1 p-1 bg-accent-color/20 border-2 border-accent-color text-accent-color rounded-sm text-center"
+        role="alert"
+        aria-live="assertive"
+      >
+        <strong class="sr-only">{{ t('careers.error_message') }}</strong>
+        {{ t('careers.error_message') }}
       </div>
       <button
         type="submit"
