@@ -43,6 +43,8 @@
     "format:lint": "npm run format && npm run lint",
     "type-check": "nuxt typecheck",
     "encode:service-account": "pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass -File scripts/encode-service-account.ps1",
+    "setup:admin": "node scripts/setup-admin.js",
+    "list:admins": "node scripts/setup-admin.js --list",
     "fb:emu": "firebase emulators:start",
     "cors:configure": "gcloud storage buckets update gs://mediari.firebasestorage.app --cors-file=firebase/cors.json",
     "cors:check": "gcloud storage buckets describe gs://mediari.firebasestorage.app --format=\"json(cors_config)\""
