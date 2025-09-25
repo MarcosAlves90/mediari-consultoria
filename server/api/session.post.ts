@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   if (!idToken) {
     return sendError(
       event,
-      createError({ statusCode: 400, statusMessage: 'idToken obrigatório' })
+      createError({ statusCode: 400, message: 'idToken obrigatório' })
     );
   }
 
@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
       event,
       createError({
         statusCode: 500,
-        statusMessage: 'falha na inicialização do firebase-admin',
+        message: 'falha na inicialização do firebase-admin',
       })
     );
   }
@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
     console.error('[session.post] erro', e);
     return sendError(
       event,
-      createError({ statusCode: 401, statusMessage: 'idToken inválido' })
+      createError({ statusCode: 401, message: 'idToken inválido' })
     );
   }
 });

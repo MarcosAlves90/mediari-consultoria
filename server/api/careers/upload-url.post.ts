@@ -24,7 +24,7 @@ export default defineEventHandler(
     if (!admin) {
       throw createError({
         statusCode: 500,
-        statusMessage: 'Firebase Admin not initialized',
+        message: 'Firebase Admin not initialized',
       });
     }
 
@@ -45,7 +45,8 @@ export default defineEventHandler(
       console.error('[upload-url] Error creating signed URL:', error);
       throw createError({
         statusCode: 500,
-        statusMessage: 'Failed to create signed URL',
+        message: 'Failed to create signed URL',
+        data: { error: error instanceof Error ? error.message : String(error) },
       });
     }
   }
@@ -84,7 +85,7 @@ async function handleProductionUpload(
     console.error('[upload-url] FIREBASE_STORAGE_BUCKET not defined');
     throw createError({
       statusCode: 500,
-      statusMessage: 'Storage bucket not configured',
+      message: 'Storage bucket not configured',
     });
   }
 

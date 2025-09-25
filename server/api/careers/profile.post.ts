@@ -11,13 +11,13 @@ export default defineEventHandler(async (event) => {
   if (!admin)
     return createError({
       statusCode: 500,
-      statusMessage: 'firebase-admin not initialized',
+      message: 'firebase-admin not initialized',
     });
 
   const body = await readBody(event);
   const parse = Payload.safeParse(body);
   if (!parse.success)
-    return createError({ statusCode: 400, statusMessage: 'invalid payload' });
+    return createError({ statusCode: 400, message: 'invalid payload' });
 
   const data = parse.data;
   const isEmulator = process.env.FIREBASE_STORAGE_EMULATOR_HOST;
@@ -53,7 +53,7 @@ export default defineEventHandler(async (event) => {
     console.error('profile submit error', e);
     return createError({
       statusCode: 500,
-      statusMessage: 'failed to submit profile test',
+      message: 'failed to submit profile test',
     });
   }
 });
