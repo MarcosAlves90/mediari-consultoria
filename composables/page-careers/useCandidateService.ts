@@ -47,21 +47,54 @@ export const useCandidateService = () => {
         await new Promise<void>((resolve, reject) => {
           const xhr = new XMLHttpRequest();
           xhr.open('PUT', uploadResp.uploadUrl);
+
+          // Configurar headers necessários
           xhr.setRequestHeader(
             'Content-Type',
             resumeFile.type || 'application/octet-stream'
           );
+
           xhr.upload.onprogress = (ev) => {
             if (ev.lengthComputable && onProgress) {
               const percent = Math.round((ev.loaded / ev.total) * 100);
               onProgress(percent);
             }
           };
+
           xhr.onload = () => {
-            if (xhr.status >= 200 && xhr.status < 300) resolve();
-            else reject(new Error('upload failed: ' + xhr.status));
+            if (xhr.status >= 200 && xhr.status < 300) {
+              console.log('Upload concluído com sucesso');
+              resolve();
+            } else {
+              console.error(
+                'Upload falhou:',
+                xhr.status,
+                xhr.statusText,
+                xhr.responseText
+              );
+              reject(
+                new Error(`upload failed: ${xhr.status} - ${xhr.statusText}`)
+              );
+            }
           };
-          xhr.onerror = () => reject(new Error('upload error'));
+
+          xhr.onerror = (error) => {
+            console.error('Erro no upload:', error);
+            console.error(
+              'XHR state:',
+              xhr.readyState,
+              xhr.status,
+              xhr.statusText
+            );
+            reject(new Error('upload error - verifique CORS e conectividade'));
+          };
+
+          xhr.onabort = () => {
+            console.error('Upload cancelado');
+            reject(new Error('upload cancelado'));
+          };
+
+          console.log('Iniciando upload para:', uploadResp.uploadUrl);
           xhr.send(resumeFile);
         });
 
