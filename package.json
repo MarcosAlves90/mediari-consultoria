@@ -46,8 +46,8 @@
     "setup:admin": "node scripts/setup-admin.js",
     "list:admins": "node scripts/setup-admin.js --list",
     "fb:emu": "firebase emulators:start",
-    "cors:configure": "gcloud storage buckets update gs://mediari.firebasestorage.app --cors-file=firebase/cors.json",
-    "cors:check": "gcloud storage buckets describe gs://mediari.firebasestorage.app --format=\"json(cors_config)\""
+    "cors:configure": "node scripts/cors-utils.js configure",
+    "cors:check": "node scripts/cors-utils.js check"
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",
