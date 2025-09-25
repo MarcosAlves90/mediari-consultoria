@@ -109,11 +109,13 @@ export default defineEventHandler(async (event) => {
 
           console.log('[submit] Arquivo movido com sucesso');
 
+          // Firestore não permite FieldValue.serverTimestamp() dentro de arrays
+          // Usar timestamp normal para elementos do array
           const attachments = [
             {
               name: originalName,
               storagePath: finalPath,
-              uploadedAt: admin.firestore.FieldValue.serverTimestamp(),
+              uploadedAt: new Date(),
               moved: true,
             },
           ];
@@ -121,11 +123,14 @@ export default defineEventHandler(async (event) => {
           await candidateRef.update({ attachments });
         } catch (err) {
           console.error('file move error', err);
+
+          // Firestore não permite FieldValue.serverTimestamp() dentro de arrays
+          // Usar timestamp normal para elementos do array
           const attachments = [
             {
               name: originalName,
               storagePath: data.storagePath,
-              uploadedAt: admin.firestore.FieldValue.serverTimestamp(),
+              uploadedAt: new Date(),
               moveFailed: true,
             },
           ];
