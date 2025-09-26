@@ -649,7 +649,7 @@ curl -X PUT "<uploadUrl>" \
 - [x] **Service Account:** Criar e configurar conta de serviço com permissões necessárias ✅
 - [ ] **Variáveis de Ambiente:** Definir `NUXT_FIREBASE_ADMIN_SA` (base64) no ambiente de deploy
 - [x] **Firestore Rules:** Validar e publicar Firestore Rules ✅
-- [ ] **Storage Setup:** Ativar Firebase Storage no console e publicar policies
+- [X] **Storage Setup:** Ativar Firebase Storage no console e publicar policies
 
 ### Segurança e Autenticação
 
