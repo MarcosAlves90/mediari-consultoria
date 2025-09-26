@@ -53,7 +53,6 @@
 </template>
 
 <script setup lang="ts">
-  import { /* computed */ } from 'vue'
   import { useI18n } from 'vue-i18n'
   import type { Candidate } from '~/composables/page-admin/useAdminCandidates'
   import Skeleton from '~/components/atoms/Skeleton.vue'
