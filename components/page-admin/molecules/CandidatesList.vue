@@ -74,8 +74,7 @@
 
 <template>
   <div
-    class="bg-body-bg-dark rounded border-2 border-accent-color flex flex-col"
-    :class="isLoading ? '' : 'h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36'"
+    class="bg-body-bg-dark rounded border-2 border-accent-color flex flex-col h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36"
   >
     <div class="border-b-2 border-body-bg flex-shrink-0">
       <h2
@@ -168,33 +167,35 @@
       >
         <div class="flex items-start justify-between">
           <div class="flex-1 min-w-0">
-            <!-- Nome do candidato -->
-            <h3 class="text-sm font-medium text-primary-text truncate">
+            <!-- Nome do candidato (menor em telas pequenas) -->
+            <h3
+              class="text-xs md:text-sm font-medium text-primary-text truncate"
+            >
               {{ candidate.fullName }}
             </h3>
-            <!-- E-mail do candidato -->
-            <p class="text-xs text-secondary-text truncate">
+            <!-- E-mail do candidato (escondido em telas pequenas) -->
+            <p class="hidden md:block text-xs text-secondary-text truncate">
               {{ candidate.email }}
             </p>
             <div class="flex items-center mt-0.25 gap-0.5">
-              <!-- Área de interesse -->
+              <!-- Área de interesse (escondida em telas pequenas) -->
               <span
-                class="inline-flex items-center px-0.5 py-0.125 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                class="hidden md:inline-flex items-center px-0.5 py-0.125 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
               >
                 {{ candidate.areaOfInterest }}
               </span>
-              <!-- Nota do teste, se houver -->
+              <!-- Nota do teste, se houver (escondida em telas pequenas) -->
               <span
                 v-if="candidate.testScore"
-                class="text-xs text-secondary-text"
+                class="hidden md:inline text-xs text-secondary-text"
               >
                 {{ t('admin.candidates.test_score') }}:
                 {{ candidate.testScore }}%
               </span>
             </div>
           </div>
-          <!-- Data de envio da candidatura -->
-          <div class="text-xs text-secondary-text">
+          <!-- Data de envio da candidatura (fonte menor em telas pequenas) -->
+          <div class="text-[10px] md:text-xs text-secondary-text">
             {{ formatDate(candidate.submittedAt) }}
           </div>
         </div>
