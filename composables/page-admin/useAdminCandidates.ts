@@ -90,7 +90,7 @@ export const useAdminCandidates = () => {
     }
   };
 
-  const selectCandidate = (candidate: Candidate): void => {
+  const selectCandidate = (candidate: Candidate | null): void => {
     selectedCandidate.value = candidate;
   };
 

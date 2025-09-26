@@ -10,11 +10,20 @@
   }
 
   interface Emits {
-    (e: 'select', candidate: Candidate): void
+    (e: 'select', candidate: Candidate | null): void
   }
 
   const props = defineProps<Props>()
-  defineEmits<Emits>()
+  const emit = defineEmits<Emits>()
+
+  const handleCandidateClick = (candidate: Candidate) => {
+    // Se o candidato clicado já está selecionado, desseleciona
+    if (props.selectedCandidate?.id === candidate.id) {
+      emit('select', null)
+    } else {
+      emit('select', candidate)
+    }
+  }
   const { t } = useI18n()
 
   const searchQuery = ref('')
@@ -145,9 +154,10 @@
       <div
         v-for="(candidate, index) in filteredCandidates"
         :key="candidate.id"
-        @click="$emit('select', candidate)"
+        @click="handleCandidateClick(candidate)"
         :class="[
-          'p-1 cursor-pointer hover:bg-body-bg border-y-2 border-transparent',
+          /* padding reduzido em dispositivos pequenos, volta ao padrão em md+ */
+          'p-0.5 md:p-1 cursor-pointer hover:bg-body-bg border-y-2 border-transparent',
           selectedCandidate?.id === candidate.id
             ? 'bg-accent-color-2 !border-accent-color hover:!bg-accent-color-3'
             : '',
