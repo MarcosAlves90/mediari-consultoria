@@ -1,11 +1,6 @@
-<script setup lang="ts">
-  import AdminNavbar from '~/components/organisms/AdminNavbar.vue'
-  import AdminFooter from '~/components/organisms/AdminFooter.vue'
-</script>
-
 <template>
   <!-- Admin Navbar -->
-  <AdminNavbar />
+  <OrganismsAdminNavbar />
 
   <!-- Main Content -->
   <main
@@ -15,5 +10,5 @@
   </main>
 
   <!-- Admin Footer -->
-  <AdminFooter />
+  <OrganismsAdminFooter />
 </template>
