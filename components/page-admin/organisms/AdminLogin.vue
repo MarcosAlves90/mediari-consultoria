@@ -96,13 +96,41 @@
 
 <template>
   <div
-    class="login-card w-full max-w-5xl bg-white rounded overflow-hidden max-lg:max-w-none max-lg:w-full"
+    class="login-card w-full max-w-5xl bg-white rounded overflow-hidden max-lg:max-w-none max-lg:w-full lg:p-0.5"
   >
     <div class="login-container flex min-h-[600px]">
       <div
-        class="login-left flex-1 relative overflow-hidden bg-gradient-to-br from-accent-color via-accent-dark-color to-accent-color flex flex-col justify-center items-start p-4 text-white max-lg:hidden"
+        class="login-left rounded flex-1 relative overflow-hidden flex flex-col justify-center items-end p-4 text-white max-lg:hidden"
       >
-        <div class="relative z-10 max-w-md">
+        <!-- imagem de fundo otimizada + overlay de gradiente (reaproveita variáveis do hero) -->
+        <NuxtImg
+          class="login-left-image absolute inset-0 w-full h-full object-cover object-center"
+          src="/banner-background_acqeef_rgmwey.webp"
+          provider="cloudinary"
+          width="1200"
+          height="800"
+          sizes="lg:50vw md:100vw"
+          preload
+          fit="cover"
+          :alt="t('banner.aria.background_alt')"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+
+        <div
+          class="login-left-gradient absolute inset-0"
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative z-10 w-full mt-auto text-center">
+          <Icon
+            class="text-[15em] transition-[font-size] duration-200"
+            name="my-icon:mediari-logo"
+          />
+        </div>
+
+        <div class="relative z-10 w-full mt-auto text-center">
           <h1 class="text-3xl font-bold mb-1 leading-tight">
             {{ t('admin.login.welcome_back') }}
           </h1>
@@ -113,8 +141,24 @@
       </div>
 
       <div
-        class="login-right flex-1 flex flex-col justify-center items-center p-4 bg-white max-lg:p-2"
+        class="login-right flex-1 flex flex-col justify-center items-center p-4 bg-white max-lg:p-2 relative"
       >
+        <NuxtLink
+          to="/"
+          class="absolute top-1 right-1 lg:top-0.5 lg:right-0.5 gap-1 flex items-center justify-center p-0.5 text-accent-color transition duration-200 rounded border-2 border-accent-color hover:bg-accent-color/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-color"
+          aria-label="Voltar à página inicial"
+          role="button"
+          tabindex="0"
+        >
+          <Icon
+            name="mdi:arrow-left"
+            class="text-[1.2em]"
+            aria-hidden="true"
+            focusable="false"
+          />
+          <span class="font-bold text-sm pr-0.5">Voltar</span>
+        </NuxtLink>
+
         <div class="w-full max-w-md">
           <div class="text-center mb-2">
             <h2 class="text-2xl font-bold text-primary-text">
@@ -263,28 +307,20 @@
 </template>
 
 <style scoped>
-  .login-left {
-    background-size: cover;
-    background-position: center;
+  .login-left-image {
+    opacity: 0.65; /* alinhado com o hero original */
+    transform-origin: center;
+    z-index: 1;
   }
 
-  @media (max-width: 1024px) {
-    .login-left {
-      display: none;
-    }
-
-    .login-right {
-      flex: 1;
-      width: 100%;
-    }
+  .login-left-gradient {
+    /* gradiente invertido: secundária no topo, accent em direção ao rodapé */
+    background: var(--color-accent-color);
+    opacity: 0.6; /* garante contraste com conteúdo branco */
+    z-index: 2;
   }
 
-  .login-right input:focus {
-    box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.1);
-  }
-
-  .login-right button:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
+  .login-left > .relative.z-10 {
+    z-index: 3; /* conteúdo acima da imagem e do overlay */
   }
 </style>
