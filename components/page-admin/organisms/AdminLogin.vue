@@ -146,7 +146,7 @@
         <NuxtLink
           to="/"
           class="absolute top-1 right-1 lg:top-0.5 lg:right-0.5 gap-1 flex items-center justify-center p-0.5 text-accent-color transition duration-200 rounded border-2 border-accent-color hover:bg-accent-color/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-color"
-          aria-label="Voltar à página inicial"
+          :aria-label="t('error.back_home_aria')"
           role="button"
           tabindex="0"
         >
@@ -156,7 +156,7 @@
             aria-hidden="true"
             focusable="false"
           />
-          <span class="font-bold text-sm pr-0.5">Voltar</span>
+          <span class="font-bold text-sm pr-0.5">{{ t('navbar.home') }}</span>
         </NuxtLink>
 
         <div class="w-full max-w-md">
