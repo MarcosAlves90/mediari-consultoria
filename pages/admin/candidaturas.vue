@@ -45,7 +45,6 @@
 <template>
   <AdminHeader
     :title="t('admin.candidates.page_title')"
-    :description="t('admin.candidates.page_description')"
   >
     <template #actions>
       <div
