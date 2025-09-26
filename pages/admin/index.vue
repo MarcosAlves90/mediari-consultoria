@@ -8,14 +8,14 @@
   })
 
   definePageMeta({
-    layout: 'default',
+    layout: false,
     middleware: 'guest-to-admin',
   })
 </script>
 
 <template>
   <main
-    class="admin-login-page min-h-screen bg-body-bg flex items-center justify-center p-4 max-lg:px-2 max-md:px-1"
+    class="admin-login-page min-h-screen bg-accent-color flex items-center justify-center p-4 max-lg:px-2 max-md:px-1"
   >
     <AdminLogin />
   </main>
