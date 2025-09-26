@@ -48,16 +48,14 @@
       v-if="candidate.testAnswers"
       :candidate="candidate"
       :groups="groups"
-      :completion-rate="completionRate"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { /* computed */ } from 'vue'
   import { useI18n } from 'vue-i18n'
   import type { Candidate } from '~/composables/page-admin/useAdminCandidates'
-  import { useAdminCandidates } from '~/composables/page-admin/useAdminCandidates'
   import Skeleton from '~/components/atoms/Skeleton.vue'
   import CandidatePersonalInfo from './CandidatePersonalInfo.vue'
   import CandidateExperience from './CandidateExperience.vue'
@@ -72,12 +70,6 @@
 
   const props = defineProps<Props>()
   const { t } = useI18n()
-  const { getTestCompletionRate } = useAdminCandidates()
-
-  const completionRate = computed(() => {
-    if (!props.candidate) return 0
-    return props.candidate.testScore ?? getTestCompletionRate(props.candidate)
-  })
 
   const handleResumeDownload = async () => {
     if (!props.candidate?.resumeStoragePath) return

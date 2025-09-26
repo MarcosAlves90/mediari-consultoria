@@ -5,14 +5,6 @@
         <h3 class="text-lg font-semibold text-primary-text">
           {{ t('careers.profile_test.title') }}
         </h3>
-        <div class="text-right">
-          <div class="text-xl font-bold text-accent-color">
-            {{ completionRate }}%
-          </div>
-          <div class="text-xs text-secondary-text">
-            {{ t('admin.candidates.completion_rate') }}
-          </div>
-        </div>
       </div>
       <ProfileTestResults
         v-if="candidate.testAnswers"
@@ -31,7 +23,6 @@
   interface Props {
     candidate: Candidate
     groups: Array<Record<'A' | 'B' | 'C' | 'D', string>>
-    completionRate: number
   }
 
   defineProps<Props>()
