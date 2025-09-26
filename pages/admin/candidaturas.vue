@@ -77,8 +77,8 @@
   </AdminHeader>
 
   <main class="max-w-7xl mx-auto px-0.5 500:px-1 870:px-1.5 py-1 870:py-1.5">
-    <div class="flex flex-col 870:flex-row gap-1 870:gap-1.5">
-      <div class="w-full 870:w-1/3">
+    <div class="grid grid-cols-1 870:grid-cols-3 gap-1 870:gap-1.5">
+      <div class="870:col-span-1">
         <CandidatesList
           :candidates="candidates"
           :selected-candidate="selectedCandidate"
@@ -87,7 +87,7 @@
         />
       </div>
 
-      <div class="w-full 870:w-2/3">
+      <div class="870:col-span-2">
         <CandidateDetails
           :candidate="selectedCandidate"
           :groups="GROUPS"
