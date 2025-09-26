@@ -1,6 +1,39 @@
 <template>
   <div class="profile-test-results">
-    <div class="space-y-1">
+    <div class="bg-body-bg rounded p-1">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-1 text-center">
+        <div>
+          <div class="text-xl font-bold text-accent-color">
+            {{ distributionLetters.A }}
+          </div>
+          <div class="text-xs text-secondary-text">A — INFLUENTE</div>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-accent-color">
+            {{ distributionLetters.B }}
+          </div>
+          <div class="text-xs text-secondary-text">B — DOMINANTE</div>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-accent-color">
+            {{ distributionLetters.C }}
+          </div>
+          <div class="text-xs text-secondary-text">C — ANALISTA</div>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-accent-color">
+            {{ distributionLetters.D }}
+          </div>
+          <div class="text-xs text-secondary-text">D — ESTÁVEL</div>
+        </div>
+      </div>
+      <div class="mt-2 text-center">
+        <div class="text-sm font-semibold">Perfil predominante</div>
+        <div class="text-lg font-bold">{{ topProfile.label || '-' }}</div>
+      </div>
+    </div>
+
+    <div class="space-y-1 mt-2">
       <div
         v-for="(group, index) in groups"
         :key="index"
@@ -31,42 +64,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="mt-1.5 bg-body-bg rounded p-1">
-      <h3 class="text-sm font-medium text-primary-text mb-0.75">
-        Resultado por grupo
-      </h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-1 text-center">
-        <div>
-          <div class="text-xl font-bold text-accent-color">
-            {{ distributionLetters.A }}
-          </div>
-          <div class="text-xs text-secondary-text">A — INFLUENTE</div>
-        </div>
-        <div>
-          <div class="text-xl font-bold text-accent-color">
-            {{ distributionLetters.B }}
-          </div>
-          <div class="text-xs text-secondary-text">B — DOMINANTE</div>
-        </div>
-        <div>
-          <div class="text-xl font-bold text-accent-color">
-            {{ distributionLetters.C }}
-          </div>
-          <div class="text-xs text-secondary-text">C — ANALISTA</div>
-        </div>
-        <div>
-          <div class="text-xl font-bold text-accent-color">
-            {{ distributionLetters.D }}
-          </div>
-          <div class="text-xs text-secondary-text">D — ESTÁVEL</div>
-        </div>
-      </div>
-      <div class="mt-2 text-center">
-        <div class="text-sm font-semibold">Perfil predominante</div>
-        <div class="text-lg font-bold">{{ topProfile.label || '-' }}</div>
       </div>
     </div>
   </div>
