@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isLoading"
-    class="bg-body-bg-dark rounded p-2 border-2 border-accent-color space-y-2"
+    class="bg-body-bg-dark rounded p-2 border-2 border-accent-color space-y-2 min-h-20 sm:min-h-24 md:min-h-28 lg:min-h-32 xl:min-h-36"
   >
     <Skeleton width="50%" :height="1.5" />
     <Skeleton width="66%" :height="0.75" />
@@ -19,7 +19,7 @@
 
   <div
     v-else-if="!candidate"
-    class="bg-body-bg-dark rounded p-2 text-center border-2 border-accent-color"
+    class="bg-body-bg-dark rounded p-2 text-center border-2 border-accent-color min-h-20 sm:min-h-24 md:min-h-28 lg:min-h-32 xl:min-h-36 flex flex-col justify-center"
   >
     <Icon
       name="mdi:account-outline"
