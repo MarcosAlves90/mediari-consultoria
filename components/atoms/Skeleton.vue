@@ -45,19 +45,17 @@
 
 <style scoped>
   .skeleton {
-    background-color: #cbcbcb;
-    animation: pulse 1.2s ease-in-out infinite;
+    background: linear-gradient(90deg, #ebebeb 25%, #bfb5b5 50%, #ebebeb 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
   }
 
-  @keyframes pulse {
+  @keyframes loading {
     0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.6;
+      background-position: 200% 0;
     }
     100% {
-      opacity: 1;
+      background-position: -200% 0;
     }
   }
 </style>
