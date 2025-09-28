@@ -1,4 +1,14 @@
 {
+  "common": {
+    "close": "Fechar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "edit": "Editar",
+    "delete": "Deletar",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso"
+  },
   "banner": {
     "main_title": "EXCELÊNCIA JURÍDICA",
     "subtitle-1": "PARA ",
@@ -486,12 +496,34 @@
       "page_description": "Lista de todas as contas de administrador no Firebase.",
       "refresh": "Atualizar",
       "total": "{count} administrador(es)",
+      "name": "Nome",
       "email": "E-mail",
       "created": "Criado",
       "last_login": "Último login",
       "no_users": "Nenhum administrador encontrado.",
       "next_page": "Próxima página",
-      "loading": "Carregando..."
+      "loading": "Carregando...",
+      "delete_user": "Deletar",
+      "actions": "Ações",
+      "delete_confirmation": "Tem certeza que deseja deletar o usuário {email}? Esta ação não pode ser desfeita.",
+      "delete_success": "Usuário deletado com sucesso",
+      "delete_error": "Erro ao deletar usuário",
+      "cannot_delete_self": "Não é possível deletar sua própria conta.",
+      "create_user": "Criar Administrador",
+      "create": "Criar",
+      "password": "Senha",
+      "display_name": "Nome de Exibição",
+      "email_placeholder": "admin{'@'}exemplo.com",
+      "password_placeholder": "Mínimo 6 caracteres",
+      "password_help": "A senha deve ter pelo menos 6 caracteres",
+      "display_name_placeholder": "Nome Completo (opcional)",
+      "create_success": "Administrador criado com sucesso",
+      "create_error": "Erro ao criar administrador",
+      "confirm_password": "Confirmar senha",
+      "confirm_password_placeholder": "Confirme a senha",
+      "show_password": "Mostrar senha",
+      "hide_password": "Ocultar senha",
+      "password_mismatch": "As senhas não coincidem."
     }
   }
 }

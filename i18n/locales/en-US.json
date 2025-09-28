@@ -1,4 +1,14 @@
 {
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
   "banner": {
     "main_title": "LEGAL EXCELLENCE",
     "subtitle-1": "FOR ",
@@ -461,12 +471,34 @@
       "page_description": "List of all administrator accounts in Firebase.",
       "refresh": "Refresh",
       "total": "{count} administrator(s)",
+      "name": "Name",
       "email": "Email",
       "created": "Created",
       "last_login": "Last sign-in",
       "no_users": "No administrators found.",
       "next_page": "Next page",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "delete_user": "Delete",
+      "actions": "Actions",
+      "delete_confirmation": "Are you sure you want to delete user {email}? This action cannot be undone.",
+      "delete_success": "User deleted successfully",
+      "delete_error": "Error deleting user",
+      "cannot_delete_self": "You cannot delete your own account.",
+      "create_user": "Create Administrator",
+      "create": "Create",
+      "password": "Password",
+      "display_name": "Display Name",
+      "email_placeholder": "admin{'@'}example.com",
+      "password_placeholder": "Minimum 6 characters",
+      "password_help": "Password must be at least 6 characters long",
+      "display_name_placeholder": "Full Name (optional)",
+      "create_success": "Administrator created successfully",
+      "create_error": "Error creating administrator",
+      "confirm_password": "Confirm password",
+      "confirm_password_placeholder": "Confirm the password",
+      "show_password": "Show password",
+      "hide_password": "Hide password",
+      "password_mismatch": "Passwords do not match."
     }
   }
 }
