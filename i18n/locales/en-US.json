@@ -431,6 +431,13 @@
       "select_candidate_description": "Choose a candidate from the list on the side to view their detailed information.",
       "submitted_on": "Submitted on",
       "open_resume": "Open Resume",
+      "download_not_available": "Download not available for this candidate.",
+      "download_failed": "Failed to generate download link. Please try again.",
+      "delete": "Delete",
+      "deleting": "Deleting...",
+      "delete_candidate": "Delete Candidate",
+      "delete_confirm": "To confirm deletion, type the word 'delete' (without quotes):",
+      "delete_failed": "Failed to delete candidate. Please try again.",
       "resume_file": "Resume File",
       "no_file": "No file attached",
       "test_summary": "Behavioral Test Summary",
@@ -438,10 +445,8 @@
       "no_answer": "Not answered"
     },
     "nav": {
-      "dashboard": "Dashboard",
-      "users": "Users",
-      "content": "Content",
-      "settings": "Settings",
+      "users": "Administrators",
+      "candidates": "Candidates",
       "admin_default": "Admin",
       "logout": "Logout",
       "logging_out": "Logging out...",
@@ -450,6 +455,18 @@
       "close_menu": "Close navigation menu",
       "open_menu": "Open navigation menu",
       "online": "Online"
+    },
+    "users": {
+      "page_title": "Administrators",
+      "page_description": "List of all administrator accounts in Firebase.",
+      "refresh": "Refresh",
+      "total": "{count} administrator(s)",
+      "email": "Email",
+      "created": "Created",
+      "last_login": "Last sign-in",
+      "no_users": "No administrators found.",
+      "next_page": "Next page",
+      "loading": "Loading..."
     }
   }
 }

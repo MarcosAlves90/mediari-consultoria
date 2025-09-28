@@ -456,6 +456,13 @@
       "select_candidate_description": "Escolha um candidato da lista ao lado para visualizar suas informações detalhadas.",
       "submitted_on": "Enviado em",
       "open_resume": "Abrir Currículo",
+      "download_not_available": "Download não disponível para este candidato.",
+      "download_failed": "Falha ao gerar link de download. Tente novamente.",
+      "delete": "Excluir",
+      "deleting": "Excluindo...",
+      "delete_candidate": "Excluir Candidato",
+      "delete_confirm": "Para confirmar a exclusão, digite a palavra 'delete' (sem aspas):",
+      "delete_failed": "Falha ao excluir o candidato. Tente novamente.",
       "resume_file": "Arquivo do Currículo",
       "no_file": "Nenhum arquivo anexado",
       "test_summary": "Resumo do Teste Comportamental",
@@ -463,10 +470,8 @@
       "no_answer": "Não respondido"
     },
     "nav": {
-      "dashboard": "Dashboard",
-      "users": "Usuários",
-      "content": "Conteúdo",
-      "settings": "Configurações",
+      "users": "Administradores",
+      "candidates": "Candidatos",
       "admin_default": "Admin",
       "logout": "Sair",
       "logging_out": "Saindo...",
@@ -475,6 +480,18 @@
       "close_menu": "Fechar menu de navegação",
       "open_menu": "Abrir menu de navegação",
       "online": "Online"
+    },
+    "users": {
+      "page_title": "Administradores",
+      "page_description": "Lista de todas as contas de administrador no Firebase.",
+      "refresh": "Atualizar",
+      "total": "{count} administrador(es)",
+      "email": "E-mail",
+      "created": "Criado",
+      "last_login": "Último login",
+      "no_users": "Nenhum administrador encontrado.",
+      "next_page": "Próxima página",
+      "loading": "Carregando..."
     }
   }
 }
