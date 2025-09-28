@@ -37,15 +37,18 @@
     await loadCandidates()
   }
 
+  const onCandidateDeleted = async (): Promise<void> => {
+    await refreshCandidates()
+    selectCandidate(null)
+  }
+
   onMounted(() => {
     loadCandidates()
   })
 </script>
 
 <template>
-  <AdminHeader
-    :title="t('admin.candidates.page_title')"
-  >
+  <AdminHeader :title="t('admin.candidates.page_title')">
     <template #actions>
       <div
         class="flex flex-col sm:flex-row items-stretch sm:items-center gap-0.5 sm:gap-1 w-full sm:w-auto"
@@ -92,6 +95,7 @@
           :groups="GROUPS"
           :is-loading="isLoading"
           @download-resume="downloadResume"
+          @candidateDeleted="onCandidateDeleted"
         />
       </div>
     </div>

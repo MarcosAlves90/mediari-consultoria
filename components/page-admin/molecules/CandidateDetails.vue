@@ -38,6 +38,7 @@
     <CandidatePersonalInfo
       :candidate="candidate"
       @download-resume="handleResumeDownload"
+      @deleted="(id) => $emit('candidateDeleted', id)"
     />
     <CandidateExperience :experience="candidate.experience" />
     <CandidateCoverLetter

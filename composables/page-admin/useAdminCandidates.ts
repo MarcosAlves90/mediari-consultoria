@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export interface Candidate {
   id: string;
@@ -9,7 +10,6 @@ export interface Candidate {
   experience: string;
   coverLetter: string;
   resumeFileName: string;
-  resumeUrl: string;
   resumeStoragePath?: string;
   submittedAt: string;
   testAnswers?: Record<number, string>;
@@ -28,7 +28,6 @@ interface ApiCandidate {
   coverLetter?: string | null;
   resumeFileName?: string | null;
   resumeStoragePath?: string | null;
-  resumeUrl?: string | null;
   submittedAt?: string | null;
   testAnswers?: Record<number, string> | null;
   testScore?: number | null;
@@ -59,7 +58,6 @@ export const useAdminCandidates = () => {
       experience: c.experience || '',
       coverLetter: c.coverLetter || '',
       resumeFileName: c.resumeFileName || '',
-      resumeUrl: c.resumeUrl || '',
       submittedAt: c.submittedAt || new Date().toISOString(),
       privacyConsent: !!c.privacyConsent,
     };
@@ -95,12 +93,10 @@ export const useAdminCandidates = () => {
   };
 
   const downloadResume = async (): Promise<void> => {
+    const { t } = useI18n();
     if (!selectedCandidate.value?.resumeStoragePath) {
-      if (selectedCandidate.value?.resumeUrl) {
-        window.open(selectedCandidate.value.resumeUrl, '_blank');
-        return;
-      }
-      alert(`Download iniciado: ${selectedCandidate.value?.resumeFileName}`);
+      // Não expor urls públicas — use endpoint de download. Se não houver storagePath, informar o admin.
+      alert(t('admin.candidates.download_not_available') as string);
       return;
     }
 
@@ -118,9 +114,7 @@ export const useAdminCandidates = () => {
       }
     } catch (error) {
       console.error('Failed to generate download URL:', error);
-      if (selectedCandidate.value.resumeUrl) {
-        window.open(selectedCandidate.value.resumeUrl, '_blank');
-      }
+      alert(t('admin.candidates.download_failed') as string);
     }
   };
 
