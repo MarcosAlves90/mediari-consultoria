@@ -29,6 +29,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "vitest",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -78,6 +79,7 @@
     "globals": "^16.4.0",
     "jiti": "^2.5.1",
     "prettier": "^3.6.2",
-    "typescript-eslint": "^8.43.0"
+    "typescript-eslint": "^8.43.0",
+    "vitest": "^3.2.4"
   }
 }
