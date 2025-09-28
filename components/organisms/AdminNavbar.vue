@@ -18,32 +18,18 @@
         <div class="hidden 870:flex items-center space-x-2">
           <div class="flex items-center space-x-1">
             <NuxtLink
-              to="/admin/dashboard"
-              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
+              to="/admin/candidaturas"
+              class="py-0.5 px-1 text-sm font-medium text-accent-color border-2 border-accent-color transition-colors duration-200 no-underline rounded hover:bg-accent-color/20"
+              active-class="!bg-accent-color !text-accent-text-color !font-semibold"
             >
-              {{ t('admin.nav.dashboard') }}
+              {{ t('admin.nav.candidates') }}
             </NuxtLink>
             <NuxtLink
-              to="/admin/users"
-              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
+              to="/admin/administradores"
+              class="py-0.5 px-1 text-sm font-medium text-accent-color border-2 border-accent-color transition-colors duration-200 no-underline rounded hover:bg-accent-color/20"
+              active-class="!bg-accent-color !text-accent-text-color !font-semibold"
             >
               {{ t('admin.nav.users') }}
-            </NuxtLink>
-            <NuxtLink
-              to="/admin/content"
-              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
-            >
-              {{ t('admin.nav.content') }}
-            </NuxtLink>
-            <NuxtLink
-              to="/admin/settings"
-              class="py-0.5 px-1 text-sm font-medium text-secondary-text transition-colors duration-200 no-underline rounded hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color !text-accent-text-color !font-semibold hover:!bg-accent-dark-color"
-            >
-              {{ t('admin.nav.settings') }}
             </NuxtLink>
           </div>
 
@@ -60,8 +46,12 @@
               <button
                 @click="handleLogout"
                 :disabled="isLoggingOut"
-                class="py-0.5 px-1 text-sm font-medium transition-colors duration-200 no-underline rounded !text-accent-color hover:!bg-accent-color-2 cursor-pointer"
+                class="flex items-center py-0.5 px-1 text-sm cursor-pointer font-medium text-accent-color border-2 border-accent-color transition-colors duration-200 no-underline rounded hover:bg-accent-color/20"
               >
+                <Icon
+                  name="heroicons-outline:logout"
+                  class="inline-block mr-0.5"
+                />
                 {{ logoutLabel }}
               </button>
             </div>
@@ -149,36 +139,20 @@
           <!-- Navigation Links Mobile -->
           <div class="space-y-0.25">
             <NuxtLink
-              to="/admin/dashboard"
+              to="/admin/candidaturas"
               @click="hamburguerMenuOpen = false"
               class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
               active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
             >
-              {{ t('admin.nav.dashboard') }}
+              {{ t('admin.nav.candidates') }}
             </NuxtLink>
             <NuxtLink
-              to="/admin/users"
+              to="/admin/administradores"
               @click="hamburguerMenuOpen = false"
               class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
               active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
             >
               {{ t('admin.nav.users') }}
-            </NuxtLink>
-            <NuxtLink
-              to="/admin/content"
-              @click="hamburguerMenuOpen = false"
-              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
-            >
-              {{ t('admin.nav.content') }}
-            </NuxtLink>
-            <NuxtLink
-              to="/admin/settings"
-              @click="hamburguerMenuOpen = false"
-              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
-            >
-              {{ t('admin.nav.settings') }}
             </NuxtLink>
           </div>
 
@@ -189,6 +163,10 @@
               :disabled="isLoggingOut"
               class="w-full text-left block py-0.75 px-1 text-base font-medium rounded-md transition-colors duration-200 no-underline !text-accent-color hover:!bg-accent-color-2"
             >
+              <Icon
+                name="heroicons-outline:logout"
+                class="inline-block h-4 w-4 mr-2"
+              />
               {{ logoutLabelShort }}
             </button>
           </div>
