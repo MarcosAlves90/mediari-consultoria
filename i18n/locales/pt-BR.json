@@ -449,8 +449,7 @@
     "footer": {
       "copyright": "©",
       "admin_panel": "Painel Administrativo",
-      "aria_label": "Rodapé do painel administrativo",
-      "system_status": "Sistema Online"
+      "aria_label": "Rodapé do painel administrativo"
     },
     "candidates": {
       "page_title": "Análise de Candidaturas",
@@ -488,8 +487,7 @@
       "logout_short": "Sair",
       "logging_out_short": "...",
       "close_menu": "Fechar menu de navegação",
-      "open_menu": "Abrir menu de navegação",
-      "online": "Online"
+      "open_menu": "Abrir menu de navegação"
     },
     "users": {
       "page_title": "Administradores",

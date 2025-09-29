@@ -424,8 +424,7 @@
     "footer": {
       "copyright": "©",
       "admin_panel": "Administrative Panel",
-      "aria_label": "Admin panel footer",
-      "system_status": "System Online"
+      "aria_label": "Admin panel footer"
     },
     "candidates": {
       "page_title": "Application Analysis",
@@ -463,8 +462,7 @@
       "logout_short": "Logout",
       "logging_out_short": "...",
       "close_menu": "Close navigation menu",
-      "open_menu": "Open navigation menu",
-      "online": "Online"
+      "open_menu": "Open navigation menu"
     },
     "users": {
       "page_title": "Administrators",
