@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  // TODO: Deixar responsivo no mobile
 
   import { useProfileTest } from '~/composables/page-careers'
   import { useI18n } from 'vue-i18n'
@@ -147,6 +146,12 @@
     background-color: rgba(var(--color-accent-color-rgb), 0.1);
     border-color: var(--color-accent-color);
     border-radius: 4px;
+  }
+  /* tablet e menor: remover cor da borda (deixar transparente) */
+  @media (max-width: 768px) {
+    .scale-option.selected {
+      border-color: transparent;
+    }
   }
   .radio-indicator {
     width: 16px;
