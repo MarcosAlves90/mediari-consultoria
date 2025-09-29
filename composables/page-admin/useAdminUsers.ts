@@ -6,28 +6,59 @@ export interface AdminUser {
   email?: string;
   createdAt?: unknown;
   lastSignInAt?: unknown;
+  customClaims?: Record<string, unknown> | null;
   [key: string]: unknown; // Permite propriedades adicionais
 }
 
 export function useAdminUsers(
-  currentUserUid?: Ref<string | null> | string | null
+  // Pode receber o uid ou o objeto currentUser retornado por useCurrentUser
+  currentUser?:
+    | Ref<string | null>
+    | Ref<Record<string, unknown> | null>
+    | string
+    | null
 ) {
   const users = ref<AdminUser[]>([]);
   const isLoading = ref(false);
   const error = ref<string | null>(null);
   const nextPageToken = ref<string | null>(null);
 
-  // Calcula o UID do usuário atual
-  const excludeUid = computed(() => {
-    if (typeof currentUserUid === 'string') return currentUserUid;
-    if (currentUserUid && 'value' in currentUserUid)
-      return currentUserUid.value;
+  // Calcula o UID do usuário atual e expõe claims se disponível
+  const current = computed(() => {
+    if (!currentUser) return null;
+
+    // Se for string direta (uid)
+    if (typeof currentUser === 'string') {
+      return { uid: currentUser, claims: null };
+    }
+
+    // Se for um ref
+    if ('value' in currentUser) {
+      const v = currentUser.value;
+
+      if (!v) return null;
+
+      // Se for string (uid)
+      if (typeof v === 'string') {
+        return { uid: v, claims: null };
+      }
+
+      // Se for objeto CurrentUser
+      if (typeof v === 'object' && 'uid' in v) {
+        const userObj = v as Record<string, unknown>;
+        return {
+          uid: String(userObj.uid),
+          claims: userObj.claims as Record<string, unknown> | null,
+        };
+      }
+    }
+
     return null;
   });
 
   // Lista filtrada excluindo o usuário atual
   const filteredUsers = computed(() => {
-    const currentUid = excludeUid.value;
+    const currentUid = current.value?.uid ?? null;
     if (!currentUid) return users.value;
     return users.value.filter((user) => user.uid !== currentUid);
   });
@@ -84,16 +115,41 @@ export function useAdminUsers(
     await loadUsers(null);
   };
 
-  // Previne que o usuário atual se delete
+  // Determina se o usuário atual pode deletar o usuário alvo
   const canDeleteUser = (uid: string): boolean => {
-    const currentUid = excludeUid.value;
-    return currentUid !== uid;
+    const currentUid = current.value?.uid ?? null;
+    const currentClaims = current.value?.claims ?? null;
+
+    // Não pode deletar se for a si mesmo
+    if (currentUid && currentUid === uid) {
+      return false;
+    }
+
+    // Usuários com claim 'restrictedAdmin' não podem deletar outros administradores
+    if (currentClaims && currentClaims.restrictedAdmin) {
+      return false;
+    }
+
+    // Se o usuário alvo for superAdmin, não permitir deleção via painel
+    const target = users.value.find((u) => u.uid === uid) as
+      | AdminUser
+      | undefined;
+    if (
+      target &&
+      target.customClaims &&
+      (target.customClaims as Record<string, unknown>).superAdmin
+    ) {
+      return false;
+    }
+
+    return true;
   };
 
   const createUser = async (userData: {
     email: string;
     password: string;
     displayName?: string | undefined;
+    role?: 'super' | 'restricted' | undefined;
   }) => {
     isLoading.value = true;
     error.value = null;
