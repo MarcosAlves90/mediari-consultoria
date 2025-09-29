@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// TODO: Deixar responsivo
 import { onMounted, computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { AdminHeader, CreateUserModal } from '~/components/page-admin'
@@ -168,12 +167,12 @@ const canDeleteAdmin = computed(() => {
 <template>
   <AdminHeader :title="t('admin.users.page_title')">
     <template #actions>
-      <div class="flex items-center gap-1 max-md:flex-col max-md:w-full max-md:items-start">
+      <div class="flex items-center gap-0.5 sm:gap-1 max-md:flex-col max-md:w-full max-md:items-start">
         <div class="actions-text text-sm">
           {{ t('admin.users.total', { count: filteredUsers.length }) }}
         </div>
 
-        <div class="flex items-center gap-1 max-md:w-full max-sm:flex-col">
+        <div class="flex items-center gap-0.5 max-md:w-full max-sm:flex-col">
           <button v-if="canCreateAdmin" @click="openCreateModal" :disabled="isLoading" class="common-button max-md:w-full"
             :title="t('admin.users.create_user')">
             <Icon name="mdi:plus" class="w-1 h-1" />
@@ -280,14 +279,14 @@ const canDeleteAdmin = computed(() => {
         </table>
 
         <!-- Mobile / small screens: lista em cards (visível em <870) -->
-        <div class="block 870:hidden space-y-2">
+        <div class="block 870:hidden space-y-1">
           <template v-if="isLoading">
-            <div v-for="i in 5" :key="`mob-skel-${i}`" class="border-2 rounded p-2 bg-white">
+            <div v-for="i in 3" :key="`mob-skel-${i}`" class="border-2 rounded p-1 bg-white">
               <Skeleton width="60%" height="1rem" />
-              <div class="mt-2">
+              <div class="mt-1">
                 <Skeleton width="40%" height="0.9rem" />
               </div>
-              <div class="mt-2 flex flex-col gap-1">
+              <div class="mt-1 flex flex-col gap-1">
                 <Skeleton width="50%" height="0.85rem" />
                 <Skeleton width="50%" height="0.85rem" />
               </div>
