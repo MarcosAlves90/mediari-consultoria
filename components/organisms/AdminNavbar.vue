@@ -112,26 +112,8 @@
             <div class="flex items-center justify-between">
               <div class="text-primary-text">
                 <div class="font-medium text-sm">
-                  {{
-                    currentUser?.name ||
-                    currentUser?.email ||
-                    t('admin.nav.admin_default')
-                  }}
+                  {{ currentUser?.name || t('admin.nav.admin_default') }}
                 </div>
-                <div
-                  v-if="currentUser?.name && currentUser?.email"
-                  class="text-xs text-secondary-text"
-                >
-                  {{ currentUser.email }}
-                </div>
-              </div>
-              <div class="flex items-center">
-                <div
-                  class="w-0.25 h-0.25 bg-green-500 rounded-full mr-0.25 animate-pulse"
-                ></div>
-                <span class="text-secondary-text text-xs">{{
-                  t('admin.nav.online')
-                }}</span>
               </div>
             </div>
           </div>
@@ -141,16 +123,16 @@
             <NuxtLink
               :to="localePath('/admin/candidaturas')"
               @click="hamburguerMenuOpen = false"
-              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
+              class="block py-0.75 px-1 text-sm font-medium text-accent-color border-2 border-accent-color rounded transition-colors duration-200 no-underline"
+              active-class="!bg-accent-color !text-body-bg !font-semibold"
             >
               {{ t('admin.nav.candidates') }}
             </NuxtLink>
             <NuxtLink
               :to="localePath('/admin/administradores')"
               @click="hamburguerMenuOpen = false"
-              class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
-              active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
+              class="block py-0.75 px-1 text-sm font-medium text-accent-color border-2 border-accent-color rounded transition-colors duration-200 no-underline"
+              active-class="!bg-accent-color !text-body-bg !font-semibold"
             >
               {{ t('admin.nav.users') }}
             </NuxtLink>
@@ -161,11 +143,11 @@
             <button
               @click="handleLogoutAndClose"
               :disabled="isLoggingOut"
-              class="w-full text-left block py-0.75 px-1 text-base font-medium rounded-md transition-colors duration-200 no-underline !text-accent-color hover:!bg-accent-color-2"
+              class="w-full block py-0.75 px-1 text-sm font-medium text-accent-color border-2 border-accent-color rounded transition-colors duration-200 no-underline"
             >
               <Icon
                 name="heroicons-outline:logout"
-                class="inline-block h-4 w-4 mr-2"
+                class="inline-block h-4 w-4 mr-0.5"
               />
               {{ logoutLabelShort }}
             </button>
