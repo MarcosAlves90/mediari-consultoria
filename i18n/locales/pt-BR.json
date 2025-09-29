@@ -238,6 +238,14 @@
       "title": "Teste Comportamental",
       "subtitle": "AVALIAÇÃO DE PERSONALIDADE",
       "description": "Para cada grupo de opções abaixo, selecione aquela que melhor descreve você e responda com sinceridade para nos ajudar a entender seu perfil profissional.",
+      "predominant": "Perfil predominante",
+      "answer": "Resposta",
+      "labels": {
+        "A": "INFLUENTE",
+        "B": "DOMINANTE",
+        "C": "ANALISTA",
+        "D": "ESTÁVEL"
+      },
       "progress_text": "{answered} de {total} questões respondidas",
       "incomplete": "Teste incompleto. Responda todas as opções.",
       "groups": [
