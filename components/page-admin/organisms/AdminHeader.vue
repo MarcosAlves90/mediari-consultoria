@@ -1,19 +1,19 @@
 <template>
   <header class="bg-accent-color shadow-md">
-    <div class="max-w-7xl mx-auto w-full px-0.5 500:px-1 870:px-1.5 py-1">
+    <div class="max-w-7xl mx-auto w-full px-1 870:px-1.5 py-1">
       <div
-        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-1.5"
+        class="flex flex-col md:flex-row items-start md:items-center justify-between gap-1 sm:gap-1.5"
       >
         <div class="flex-1 min-w-0">
           <h1
-            class="text-xl sm:text-2xl lg:text-xl font-semibold text-accent-text-color truncate"
+            class="text-xl md:text-2xl lg:text-xl font-semibold text-accent-text-color truncate"
           >
             {{ title }}
           </h1>
         </div>
 
         <div
-          class="flex items-center gap-1 sm:gap-1.5 w-full sm:w-auto flex-shrink-0"
+          class="flex items-center gap-1 sm:gap-1.5 w-full md:w-auto flex-shrink-0"
         >
           <slot name="actions" />
         </div>
