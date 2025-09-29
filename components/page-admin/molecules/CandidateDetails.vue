@@ -40,7 +40,7 @@
 <template>
   <div
     v-if="isLoading"
-    class="bg-body-bg-dark rounded p-1 border-2 border-accent-color flex flex-col justify-between min-h-20 sm:min-h-24 md:min-h-28 lg:min-h-32 xl:min-h-36"
+    class="bg-body-bg-dark rounded p-1 border-2 border-accent-color space-y-2"
   >
     <!-- header: avatar + basic info -->
     <div class="flex items-center gap-4">
