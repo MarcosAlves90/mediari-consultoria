@@ -15,7 +15,11 @@ export default defineEventHandler(async (event) => {
 
   const cookie = getCookie(event, 'mediari_session');
   if (!cookie) {
-    // Redireciona para login
+    // Redireciona para login preservando possível prefixo de locale
+    const segments = url.pathname.split('/').filter(Boolean);
+    if (segments.length && /^[a-z]{2}-[a-z]{2}$/i.test(segments[0])) {
+      return sendRedirect(event, `/${segments[0]}/admin`);
+    }
     return sendRedirect(event, '/admin');
   }
 
@@ -30,6 +34,10 @@ export default defineEventHandler(async (event) => {
     };
   } catch (e: unknown) {
     console.warn('[adminAuth] sessão inválida ou erro de verificação', e);
+    const segments = url.pathname.split('/').filter(Boolean);
+    if (segments.length && /^[a-z]{2}-[a-z]{2}$/i.test(segments[0])) {
+      return sendRedirect(event, `/${segments[0]}/admin`);
+    }
     return sendRedirect(event, '/admin');
   }
 });
