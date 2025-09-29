@@ -14,10 +14,10 @@
         </h2>
         <button
           @click="closeModal"
-          class="text-gray-400 hover:text-white transition-colors"
+          class="common-button"
           :title="t('common.close')"
         >
-          <Icon name="mdi:close" class="w-6 h-6" />
+          <Icon name="mdi:close" class="text-[1.2em]" />
         </button>
       </div>
 
@@ -143,7 +143,7 @@
             t('admin.users.role') || 'Tipo de administrador'
           }}</label>
           <div class="flex gap-3 items-start">
-            <label class="flex items-start gap-2 text-sm">
+            <label class="flex items-start gap-1 text-sm cursor-pointer">
               <input
                 type="radio"
                 name="role"
@@ -164,7 +164,7 @@
               </div>
             </label>
 
-            <label class="flex items-start gap-2 text-sm">
+            <label class="flex items-start gap-1 text-sm cursor-pointer">
               <input
                 type="radio"
                 name="role"
