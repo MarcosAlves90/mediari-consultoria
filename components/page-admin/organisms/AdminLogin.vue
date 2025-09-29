@@ -6,7 +6,10 @@
 
   const { t } = useI18n()
 
-  const ADMIN_DASHBOARD_ROUTE = '/admin/candidaturas'
+  // caminho da home preservando locale quando possível (composable reutilizável)
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePathSafe = useLocalePathSafe()
+  const homePath = localePathSafe('/')
 
   type LoginErrorType =
     | 'INVALID_CREDENTIALS'
@@ -82,7 +85,8 @@
         const idToken = await user.getIdToken()
         await $fetch('/api/session', { method: 'POST', body: { idToken } })
 
-        await navigateTo(ADMIN_DASHBOARD_ROUTE)
+        // Preserva locale ao redirecionar usando o composable seguro
+        await navigateTo(localePathSafe('/admin/candidaturas'))
       } catch (sessErr: unknown) {
         error.value = mapSessionError(sessErr)
 
@@ -144,7 +148,7 @@
         class="login-right flex-1 flex flex-col justify-center items-center p-4 bg-white max-lg:p-2 relative"
       >
         <NuxtLink
-          to="/"
+          :to="homePath"
           class="absolute top-1 right-1 lg:top-0.5 lg:right-0.5 gap-1 flex items-center justify-center p-0.5 text-accent-color transition duration-200 rounded border-2 border-accent-color hover:bg-accent-color/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-color"
           :aria-label="t('error.back_home_aria')"
           role="button"

@@ -2,11 +2,12 @@
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()
-  const localePath = useLocalePath()
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePathSafe = useLocalePathSafe()
 
   const goToHome = () => {
-    // Use localePath to preserve the current locale when navigating
-    navigateTo(localePath('/'))
+    // Use localePathSafe to preserve the current locale when navigating
+    navigateTo(localePathSafe('/'))
   }
 
   // Completion screen styling

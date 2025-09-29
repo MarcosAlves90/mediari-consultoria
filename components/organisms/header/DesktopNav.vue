@@ -5,7 +5,8 @@
   import { useScreenWidth } from '@/utils/useScreenWidth'
 
   const { t } = useI18n()
-  const localePath = useLocalePath()
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePath = useLocalePathSafe()
   const { openPhoneDialer } = useContacts()
   const screenWidth = useScreenWidth()
 

@@ -18,14 +18,14 @@
         <div class="hidden 870:flex items-center space-x-2">
           <div class="flex items-center space-x-1">
             <NuxtLink
-              to="/admin/candidaturas"
+              :to="localePath('/admin/candidaturas')"
               class="py-0.5 px-1 text-sm font-medium text-accent-color border-2 border-accent-color transition-colors duration-200 no-underline rounded hover:bg-accent-color/20"
               active-class="!bg-accent-color !text-accent-text-color !font-semibold"
             >
               {{ t('admin.nav.candidates') }}
             </NuxtLink>
             <NuxtLink
-              to="/admin/administradores"
+              :to="localePath('/admin/administradores')"
               class="py-0.5 px-1 text-sm font-medium text-accent-color border-2 border-accent-color transition-colors duration-200 no-underline rounded hover:bg-accent-color/20"
               active-class="!bg-accent-color !text-accent-text-color !font-semibold"
             >
@@ -139,7 +139,7 @@
           <!-- Navigation Links Mobile -->
           <div class="space-y-0.25">
             <NuxtLink
-              to="/admin/candidaturas"
+              :to="localePath('/admin/candidaturas')"
               @click="hamburguerMenuOpen = false"
               class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
               active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
@@ -147,7 +147,7 @@
               {{ t('admin.nav.candidates') }}
             </NuxtLink>
             <NuxtLink
-              to="/admin/administradores"
+              :to="localePath('/admin/administradores')"
               @click="hamburguerMenuOpen = false"
               class="block py-0.75 px-1 text-base font-medium text-secondary-text rounded-md transition-colors duration-200 no-underline hover:bg-body-bg-dark hover:text-primary-text"
               active-class="!bg-accent-color-2 !text-accent-color !font-semibold"
@@ -188,6 +188,10 @@
    */
 
   const { t } = useI18n()
+
+  // Usa composable centralizado para obter path preservando locale (tenta useLocalePath, depois fallback)
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePath = useLocalePathSafe()
 
   /**
    * @description Controla o estado de carregamento durante o processo de logout.
@@ -312,8 +316,8 @@
       // Simula um atraso
       await new Promise((resolve) => setTimeout(resolve, 500))
 
-      // Redireciona para o login
-      await navigateTo('/admin')
+      // Redireciona para o login preservando locale (localePath é seguro)
+      await navigateTo(localePath('/admin'))
     } finally {
       isLoggingOut.value = false
     }

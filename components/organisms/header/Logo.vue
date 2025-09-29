@@ -2,7 +2,8 @@
   import { useGoTo } from '@/utils/useGoTo'
 
   const { goTo } = useGoTo()
-  const localePath = useLocalePath()
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePath = useLocalePathSafe()
 
   interface Props {
     isNavbarSmall: boolean

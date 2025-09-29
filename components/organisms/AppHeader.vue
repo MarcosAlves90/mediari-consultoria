@@ -13,7 +13,8 @@
   const isNavbarSmall = ref(false)
   const mobileNavRef = ref<InstanceType<typeof MobileNav>>()
 
-  const localePath = useLocalePath()
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePath = useLocalePathSafe()
   const route = useRoute()
 
   // Verifica se está na página inicial

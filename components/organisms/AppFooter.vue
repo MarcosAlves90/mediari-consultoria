@@ -59,7 +59,8 @@
 
   const availableLocales = locales.value
 
-  const localePath = useLocalePath()
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePath = useLocalePathSafe()
 
   const handleFooterNavClick = (link: { section?: string; href?: string }) => {
     if (link.href) {

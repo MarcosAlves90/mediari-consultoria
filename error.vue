@@ -4,7 +4,8 @@
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()
-  const localePath = useLocalePath()
+  import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
+  const localePath = useLocalePathSafe()
 
   const props = defineProps({
     error: {
