@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  // TODO: Corrigir skeletons
   import { useI18n } from 'vue-i18n'
   import type { Candidate } from '~/composables/page-admin/useAdminCandidates'
   import Skeleton from '~/components/atoms/Skeleton.vue'
@@ -41,19 +40,46 @@
 <template>
   <div
     v-if="isLoading"
-    class="bg-body-bg-dark rounded p-2 border-2 border-accent-color space-y-2 min-h-20 sm:min-h-24 md:min-h-28 lg:min-h-32 xl:min-h-36"
+    class="bg-body-bg-dark rounded p-1 border-2 border-accent-color space-y-4"
   >
-    <Skeleton width="50%" :height="1.5" />
-    <Skeleton width="66%" :height="0.75" />
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-      <div>
-        <Skeleton width="75%" :height="0.75" />
-        <Skeleton width="100%" :height="2.5" />
+    <!-- header: avatar + basic info -->
+    <div class="flex items-center gap-4">
+      <Skeleton :width="5" :height="5" customClass="rounded-full" />
+      <div class="flex-1">
+        <Skeleton width="100%" :height="1.5" />
+        <div class="mt-1 flex gap-2">
+          <Skeleton width="100%" :height="0.9" />
+          <Skeleton width="100%" :height="0.9" />
+        </div>
       </div>
-      <div>
-        <Skeleton width="75%" :height="0.75" />
-        <Skeleton width="100%" :height="2.5" />
+    </div>
+
+    <!-- personal details grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="space-y-1">
+        <Skeleton width="100%" :height="0.9" />
+        <Skeleton width="100%" :height="1.6" />
       </div>
+      <div class="space-y-1">
+        <Skeleton width="100%" :height="0.9" />
+        <Skeleton width="100%" :height="1.6" />
+      </div>
+    </div>
+
+    <!-- experience list skeletons -->
+    <div class="space-y-2">
+      <Skeleton width="35%" :height="1" />
+      <div class="space-y-1">
+        <Skeleton width="100%" :height="1.2" />
+        <Skeleton width="100%" :height="1.2" />
+        <Skeleton width="100%" :height="1.2" />
+      </div>
+    </div>
+
+    <!-- cover letter / long text skeleton -->
+    <div class="space-y-2">
+      <Skeleton width="35%" :height="1" />
+      <Skeleton width="100%" :height="5" />
     </div>
   </div>
 
