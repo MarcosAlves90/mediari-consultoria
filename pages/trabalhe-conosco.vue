@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, computed, watch, onMounted } from 'vue'
+  import { ref, computed, watch, onMounted, nextTick } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useSessionStorage } from '~/composables/page-careers/useSessionStorage'
   import {
@@ -37,8 +37,16 @@
 
   // Evita mismatch entre SSR e CSR: renderizar a área do formulário apenas no cliente
   const isClient = ref(false)
+  // detecta se o usuário prefere reduzir animações
+  const prefersReducedMotion = ref(false)
+
   onMounted(() => {
     isClient.value = true
+    if (typeof window !== 'undefined' && 'matchMedia' in window) {
+      prefersReducedMotion.value = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches
+    }
   })
 
   watch(
@@ -51,6 +59,44 @@
     },
     { deep: true }
   )
+
+  // Rola a página para o topo quando o conteúdo principal mudar (ex.: mudança de etapa)
+  // Espera o próximo tick para garantir que o DOM foi atualizado antes de rolar.
+  const scrollToTop = async (): Promise<void> => {
+    if (!isClient.value) return
+
+    // Aguarda o próximo tick e um frame de pintura para garantir que
+    // qualquer alteração de layout foi aplicada antes de rolar.
+    try {
+      await nextTick()
+      await new Promise((resolve) =>
+        requestAnimationFrame(() => resolve(undefined))
+      )
+
+      const behavior = prefersReducedMotion.value ? 'auto' : 'smooth'
+      // Tenta rolagem moderna
+      window.scrollTo({ top: 0, behavior })
+      // Garantia adicional para navegadores/ambientes que não aplicarem o comportamento acima
+      if (document.documentElement) {
+        document.documentElement.scrollTop = 0
+      }
+      if (document.body) {
+        document.body.scrollTop = 0
+      }
+    } catch (_e) {
+      // fallback simples
+      try {
+        window.scrollTo(0, 0)
+      } catch (_err) {
+        /* noop */
+      }
+    }
+  }
+
+  // Observa mudanças que causam alteração do conteúdo exibido
+  // Usamos flush: 'post' para garantir que o watch execute *após* as atualizações do DOM
+  // (mais confiável que nextTick em alguns cenários com componentes filhos).
+  watch([currentStep, showSuccess], scrollToTop, { flush: 'post' })
 
   const heroTitle = computed(() => {
     switch (currentStep.value) {
