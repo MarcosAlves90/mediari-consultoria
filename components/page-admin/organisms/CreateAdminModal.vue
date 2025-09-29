@@ -138,6 +138,58 @@
           />
         </div>
 
+        <div>
+          <label class="block text-sm font-medium mb-0.5">{{
+            t('admin.users.role') || 'Tipo de administrador'
+          }}</label>
+          <div class="flex gap-3 items-start">
+            <label class="flex items-start gap-2 text-sm">
+              <input
+                type="radio"
+                name="role"
+                value="super"
+                v-model="formData.role"
+                :disabled="isLoading"
+              />
+              <div>
+                <div class="font-medium">
+                  {{ t('admin.users.role_super') || 'Super admin' }}
+                </div>
+                <div class="text-xs text-gray-400">
+                  {{
+                    t('admin.users.role_super_help') ||
+                    'Tem permissão plena (criar/excluir outros admins)'
+                  }}
+                </div>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-2 text-sm">
+              <input
+                type="radio"
+                name="role"
+                value="restricted"
+                v-model="formData.role"
+                :disabled="isLoading"
+              />
+              <div>
+                <div class="font-medium">
+                  {{
+                    t('admin.users.role_restricted') ||
+                    'Administrador (restrito)'
+                  }}
+                </div>
+                <div class="text-xs text-gray-400">
+                  {{
+                    t('admin.users.role_restricted_help') ||
+                    'Não pode criar ou deletar outros administradores'
+                  }}
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
         <div v-if="error" class="text-red-500 text-sm">
           {{ error }}
         </div>
@@ -176,6 +228,7 @@
     password: string
     displayName?: string | undefined
     confirmPassword?: string | undefined
+    role: 'super' | 'restricted'
   }
 
   interface Props {
@@ -198,6 +251,7 @@
     password: '',
     displayName: '',
     confirmPassword: '',
+    role: 'restricted',
   })
 
   const isFormValid = computed(() => {
@@ -231,6 +285,7 @@
       email: formData.value.email.trim(),
       password: formData.value.password,
       displayName: formData.value.displayName?.trim() || undefined,
+      role: formData.value.role,
     }
 
     emit('submit', userData)
@@ -246,6 +301,7 @@
           password: '',
           displayName: '',
           confirmPassword: '',
+          role: 'restricted',
         }
         showPassword.value = false
         showConfirm.value = false
