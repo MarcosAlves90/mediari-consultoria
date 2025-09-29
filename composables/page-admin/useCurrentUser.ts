@@ -20,7 +20,9 @@ export function useCurrentUser() {
     error.value = null;
 
     try {
-      const res = await useFetch('/api/session', { method: 'GET' });
+      // Append a timestamp to the request to avoid stale cached responses
+      const url = `/api/session?ts=${Date.now()}`;
+      const res = await useFetch(url, { method: 'GET' });
       const data = res.data?.value ?? res.data ?? null;
       const fetchError = res.error?.value;
 

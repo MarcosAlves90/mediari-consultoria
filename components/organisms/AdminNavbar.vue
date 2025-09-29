@@ -209,7 +209,7 @@
    */
   onMounted(async () => {
     try {
-      const res = await $fetch('/api/session')
+      const res = await $fetch(`/api/session?ts=${Date.now()}`)
       if (res && (res as Record<string, unknown>).authenticated) {
         const s = res as Record<string, unknown>
         currentUser.value = {
