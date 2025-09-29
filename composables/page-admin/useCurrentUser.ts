@@ -5,6 +5,7 @@ export interface CurrentUser {
   uid: string;
   email: string | null;
   name: string | null;
+  claims?: Record<string, unknown> | null;
 }
 
 export function useCurrentUser() {
@@ -34,6 +35,8 @@ export function useCurrentUser() {
             uid: String(sessionData.uid || ''),
             email: sessionData.email ? String(sessionData.email) : null,
             name: sessionData.name ? String(sessionData.name) : null,
+            claims:
+              (sessionData.customClaims as Record<string, unknown>) || null,
           };
         } else {
           currentUser.value = null;

@@ -17,12 +17,13 @@ export default defineEventHandler(async (event) => {
     const decoded: DecodedIdToken = await admin
       .auth()
       .verifySessionCookie(cookie, true);
-    // decoded pode conter email e nome dependendo do provedor
+    // decoded pode conter email, nome e customClaims dependendo do provedor
     return {
       authenticated: true,
       uid: decoded.uid,
       email: decoded.email || null,
       name: decoded.name || decoded.email || null,
+      customClaims: decoded.custom_claims || null,
     };
   } catch {
     return { authenticated: false };
