@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  // TODO: Deixar responsivo
   import { onMounted, computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { AdminHeader, CreateUserModal } from '~/components/page-admin'
@@ -12,6 +13,12 @@
   definePageMeta({ layout: 'admin', middleware: 'admin' })
 
   const { t } = useI18n()
+
+  useSeoMeta({
+    title: `${t('admin.users.page_title')}`,
+    description: t('admin.users.page_description'),
+    robots: 'noindex, nofollow',
+  })
 
   const { currentUser, loadCurrentUser } = useCurrentUser()
 
@@ -32,11 +39,20 @@
   const createModalError = ref<string | null>(null)
 
   onMounted(async () => {
-    await Promise.all([loadCurrentUser(), loadUsers()])
+    // Carrega primeiro o usuário atual (incl. claims) para evitar condições de corrida
+    // onde a lista de usuários é carregada antes da verificação das claims.
+    await loadCurrentUser()
+    await loadUsers()
   })
 
   const loadNext = async () => {
     if (nextPageToken.value) await loadUsers(nextPageToken.value)
+  }
+
+  // Recarrega informações do usuário atual antes de recarregar a lista.
+  const doRefresh = async () => {
+    await loadCurrentUser()
+    await refresh()
   }
 
   const openCreateModal = () => {
@@ -169,7 +185,7 @@
         </button>
 
         <button
-          @click="refresh"
+          @click="doRefresh"
           :disabled="isLoading"
           class="common-button"
           :title="t('admin.users.refresh')"
@@ -219,31 +235,23 @@
             <template v-if="isLoading">
               <tr v-for="i in 5" :key="`skeleton-${i}`" class="border-b">
                 <td class="p-1">
-                  <Skeleton
-                    :width="i % 2 === 0 ? '200px' : '240px'"
-                    height="1.2rem"
-                  />
+                  <Skeleton width="100%" height="1.2rem" />
                 </td>
                 <td class="p-1">
-                  <Skeleton
-                    :width="i % 2 === 0 ? '140px' : '160px'"
-                    height="1.2rem"
-                  />
+                  <Skeleton width="100%" height="1.2rem" />
                 </td>
                 <td class="p-1">
-                  <Skeleton
-                    :width="i % 3 === 0 ? '140px' : '160px'"
-                    height="1.2rem"
-                  />
+                  <Skeleton width="100%" height="1.2rem" />
                 </td>
                 <td class="p-1">
-                  <Skeleton
-                    :width="i % 2 === 1 ? '150px' : '170px'"
-                    height="1.2rem"
-                  />
+                  <Skeleton width="100%" height="1.2rem" />
+                </td>
+                <!-- Skeleton para a coluna "last login" (estava faltando) -->
+                <td class="p-1">
+                  <Skeleton width="100%" height="1.2rem" />
                 </td>
                 <td v-if="canDeleteAdmin" class="p-1">
-                  <Skeleton width="80px" height="1.2rem" />
+                  <Skeleton width="100%" height="1.2rem" />
                 </td>
               </tr>
             </template>
