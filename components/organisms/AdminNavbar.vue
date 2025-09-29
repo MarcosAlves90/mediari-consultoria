@@ -2,7 +2,7 @@
   <nav
     class="bg-body-bg/90 backdrop-blur-sm shadow-md border-b border-body-bg-dark fixed top-0 left-0 right-0 z-50"
   >
-    <div class="max-w-7xl mx-auto px-0.5 300:px-0.75 500:px-1 870:px-1.5">
+    <div class="max-w-7xl mx-auto px-1 870:px-1.5">
       <div class="flex items-center justify-between h-4">
         <!-- Logo/Brand -->
         <div class="flex items-center">
@@ -63,7 +63,7 @@
           <button
             @click="toggleHamburguerMenu"
             :aria-label="hamburgerAriaLabel"
-            class="text-accent-color hover:bg-accent-color-2 p-0.5 rounded transition-colors duration-200"
+            class="text-accent-color hover:bg-accent-color-2 p-0.5 rounded border-2 border-accent-color transition-colors duration-200"
           >
             <Transition name="icon-morph" mode="out-in">
               <svg
