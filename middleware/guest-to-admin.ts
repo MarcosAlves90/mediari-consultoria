@@ -4,13 +4,24 @@
  * Caso contrário, permite o acesso à página de login.
  */
 export default defineNuxtRouteMiddleware(async (to) => {
-  // Executa apenas na página de login
-  if (to.path !== '/admin' && to.path !== '/admin/') return;
+  // Executa apenas para a página de login, incluindo variações com prefixo de locale
+  // Exemplos válidos: /admin, /admin/, /en-us/admin, /pt-br/admin
+  const isAdminPath =
+    to.path === '/admin' ||
+    to.path === '/admin/' ||
+    /^(?:\/[a-z]{2}-[a-z]{2})\/admin(?:\/|$)/i.test(to.path);
+
+  if (!isAdminPath) return;
 
   try {
     const res = await $fetch('/api/session');
     if (res && res.authenticated) {
-      return navigateTo('/admin/candidaturas');
+      // Usa o composable seguro que lida com a ausência do helper auto-importado
+      const { useLocalePathSafe } = await import(
+        '~/composables/useLocalePathSafe'
+      );
+      const localePath = useLocalePathSafe();
+      return navigateTo(localePath('/admin/candidaturas'));
     }
   } catch {
     // Ignora erros — permite que o usuário veja o login

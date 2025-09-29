@@ -11,10 +11,30 @@ export default defineNuxtRouteMiddleware(async (to) => {
     // Consulta o endpoint do servidor que valida o cookie de sessão httpOnly
     const res = await $fetch('/api/session');
     if (!res || !res.authenticated) {
-      return navigateTo('/admin');
+      // usa composable seguro
+      try {
+        // Import dinâmico aqui dentro do middleware (evita erro quando não existir)
+        const { useLocalePathSafe } = await import(
+          '~/composables/useLocalePathSafe'
+        );
+        const lp = useLocalePathSafe();
+        return navigateTo(lp('/admin'));
+      } catch {
+        // Fallback simples: permanece em /admin sem prefixo
+        return navigateTo('/admin');
+      }
     }
   } catch {
-    // Se ocorrer qualquer erro, redireciona para o login
-    return navigateTo('/admin');
+    // Se ocorrer qualquer erro, tenta redirecionar preservando locale quando possível
+    try {
+      const { useLocalePathSafe } = await import(
+        '~/composables/useLocalePathSafe'
+      );
+      const lp = useLocalePathSafe();
+      return navigateTo(lp('/admin'));
+    } catch {
+      // Fallback simples: permanece em /admin sem prefixo
+      return navigateTo('/admin');
+    }
   }
 });
