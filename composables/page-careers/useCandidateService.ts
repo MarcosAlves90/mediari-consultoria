@@ -102,13 +102,12 @@ export const useCandidateService = () => {
       }
 
       const submitPayload = {
-        firstName: application.firstName,
-        lastName: application.lastName || null,
+        fullName: application.fullName || '',
         email: application.email,
-        phone: application.phone || null,
-        positionApplied: application.positionApplied || null,
-        experience: application.experience || null, // ✅ Experiência
-        coverLetter: application.coverLetter || null, // ✅ Carta de apresentação
+        phone: application.phone || undefined,
+        positionApplied: application.positionApplied || undefined,
+        experience: application.experience || undefined, // ✅ Experiência
+        coverLetter: application.coverLetter || undefined, // ✅ Carta de apresentação
         storagePath: storagePath || undefined,
       } as Record<string, unknown>;
 

@@ -2,19 +2,16 @@
 import type { Timestamp } from 'firebase/firestore';
 
 export interface CandidateBase {
-  firstName: string;
-  lastName?: string;
+  // Agora armazenamos o nome completo em um único campo
+  fullName: string;
   email: string;
   phone?: string;
-  city?: string;
-  state?: string;
   positionApplied?: string;
-  source?: string;
   status?: 'submitted' | 'screening' | 'interview' | 'rejected' | 'hired';
   createdAt?: Timestamp | null;
   updatedAt?: Timestamp | null;
   attachments?: CandidateAttachment[];
-  metadata?: Record<string, unknown> | null;
+  metadata?: Record<string, unknown> | null; // mantido mas pouco usado; considerar remoção futura
 }
 
 export interface CandidateAttachment {
@@ -29,7 +26,6 @@ export interface JobApplication extends CandidateBase {
   coverLetter?: string;
   experience?: string;
   resumeFileName?: string;
-  additionalFields?: Record<string, unknown> | null;
 }
 
 export interface ProfileTestResult {

@@ -65,13 +65,10 @@ export default defineEventHandler(async (event) => {
       const firstAttachment = attachments[0] || null;
 
       // Mapear campos para o formato esperado pelo frontend
-      const firstName =
-        typeof data.firstName === 'string' ? data.firstName : '';
-      const lastName = typeof data.lastName === 'string' ? data.lastName : '';
       const fullName =
         typeof data.fullName === 'string' && data.fullName
           ? String(data.fullName)
-          : `${firstName} ${lastName}`.trim();
+          : '';
 
       items.push({
         id: doc.id,

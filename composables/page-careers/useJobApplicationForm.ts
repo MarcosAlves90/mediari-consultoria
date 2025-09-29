@@ -206,9 +206,9 @@ export const useJobApplicationForm = () => {
     const { submitApplication } = useCandidateService();
 
     try {
+      // O formulário contém apenas 'fullName'. Enviar o nome completo em 'fullName'.
       const application: JobApplication = {
-        firstName: formData.fullName.split(' ')[0] || formData.fullName,
-        lastName: formData.fullName.split(' ').slice(1).join(' ') || '',
+        fullName: formData.fullName || '',
         email: formData.email,
         phone: formData.phone,
         positionApplied: formData.areaOfInterest,

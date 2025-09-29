@@ -3,8 +3,7 @@ import { z } from 'zod';
 import type { Bucket, File } from '@google-cloud/storage';
 
 const PayloadSchema = z.object({
-  firstName: z.string().min(1),
-  lastName: z.string().optional(),
+  fullName: z.string().min(1),
   email: z.string().email(),
   phone: z.string().optional(),
   positionApplied: z.string().optional(),
@@ -22,8 +21,7 @@ const createCandidateDoc = (data: PayloadData, isEmulator: boolean) => {
     : initFirebaseAdmin()!.firestore.FieldValue.serverTimestamp();
 
   return {
-    firstName: data.firstName,
-    lastName: data.lastName || null,
+    fullName: data.fullName,
     email: data.email,
     phone: data.phone || null,
     positionApplied: data.positionApplied || null,
