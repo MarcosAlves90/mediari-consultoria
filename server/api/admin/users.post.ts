@@ -15,10 +15,17 @@ export default defineEventHandler(async (event) => {
     return createError({ statusCode: 401, statusMessage: 'unauthenticated' });
   }
 
+  let actor: Record<string, unknown> | null = null;
+
   try {
     const decoded = await admin.auth().verifySessionCookie(cookie, true);
     const claims = decoded as unknown as Record<string, unknown>;
+    actor = claims;
     if (!claims.admin) {
+      return createError({ statusCode: 403, statusMessage: 'forbidden' });
+    }
+    // Usuários com claim 'restrictedAdmin' não podem criar outros administradores
+    if (claims.restrictedAdmin) {
       return createError({ statusCode: 403, statusMessage: 'forbidden' });
     }
   } catch (e) {
@@ -68,8 +75,30 @@ export default defineEventHandler(async (event) => {
       disabled: false,
     });
 
-    // Adiciona claims de administrador
-    await admin.auth().setCustomUserClaims(userRecord.uid, { admin: true });
+    // Define claims conforme role
+    const role = body.role === 'super' ? 'super' : 'restricted';
+    const claimsToSet: Record<string, unknown> = { admin: true };
+    if (role === 'super') claimsToSet.superAdmin = true;
+    else claimsToSet.restrictedAdmin = true;
+
+    await admin.auth().setCustomUserClaims(userRecord.uid, claimsToSet);
+
+    // Auditoria: gravação no Firestore
+    try {
+      const db = admin.firestore();
+      await db.collection('admin_audit_logs').add({
+        action: 'create_admin',
+        actorUid: actor?.uid ?? null,
+        actorEmail: actor?.email ?? null,
+        targetUid: userRecord.uid,
+        targetEmail: userRecord.email ?? null,
+        role: role,
+        details: { claims: claimsToSet },
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    } catch (auditErr) {
+      console.warn('[admin audit] failed to write create log', auditErr);
+    }
 
     // Retorna as informações do usuário criado
     return {
@@ -80,7 +109,7 @@ export default defineEventHandler(async (event) => {
         displayName: userRecord.displayName,
         createdAt: userRecord.metadata.creationTime,
         disabled: userRecord.disabled,
-        customClaims: { admin: true },
+        customClaims: claimsToSet,
       },
     };
   } catch (error: unknown) {
