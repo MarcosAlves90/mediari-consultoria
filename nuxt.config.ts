@@ -121,13 +121,13 @@ export default defineNuxtConfig({
       {
         code: 'pt-br',
         iso: 'pt-br',
-        file: 'pt-br.json',
+        file: 'pt-BR.json',
         name: 'Português (Brasil)',
       },
       {
         code: 'en-us',
         iso: 'en-us',
-        file: 'en-us.json',
+        file: 'en-US.json',
         name: 'English (US)',
       },
     ],
