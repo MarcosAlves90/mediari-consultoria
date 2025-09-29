@@ -509,6 +509,7 @@
       "delete_success": "Usuário deletado com sucesso",
       "delete_error": "Erro ao deletar usuário",
       "cannot_delete_self": "Não é possível deletar sua própria conta.",
+      "cannot_delete_super_admin": "Não é possível deletar um Super Administrador.",
       "create_user": "Criar Administrador",
       "create": "Criar",
       "password": "Senha",
@@ -523,7 +524,12 @@
       "confirm_password_placeholder": "Confirme a senha",
       "show_password": "Mostrar senha",
       "hide_password": "Ocultar senha",
-      "password_mismatch": "As senhas não coincidem."
+      "password_mismatch": "As senhas não coincidem.",
+      "role": "Tipo",
+      "role_super": "Super",
+      "role_restricted": "Restrito",
+      "role_super_help": "Tem permissão plena (criar/excluir outros admins)",
+      "role_restricted_help": "Não pode criar ou deletar outros administradores"
     }
   }
 }

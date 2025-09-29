@@ -484,6 +484,7 @@
       "delete_success": "User deleted successfully",
       "delete_error": "Error deleting user",
       "cannot_delete_self": "You cannot delete your own account.",
+      "cannot_delete_super_admin": "You cannot delete a Super Administrator.",
       "create_user": "Create Administrator",
       "create": "Create",
       "password": "Password",
@@ -498,7 +499,12 @@
       "confirm_password_placeholder": "Confirm the password",
       "show_password": "Show password",
       "hide_password": "Hide password",
-      "password_mismatch": "Passwords do not match."
+      "password_mismatch": "Passwords do not match.",
+      "role": "Type",
+      "role_super": "Super",
+      "role_restricted": "Restricted",
+      "role_super_help": "Has full permissions (create/delete other admins)",
+      "role_restricted_help": "Cannot create or delete other administrators"
     }
   }
 }
