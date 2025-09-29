@@ -5,7 +5,7 @@
     @click.self="closeModal"
   >
     <div
-      class="bg-body-bg border-2 border-accent-color rounded p-1.5 w-full max-w-xl mx-4"
+      class="bg-body-bg border-2 border-accent-color rounded p-1 sm:p-1.5 w-full max-w-xl mx-1 sm:mx-4"
       @click.stop
     >
       <div class="flex justify-between items-center mb-2">
@@ -139,10 +139,10 @@
         </div>
 
         <div>
-          <label class="block text-sm font-medium mb-0.5">{{
+          <label class="block text-sm font-medium mb-0.5 max-sm:mb-1">{{
             t('admin.users.role') || 'Tipo de administrador'
           }}</label>
-          <div class="flex gap-3 items-start">
+          <div class="flex gap-3 items-start max-sm:flex-col max-sm:gap-1">
             <label class="flex items-start gap-1 text-sm cursor-pointer">
               <input
                 type="radio"
@@ -194,7 +194,15 @@
           {{ error }}
         </div>
 
-        <div class="flex gap-3 pt-1">
+        <div class="flex gap-3 sm:pt-1 max-sm:gap-1">
+          <button
+            type="button"
+            @click="closeModal"
+            class="common-button w-full"
+            :disabled="isLoading"
+          >
+            {{ t('common.cancel') }}
+          </button>
           <button
             type="submit"
             class="common-button w-full flex items-center justify-center gap-1"
@@ -203,14 +211,6 @@
             <ButtonLoader v-if="isLoading" />
             <Icon v-else name="mdi:plus" />
             {{ t('admin.users.create') }}
-          </button>
-          <button
-            type="button"
-            @click="closeModal"
-            class="common-button w-full"
-            :disabled="isLoading"
-          >
-            {{ t('common.cancel') }}
           </button>
         </div>
       </form>
