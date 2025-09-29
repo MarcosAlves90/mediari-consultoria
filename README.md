@@ -10,9 +10,13 @@
 
 ## Sobre o Projeto
 
-Este repositório contém o código-fonte da landing page profissional desenvolvida para a **Mediari Consultoria Empresarial LTDA**, com foco em apresentar os serviços jurídicos oferecidos pela empresa de forma clara, moderna e responsiva.
+Este repositório contém o código-fonte da landing page profissional desenvolvida para a **Mediari
+Consultoria Empresarial LTDA**, com foco em apresentar os serviços jurídicos oferecidos pela empresa
+de forma clara, moderna e responsiva.
 
-O projeto foi desenvolvido como parte de um trabalho profissional, visando atender às necessidades reais do cliente e proporcionar uma experiência de navegação intuitiva para empresas e pessoas físicas.
+O projeto foi desenvolvido como parte de um trabalho profissional, visando atender às necessidades
+reais do cliente e proporcionar uma experiência de navegação intuitiva para empresas e pessoas
+físicas.
 
 ## Funcionalidades
 

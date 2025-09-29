@@ -1,13 +1,54 @@
 {
-  "name": "nuxt-app",
+  "name": "mediari-consultoria",
+  "version": "1.0.0",
+  "description": "Website profissional da Mediari Consultoria - Especialistas em Direito Empresarial, Bancário e do Consumidor",
+  "author": {
+    "name": "Mediari Consultoria",
+    "email": "contato@mediari.com.br",
+    "url": "https://www.mediariconsultoria.com.br"
+  },
+  "license": "MIT",
+  "homepage": "https://www.mediariconsultoria.com.br",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcosAlves90/mediari-consultoria.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MarcosAlves90/mediari-consultoria/issues"
+  },
+  "keywords": [
+    "consultoria-juridica",
+    "direito-empresarial",
+    "direito-bancario",
+    "direito-consumidor",
+    "advocacia",
+    "nuxt3",
+    "vue3",
+    "typescript"
+  ],
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "vitest",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "format:md": "prettier --write \"**/*.md\"",
+    "format:md:check": "prettier --check \"**/*.md\"",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "format:lint": "npm run format && npm run lint",
+    "type-check": "nuxt typecheck",
+    "encode:service-account": "pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass -File scripts/encode-service-account.ps1",
+    "setup:admin": "node scripts/setup-admin.js",
+    "list:admins": "node scripts/setup-admin.js --list",
+    "fb:emu": "firebase emulators:start",
+    "cors:configure": "node scripts/cors-utils.js configure",
+    "cors:check": "node scripts/cors-utils.js check"
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",
@@ -17,13 +58,28 @@
     "@nuxtjs/i18n": "^9.5.4",
     "@nuxtjs/seo": "^3.0.3",
     "@tailwindcss/vite": "^4.1.6",
+    "firebase": "^12.2.1",
+    "firebase-admin": "^13.5.0",
     "leaflet": "^1.9.4",
+    "node-fetch": "^3.3.2",
     "nuxt": "^3.17.4",
     "tailwindcss": "^4.1.6",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.18"
+    "@eslint/js": "^9.35.0",
+    "@nuxt/eslint-config": "^1.7.1",
+    "@prettier/plugin-pug": "^3.4.2",
+    "@types/leaflet": "^1.9.18",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.4.0",
+    "jiti": "^2.5.1",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8.43.0",
+    "vitest": "^3.2.4"
   }
 }

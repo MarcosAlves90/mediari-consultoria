@@ -1,0 +1,26 @@
+# Arquivos de build e dependências
+node_modules/
+.nuxt/
+.output/
+dist/
+*.local
+
+# Arquivos de ambiente
+.env
+.env.*
+
+# Arquivos de configuração que não devem ser formatados
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Arquivos gerados
+coverage/
+*.log
+
+# Markdown pode ter formatação específica (opcional)
+# *.md
+
+# Arquivos de configuração do editor
+.vscode/
+.idea/

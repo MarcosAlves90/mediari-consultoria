@@ -8,6 +8,7 @@ dist
 
 # Node dependencies
 node_modules
+node_modules_old
 
 # Logs
 logs
@@ -19,6 +20,8 @@ logs
 .idea
 .github
 _old
+curriculo-teste.pdf
+docs/
 
 # Local env files
 .env

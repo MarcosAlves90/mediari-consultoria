@@ -1,110 +1,516 @@
 {
-    "banner": {
-        "main_title": "LEGAL EXCELLENCE",
-        "subtitle-1": "FOR ",
-        "subtitle-2": "YOU & YOUR BUSINESS!",
-        "description": "Specialized service for companies and complete solutions for banking and consumer needs.",
-        "tags": ["Competence", "Security", "Experience"]
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "banner": {
+    "main_title": "LEGAL EXCELLENCE",
+    "subtitle-1": "FOR ",
+    "subtitle-2": "YOU & YOUR BUSINESS!",
+    "description": "Specialized service for companies and complete solutions for banking and consumer needs.",
+    "aria": {
+      "banner_text": "Main banner text",
+      "main_traits": "Main features",
+      "filter_by": "Filter by {tag}",
+      "background_alt": "Main page background banner with abstract graphic elements"
     },
-    "services": {
-        "section_subtitle": "AREAS OF EXPERTISE",
-        "section_title": "OUR SERVICES",
-        "section_description": "Our team of professionals works in different areas to protect your rights or your company's interests.",
-        "main": [
-            {
-                "title": "Civil Law",
-                "description": "We resolve conflicts, indemnities, and everyday issues for your legal security."
-            },
-            {
-                "title": "Criminal Law",
-                "description": "Specialized defense in criminal proceedings, ensuring protection at all stages."
-            },
-            {
-                "title": "Contracts",
-                "description": "Drafting and reviewing contracts to ensure legal security and protection."
-            },
-            {
-                "title": "Consulting",
-                "description": "Strategic legal guidance to prevent risks and ensure legal compliance."
-            }
-        ],
-        "secondary": [
-            {
-                "title": "Consumer Law",
-                "description": "We defend consumer rights in various situations, such as online purchases, undue charges, and product or service defects."
-            },
-            {
-                "title": "Banking Law",
-                "description": "We provide legal advice on issues involving banks, financial contracts, abusive charges, and debt renegotiation. Protect your rights with our support."
-            },
-            {
-                "title": "Labor Law",
-                "description": "We act in the defense of workers and companies in labor disputes, contract terminations, social security rights, and other work-related issues."
-            }
-        ]
+    "tags": ["Competence", "Security", "Experience"]
+  },
+  "services": {
+    "section_subtitle": "AREAS OF EXPERTISE",
+    "section_title": "OUR SERVICES",
+    "section_description": "Our team of professionals works in different areas to protect your rights or your company's interests.",
+    "main_aria_label": "Main services",
+    "secondary_aria_label": "Other services",
+    "icon_button_label": "Action: {service}",
+    "main": [
+      {
+        "title": "Civil Law",
+        "description": "We resolve conflicts, indemnities, and everyday issues for your legal security."
+      },
+      {
+        "title": "Criminal Law",
+        "description": "Specialized defense in criminal proceedings, ensuring protection at all stages."
+      },
+      {
+        "title": "Contracts",
+        "description": "Drafting and reviewing contracts to ensure legal security and protection."
+      },
+      {
+        "title": "Consulting",
+        "description": "Strategic legal guidance to prevent risks and ensure legal compliance."
+      }
+    ],
+    "secondary": [
+      {
+        "title": "Consumer Law",
+        "description": "We defend consumer rights in various situations, such as online purchases, undue charges, and product or service defects."
+      },
+      {
+        "title": "Banking Law",
+        "description": "We provide legal advice on issues involving banks, financial contracts, abusive charges, and debt renegotiation. Protect your rights with our support."
+      },
+      {
+        "title": "Labor Law",
+        "description": "We act in the defense of workers and companies in labor disputes, contract terminations, social security rights, and other work-related issues."
+      }
+    ]
+  },
+  "enterprise": {
+    "section_subtitle": "COMPANY",
+    "description": "We are a company specialized in personalized legal advice and consulting for small and medium-sized businesses, offering drafting of documents, legal opinions, complete reports, and comprehensive support in labor matters. For the general public, we work on banking demands, such as repossession processes, account blocks, and other areas of Consumer Law. We have a team of over 60 employees and legal assistants prepared to deliver the best service to companies and individuals.",
+    "location": "We are located at {address}"
+  },
+  "ceo": {
+    "section_subtitle": "FOUNDER",
+    "section_title": "LEADING OUR VISION",
+    "description": "A lawyer specializing in banking and consumer law, he graduated in law from Anhanguera University in 2018. With extensive experience in managing processes, people and business recovery, he has led a team of more than 60 employees, including lawyers and legal assistants, since 2023, when he took over the management of Mediari and led the company to exponential and upward growth. After working for years in commercial management and corporate crises, he currently dedicates his career to assisting companies and consumers seeking legal protection for situations of injustice that damage their most basic rights in our society.",
+    "quote": "\"Justice is not a privilege, it is a right - and our mission is to ensure that it is accessible to all.\""
+  },
+  "team": {
+    "section_subtitle": "TEAM",
+    "section_title": "OUR HIGHLIGHTS",
+    "description": "With over 60 employees and legal assistants, we deliver excellence in all services."
+  },
+  "contact": {
+    "section_subtitle": "CONTACT US",
+    "section_title": "GET IN TOUCH",
+    "description": "Contact us through our networks and have your rights protected.",
+    "instagram": "Talk via Instagram",
+    "phone": "Call Us",
+    "email": "Send an Email",
+    "linkedin": "Connect on LinkedIn"
+  },
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "enterprise": "Company",
+    "founder": "Founder",
+    "socialAction": "Social",
+    "team": "Team",
+    "contact": "Contact",
+    "careers": "Careers",
+    "sections": "Sections",
+    "callPhone": "Call {phone}"
+  },
+  "footer": {
+    "highlights": [
+      {
+        "title": "100% Secure Site",
+        "desc": "SSL encryption for your protection"
+      },
+      {
+        "title": "Industry Reference",
+        "desc": "Well-rated service"
+      },
+      {
+        "title": "Protected Access",
+        "desc": "Stable and reliable navigation"
+      }
+    ],
+    "menu_title": "MENU",
+    "areas_title": "AREAS OF EXPERTISE",
+    "all_rights_reserved": "All Rights Reserved"
+  },
+  "error": {
+    "title": "Page Not Found",
+    "not_found": "Oops! The page you are looking for was not found.",
+    "unexpected": "An unexpected error occurred. Please try again later.",
+    "back_home": "Back to home page",
+    "back_home_aria": "Back to home page"
+  },
+  "seo": {
+    "title": "Law for Companies and Individuals",
+    "description": "Legal consulting for small and medium businesses and individuals. Specialists in Labor, Banking, and Consumer Law."
+  },
+  "socialAction": {
+    "section_subtitle": "SOCIAL RESPONSIBILITY",
+    "section_title": "SOCIAL ACTIONS",
+    "section_description": "We believe in the transformative power of law and dedicate ourselves to projects that promote social justice and positive impact in the community.",
+    "actions": {
+      "abrigo_irma_tereza": {
+        "name": "Sister Tereza Shelter",
+        "description": "Donation of hygiene products, geriatric diapers, and groceries to support elderly residents at the shelter.",
+        "impact": "Elderly assisted",
+        "category": "Social Assistance"
+      },
+      "instituto_tuh": {
+        "name": "TUH Institute",
+        "description": "Donation of basic food baskets to vulnerable families, ensuring food security.",
+        "impact": "Families served",
+        "category": "Food Security"
+      },
+      "tragedia_rio_grande_sul": {
+        "name": "Rio Grande do Sul Tragedy",
+        "description": "Donation of clothing, footwear, and groceries to victims of the climate tragedy in RS.",
+        "impact": "Victims assisted",
+        "category": "Social Emergency"
+      },
+      "casa_florescer": {
+        "name": "Casa Florescer (LGBTQIA+)",
+        "description": "Donation of bedding and hygiene kits to support the vulnerable LGBTQIA+ community.",
+        "impact": "People supported",
+        "category": "Human Rights"
+      },
+      "nucleo_menino_jesus": {
+        "name": "Baby Jesus Center",
+        "description": "Donation of groceries (milk, cookies, and bread) for children in vulnerable situations.",
+        "impact": "Children fed",
+        "category": "Child Protection"
+      },
+      "instituto_losurdo": {
+        "name": "Losurdo Institute",
+        "description": "Donation of basic food baskets to needy families, promoting dignity and food security.",
+        "impact": "Families benefited",
+        "category": "Social Assistance"
+      },
+      "instituto_borboleta_azul": {
+        "name": "Blue Butterfly Institute",
+        "description": "Donation of painting, drawing materials, and interactive games for educational development.",
+        "impact": "Children benefited",
+        "category": "Education and Arts"
+      },
+      "projeto_social_abencoe": {
+        "name": "Abençoe Social Project",
+        "description": "Donation of groceries, hygiene products, and toys for underprivileged children in the countryside.",
+        "impact": "Countryside children",
+        "category": "Child Protection"
+      }
+    }
+  },
+  "careers": {
+    "page_title": "Work with Us",
+    "section_subtitle": "CAREER OPPORTUNITIES",
+    "section_title": "WORK WITH US",
+    "section_description": "Join our team of qualified professionals and be part of a company committed to legal excellence.",
+    "form": {
+      "full_name": "Full Name",
+      "full_name_placeholder": "Enter your full name",
+      "email": "Email",
+      "email_placeholder": "Enter your email",
+      "phone": "Phone",
+      "phone_placeholder": "(11) 99999-9999",
+      "area_of_interest": "Area of Interest",
+      "area_of_interest_placeholder": "Select an area",
+      "experience": "Professional Experience",
+      "experience_placeholder": "Briefly describe your experience",
+      "resume": "Resume",
+      "resume_placeholder": "Attach your resume (PDF, DOC, DOCX)",
+      "cover_letter": "Cover Letter",
+      "cover_letter_placeholder": "Tell us why you would like to work with us",
+      "privacy_consent": "I agree with the processing of my personal data according to LGPD",
+      "submit_button": "Continue",
+      "submitting": "Submitting data...",
+      "success_title": "Application submitted successfully!",
+      "success_message": "We will contact you soon.",
+      "required_field": "This field is required",
+      "invalid_email": "Please enter a valid email",
+      "invalid_phone": "Please enter a valid phone number",
+      "file_too_large": "File must be no larger than 5MB",
+      "invalid_file_type": "Unsupported file format",
+      "file_upload": {
+        "click_to_upload": "Click to upload",
+        "drag_file_here": " or drag file here",
+        "file_selected": "File selected",
+        "help_text": "Accepted formats: PDF, DOC, DOCX (max 5MB)",
+        "file_too_large": "File too large. Maximum allowed size: 5MB",
+        "invalid_file_type": "Invalid file type. Accepted formats: PDF, DOC, DOCX"
+      }
     },
-    "enterprise": {
-        "section_subtitle": "COMPANY",
-        "description": "We are a company specialized in personalized legal advice and consulting for small and medium-sized businesses, offering drafting of documents, legal opinions, complete reports, and comprehensive support in labor matters. For the general public, we work on banking demands, such as repossession processes, account blocks, and other areas of Consumer Law. We have a team of over 60 employees and legal assistants prepared to deliver the best service to companies and individuals.",
-        "location": "We are located at {address}"
+    "areas": {
+      "0": "Civil Law",
+      "1": "Criminal Law",
+      "2": "Labor Law",
+      "3": "Consumer Law",
+      "4": "Banking Law",
+      "5": "Contracts",
+      "6": "Consulting",
+      "7": "Administrative"
     },
-    "ceo": {
-        "section_subtitle": "FOUNDER",
-        "section_title": "LEADING OUR VISION",
-        "description": "A lawyer specializing in banking and consumer law, he graduated in law from Anhanguera University in 2018. With extensive experience in managing processes, people and business recovery, he has led a team of more than 60 employees, including lawyers and legal assistants, since 2023, when he took over the management of Mediari and led the company to exponential and upward growth. After working for years in commercial management and corporate crises, he currently dedicates his career to assisting companies and consumers seeking legal protection for situations of injustice that damage their most basic rights in our society.",
-        "quote": "\"Justice is not a privilege, it is a right - and our mission is to ensure that it is accessible to all.\""
-    },
-    "team": {
-        "section_subtitle": "TEAM",
-        "section_title": "OUR HIGHLIGHTS",
-        "description": "With over 60 employees and legal assistants, we deliver excellence in all services."
-    },
-    "contact": {
-        "section_subtitle": "CONTACT US",
-        "section_title": "GET IN TOUCH",
-        "description": "Contact us through our networks and have your rights protected.",
-        "instagram": "Talk via Instagram",
-        "phone": "Call Us",
-        "email": "Send an Email",
-        "linkedin": "Connect on LinkedIn"
-    },
-    "navbar": {
-        "home": "Home",
-        "services": "Areas of Expertise",
-        "enterprise": "Company",
-        "founder": "Founder",
-        "team": "Team",
-        "contact": "Contact Us"
+    "error_message": "An error occurred while submitting your application. Please try again.",
+    "profile_test": {
+      "title": "Behavioral Test",
+      "subtitle": "PERSONALITY ASSESSMENT",
+      "description": "For each group of options below, select the one that best describes you and answer honestly to help us understand your professional profile.",
+      "predominant": "Predominant profile",
+      "answer": "Answer",
+      "labels": {
+        "A": "INFLUENCER",
+        "B": "DOMINANT",
+        "C": "ANALYTICAL",
+        "D": "STEADY"
+      },
+      "progress_text": "{answered} of {total} questions answered",
+      "incomplete": "Incomplete test. Answer all options.",
+      "groups": [
+        {
+          "A": "Lively",
+          "B": "Adventurous",
+          "C": "Analytical",
+          "D": "Adaptable"
+        },
+        { "A": "Playful", "B": "Persuasive", "C": "Persistent", "D": "Serene" },
+        {
+          "A": "Sociable",
+          "B": "Energetic",
+          "C": "Giving",
+          "D": "Accommodating"
+        },
+        {
+          "A": "Convincing",
+          "B": "Competitive",
+          "C": "Considerate",
+          "D": "Controlled"
+        },
+        {
+          "A": "Stimulating",
+          "B": "Skilled",
+          "C": "Respectful",
+          "D": "Reserved"
+        },
+        {
+          "A": "Witty",
+          "B": "Self-sufficient",
+          "C": "Sensitive",
+          "D": "Content"
+        },
+        { "A": "Charming", "B": "Positive", "C": "Planner", "D": "Patient" },
+        { "A": "Spontaneous", "B": "Confident", "C": "Organized", "D": "Shy" },
+        { "A": "Optimistic", "B": "Frank", "C": "Orderly", "D": "Servile" },
+        { "A": "Funny", "B": "Vigorous", "C": "Loyal", "D": "Friendly" },
+        {
+          "A": "Enchanting",
+          "B": "Daring",
+          "C": "Meticulous",
+          "D": "Diplomatic"
+        },
+        {
+          "A": "Joyful",
+          "B": "Confident",
+          "C": "Cultured",
+          "D": "Predictable"
+        },
+        {
+          "A": "Inspired",
+          "B": "Independent",
+          "C": "Idealistic",
+          "D": "Harmless"
+        },
+        { "A": "Expressive", "B": "Decisive", "C": "Deep", "D": "Ironic" },
+        { "A": "Uninhibited", "B": "Active", "C": "Musical", "D": "Mediating" },
+        { "A": "Talkative", "B": "Firm", "C": "Thoughtful", "D": "Tolerant" },
+        { "A": "Conceited", "B": "Bossy", "C": "Timid", "D": "Empty" },
+        {
+          "A": "Undisciplined",
+          "B": "Insensitive",
+          "C": "Resentful",
+          "D": "Disinterested"
+        },
+        { "A": "Vivid", "B": "Leader", "C": "Loyal", "D": "Listener" },
+        {
+          "A": "Attractive",
+          "B": "Authoritative",
+          "C": "Detail-oriented",
+          "D": "Content"
+        },
+        {
+          "A": "Popular",
+          "B": "Productive",
+          "C": "Perfectionist",
+          "D": "Pleasant"
+        },
+        { "A": "Lively", "B": "Brave", "C": "Well-behaved", "D": "Balanced" },
+        {
+          "A": "Repeatable",
+          "B": "Inflexible",
+          "C": "Resentful",
+          "D": "Reluctant"
+        },
+        { "A": "Forgetful", "B": "Frank", "C": "Complicated", "D": "Fearful" },
+        {
+          "A": "Inopportune",
+          "B": "Impatient",
+          "C": "Insecure",
+          "D": "Indecisive"
+        },
+        {
+          "A": "Unpredictable",
+          "B": "Cold",
+          "C": "Unpopular",
+          "D": "Detached"
+        },
+        {
+          "A": "Casual",
+          "B": "Stubborn",
+          "C": "Dissatisfied",
+          "D": "Exciting"
+        },
+        { "A": "Permissive", "B": "Proud", "C": "Cautious", "D": "Simple" },
+        {
+          "A": "Hot-tempered",
+          "B": "Argumentative",
+          "C": "Alienated",
+          "D": "Uncertain"
+        },
+        { "A": "Naive", "B": "Bold", "C": "Negative", "D": "Indifferent" },
+        {
+          "A": "Selfish",
+          "B": "Hardworking",
+          "C": "Withdrawn",
+          "D": "Worried"
+        },
+        { "A": "Chatty", "B": "Rude", "C": "Overly sensitive", "D": "Shy" },
+        {
+          "A": "Disorganized",
+          "B": "Bossy",
+          "C": "Depressed",
+          "D": "Confused"
+        },
+        {
+          "A": "Inconstant",
+          "B": "Intolerant",
+          "C": "Introverted",
+          "D": "Apathetic"
+        },
+        { "A": "Messy", "B": "Manipulative", "C": "Sad", "D": "Grumpy" },
+        { "A": "Convinced", "B": "Stubborn", "C": "Skeptical", "D": "Slow" },
+        { "A": "Loud", "B": "Tyrannical", "C": "Solitary", "D": "Lazy" },
+        {
+          "A": "Distracted",
+          "B": "Irritable",
+          "C": "Suspicious",
+          "D": "Slow-moving"
+        },
+        {
+          "A": "Agitated",
+          "B": "Reckless",
+          "C": "Vindictive",
+          "D": "Reluctant"
+        },
+        {
+          "A": "Unstable",
+          "B": "Cunning",
+          "C": "Critical",
+          "D": "Accommodating"
+        }
+      ],
+      "submit": "Finish test",
+      "submitting": "Submitting answers...",
+      "completion_title": "Test Completed!",
+      "completion_message": "Thank you for completing the test. Your answers have been recorded successfully.",
+      "return_home": "Return Home"
+    }
+  },
+  "admin": {
+    "login": {
+      "page_title": "Administrative Login",
+      "page_description": "Restricted access for system administrators",
+      "title": "Administrative Panel",
+      "welcome_back": "Welcome back!",
+      "welcome_message": "Log in to access the Mediari Consultoria administrative panel.",
+      "email": "E-mail",
+      "password": "Password",
+      "password_placeholder": "Enter your password",
+      "sign_in": "Sign In",
+      "logging_in": "Signing in...",
+      "error_title": "Authentication Error",
+      "invalid_credentials": "Incorrect email or password. Please try again.",
+      "server_error": "Server error. Please try again in a few minutes.",
+      "user_disabled": "Account disabled. Contact support.",
+      "too_many_requests": "Too many attempts. Please try again later.",
+      "session_error": "Unable to start session. Please try again.",
+      "network_error": "Network issue. Check your connection and try again.",
+      "hide_password": "Hide password",
+      "show_password": "Show password"
     },
     "footer": {
-        "highlights": [
-            {
-                "title": "100% Secure Site",
-                "desc": "SSL encryption for your protection"
-            },
-            {
-                "title": "Industry Reference",
-                "desc": "Well-rated service"
-            },
-            {
-                "title": "Protected Access",
-                "desc": "Stable and reliable navigation"
-            }
-        ],
-        "menu_title": "MENU",
-        "areas_title": "AREAS OF EXPERTISE"
-        ,
-        "all_rights_reserved": "All Rights Reserved"
+      "copyright": "©",
+      "admin_panel": "Administrative Panel",
+      "aria_label": "Admin panel footer"
     },
-    "error": {
-        "title": "Page Not Found",
-        "not_found": "Oops! The page you are looking for was not found.",
-        "unexpected": "An unexpected error occurred. Please try again later.",
-        "back_home": "Back to home page",
-        "back_home_aria": "Back to home page"
+    "candidates": {
+      "page_title": "Application Analysis",
+      "candidates_list": "Candidate List",
+      "total_applications": "{count} application(s) received",
+      "refresh": "Refresh",
+      "search_placeholder": "Search by name or email...",
+      "all_areas": "All areas",
+      "no_results": "No results found for the applied filters.",
+      "no_candidates": "No applications received yet.",
+      "test_score": "Test",
+      "select_candidate": "Select a candidate",
+      "select_candidate_description": "Choose a candidate from the list on the side to view their detailed information.",
+      "submitted_on": "Submitted on",
+      "open_resume": "Open Resume",
+      "download_not_available": "Download not available for this candidate.",
+      "download_failed": "Failed to generate download link. Please try again.",
+      "delete": "Delete",
+      "deleting": "Deleting...",
+      "delete_candidate": "Delete Candidate",
+      "delete_confirm": "To confirm deletion, type the word 'delete' (without quotes):",
+      "delete_failed": "Failed to delete candidate. Please try again.",
+      "resume_file": "Resume File",
+      "no_file": "No file attached",
+      "test_summary": "Behavioral Test Summary",
+      "behavioral_insights": "Behavioral Profile",
+      "no_answer": "Not answered"
     },
-    "seo": {
-        "title": "Law for Companies and Individuals",
-        "description": "Legal consulting for small and medium businesses and individuals. Specialists in Labor, Banking, and Consumer Law."
+    "nav": {
+      "users": "Administrators",
+      "candidates": "Candidates",
+      "admin_default": "Admin",
+      "logout": "Logout",
+      "logging_out": "Logging out...",
+      "logout_short": "Logout",
+      "logging_out_short": "...",
+      "close_menu": "Close navigation menu",
+      "open_menu": "Open navigation menu"
+    },
+    "users": {
+      "page_title": "Administrators",
+      "page_description": "List of all administrator accounts in Firebase.",
+      "refresh": "Refresh",
+      "total": "{count} administrator(s)",
+      "name": "Name",
+      "email": "Email",
+      "created": "Created",
+      "last_login": "Last sign-in",
+      "no_users": "No administrators found.",
+      "next_page": "Next page",
+      "loading": "Loading...",
+      "delete_user": "Delete",
+      "actions": "Actions",
+      "delete_confirmation": "Are you sure you want to delete user {email}? This action cannot be undone.",
+      "delete_success": "User deleted successfully",
+      "delete_error": "Error deleting user",
+      "cannot_delete_self": "You cannot delete your own account.",
+      "cannot_delete_super_admin": "You cannot delete a Super Administrator.",
+      "create_user": "Create Administrator",
+      "create": "Create",
+      "password": "Password",
+      "display_name": "Display Name",
+      "email_placeholder": "admin{'@'}example.com",
+      "password_placeholder": "Minimum 6 characters",
+      "password_help": "Password must be at least 6 characters long",
+      "display_name_placeholder": "Full Name (optional)",
+      "create_success": "Administrator created successfully",
+      "create_error": "Error creating administrator",
+      "confirm_password": "Confirm password",
+      "confirm_password_placeholder": "Confirm the password",
+      "show_password": "Show password",
+      "hide_password": "Hide password",
+      "password_mismatch": "Passwords do not match.",
+      "role": "Type",
+      "role_super": "Super",
+      "role_restricted": "Restricted",
+      "role_super_help": "Has full permissions (create/delete other admins)",
+      "role_restricted_help": "Cannot create or delete other administrators"
     }
+  }
 }

@@ -1,0 +1,23 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Regras para arquivos de candidatos
+    match /candidates/{allPaths=**} {
+      // Não permitir leitura ou escrita direta do cliente
+      // Todo acesso deve ser via signed URLs gerados pelo backend
+      allow read, write: if false;
+    }
+
+    // Regra específica para pasta temporária
+    match /candidates/temp/{fileName} {
+      // Não permitir leitura ou escrita direta do cliente
+      // Upload deve ser feito via signed URL gerado pelo servidor
+      allow read, write: if false;
+    }
+
+    // Negar acesso a todos os outros caminhos por padrão
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

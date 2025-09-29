@@ -1,0 +1,22 @@
+[
+  {
+    "origin": [
+      "https://mediariconsultoria.com.br",
+      "https://www.mediariconsultoria.com.br"
+    ],
+    "method": ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+    "maxAgeSeconds": 3600,
+    "responseHeader": [
+      "Content-Type",
+      "Content-Length",
+      "Content-MD5",
+      "Content-Range",
+      "ETag",
+      "x-goog-acl",
+      "x-goog-content-length-range",
+      "x-goog-if-generation-match",
+      "x-goog-if-metageneration-match",
+      "x-goog-resumable"
+    ]
+  }
+]
