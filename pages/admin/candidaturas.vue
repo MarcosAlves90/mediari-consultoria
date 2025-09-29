@@ -53,7 +53,7 @@
       <div
         class="flex flex-col sm:flex-row items-stretch sm:items-center gap-0.5 sm:gap-1 w-full sm:w-auto"
       >
-        <div class="actions-text text-sm self-center">
+        <div class="actions-text text-sm self-center max-md:self-start">
           {{
             t('admin.candidates.total_applications', {
               count: candidates.length,
@@ -79,7 +79,7 @@
   </AdminHeader>
 
   <main
-    class="max-w-7xl w-full mx-auto px-0.5 500:px-1 870:px-1.5 py-1 870:py-1.5"
+    class="max-w-7xl w-full mx-auto px-1 870:px-1.5 py-1 870:py-1.5"
   >
     <div class="grid grid-cols-1 870:grid-cols-3 gap-1 870:gap-1.5">
       <div class="870:col-span-1">
