@@ -1,7 +1,7 @@
 <template>
   <header class="bg-accent-color shadow-md">
     <div
-      class="max-w-7xl mx-auto px-1 sm:px-1.5 lg:px-2 py-1"
+      class="max-w-7xl mx-auto w-full px-0.5 500:px-1 870:px-1.5 py-1"
     >
       <div
         class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-1.5"
