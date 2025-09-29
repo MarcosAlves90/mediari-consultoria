@@ -1,3 +1,43 @@
+<script setup lang="ts">
+  // TODO: Corrigir skeletons
+  import { useI18n } from 'vue-i18n'
+  import type { Candidate } from '~/composables/page-admin/useAdminCandidates'
+  import Skeleton from '~/components/atoms/Skeleton.vue'
+  import CandidatePersonalInfo from './CandidatePersonalInfo.vue'
+  import CandidateExperience from './CandidateExperience.vue'
+  import CandidateCoverLetter from './CandidateCoverLetter.vue'
+  import CandidateTestResults from './CandidateTestResults.vue'
+
+  interface Props {
+    candidate: Candidate | null
+    groups: Array<Record<'A' | 'B' | 'C' | 'D', string>>
+    isLoading?: boolean
+  }
+
+  const props = defineProps<Props>()
+  const { t } = useI18n()
+
+  const handleResumeDownload = async () => {
+    if (!props.candidate?.resumeStoragePath) return
+
+    try {
+      const response = await $fetch<{ downloadUrl?: string }>(
+        '/api/admin/careers/download',
+        {
+          method: 'POST',
+          body: { storagePath: props.candidate.resumeStoragePath },
+        }
+      )
+
+      if (response.downloadUrl) {
+        window.open(response.downloadUrl, '_blank')
+      }
+    } catch (error) {
+      console.error('Error generating download URL:', error)
+    }
+  }
+</script>
+
 <template>
   <div
     v-if="isLoading"
@@ -52,42 +92,3 @@
     />
   </div>
 </template>
-
-<script setup lang="ts">
-  import { useI18n } from 'vue-i18n'
-  import type { Candidate } from '~/composables/page-admin/useAdminCandidates'
-  import Skeleton from '~/components/atoms/Skeleton.vue'
-  import CandidatePersonalInfo from './CandidatePersonalInfo.vue'
-  import CandidateExperience from './CandidateExperience.vue'
-  import CandidateCoverLetter from './CandidateCoverLetter.vue'
-  import CandidateTestResults from './CandidateTestResults.vue'
-
-  interface Props {
-    candidate: Candidate | null
-    groups: Array<Record<'A' | 'B' | 'C' | 'D', string>>
-    isLoading?: boolean
-  }
-
-  const props = defineProps<Props>()
-  const { t } = useI18n()
-
-  const handleResumeDownload = async () => {
-    if (!props.candidate?.resumeStoragePath) return
-
-    try {
-      const response = await $fetch<{ downloadUrl?: string }>(
-        '/api/admin/careers/download',
-        {
-          method: 'POST',
-          body: { storagePath: props.candidate.resumeStoragePath },
-        }
-      )
-
-      if (response.downloadUrl) {
-        window.open(response.downloadUrl, '_blank')
-      }
-    } catch (error) {
-      console.error('Error generating download URL:', error)
-    }
-  }
-</script>
