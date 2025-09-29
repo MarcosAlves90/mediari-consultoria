@@ -64,7 +64,9 @@
   }
 
   const props = defineProps<Props>()
-  const candidate = props.candidate
+  // manter reatividade quando a prop `candidate` mudar
+  import { toRef } from 'vue'
+  const candidate = toRef(props, 'candidate')
   const emit = defineEmits<{
     downloadResume: []
     deleted: [string]
@@ -94,7 +96,7 @@
       alert(t('admin.candidates.delete_failed') as string)
       return
     }
-    const id = candidate?.id
+    const id = candidate.value?.id
     if (!id) return
     try {
       isDeleting.value = true
