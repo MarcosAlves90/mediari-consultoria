@@ -78,7 +78,9 @@
     </template>
   </AdminHeader>
 
-  <main class="max-w-7xl w-full mx-auto px-0.5 500:px-1 870:px-1.5 py-1 870:py-1.5">
+  <main
+    class="max-w-7xl w-full mx-auto px-0.5 500:px-1 870:px-1.5 py-1 870:py-1.5"
+  >
     <div class="grid grid-cols-1 870:grid-cols-3 gap-1 870:gap-1.5">
       <div class="870:col-span-1">
         <CandidatesList
