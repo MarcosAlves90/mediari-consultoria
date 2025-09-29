@@ -74,7 +74,7 @@
 
 <template>
   <div
-    class="bg-body-bg-dark rounded border-2 border-accent-color flex flex-col h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36"
+    class="bg-body-bg-dark rounded border-2 border-accent-color flex flex-col h-24 md:h-28 lg:h-32 xl:h-36"
   >
     <div class="border-b-2 border-body-bg flex-shrink-0">
       <h2
