@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
   import { useProfileTest } from '~/composables/page-careers'
   import { useI18n } from 'vue-i18n'
   import { ref, onMounted, watch } from 'vue'
