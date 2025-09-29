@@ -17,13 +17,21 @@ export default defineEventHandler(async (event) => {
     const decoded: DecodedIdToken = await admin
       .auth()
       .verifySessionCookie(cookie, true);
-    // decoded pode conter email, nome e customClaims dependendo do provedor
+    // decoded pode conter email, nome e claims/custom claims dependendo do provedor
+    // Em tokens do Firebase as custom claims podem aparecer no próprio objeto decoded
+    // (por exemplo `decoded.admin === true`) ou em campos nomeados differently.
+    // Para garantir que o front receba os claims (admin/restrictedAdmin/superAdmin)
+    // retornamos todo o objeto decoded como `customClaims` para que useCurrentUser
+    // possa acessar `claims.admin` / `claims.superAdmin` corretamente.
+    const decodedAsRecord = decoded as Record<string, unknown>;
+
     return {
       authenticated: true,
       uid: decoded.uid,
       email: decoded.email || null,
       name: decoded.name || decoded.email || null,
-      customClaims: decoded.custom_claims || null,
+      // Retorna o objeto completo com claims (compatível com outras partes do código)
+      customClaims: decodedAsRecord || null,
     };
   } catch {
     return { authenticated: false };
