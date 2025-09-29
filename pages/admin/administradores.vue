@@ -25,7 +25,7 @@
     createUser,
     deleteUser,
     canDeleteUser,
-  } = useAdminUsers(computed(() => currentUser.value?.uid || null))
+  } = useAdminUsers(computed(() => currentUser.value))
 
   // Estado do modal de criação
   const isCreateModalOpen = ref(false)
@@ -100,6 +100,22 @@
 
     // Verifica se o usuário pode ser deletado
     if (!canDeleteUser(uid)) {
+      const currentUid = currentUser.value?.uid
+
+      // Se for a própria conta
+      if (currentUid && currentUid === uid) {
+        alert(t('admin.users.cannot_delete_self'))
+        return
+      }
+
+      // Se for super admin
+      const target = filteredUsers.value.find((u) => u.uid === uid)
+      if (target?.customClaims?.superAdmin) {
+        alert(t('admin.users.cannot_delete_super_admin'))
+        return
+      }
+
+      // Caso genérico
       alert(t('admin.users.cannot_delete_self'))
       return
     }
@@ -120,6 +136,17 @@
       alert(t('admin.users.delete_error'))
     }
   }
+
+  // Computed properties para verificar permissões
+  const canCreateAdmin = computed(() => {
+    const claims = currentUser.value?.claims
+    return claims && claims.admin && !claims.restrictedAdmin
+  })
+
+  const canDeleteAdmin = computed(() => {
+    const claims = currentUser.value?.claims
+    return claims && claims.admin && !claims.restrictedAdmin
+  })
 </script>
 
 <template>
@@ -131,6 +158,7 @@
         </div>
 
         <button
+          v-if="canCreateAdmin"
           @click="openCreateModal"
           :disabled="isLoading"
           class="common-button"
@@ -176,10 +204,13 @@
               <th class="p-1 w-1/4 min-w-[180px]">
                 {{ t('admin.users.created') }}
               </th>
+              <th class="p-1 w-1/6 min-w-[120px]">
+                {{ t('admin.users.role') || 'Tipo' }}
+              </th>
               <th class="p-1 w-1/4 min-w-[180px]">
                 {{ t('admin.users.last_login') }}
               </th>
-              <th class="p-1 w-1/6 min-w-[120px]">
+              <th v-if="canDeleteAdmin" class="p-1 w-1/6 min-w-[120px]">
                 {{ t('admin.users.actions') }}
               </th>
             </tr>
@@ -211,7 +242,7 @@
                     height="1.2rem"
                   />
                 </td>
-                <td class="p-1">
+                <td v-if="canDeleteAdmin" class="p-1">
                   <Skeleton width="80px" height="1.2rem" />
                 </td>
               </tr>
@@ -226,9 +257,21 @@
                 <td class="p-1">{{ u.email }}</td>
                 <td class="p-1">{{ (u.displayName as string) || '—' }}</td>
                 <td class="p-1">{{ formatDate(u.createdAt) }}</td>
-                <td class="p-1">{{ formatDate(u.lastSignInAt) }}</td>
                 <td class="p-1">
+                  {{
+                    (u.customClaims &&
+                      (u.customClaims.superAdmin
+                        ? t('admin.users.role_super') || 'Super'
+                        : u.customClaims.restrictedAdmin
+                          ? t('admin.users.role_restricted') || 'Restrito'
+                          : '—')) ||
+                    '—'
+                  }}
+                </td>
+                <td class="p-1">{{ formatDate(u.lastSignInAt) }}</td>
+                <td v-if="canDeleteAdmin" class="p-1">
                   <button
+                    v-if="canDeleteUser(u.uid)"
                     @click="handleDeleteUser(u)"
                     :disabled="isLoading"
                     class="common-button flex items-center justify-center gap-1"
@@ -237,11 +280,14 @@
                     <Icon name="mdi:delete" />
                     {{ t('admin.users.delete_user') }}
                   </button>
+                  <span v-else class="text-gray-500 text-sm"> — </span>
                 </td>
               </tr>
 
               <tr v-if="filteredUsers.length === 0">
-                <td class="p-1" colspan="5">{{ t('admin.users.no_users') }}</td>
+                <td class="p-1" :colspan="canDeleteAdmin ? 6 : 5">
+                  {{ t('admin.users.no_users') }}
+                </td>
               </tr>
             </template>
           </tbody>
