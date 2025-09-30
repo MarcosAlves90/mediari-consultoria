@@ -1,7 +1,7 @@
 <template>
   <div class="bg-body-bg-dark rounded border-2 border-accent-color">
     <div class="p-1.5">
-      <div class="flex items-start justify-between mb-1">
+      <div class="flex items-start justify-between mb-1 max-sm:flex-col max-sm:gap-1">
         <div>
           <h2 class="text-xl font-semibold text-primary-text">
             {{ candidate.fullName }}
@@ -11,11 +11,11 @@
             {{ formatDate(candidate.submittedAt) }}
           </p>
         </div>
-        <div class="flex gap-0.5">
+        <div class="flex gap-0.5 max-sm:w-full max-sm:flex-col">
           <button
             :disabled="!candidate.resumeStoragePath"
             :class="[
-              'common-button flex items-center',
+              'common-button flex items-center max-sm:w-full',
               !candidate.resumeStoragePath && 'opacity-50 cursor-not-allowed',
             ]"
             @click="$emit('downloadResume')"
@@ -26,7 +26,7 @@
 
           <button
             :disabled="isDeleting"
-            class="common-button flex items-center"
+            class="common-button flex items-center max-sm:w-full"
             @click="handleDelete"
             title="{{ t('admin.candidates.delete_candidate') }}"
           >
