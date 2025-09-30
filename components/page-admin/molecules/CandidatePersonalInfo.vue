@@ -30,7 +30,7 @@
             :disabled="isDeleting"
             class="common-button flex items-center max-sm:w-full"
             @click="handleDelete"
-            title="{{ t('admin.candidates.delete_candidate') }}"
+            :title="t('admin.candidates.delete_candidate')"
           >
             <Icon name="mdi:trash-can-outline" class="w-1 h-1 mr-0.5" />
             <span v-if="!isDeleting">{{ t('admin.candidates.delete') }}</span>
