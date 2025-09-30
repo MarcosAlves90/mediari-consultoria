@@ -154,7 +154,7 @@
         <div
           v-for="action in socialActions"
           :key="action.id"
-          class="homepage__social-action-card group relative flex flex-col items-center overflow-hidden rounded-sm bg-accent-color p-1 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+          class="homepage__social-action-card group relative flex flex-col items-center overflow-hidden rounded-sm bg-accent-color p-1 transition-all duration-300 ease-in-out lg:hover:scale-101 lg:hover:shadow-lg"
           role="listitem"
           :aria-labelledby="`action-title-${action.id}`"
           :aria-describedby="`action-desc-${action.id}`"

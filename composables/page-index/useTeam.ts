@@ -6,10 +6,8 @@ import { ref } from 'vue';
 export const useTeam = () => {
   const teamImages = ref<string[]>([
     'fernanda-assis_sqa0ag_didohw.webp',
-    'letícia-ferreira_qliwdi_aw9w4j.webp',
     'lucas-jesus_svwujc_fwxeqy.webp',
     'millena-vieira_kbs5vt_lzhvnu.webp',
-    'mylena-barboza_ermcjh_rq4laa.webp',
     'roberta-curcio_nokbvj_pyym69.webp',
     'ingrid-pacheco_uuazeo_usy5vx.webp',
   ]);

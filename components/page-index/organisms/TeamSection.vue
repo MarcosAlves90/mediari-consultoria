@@ -43,13 +43,13 @@
         {{ t('team.description') }}
       </p>
       <div
-        class="homepage__team-list grid gap-0.5 mt-1 grid-cols-7 max-xl:grid-cols-5 max-lg:grid-cols-4 max-sm:grid-cols-2"
+        class="homepage__team-list grid gap-0.5 mt-1 grid-cols-5 max-lg:grid-cols-4 max-sm:grid-cols-2"
         role="list"
       >
         <div
           v-for="(img, idx) in teamImages"
           :key="idx"
-          class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm transition-transform duration-200 lg:hover:scale-105"
+          class="homepage__team-card relative flex flex-col items-center overflow-hidden rounded-t-sm aspect-[3/4] transition-all duration-300 lg:hover:scale-102 lg:hover:shadow-lg"
           role="listitem"
         >
           <NuxtImg
