@@ -8,7 +8,7 @@
       class="bg-body-bg border-2 border-accent-color rounded p-1 sm:p-1.5 w-full max-w-xl mx-1 sm:mx-4"
       @click.stop
     >
-      <div class="flex justify-between items-center mb-2">
+      <div class="flex justify-between items-center mb-1">
         <h2 class="text-xl font-semibold">
           {{ t('admin.users.create_user') }}
         </h2>
@@ -21,7 +21,7 @@
         </button>
       </div>
 
-      <form @submit.prevent="handleSubmit" class="space-y-2">
+      <form @submit.prevent="handleSubmit" class="space-y-1">
         <div>
           <label for="email" class="block text-sm font-medium mb-0.5">
             {{ t('admin.users.email') }} *
@@ -142,8 +142,8 @@
           <label class="block text-sm font-medium mb-0.5 max-sm:mb-1">{{
             t('admin.users.role') || 'Tipo de administrador'
           }}</label>
-          <div class="flex gap-3 items-start max-sm:flex-col max-sm:gap-1">
-            <label class="flex items-start gap-1 text-sm cursor-pointer">
+          <div class="items-start gap-1 grid grid-cols-2">
+            <label class="flex items-center gap-1 text-sm cursor-pointer">
               <input
                 type="radio"
                 name="role"
@@ -155,7 +155,7 @@
                 <div class="font-medium">
                   {{ t('admin.users.role_super') || 'Super admin' }}
                 </div>
-                <div class="text-xs text-gray-400">
+                <div class="max-sm:hidden text-xs text-gray-400">
                   {{
                     t('admin.users.role_super_help') ||
                     'Tem permissão plena (criar/excluir outros admins)'
@@ -164,7 +164,7 @@
               </div>
             </label>
 
-            <label class="flex items-start gap-1 text-sm cursor-pointer">
+            <label class="flex items-center gap-1 text-sm cursor-pointer">
               <input
                 type="radio"
                 name="role"
@@ -179,7 +179,7 @@
                     'Administrador (restrito)'
                   }}
                 </div>
-                <div class="text-xs text-gray-400">
+                <div class="max-sm:hidden text-xs text-gray-400">
                   {{
                     t('admin.users.role_restricted_help') ||
                     'Não pode criar ou deletar outros administradores'
@@ -194,7 +194,7 @@
           {{ error }}
         </div>
 
-        <div class="flex gap-3 sm:pt-1 max-sm:gap-1">
+        <div class="flex gap-1">
           <button
             type="button"
             @click="closeModal"
@@ -219,7 +219,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, computed, watch } from 'vue'
+  import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
   import { useI18n } from 'vue-i18n'
   import ButtonLoader from '~/components/atoms/ButtonLoader.vue'
 
@@ -308,4 +308,72 @@
       }
     }
   )
+
+  // --- Bloqueio de scroll do body quando o modal está aberto ---
+  // Guardamos valores originais para restaurar corretamente e evitar 'jump' no layout.
+  let originalBodyOverflow: string | null = null
+  let originalBodyPaddingRight: string | null = null
+
+  const isBrowser =
+    typeof document !== 'undefined' && typeof window !== 'undefined'
+
+  function lockBodyScroll() {
+    if (!isBrowser) return
+
+    const body = document.body
+    // Se já está travado por nós, não reaplicar
+    if (body.dataset.__modalScrollLocked === 'true') return
+
+    originalBodyOverflow = body.style.overflow || null
+    originalBodyPaddingRight = body.style.paddingRight || null
+
+    // Compensa a largura da scrollbar para evitar shift de layout
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth
+    if (scrollBarWidth > 0) {
+      body.style.paddingRight = `${scrollBarWidth}px`
+    }
+
+    body.style.overflow = 'hidden'
+    body.dataset.__modalScrollLocked = 'true'
+  }
+
+  function unlockBodyScroll() {
+    if (!isBrowser) return
+
+    const body = document.body
+    // Só restaurar se tivermos marcado anteriormente
+    if (body.dataset.__modalScrollLocked !== 'true') return
+
+    if (originalBodyOverflow !== null)
+      body.style.overflow = originalBodyOverflow
+    else body.style.removeProperty('overflow')
+
+    if (originalBodyPaddingRight !== null)
+      body.style.paddingRight = originalBodyPaddingRight
+    else body.style.removeProperty('padding-right')
+
+    delete body.dataset.__modalScrollLocked
+    originalBodyOverflow = null
+    originalBodyPaddingRight = null
+  }
+
+  // Observa abertura/fechamento do modal e aplica travamento
+  watch(
+    () => props.isOpen,
+    (isOpen) => {
+      if (isOpen) lockBodyScroll()
+      else unlockBodyScroll()
+    }
+  )
+
+  // Em caso de SSR/estado inicial
+  onMounted(() => {
+    if (props.isOpen) lockBodyScroll()
+  })
+
+  onBeforeUnmount(() => {
+    // Garante limpeza caso o componente seja destruído
+    unlockBodyScroll()
+  })
 </script>
