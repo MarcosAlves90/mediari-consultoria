@@ -77,8 +77,7 @@
       'flex items-start gap-0.75 mb-2 max-md:gap-0.5 max-md:mb-1.5',
     checkboxInput:
       "appearance-none w-4 h-4 min-w-[16px] min-h-[16px] border-2 border-gray-400 rounded-sm bg-white cursor-pointer flex-shrink-0 mt-0.5 max-md:mt-0.25 max-md:w-[14px] max-md:h-[14px] max-md:mt-[1px] relative transition-colors duration-200 hover:border-accent-color focus:outline-none focus:ring-3 focus:ring-accent-color/10 checked:bg-accent-color checked:border-accent-color checked:after:content-['✓'] checked:after:absolute checked:after:top-[-2px] checked:after:left-[1px] checked:after:text-white checked:after:text-xs checked:after:font-bold max-md:checked:after:text-[10px] max-md:checked:after:top-[-1px] max-md:checked:after:left-[1px]",
-    checkboxLabel:
-      'text-xs text-primary-text leading-relaxed cursor-pointer select-none',
+    checkboxLabel: 'text-xs text-primary-text leading-relaxed select-none',
     submitButton:
       'common-button w-full text-base font-medium !min-h-[48px] mt-1.5 disabled:opacity-50 disabled:cursor-not-allowed max-md:!min-h-[42px] max-md:mt-1',
   } as const
@@ -327,11 +326,12 @@
           :aria-invalid="errors.privacyConsent ? 'true' : 'false'"
           aria-required="true"
           required
+          aria-labelledby="privacyConsent-label"
         />
-        <label for="privacyConsent" :class="CSS_CLASSES.checkboxLabel">
+        <span id="privacyConsent-label" :class="CSS_CLASSES.checkboxLabel">
           {{ t('careers.form.privacy_consent') }}
           <span class="text-accent-color">*</span>
-        </label>
+        </span>
       </div>
       <span
         v-if="errors.privacyConsent"
