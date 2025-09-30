@@ -18,7 +18,7 @@ logs
 .DS_Store
 .fleet
 .idea
-.github
+.github/copilot-instructions.md
 _old
 curriculo-teste.pdf
 docs/
