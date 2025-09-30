@@ -3,7 +3,7 @@
     <label class="block text-sm font-medium text-secondary-text mb-0.25">{{
       label
     }}</label>
-    <p class="text-primary-text">{{ value }}</p>
+    <p class="text-primary-text break-all">{{ value }}</p>
   </div>
 </template>
 

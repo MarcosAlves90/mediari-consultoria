@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  // TODO: Atualizar cors
   import { useI18n } from 'vue-i18n'
   import { watch, onMounted } from 'vue'
 

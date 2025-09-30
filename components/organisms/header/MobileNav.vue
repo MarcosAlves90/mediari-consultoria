@@ -60,6 +60,15 @@
     hamburguerMenuOpen.value = !hamburguerMenuOpen.value
   }
 
+  /**
+   * Computed para aria-label do botão hambúrguer, mantendo acessibilidade similar ao AdminNavbar.vue
+   */
+  const hamburgerAriaLabel = computed(() =>
+    hamburguerMenuOpen.value
+      ? t('admin.nav.close_menu')
+      : t('admin.nav.open_menu')
+  )
+
   defineExpose({
     hamburguerMenuOpen,
     toggleHamburguerMenu,
@@ -69,44 +78,40 @@
 <template>
   <template v-if="screenWidth < 1024">
     <button
-      class="app-header__hamburguer-menu common-button text-[1.5rem]"
-      :class="{
-        'app-header__hamburguer-menu--open bg-accent-color-2':
-          hamburguerMenuOpen,
-      }"
       @click="toggleHamburguerMenu"
-      :aria-label="
-        hamburguerMenuOpen
-          ? 'Fechar menu de navegação'
-          : 'Abrir menu de navegação'
-      "
+      :aria-label="hamburgerAriaLabel"
+      class="text-accent-color hover:bg-accent-color-2 p-0.5 rounded border-2 border-accent-color transition-colors duration-200"
     >
-      <!-- Container com tamanho fixo para evitar 'jump' quando o ícone ainda não carregou -->
-      <div
-        class="app-header__hamburguer-menu-icon-container w-[30px] h-[30px] relative"
-        key="icon-wrap"
-      >
-        <!-- Ambos ícones montados; alternamos visibilidade por classes para animar opacidade sem alterar layout -->
-        <Icon
-          :class="[
-            'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
-            { 'is-hidden': hamburguerMenuOpen },
-          ]"
-          name="mdi:menu"
-          aria-hidden="true"
-          key="menu"
-        />
-
-        <Icon
-          :class="[
-            'app-header__hamburguer-menu-icon icon-fade absolute inset-0 m-auto w-full h-full',
-            { 'is-hidden': !hamburguerMenuOpen },
-          ]"
-          name="mdi:close"
-          aria-hidden="true"
-          key="close"
-        />
-      </div>
+      <Transition name="icon-morph" mode="out-in">
+        <svg
+          v-if="!hamburguerMenuOpen"
+          class="h-1.5 w-1.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+        <svg
+          v-else
+          class="h-1.5 w-1.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </Transition>
     </button>
 
     <Transition name="slide-fade-nav">

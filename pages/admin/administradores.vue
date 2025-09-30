@@ -1,186 +1,202 @@
 <script setup lang="ts">
-import { onMounted, computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { AdminHeader, CreateUserModal } from '~/components/page-admin'
-import Skeleton from '~/components/atoms/Skeleton.vue'
-import {
-  useAdminUsers,
-  type AdminUser,
-} from '~/composables/page-admin/useAdminUsers'
-import { useCurrentUser } from '~/composables/page-admin/useCurrentUser'
+  import { onMounted, computed, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { AdminHeader, CreateUserModal } from '~/components/page-admin'
+  import Skeleton from '~/components/atoms/Skeleton.vue'
+  import {
+    useAdminUsers,
+    type AdminUser,
+  } from '~/composables/page-admin/useAdminUsers'
+  import { useCurrentUser } from '~/composables/page-admin/useCurrentUser'
 
-definePageMeta({ layout: 'admin', middleware: 'admin' })
+  definePageMeta({ layout: 'admin', middleware: 'admin' })
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-useSeoMeta({
-  title: `${t('admin.users.page_title')}`,
-  description: t('admin.users.page_description'),
-  robots: 'noindex, nofollow',
-})
+  useSeoMeta({
+    title: `${t('admin.users.page_title')}`,
+    description: t('admin.users.page_description'),
+    robots: 'noindex, nofollow',
+  })
 
-const { currentUser, loadCurrentUser } = useCurrentUser()
+  const { currentUser, loadCurrentUser } = useCurrentUser()
 
-const {
-  filteredUsers,
-  isLoading,
-  error,
-  nextPageToken,
-  loadUsers,
-  refresh,
-  createUser,
-  deleteUser,
-  canDeleteUser,
-} = useAdminUsers(computed(() => currentUser.value))
+  const {
+    filteredUsers,
+    isLoading,
+    error,
+    nextPageToken,
+    loadUsers,
+    refresh,
+    createUser,
+    deleteUser,
+    canDeleteUser,
+  } = useAdminUsers(computed(() => currentUser.value))
 
-// Estado do modal de criação
-const isCreateModalOpen = ref(false)
-const createModalError = ref<string | null>(null)
+  // Estado do modal de criação
+  const isCreateModalOpen = ref(false)
+  const createModalError = ref<string | null>(null)
 
-onMounted(async () => {
-  // Carrega primeiro o usuário atual (incl. claims) para evitar condições de corrida
-  // onde a lista de usuários é carregada antes da verificação das claims.
-  await loadCurrentUser()
-  await loadUsers()
-})
+  onMounted(async () => {
+    // Carrega primeiro o usuário atual (incl. claims) para evitar condições de corrida
+    // onde a lista de usuários é carregada antes da verificação das claims.
+    await loadCurrentUser()
+    await loadUsers()
+  })
 
-const loadNext = async () => {
-  if (nextPageToken.value) await loadUsers(nextPageToken.value)
-}
-
-// Recarrega informações do usuário atual antes de recarregar a lista.
-const doRefresh = async () => {
-  await loadCurrentUser()
-  await refresh()
-}
-
-const openCreateModal = () => {
-  createModalError.value = null
-  isCreateModalOpen.value = true
-}
-
-const closeCreateModal = () => {
-  createModalError.value = null
-  isCreateModalOpen.value = false
-}
-
-const handleCreateUser = async (userData: {
-  email: string
-  password: string
-  displayName?: string | undefined
-}) => {
-  createModalError.value = null
-
-  const result = await createUser(userData)
-
-  if (result.success) {
-    closeCreateModal()
-    // Opcional: mostrar mensagem de sucesso
-    console.log(t('admin.users.create_success'))
-  } else {
-    createModalError.value = error.value || t('admin.users.create_error')
+  const loadNext = async () => {
+    if (nextPageToken.value) await loadUsers(nextPageToken.value)
   }
-}
 
-function formatDate(value: unknown): string {
-  if (!value) return '—'
+  // Recarrega informações do usuário atual antes de recarregar a lista.
+  const doRefresh = async () => {
+    await loadCurrentUser()
+    await refresh()
+  }
 
-  // Trata strings ISO ou objetos com método toDate()
-  let d: Date | null = null
-  if (typeof value === 'string') {
-    const parsed = new Date(value)
-    if (!isNaN(parsed.getTime())) d = parsed
-  } else if (typeof value === 'object' && value !== null) {
-    if (typeof (value as { toDate?: unknown }).toDate === 'function') {
-      d = (value as { toDate: () => Date }).toDate()
+  const openCreateModal = () => {
+    createModalError.value = null
+    isCreateModalOpen.value = true
+  }
+
+  const closeCreateModal = () => {
+    createModalError.value = null
+    isCreateModalOpen.value = false
+  }
+
+  const handleCreateUser = async (userData: {
+    email: string
+    password: string
+    displayName?: string | undefined
+  }) => {
+    createModalError.value = null
+
+    const result = await createUser(userData)
+
+    if (result.success) {
+      closeCreateModal()
+      // Opcional: mostrar mensagem de sucesso
+      console.log(t('admin.users.create_success'))
+    } else {
+      createModalError.value = error.value || t('admin.users.create_error')
     }
   }
 
-  if (!d) return '—'
+  function formatDate(value: unknown): string {
+    if (!value) return '—'
 
-  return new Intl.DateTimeFormat('pt-BR', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(d)
-}
+    // Trata strings ISO ou objetos com método toDate()
+    let d: Date | null = null
+    if (typeof value === 'string') {
+      const parsed = new Date(value)
+      if (!isNaN(parsed.getTime())) d = parsed
+    } else if (typeof value === 'object' && value !== null) {
+      if (typeof (value as { toDate?: unknown }).toDate === 'function') {
+        d = (value as { toDate: () => Date }).toDate()
+      }
+    }
 
-const handleDeleteUser = async (user: AdminUser) => {
-  const email = user.email
-  const uid = user.uid
+    if (!d) return '—'
 
-  if (!uid) return
+    return new Intl.DateTimeFormat('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(d)
+  }
 
-  // Verifica se o usuário pode ser deletado
-  if (!canDeleteUser(uid)) {
-    const currentUid = currentUser.value?.uid
+  const handleDeleteUser = async (user: AdminUser) => {
+    const email = user.email
+    const uid = user.uid
 
-    // Se for a própria conta
-    if (currentUid && currentUid === uid) {
+    if (!uid) return
+
+    // Verifica se o usuário pode ser deletado
+    if (!canDeleteUser(uid)) {
+      const currentUid = currentUser.value?.uid
+
+      // Se for a própria conta
+      if (currentUid && currentUid === uid) {
+        alert(t('admin.users.cannot_delete_self'))
+        return
+      }
+
+      // Se for super admin
+      const target = filteredUsers.value.find((u) => u.uid === uid)
+      if (target?.customClaims?.superAdmin) {
+        alert(t('admin.users.cannot_delete_super_admin'))
+        return
+      }
+
+      // Caso genérico
       alert(t('admin.users.cannot_delete_self'))
       return
     }
 
-    // Se for super admin
-    const target = filteredUsers.value.find((u) => u.uid === uid)
-    if (target?.customClaims?.superAdmin) {
-      alert(t('admin.users.cannot_delete_super_admin'))
-      return
+    const confirmed = confirm(
+      t('admin.users.delete_confirmation', { email: email || uid })
+    )
+
+    if (!confirmed) return
+
+    const success = await deleteUser(uid)
+
+    if (success) {
+      // Opcional: mostrar mensagem de sucesso
+      console.log(t('admin.users.delete_success'))
+    } else {
+      // Opcional: mostrar mensagem de erro
+      alert(t('admin.users.delete_error'))
     }
-
-    // Caso genérico
-    alert(t('admin.users.cannot_delete_self'))
-    return
   }
 
-  const confirmed = confirm(
-    t('admin.users.delete_confirmation', { email: email || uid })
-  )
+  // Computed properties para verificar permissões
+  const canCreateAdmin = computed(() => {
+    const claims = currentUser.value?.claims
+    return claims && claims.admin && !claims.restrictedAdmin
+  })
 
-  if (!confirmed) return
-
-  const success = await deleteUser(uid)
-
-  if (success) {
-    // Opcional: mostrar mensagem de sucesso
-    console.log(t('admin.users.delete_success'))
-  } else {
-    // Opcional: mostrar mensagem de erro
-    alert(t('admin.users.delete_error'))
-  }
-}
-
-// Computed properties para verificar permissões
-const canCreateAdmin = computed(() => {
-  const claims = currentUser.value?.claims
-  return claims && claims.admin && !claims.restrictedAdmin
-})
-
-const canDeleteAdmin = computed(() => {
-  const claims = currentUser.value?.claims
-  return claims && claims.admin && !claims.restrictedAdmin
-})
+  const canDeleteAdmin = computed(() => {
+    const claims = currentUser.value?.claims
+    return claims && claims.admin && !claims.restrictedAdmin
+  })
 </script>
 
 <template>
   <AdminHeader :title="t('admin.users.page_title')">
     <template #actions>
-      <div class="flex items-center gap-0.5 sm:gap-1 max-md:flex-col max-md:w-full max-md:items-start">
+      <div
+        class="flex items-center gap-0.5 sm:gap-1 max-md:flex-col max-md:w-full max-md:items-start"
+      >
         <div class="actions-text text-sm">
           {{ t('admin.users.total', { count: filteredUsers.length }) }}
         </div>
 
         <div class="flex items-center gap-0.5 max-md:w-full max-sm:flex-col">
-          <button v-if="canCreateAdmin" @click="openCreateModal" :disabled="isLoading" class="common-button max-md:w-full"
-            :title="t('admin.users.create_user')">
+          <button
+            v-if="canCreateAdmin"
+            @click="openCreateModal"
+            :disabled="isLoading"
+            class="common-button max-md:w-full"
+            :title="t('admin.users.create_user')"
+          >
             <Icon name="mdi:plus" class="w-1 h-1" />
             <span>{{ t('admin.users.create_user') }}</span>
           </button>
 
-          <button @click="doRefresh" :disabled="isLoading" class="common-button max-md:w-full" :title="t('admin.users.refresh')">
-            <Icon name="mdi:refresh" class="w-1 h-1" :class="{ 'animate-spin': isLoading }" />
+          <button
+            @click="doRefresh"
+            :disabled="isLoading"
+            class="common-button max-md:w-full"
+            :title="t('admin.users.refresh')"
+          >
+            <Icon
+              name="mdi:refresh"
+              class="w-1 h-1"
+              :class="{ 'animate-spin': isLoading }"
+            />
             <span>{{ t('admin.users.refresh') }}</span>
           </button>
         </div>
@@ -189,7 +205,9 @@ const canDeleteAdmin = computed(() => {
   </AdminHeader>
 
   <main class="max-w-7xl w-full mx-auto px-1 870:px-1.5 py-1 870:py-1.5">
-    <section class="870:bg-body-bg-dark rounded 870:border-2 border-accent-color w-full 870:p-2">
+    <section
+      class="870:bg-body-bg-dark rounded 870:border-2 border-accent-color w-full 870:p-2"
+    >
       <div v-if="error" class="text-red-600">{{ error }}</div>
 
       <div class="overflow-auto">
@@ -243,7 +261,11 @@ const canDeleteAdmin = computed(() => {
             </template>
 
             <template v-else>
-              <tr v-for="u in filteredUsers" :key="String(u.email ?? u.uid)" class="border-b">
+              <tr
+                v-for="u in filteredUsers"
+                :key="String(u.email ?? u.uid)"
+                class="border-b"
+              >
                 <td class="p-1">{{ u.email }}</td>
                 <td class="p-1">{{ (u.displayName as string) || '—' }}</td>
                 <td class="p-1">{{ formatDate(u.createdAt) }}</td>
@@ -260,8 +282,13 @@ const canDeleteAdmin = computed(() => {
                 </td>
                 <td class="p-1">{{ formatDate(u.lastSignInAt) }}</td>
                 <td v-if="canDeleteAdmin" class="p-1">
-                  <button v-if="canDeleteUser(u.uid)" @click="handleDeleteUser(u)" :disabled="isLoading"
-                    class="common-button flex items-center justify-center gap-1" :title="t('admin.users.delete_user')">
+                  <button
+                    v-if="canDeleteUser(u.uid)"
+                    @click="handleDeleteUser(u)"
+                    :disabled="isLoading"
+                    class="common-button flex items-center justify-center gap-1"
+                    :title="t('admin.users.delete_user')"
+                  >
                     <Icon name="mdi:delete" />
                     {{ t('admin.users.delete_user') }}
                   </button>
@@ -281,7 +308,11 @@ const canDeleteAdmin = computed(() => {
         <!-- Mobile / small screens: lista em cards (visível em <870) -->
         <div class="block 870:hidden space-y-1">
           <template v-if="isLoading">
-            <div v-for="i in 3" :key="`mob-skel-${i}`" class="border-2 rounded p-1 bg-white">
+            <div
+              v-for="i in 3"
+              :key="`mob-skel-${i}`"
+              class="border-2 rounded p-1 bg-white"
+            >
               <Skeleton width="60%" height="1rem" />
               <div class="mt-1">
                 <Skeleton width="40%" height="0.9rem" />
@@ -294,16 +325,31 @@ const canDeleteAdmin = computed(() => {
           </template>
 
           <template v-else>
-            <div v-for="u in filteredUsers" :key="String(u.email ?? u.uid) + '-card'"
-              class="border-2 rounded p-1 bg-white">
-              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+            <div
+              v-for="u in filteredUsers"
+              :key="String(u.email ?? u.uid) + '-card'"
+              class="border-2 rounded p-1 bg-white"
+            >
+              <div
+                class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1"
+              >
                 <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-sm truncate">{{ u.email }}</div>
-                  <div class="text-sm text-gray-600 truncate">{{ (u.displayName as string) || '—' }}</div>
+                  <div class="font-semibold text-sm truncate">
+                    {{ u.email }}
+                  </div>
+                  <div class="text-sm text-gray-600 truncate">
+                    {{ (u.displayName as string) || '—' }}
+                  </div>
 
                   <div class="mt-1 text-xs text-gray-500">
-                    <div>{{ t('admin.users.created') }}: {{ formatDate(u.createdAt) }}</div>
-                    <div>{{ t('admin.users.last_login') }}: {{ formatDate(u.lastSignInAt) }}</div>
+                    <div>
+                      {{ t('admin.users.created') }}:
+                      {{ formatDate(u.createdAt) }}
+                    </div>
+                    <div>
+                      {{ t('admin.users.last_login') }}:
+                      {{ formatDate(u.lastSignInAt) }}
+                    </div>
                     <div>
                       {{ t('admin.users.role') || 'Tipo' }}:
                       {{
@@ -321,11 +367,17 @@ const canDeleteAdmin = computed(() => {
 
                 <div class="flex items-start sm:items-center gap-2">
                   <div v-if="canDeleteAdmin">
-                    <button v-if="canDeleteUser(u.uid)" @click="handleDeleteUser(u)" :disabled="isLoading"
+                    <button
+                      v-if="canDeleteUser(u.uid)"
+                      @click="handleDeleteUser(u)"
+                      :disabled="isLoading"
                       class="common-button flex items-center justify-center gap-1"
-                      :title="t('admin.users.delete_user')">
+                      :title="t('admin.users.delete_user')"
+                    >
                       <Icon name="mdi:delete" />
-                      <span class="text-sm">{{ t('admin.users.delete_user') }}</span>
+                      <span class="text-sm">{{
+                        t('admin.users.delete_user')
+                      }}</span>
                     </button>
                     <span v-else class="text-gray-500 text-sm"> — </span>
                   </div>
@@ -333,7 +385,10 @@ const canDeleteAdmin = computed(() => {
               </div>
             </div>
 
-            <div v-if="filteredUsers.length === 0" class="p-2 text-sm text-gray-600">
+            <div
+              v-if="filteredUsers.length === 0"
+              class="p-2 text-sm text-gray-600"
+            >
               {{ t('admin.users.no_users') }}
             </div>
           </template>
@@ -341,7 +396,12 @@ const canDeleteAdmin = computed(() => {
       </div>
 
       <div class="flex justify-end gap-2 mt-2">
-        <button v-if="nextPageToken" @click="loadNext" class="common-button" :disabled="isLoading">
+        <button
+          v-if="nextPageToken"
+          @click="loadNext"
+          class="common-button"
+          :disabled="isLoading"
+        >
           {{ t('admin.users.next_page') }}
         </button>
       </div>
@@ -349,6 +409,11 @@ const canDeleteAdmin = computed(() => {
   </main>
 
   <!-- Modal de criação de usuário -->
-  <CreateUserModal :is-open="isCreateModalOpen" :is-loading="isLoading" :error="createModalError"
-    @close="closeCreateModal" @submit="handleCreateUser" />
+  <CreateUserModal
+    :is-open="isCreateModalOpen"
+    :is-loading="isLoading"
+    :error="createModalError"
+    @close="closeCreateModal"
+    @submit="handleCreateUser"
+  />
 </template>
