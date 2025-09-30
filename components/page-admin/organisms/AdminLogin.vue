@@ -100,11 +100,11 @@
 
 <template>
   <div
-    class="login-card w-full max-w-5xl bg-white rounded overflow-hidden max-lg:max-w-none max-lg:w-full lg:p-0.5"
+    class="login-card w-full max-w-5xl bg-white rounded lg:overflow-hidden max-lg:max-w-none max-lg:w-full lg:p-0.5"
   >
-    <div class="login-container flex min-h-[600px]">
+    <div class="login-container flex lg:min-h-[600px]">
       <div
-        class="login-left rounded flex-1 relative overflow-hidden flex flex-col justify-center items-end p-4 text-white max-lg:hidden"
+        class="login-left rounded flex-1 relative lg:overflow-hidden flex flex-col justify-center items-end p-4 text-white max-lg:hidden"
       >
         <!-- imagem de fundo otimizada + overlay de gradiente (reaproveita variáveis do hero) -->
         <NuxtImg
@@ -145,11 +145,11 @@
       </div>
 
       <div
-        class="login-right flex-1 flex flex-col justify-center items-center p-4 bg-white max-lg:p-2 relative"
+        class="login-right flex-1 flex flex-col justify-center items-center p-4 bg-white max-lg:rounded max-lg:p-2 relative"
       >
         <NuxtLink
           :to="homePath"
-          class="absolute top-1 right-1 lg:top-0.5 lg:right-0.5 gap-1 flex items-center justify-center p-0.5 text-accent-color transition duration-200 rounded border-2 border-accent-color hover:bg-accent-color/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-color"
+          class="absolute -top-3 right-0 lg:top-0.5 lg:right-0.5 gap-1 flex items-center justify-center p-0.5 text-body-bg lg:text-accent-color transition duration-200 rounded border-2 border-body-bg lg:border-accent-color hover:bg-body-bg/20 lg:hover:bg-accent-color/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-color"
           :aria-label="t('error.back_home_aria')"
           role="button"
           tabindex="0"
