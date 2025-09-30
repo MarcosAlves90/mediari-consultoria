@@ -1,7 +1,9 @@
 <template>
   <div class="bg-body-bg-dark rounded border-2 border-accent-color">
     <div class="p-1.5">
-      <div class="flex items-start justify-between mb-1 max-sm:flex-col max-sm:gap-1">
+      <div
+        class="flex items-start justify-between mb-1 max-sm:flex-col max-sm:gap-1"
+      >
         <div>
           <h2 class="text-xl font-semibold text-primary-text">
             {{ candidate.fullName }}

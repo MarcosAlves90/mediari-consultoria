@@ -34,7 +34,9 @@
           </div>
 
           <!-- User Menu Desktop -->
-          <div class="flex items-center ml-2 pl-2 border-l-2 border-accent-color">
+          <div
+            class="flex items-center ml-2 pl-2 border-l-2 border-accent-color"
+          >
             <div class="flex items-center space-x-1">
               <div class="text-secondary-text text-sm">
                 <span class="font-medium text-primary-text">{{
