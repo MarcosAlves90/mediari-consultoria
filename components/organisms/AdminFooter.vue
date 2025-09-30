@@ -17,7 +17,7 @@
             >© {{ currentYear }} Mediari Consultoria</span
           >
           <span class="hidden 500:inline mx-0.5 opacity-60">•</span>
-          <span class="opacity-90">
+          <span class="opacity-90 max-500:hidden">
             {{ t('admin.footer.admin_panel') }}
           </span>
         </div>
